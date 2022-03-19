@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "701886551645",
+    "project_id": "congdongbauapp",
+    "storage_bucket": "congdongbauapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701886551645:android:faf165e32551cf32429fb4",
+        "android_client_info": {
+          "package_name": "vn.congdongbau.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701886551645-frd9kh2t1h83s9cdcllvrdokehic8mlc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXeT7vY9HsomVklDTdrEXSexNd2QKg1Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701886551645-frd9kh2t1h83s9cdcllvrdokehic8mlc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

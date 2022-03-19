@@ -1,0 +1,83 @@
+/*
+* Dark theme
+*/
+
+
+body, .navbar-light .navbar-brand {
+  color: rgb(209, 209, 209);
+}
+
+.text-muted {
+  color: rgb(236, 236, 236) !important;
+}
+
+.cover-container::before {
+  background-image: linear-gradient(to top, rgb(17, 17, 17), rgba(17, 17, 17, .4));
+}
+
+.cover-container {
+  background-color: rgb(17, 17, 17);
+}
+
+body {
+  background-color: rgb(17, 17, 17);
+}
+
+footer {
+  background: rgb(17, 17, 17);
+  color: rgb(209, 209, 209);
+}
+
+footer .text-muted {
+  color: rgb(122, 122, 122) !important;
+}
+
+.li.complete .status, .li.complete .timestamp {
+  color: rgb(122, 122, 122);
+}
+
+.li.complete .status::before, .li.complete .timestamp::after {
+  background-color: rgb(122, 122, 122);
+}
+
+.timestamp::after {
+  background-color: rgb(209, 209, 209);
+}
+
+@media (min-width: 767px) {
+  .li.complete .status {
+    border-top: 2px solid rgb(122, 122, 122);
+  }
+
+  .status {
+    border-top: 2px solid rgb(209, 209, 209);
+  }
+
+  .status::before {
+    background-color: rgb(209, 209, 209);
+    border: 1px solid rgb(209, 209, 209);
+  }
+}
+
+hr {
+  border-top: 1px solid rgba(80, 80, 80, .2) !important;
+}
+
+.square {
+  background: rgb(17, 17, 17);
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+#scrolldown i {
+  color: rgb(209, 209, 209);
+}
+
+#loading {
+  background-color: rgb(13, 13, 12);
+}
+
+.double-bounce1, .double-bounce2 {
+  background-color: #333;
+}

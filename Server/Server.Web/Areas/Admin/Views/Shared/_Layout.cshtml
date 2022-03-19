@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Phoenix Company</title>
+    <link rel="stylesheet" href="~/assets/css/app.css" />
+    @RenderSection("Css", false)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    @RenderSection("Scripts", false)
+
+    <!--Kendo ui-->
+    <link rel="stylesheet" href="~/assets/css/kendo/2019.3.1023/kendo.common.min.css">
+    <link rel="stylesheet" href="~/assets/css/kendo/2019.3.1023/kendo.default.min.css">
+
+    <!--kendo-->
+    <script src="~/assets/js/kendo/2019.3.1023/kendo.web.min.js"></script>
+
+    <script src="~/assets/js/kendo/2019.3.1023/cultures/kendo.culture.vi-VN.min.js"></script>
+    <!--kendo ui customzie-->
+    <link rel="stylesheet" href="~/assets/css/kendo/customize-kendoui.css" />
+
+</head>
+<body class="app">
+    @Html.Partial("_MobileMenu")
+    <div class="flex">
+        @Html.Partial("_LeftSideBar")
+        <!-- BEGIN: Content -->
+        <div class="content">
+            <!-- BEGIN: Top Bar -->
+            <div class="top-bar">
+                <!-- BEGIN: Breadcrumb -->
+                @RenderSection("Breadcrumb", false)
+                <!-- END: Breadcrumb -->
+
+            </div>
+            <!-- END: Top Bar -->
+            @RenderBody()
+            <!-- END: Icon List -->
+        </div>
+        <!-- END: Content -->
+    </div>
+    <!-- BEGIN: Dark Mode Switcher-->
+    <div data-url="#" class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box dark:bg-dark-2 border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-8 mr-10">
+        <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
+        <div class="dark-mode-switcher__toggle border"></div>
+    </div>
+    <script>
+        $('.dark-mode-switcher').on('click', function () {
+            if ($('html').hasClass('light'))
+                $('html').removeClass('light').addClass('dark');
+            else
+                $('html').removeClass('dark').addClass('light');
+        })
+        var url = window.location;
+        var _nav = $('.side-nav ul li a').filter(function () {
+            return this.href == url;
+        });
+        while (true) {
+            if (_nav.is('a')) {
+                _nav.addClass(' side-menu--active');
+                break;
+                //element = element.addClass('side-menu--active').parent();
+            } else {
+                break;
+            }
+        }
+        var element = $('.side-nav ul li ul li a').filter(function () {
+            return this.href == url;
+        });
+        //set active
+        while (true) {
+            if (element.is('a')) {
+                element.parent().parent().addClass('side-menu__sub-open');
+                element.parent().parent().parent().children('a').addClass(' side-menu--active');
+                element.parent().parent().css('display', 'block');
+                element = element.addClass('side-menu--active').parent();
+            } else {
+                break;
+            }
+        }
+    </script>
+
+    <!-- END: Dark Mode Switcher-->
+    <script src="~/assets/js/app.js"></script>
+
+    
+</body>
+</html>

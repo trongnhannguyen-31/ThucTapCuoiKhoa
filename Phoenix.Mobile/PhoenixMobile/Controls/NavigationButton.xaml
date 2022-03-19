@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             mc:Ignorable="d"
+             x:Name="ButtonRoot"
+             x:Class="Phoenix.Mobile.Controls.NavigationButton">
+  <ContentView.Content>
+      <Frame Style="{StaticResource ListItemBoundStyle}">
+          <Grid>
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="40"/>
+              </Grid.ColumnDefinitions>
+              <!--<forms:SvgCachedImage Grid.Column="0" Style="{StaticResource ButtonIconStyle}"
+                                    Source="{Binding Icon}"/>-->
+                <Label Grid.Column="0"                       
+                       Text="{StaticResource IconArrowLeft}"
+                       FontSize="{StaticResource Title2FontSize}"
+                       TextColor="{StaticResource InverseTextColor}"
+                       VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"
+                       />
+                <Label Grid.Column="1" Style="{StaticResource ListSingleLine}" Text="{Binding Name}" HorizontalOptions="CenterAndExpand"/>
+              <forms:SvgCachedImage Grid.Column="2" Style="{StaticResource ButtonEndIconStyle}"/>
+          </Grid>
+      </Frame>
+    </ContentView.Content>
+</ContentView>

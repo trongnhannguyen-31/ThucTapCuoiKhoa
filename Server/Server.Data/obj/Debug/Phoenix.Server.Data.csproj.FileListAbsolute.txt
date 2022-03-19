@@ -1,0 +1,43 @@
+D:\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.dll
+D:\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.pdb
+D:\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.dll
+D:\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\ThucTap\Server\Server.Data\bin\Debug\Falcon.Core.dll
+D:\ThucTap\Server\Server.Data\bin\Debug\Falcon.Web.Core.dll
+D:\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.xml
+D:\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.AssemblyReference.cache
+D:\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CoreCompileInputs.cache
+D:\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CopyComplete
+D:\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.dll
+D:\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Falcon.Core.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Falcon.Web.Core.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Microsoft.VisualStudio.LiveShare.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.AssemblyReference.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CoreCompileInputs.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CopyComplete
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Phoenix.Server.Data.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Falcon.Core.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Falcon.Web.Core.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\bin\Debug\Microsoft.VisualStudio.LiveShare.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.AssemblyReference.cache
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CoreCompileInputs.cache
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.csproj.CopyComplete
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Data\obj\Debug\Phoenix.Server.Data.pdb

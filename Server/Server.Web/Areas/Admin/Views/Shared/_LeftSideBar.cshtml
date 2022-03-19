@@ -1,0 +1,153 @@
+﻿<!-- BEGIN: Side Menu -->
+<nav class="side-nav">
+    <a href="/" class="intro-x flex items-center pl-5 pt-4">
+        <img alt="PCheck" class="w-6" src="~/assets/images/logo-phoenix-s.png">
+        <span class="hidden xl:block text-white text-lg ml-3"> P<span class="font-medium">Check</span> </span>
+    </a>
+    <div class="side-nav__devider my-6"></div>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Dashboard")" class="side-menu ">
+                <div class="side-menu__icon"> <i data-feather="home"></i> </div>
+                <div class="side-menu__title"> Dashboard</div>
+            </a>
+        </li>
+        @*<li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="database"></i> </div>
+                <div class="side-menu__title"> Chương trình <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="@Html.Raw(Url.Action("List", "Project"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Danh sách chương trình </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="copy"></i> </div>
+                        <div class="side-menu__title"> Sao chép chương trình </div>
+                    </a>
+                </li>
+            </ul>
+        </li>*@
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                <div class="side-menu__title"> Khách hàng <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "User"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Tài khoản người dùng </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Customer"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Khách đặt hàng </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Rating"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Người dùng đánh giá </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__title"> Sản phẩm <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "ProductType"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Loại sản phẩm </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Vendor"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Hãng sản xuất </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Product"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Sản phẩm </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "ProductSKU"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Chi tiết sản phẩm </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Warehouse"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Số lượng tồn </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="shopping-cart"></i> </div>
+                <div class="side-menu__title"> Đơn hàng <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "Order"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Đơn đặt hàng </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Html.Raw(Url.Action("Index", "OrderDetail"))" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Chi tiết đơn đặt hàng </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                <div class="side-menu__title"> Báo cáo <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="#" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Chấm công </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Lịch làm việc </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Sản phẩm </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Thông báo </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<!-- END: Side Menu -->

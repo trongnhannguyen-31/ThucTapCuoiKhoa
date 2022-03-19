@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "467223605429",
+    "firebase_url": "https://congdongbaufcm.firebaseio.com",
+    "project_id": "congdongbaufcm",
+    "storage_bucket": "congdongbaufcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467223605429:android:0ebe39f54c0d01ae874efc",
+        "android_client_info": {
+          "package_name": "vn.phoenixcompany.congdongbau"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467223605429-qv55rb6r896mvhp1893gnltcvqqodu0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2QDxA4caxdwvPEWVdMt4og-REG2Ere1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467223605429-qv55rb6r896mvhp1893gnltcvqqodu0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

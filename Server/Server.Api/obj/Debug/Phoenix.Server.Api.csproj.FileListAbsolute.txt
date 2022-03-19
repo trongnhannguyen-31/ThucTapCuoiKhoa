@@ -1,0 +1,277 @@
+D:\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.AssemblyReference.cache
+D:\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CoreCompileInputs.cache
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll.config
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.pdb
+D:\ThucTap\Server\Server.Api\bin\AsyncEnumerable.dll
+D:\ThucTap\Server\Server.Api\bin\AutoMapper.dll
+D:\ThucTap\Server\Server.Api\bin\EntityFramework.dll
+D:\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.dll
+D:\ThucTap\Server\Server.Api\bin\Falcon.Web.Api.dll
+D:\ThucTap\Server\Server.Api\bin\Falcon.Web.Core.dll
+D:\ThucTap\Server\Server.Api\bin\Falcon.Web.Mvc.dll
+D:\ThucTap\Server\Server.Api\bin\FluentScheduler.dll
+D:\ThucTap\Server\Server.Api\bin\JWT.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.Web.Infrastructure.dll
+D:\ThucTap\Server\Server.Api\bin\Microsoft.Win32.Primitives.dll
+D:\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.dll
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.dll
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Shared.dll
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.dll
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.dll
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.dll
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.dll
+D:\ThucTap\Server\Server.Api\bin\System.AppContext.dll
+D:\ThucTap\Server\Server.Api\bin\System.Console.dll
+D:\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.dll
+D:\ThucTap\Server\Server.Api\bin\System.Globalization.Calendars.dll
+D:\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\ThucTap\Server\Server.Api\bin\System.IO.Compression.dll
+D:\ThucTap\Server\Server.Api\bin\System.IO.Compression.ZipFile.dll
+D:\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.dll
+D:\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.Primitives.dll
+D:\ThucTap\Server\Server.Api\bin\System.Net.Http.dll
+D:\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.dll
+D:\ThucTap\Server\Server.Api\bin\System.Net.Sockets.dll
+D:\ThucTap\Server\Server.Api\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Algorithms.dll
+D:\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Csp.dll
+D:\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Encoding.dll
+D:\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Primitives.dll
+D:\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.X509Certificates.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.Helpers.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.Http.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.Mvc.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.Razor.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.dll
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.dll
+D:\ThucTap\Server\Server.Api\bin\System.Xml.ReaderWriter.dll
+D:\ThucTap\Server\Server.Api\bin\FcmServiceNET.dll
+D:\ThucTap\Server\Server.Api\bin\Falcon.Core.dll
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Shared.pdb
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.pdb
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.pdb
+D:\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll.config
+D:\ThucTap\Server\Server.Api\bin\AsyncEnumerable.xml
+D:\ThucTap\Server\Server.Api\bin\AutoMapper.xml
+D:\ThucTap\Server\Server.Api\bin\EntityFramework.xml
+D:\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.xml
+D:\ThucTap\Server\Server.Api\bin\FluentScheduler.pdb
+D:\ThucTap\Server\Server.Api\bin\FluentScheduler.xml
+D:\ThucTap\Server\Server.Api\bin\JWT.xml
+D:\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.xml
+D:\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.xml
+D:\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.xml
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.xml
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.xml
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.xml
+D:\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.xml
+D:\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.xml
+D:\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.Helpers.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.Http.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.Mvc.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.Razor.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.xml
+D:\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.xml
+D:\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CopyComplete
+D:\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.dll
+D:\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll.config
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\AsyncEnumerable.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\AutoMapper.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Api.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Core.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Mvc.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\JWT.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.VisualStudio.LiveShare.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.Win32.Primitives.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Shared.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.AppContext.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Console.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Globalization.Calendars.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.Compression.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.Compression.ZipFile.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Sockets.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Csp.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Helpers.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Mvc.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Razor.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Xml.ReaderWriter.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\FcmServiceNET.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Core.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Shared.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll.config
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\AsyncEnumerable.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\AutoMapper.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\JWT.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.VisualStudio.LiveShare.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Helpers.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Mvc.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Razor.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.xml
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.AssemblyReference.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CoreCompileInputs.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CopyComplete
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll.config
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Api.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\AsyncEnumerable.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\AutoMapper.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Api.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Core.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Web.Mvc.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\JWT.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.VisualStudio.LiveShare.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.Web.Infrastructure.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.Win32.Primitives.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Shared.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.AppContext.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Console.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Globalization.Calendars.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.Compression.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.Compression.ZipFile.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IO.FileSystem.Primitives.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Sockets.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Algorithms.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Csp.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Encoding.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.Primitives.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Security.Cryptography.X509Certificates.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Helpers.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Mvc.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Razor.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Xml.ReaderWriter.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\FcmServiceNET.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Falcon.Core.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Shared.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Data.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Phoenix.Server.Services.dll.config
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\AsyncEnumerable.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\AutoMapper.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\EntityFramework.SqlServer.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.pdb
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\FluentScheduler.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\JWT.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Logging.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.IdentityModel.Tokens.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Microsoft.VisualStudio.LiveShare.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\Newtonsoft.Json.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.Web.Mvc.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\SimpleInjector.Integration.WebApi.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Diagnostics.DiagnosticSource.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.IdentityModel.Tokens.Jwt.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Net.Http.Formatting.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Helpers.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Http.WebHost.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Mvc.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.Razor.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Deployment.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\bin\System.Web.WebPages.Razor.xml
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.AssemblyReference.cache
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CoreCompileInputs.cache
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.csproj.CopyComplete
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.dll
+E:\ThucTap\ThucTap\ThucTap\Server\Server.Api\obj\Debug\Phoenix.Server.Api.pdb

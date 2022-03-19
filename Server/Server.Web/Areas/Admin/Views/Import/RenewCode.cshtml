@@ -1,0 +1,199 @@
+﻿@using Falcon.Web.Mvc.HtmlExtensions
+@using CongDongBau.Shared.Common
+
+@{
+    var defaultGridPageSize = 15;
+    var gridPageSizes = "15, 20, 25, 50, 100";
+    ViewBag.Title = "Import - Mã thẻ gia hạn";
+}
+@Html.AntiForgeryToken()
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="fas fa-file-excel phoenix-menu-icon icon-gradient bg-grow-early">
+                </i>
+            </div>
+            <div>
+                Import - Mã thẻ gia hạn
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">Import</h5>
+        <div class="position-relative row form-group">
+            <div class="col-sm-6">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="templateFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <label class="custom-file-label" for="templateFile" data-browse="Chọn file">Chọn file excel (*.xlsx)</label>
+                </div>
+                <small id="templateFile" class="form-text text-muted">Hệ thống chỉ lưu khi file excel không có data lỗi</small>
+            </div>
+            <div class="col-sm-6">
+                <img id="indicator" src="~/Content/phoenix/assets/images/loading.gif"
+                     width="40" alt="Loading..." />
+                <div class="btn-group" id="btn-command">
+                    <button class="btn btn-info" id="btnCheck">
+                        <i class="fas fa-search"></i>
+                        Kiểm tra
+                    </button>
+                    <button class="btn btn-success ml-3" id="btnSubmit">
+                        <i class="fas fa-upload"></i>
+                        Tải lên
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="excel-preview-grid"></div>
+        <script>
+            $(document).ready(function () {
+                $("#excel-preview-grid").kendoGrid({
+                    dataSource: {
+
+                        schema: {
+                            model: {
+                                id: 'Id'
+                            },
+                            data: "Data",
+                            total: "Total",
+                            errors: "Errors"
+                        },
+                        error: function (e) {
+                            display_kendoui_grid_error(e);
+                            // Cancel the changes
+                            this.cancelChanges();
+                        },
+                        pageSize: @(defaultGridPageSize)
+                    },
+                    pageable: {
+                        refresh: true,
+                        pageSizes: [@(gridPageSizes)],
+                        messages: {
+                            itemsPerPage: "dòng mỗi trang",
+                            empty: "Không có dữ liệu",
+                            display: "{0} - {1} tổng {2} dòng",
+                        },
+                    },
+                    editable: {
+                        confirmation: "Xác nhận xóa",
+                        mode: "inline"
+                    },
+                    scrollable: false,
+                    columns: [
+                        {
+                            field: "Id",
+                            title: "STT",
+                            headerAttributes: { style: "text-align:center" },
+                            attributes: { class: "text-center" }
+                        },
+                        {
+                            field: "Code",
+                            title: "Mã gia hạn",
+                            headerAttributes: { style: "text-align:center" }
+                        },
+                        {
+                            field: "CardTypeName",
+                            title: "Loại thẻ",
+                            headerAttributes: { style: "text-align:center" }
+                        },
+                        {
+                            field: "DataValid",
+                            title: "Dữ liệu hợp lệ",
+                            headerAttributes: { style: "text-align:center" },
+                            attributes: { class: "text-center" },
+                            template: '#if(DataValid!= "Ok"){# <div class="bg-danger text-white"> #=DataValid# </div> #}else{# #=DataValid# #}#'
+                        },
+                    ]
+                });
+            });
+
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+            $(document).ready(function () {
+                $('#indicator').fadeOut();
+                $('#btnDownload').click(function () {
+                    var data = {
+                        FileName: 'ImportRenewCode',
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("DownloadTemplateAsExcel")',
+                        data: addAntiForgeryToken(data),
+                    }).done(function (response) {
+                        window.location.href = response.fileName;
+                        return false;
+                    }).fail(err => {
+                        alert(err.responseJSON.Error)
+                    })
+                });
+                $('#btnCheck').click(function () {
+                    $('#btn-command').fadeOut();
+                    $('#indicator').fadeIn();
+                    var formdata = new FormData();
+                    var file = $('#templateFile')[0];
+                    formdata.append('excel', file.files[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("RenewCode")',
+                        data: addAntiForgeryToken(formdata),
+                        processData: false,
+                        contentType: false,
+                    }).done(function (response) {
+                        $('#btn-command').fadeIn();
+                        $('#indicator').fadeOut();
+                        $('#excel-preview-grid').data('kendoGrid').dataSource.data(response.Data);
+                        $('#excel-preview-grid').data('kendoGrid').refresh();
+                        return false;
+                    }).fail(response => {
+                        $('#btn-command').fadeIn();
+                        $('#indicator').fadeOut();
+                        alert("Lỗi khi tải file, vui lòng kiểm tra lại");
+                    })
+                    //search
+                    //var grid = $('#main-grid').data('kendoGrid');
+                    //grid.dataSource.page(1); //new search. Set page size to 1
+                    //grid.dataSource.read(); //we already loaded the grid above using "page" function
+                    return false;
+                });
+                $('#btnSubmit').click(function () {
+                    var _confirm = confirm("Bạn chắc chắn gửi file?");
+                    if (_confirm)
+                    {
+                        $('#btn-command').fadeOut();
+                        $('#indicator').fadeIn();
+                        var formdata = new FormData();
+                        var file = $('#templateFile')[0];
+                        formdata.append('excel', file.files[0]);
+                        formdata.append('SaveToDb', true);
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("RenewCode")',
+                            data: addAntiForgeryToken(formdata),
+                            processData: false,
+                            contentType: false,
+                        }).done(function (response) {
+                            $('#btn-command').fadeIn();
+                            $('#indicator').fadeOut();
+                            $('#excel-preview-grid').data('kendoGrid').dataSource.data(response.Data);
+                            $('#excel-preview-grid').data('kendoGrid').refresh();
+                            alert(response.responseJSON.Message);
+                            return false;
+                        }).fail(response => {
+                            $('#btn-command').fadeIn();
+                            $('#indicator').fadeOut();
+                            alert("Lỗi khi tải file, vui lòng kiểm tra lại");
+                        })
+                    }
+                    return false;
+                });
+            });
+        </script>
+    </div>
+</div>

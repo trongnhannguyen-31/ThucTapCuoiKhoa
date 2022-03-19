@@ -1,0 +1,107 @@
+﻿@using Phoenix.Server.Services.Database;
+@section Scripts{
+    <script type="text/javascript" src="~/assets/js/tabulator.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+}
+@section Breadcrumb{
+    <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
+        <span>Chương trình</span> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <a href="#" class="breadcrumb--active">Chi tiết đơn đặt hàng</a>
+    </div>
+}
+@Html.AntiForgeryToken()
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Chi tiết đơn đặt hàng
+    </h2>
+    <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+        <a href="@Url.Action("Create","Project")" class="btn btn-primary text-white shadow-md mr-2">Thêm mới</a>
+    </div>
+</div>
+<div class="grid gap-6 mt-5">
+    <div class="intro-y box p-5">
+        <div class="grid grid-cols-12 gap-2">
+            <div class="col-span-12 lg:col-span-6">
+                <label>Tên Loại</label>
+                <input type="text" id="Id" class="form-control">
+            </div>
+            <div class="col-span-12 lg:col-span-6">
+                <!-- <label>Tên sản phẩm</label> -->
+                <input type="hidden" id="Product_Name" class="form-control">
+            </div>
+        </div>
+        <div class="grid mt-3">
+            <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
+                <button type="button" onclick="onResetSearch();" class="btn btn-success text-white shadow-md mr-2">Xóa tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="intro-y box p-5 mt-5">
+    <div id="main-grid"></div>
+    <script>
+        var dateFormatter = function (cell, formatterParams) {
+            var value = cell.getValue();
+
+            if (value) {
+                value = moment(value).format("DD/MM/YYYY HH:mm:ss");
+            }
+
+            return value;
+        }
+        var table = new Tabulator("#main-grid", {
+            layout: "fitDataFill",
+            ajaxURL: "@Html.Raw(Url.Action("List", "OrderDetail"))",
+            ajaxConfig: "post",
+            ajaxRequesting: function (url, params) {
+                params.Id = $('#Id').val();
+                params.Product_Name = $('#Product_Name').val();
+
+            },
+            ajaxResponse: function (url, params, response) {
+                return response;
+            },
+            ajaxFiltering: true,
+            paginationSize: 10,
+            paginationSizeSelector: [10, 25, 50, 100],
+            pagination: "remote",
+            paginationDataSent: {
+                "size": "pageSize",
+                "page": "page",
+            },
+            paginationDataReceived: {
+                "data": "Data",
+                "last_page": "Total"
+            },
+            placeholder: "Chưa có dữ liệu",
+            columns: [
+                { title: "Mã đơn", field: "Order_Id", sorter: "string", width: 180 },
+                @*{
+                    title: "Sản Phẩm", field: "Product_Id", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    {
+                        return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Id}</a>`
+                    }
+                },*@
+                { title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180 },
+                { title: "Giá", field: "Price", sorter: "string", width: 180 },
+                { title: "Số lượng", field: "Quantity", sorter: "string", width: 180 },
+                { title: "Tổng tiền", field: "Total", sorter: "string", width: 180 },
+                {
+                    title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                },
+            ],
+        });
+        let onSearch = (e) => {
+            table.setData();
+        }
+        let onResetSearch = (e) => {
+            $('#Name').val('');
+            table.setData();
+        }
+    </script>
+</div>
+

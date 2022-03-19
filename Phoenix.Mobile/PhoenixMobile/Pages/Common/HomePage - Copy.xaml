@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviors="clr-namespace:Phoenix.Framework.Core;assembly=Phoenix.Framework"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:converters="clr-namespace:Phoenix.Framework.Converters;assembly=Phoenix.Framework"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             xmlns:controls1="clr-namespace:CongDongBau.Controls"
+             mc:Ignorable="d"
+             x:Class="CongDongBau.Pages.Common.HomePage"
+             x:Name="HomePageRoot"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{DynamicResource MainThemeColor}" Grid.Row="0"
+                   HeightRequest="75" CornerRadius="20" Margin="0, -18,0,8">
+                <StackLayout Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="Center" Padding="0,0,0,15">
+                    <forms:SvgCachedImage Source="resource://CongDongBau.Resources.account_white.svg"
+                                          WidthRequest="24" Aspect="AspectFit"></forms:SvgCachedImage>
+                    <Label Text="{Binding Account.Name}" TextColor="{StaticResource InverseTextColor}"
+                           FontFamily="{StaticResource TextBold}" 
+                           FontSize="{StaticResource Title3FontSize}"
+                           Margin="10,0,0,0"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" HorizontalOptions="Center">
+                <Label Text="CỘNG ĐỒNG BẦU" FontAttributes="Bold"
+                       Opacity="{Binding TabFOpacity}"
+                       TextColor="{StaticResource MainThemeColor}"
+                       FontSize="{StaticResource TitleCDBFontSize}"
+                       behaviors:TappedGestureAttached.Command="{Binding ToggleCommand}"
+                       behaviors:TappedGestureAttached.CommandParameter="home"/>
+                <!--<BoxView WidthRequest="2"   Style="{StaticResource HorizontalRuleStyle}"
+                         HorizontalOptions="Center" VerticalOptions="FillAndExpand"
+                         Margin="10,5,10,5"></BoxView>
+                <Label Text="TÀI CHÍNH" FontAttributes="Bold"
+                       Opacity="{Binding TabSOpacity}"
+                       TextColor="{StaticResource MainThemeColor}"
+                       FontSize="{StaticResource TitleCDBFontSize}"
+                       behaviors:TappedGestureAttached.Command="{Binding ToggleCommand}"
+                       behaviors:TappedGestureAttached.CommandParameter="accounting"/>-->
+            </StackLayout>
+            
+            <ScrollView Grid.Row="2"
+                        VerticalOptions="FillAndExpand"
+                        IsVisible="{Binding IsShowHomePage}">
+                <Grid Style="{StaticResource GridPageWrapper}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--Banner zone-->
+                    <!--<Frame Grid.Row="0" CornerRadius="15" HeightRequest="160">
+                        <forms1:CachedImage Grid.Row="0"
+                                        Source="https://congdongbau.com.vn/wp-content/uploads/2019/12/48415806_1048971831976232_3703400443636875264_n-534x462.jpg"
+                                        Aspect="AspectFill" HorizontalOptions="FillAndExpand"
+                                        >
+                            <forms1:CachedImage.Transformations>
+                                <transformations:RoundedTransformation Radius="50" />
+                            </forms1:CachedImage.Transformations>
+                        </forms1:CachedImage>
+                    </Frame>-->
+                    <cards:CarouselView Grid.Row="0"
+                                        BackgroundColor="Transparent"
+                                        ItemsSource="{Binding Banners}"
+                                        SlideShowDuration="3500"
+                                        Margin="-9,0">
+                        <cards:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView>
+                                    <Frame 
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="FillAndExpand"
+                                        HeightRequest="200"
+                                        Padding="0" 
+                                        HasShadow="false"
+                                        IsClippedToBounds="true"
+                                        Style="{DynamicResource FrameBorderStyle}">
+
+                                        <forms1:CachedImage Source="{Binding ImageUrl}"
+                                                            Aspect="AspectFill" 
+                                                            HorizontalOptions="FillAndExpand"/>
+
+                                    </Frame>
+                                </ContentView>
+                            </DataTemplate>
+                        </cards:CarouselView.ItemTemplate>
+
+                        <!--<controls:LeftArrowControl />
+                        <controls:RightArrowControl/>-->
+                        <controls:IndicatorsControl HidesForSingleIndicator="True"/>
+                    </cards:CarouselView>
+                    <!--<CollectionView ItemsSource="{Binding CartImages}" Grid.Row="0" HeightRequest="180">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15">
+                                    <forms1:CachedImage Source="{Binding}" DownsampleToViewSize="True"
+                                                    Aspect="AspectFill" HorizontalOptions="Fill">
+                                        <forms1:CachedImage.Transformations>
+                                            <transformations:RoundedTransformation Radius="30"/>
+                                        </forms1:CachedImage.Transformations>
+                                    </forms1:CachedImage>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>-->
+                    
+                    <Grid Grid.Row="1" Margin="0,15,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Row="0" Grid.ColumnSpan="4"  Style="{StaticResource FrameBorderStyle}" 
+                               Margin="0,0,0,10"
+                               IsVisible="false"
+                               BorderColor="{StaticResource MainThemeColor}"
+                               behaviors:TappedGestureAttached.Command="{Binding PickupLocationCommand}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{StaticResource IconMarker}" Style="{StaticResource IconStyle}" Margin="0" Padding="5,0,5,0"/>
+                                <Label Text="306, Phạm Cự Lượng, Phường Mỹ Quý, TP. Lo..." Margin="0" Style="{StaticResource LabelNormal2Style}"
+                               FontSize="{StaticResource MediumFontSize}"
+                                       HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{StaticResource IconChevronRight}" Style="{StaticResource IconStyle}" Margin="0" Padding="0" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoMemberCardCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_membercard.png"
+                                                DownsampleToViewSize="True"/>
+
+                            <StackLayout >
+                                <StackLayout.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </StackLayout.Margin>
+                                <Label HorizontalOptions="Center"
+                               Style="{StaticResource LabelPrimaryStyle}"
+                               Text="Thẻ"></Label>
+                                <Label HorizontalOptions="Center"
+                               Style="{StaticResource LabelPrimaryStyle}"
+                               Text="thành viên"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="0,5,0,0"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoStoreCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_cart.png"
+                                                DownsampleToViewSize="True"/>
+                            <StackLayout>
+                                <StackLayout.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </StackLayout.Margin>
+                                <Label HorizontalOptions="Center"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Điểm"/>
+                                <Label HorizontalOptions="Center"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="mua sắm"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="2" Margin="0,5,0,0"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoHospitalCommand}">
+                            <forms1:CachedImage 
+                                            Style="{StaticResource CachedImageIconHome}"
+                                            Source="icon_hospital.png"
+                                            DownsampleToViewSize="True"/>
+                            <StackLayout>
+                                <StackLayout.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </StackLayout.Margin>
+                                <Label HorizontalOptions="Center"
+                               Style="{StaticResource LabelPrimaryStyle}"
+                               Text="Cơ sở"/>
+                                <Label HorizontalOptions="Center"
+                               Style="{StaticResource LabelPrimaryStyle}"
+                               Text="y tế"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="3" Margin="0,5,0,0"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoSeminarCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_meeting.png"
+                                                DownsampleToViewSize="True"/>
+                            <StackLayout>
+                                <StackLayout.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </StackLayout.Margin>
+                                <Label HorizontalOptions="Center"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Lớp học"/>
+                                <Label HorizontalOptions="Center"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="hội thảo"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" Margin="0,0,0,5"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoQuestionCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_mydoctor.png"
+                                                DownsampleToViewSize="True"/>
+                            <StackLayout>
+                                <StackLayout.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </StackLayout.Margin>
+                                <Label HorizontalOptions="Center"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Hỏi bác sĩ"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoVideoCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_video.png"
+                                                DownsampleToViewSize="True"/>
+                            <Label Grid.Row="4" Grid.Column="1"
+                                   Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Video"
+                                   HorizontalOptions="Center">
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="2" Margin="0,0,0,5"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoPostCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_blog.png"
+                                                DownsampleToViewSize="True"/>
+                            <Label Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Bài viết"
+                                   HorizontalOptions="Center">
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="3" Margin="0,0,0,5"
+                                     xe:TouchEffect.Color="AliceBlue"
+                                     xe:Commands.Tap="{Binding GoConversationCommand}">
+                            <forms1:CachedImage Style="{StaticResource CachedImageIconHome}"
+                                                Source="icon_feedback.png"
+                                                DownsampleToViewSize="True"/>
+                            <Label Style="{StaticResource LabelPrimaryStyle}"
+                                   Text="Tiện ích"
+                                   HorizontalOptions="Center">
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android" Value="0, 0, 0, 0"/>
+                                        <On Platform="iOS" Value="0, 5, 0, 0"/>
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+
+                    <!--<BoxView Grid.Row="2" HeightRequest="5" Color="#EDEDED" Opacity="0.7" Margin="0,5,0,0"/>-->
+                    <StackLayout Grid.Row="2" BackgroundColor="{DynamicResource PrimaryColor}" IsVisible="false"
+                                 Padding="10,10"
+                                 Margin="-0, 0">
+                        <Label  Style="{StaticResource LabelNormal1Style}"
+                                TextColor="#fff"
+                                Text="CÁC CHƯƠNG TRÌNH ƯU ĐÃI ĐẶC BIỆT" />
+                        <Label Style="{StaticResource LabelNormal2Style}"
+                               TextColor="#fff"
+                               Text="Các ưu đãi dành cho khách hàng có thẻ thành viên"/>
+                    </StackLayout>
+
+                    <AbsoluteLayout Grid.Row="3"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoStoreCommand}"
+                                 Margin="-10,0, 0,0">
+                        <yummy:PancakeView Style="{StaticResource HighlightBoxStyle}"
+                                           BackgroundGradientStartColor="#FE0376"
+                                           BackgroundGradientEndColor="{DynamicResource PrimaryColor}"
+                                           BackgroundGradientAngle="45"
+                                           CornerRadius="0,20,0,20"
+                                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Margin="10,5,40,5" Padding="0,5">
+                                <Label Style="{StaticResource LabelNormal1Style}"
+                           Text="ĐIỂM MUA SẮM BÁN HÀNG CÓ ƯU ĐÃI" TextColor="White"/>
+
+                                <!--<Label Style="{StaticResource LabelNormal2Style}"
+                           Text="Những điểm mua sắm có ưu đãi" TextColor="White"/>-->
+                            </StackLayout>
+                        </yummy:PancakeView>
+
+                    </AbsoluteLayout>
+
+                    <CollectionView ItemsSource="{Binding TopStores}" Grid.Row="4" HeightRequest="150">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15" BorderColor="#EDEDED" IsClippedToBounds="True" Padding="1"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                    <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                        HeightRequest="150" WidthRequest="245"
+                                                        HorizontalOptions="FillAndExpand" Aspect="AspectFit"
+                                                        DownsampleToViewSize="True"/>
+                                </Frame>
+                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView Grid.Row="5" HeightRequest="1" Color="#EDEDED" Opacity="0.7" Margin="0,5,0,0"/>
+                    <!--<StackLayout Grid.Row="6"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoSeminarCommand}">
+                        <Label Style="{StaticResource LabelNormal1Style}"
+                           Text="HỘI THẢO - LỚP HỌC" />
+                        <Label Style="{StaticResource LabelNormal2Style}"
+                           Text="Những chương trình hội thải lớp học được mở sắp tới"/>
+                    </StackLayout>-->
+                    <!--BackgroundGradientStartColor="#E673A4"-->
+                    <AbsoluteLayout Grid.Row="6"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoSeminarCommand}"
+                                 Margin="-10,0, 0,0">
+                        <yummy:PancakeView Style="{StaticResource HighlightBoxStyle}"
+                                           BackgroundGradientStartColor="#FE0376"
+                                           BackgroundGradientEndColor="{DynamicResource PrimaryColor}"
+                                           BackgroundGradientAngle="45"
+                                           CornerRadius="0,20,0,20"
+                                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Margin="10,5,40,5" Padding="0,5">
+                                <Label Style="{StaticResource LabelNormal1Style}"
+                                    Text="HỘI THẢO - LỚP HỌC ĐƯỢC MỞ SẮP TỚI" TextColor="White"/>
+
+                                <!--<Label Style="{StaticResource LabelNormal2Style}"
+                                    Text="Những hội thảo, lớp học được mở sắp tới" TextColor="White"/>-->
+                            </StackLayout>
+                        </yummy:PancakeView>
+
+                    </AbsoluteLayout>
+                    <CollectionView ItemsSource="{Binding TopSeminars}" Grid.Row="7" HeightRequest="150">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15" BorderColor="#EDEDED" IsClippedToBounds="True" Padding="1"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                    <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                        CacheType="Disk"
+                                                        HeightRequest="150" WidthRequest="245"
+                                                        HorizontalOptions="FillAndExpand" Aspect="AspectFit"
+                                                        DownsampleToViewSize="True"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView Grid.Row="8" HeightRequest="1" Color="#EDEDED" Opacity="0.7" Margin="0,5,0,0"/>
+                    <!--<StackLayout Grid.Row="9"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoVideoCommand}">
+                        <Label  Style="{StaticResource LabelNormal1Style}"
+                           Text="VIDEO" />
+                        <Label Style="{StaticResource LabelNormal2Style}"
+                           Text="Video kiến thức bổ ích cho các Mẹ"/>
+                    </StackLayout>-->
+                    <AbsoluteLayout Grid.Row="9"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoVideoCommand}"
+                                 Margin="-10,0, 0,0">
+                        <yummy:PancakeView Style="{StaticResource HighlightBoxStyle}"
+                                           BackgroundGradientStartColor="#FE0376"
+                                           BackgroundGradientEndColor="{DynamicResource PrimaryColor}"
+                                           BackgroundGradientAngle="45"
+                                           CornerRadius="0,20,0,20"
+                                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Margin="10,5,40,5" Padding="0,5">
+                                <Label Style="{StaticResource LabelNormal1Style}"
+                                    Text="VIDEO KIẾN THỨC BỔ ÍCH CHO CÁC MẸ" TextColor="White"/>
+
+                                <!--<Label Style="{StaticResource LabelNormal2Style}"
+                                    Text="Video kiến thức bổ ích cho các Mẹ" TextColor="White"/>-->
+                            </StackLayout>
+                        </yummy:PancakeView>
+
+                    </AbsoluteLayout>
+                    <CollectionView ItemsSource="{Binding TopVideos}" Grid.Row="10" HeightRequest="150">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15" BorderColor="#EDEDED" IsClippedToBounds="True" Padding="1"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                    <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                        HeightRequest="150" WidthRequest="245"
+                                                        HorizontalOptions="FillAndExpand" Aspect="AspectFit"
+                                                        DownsampleToViewSize="True"/>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView Grid.Row="11" HeightRequest="1" Color="#EDEDED" Opacity="0.7" Margin="0,5,0,0"/>
+                    <!--<StackLayout Grid.Row="12"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoHospitalCommand}">
+                        <Label  Style="{StaticResource LabelNormal1Style}"
+                           Text="CƠ SỞ Y TẾ" />
+                        <Label Style="{StaticResource LabelNormal2Style}"
+                           Text="Bệnh viện, phòng khám"/>
+                    </StackLayout>-->
+                    <AbsoluteLayout Grid.Row="12"
+                                 xe:TouchEffect.Color="AliceBlue"
+                                 xe:Commands.Tap="{Binding GoHospitalCommand}"
+                                 Margin="-10,0, 0,0">
+                        <yummy:PancakeView Style="{StaticResource HighlightBoxStyle}"
+                                           BackgroundGradientStartColor="#FE0376"
+                                           BackgroundGradientEndColor="{DynamicResource PrimaryColor}"
+                                           BackgroundGradientAngle="45"
+                                           CornerRadius="0,20,0,20"
+                                           HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Margin="10,5,40,5" Padding="0,5">
+                                <Label Style="{StaticResource LabelNormal1Style}"
+                                    Text="BỆNH VIỆN, PHÒNG KHÁM CÓ ƯU ĐÃI" TextColor="White"/>
+
+                                <!--<Label Style="{StaticResource LabelNormal2Style}"
+                                    Text="Bệnh viện, phòng khám có ưu đãi" TextColor="White"/>-->
+                            </StackLayout>
+                        </yummy:PancakeView>
+
+                    </AbsoluteLayout>
+                    <CollectionView ItemsSource="{Binding TopHospitals}" Grid.Row="13" HeightRequest="150">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15" BorderColor="#EDEDED" IsClippedToBounds="True" Padding="1"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                    <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                        HeightRequest="150" WidthRequest="245"
+                                                        HorizontalOptions="FillAndExpand" Aspect="AspectFit"
+                                                        DownsampleToViewSize="True"/>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView Grid.Row="14" HeightRequest="1" Color="#EDEDED" Opacity="0.7" Margin="0,5,0,0"/>
+                    <StackLayout Grid.Row="15" BackgroundColor="{DynamicResource PrimaryColor}"
+                                 Padding="10,10"
+                                 Margin="-10, 0">
+                        <Label  Style="{StaticResource LabelNormal1Style}"
+                                TextColor="#fff"
+                                Text="GỢI Ý THÊM CHO BẠN" />
+                        <Label Style="{StaticResource LabelNormal2Style}"
+                               TextColor="#fff"
+                               Text="Địa điểm, hội thảo, bệnh viện"/>
+                        <!--<Label Style="{StaticResource LabelNormal2Style}"
+                               TextColor="#fff"
+                               Text="{Binding RowHeightHome}"/>-->
+                    </StackLayout>
+                    <!--<StackLayout Grid.Row="16">
+                        <CollectionView 
+                                    ItemsSource="{Binding InfinitePage}"
+                                    ItemSizingStrategy="MeasureFirstItem"
+                                    RemainingItemsThreshold="0"
+                                    RemainingItemsThresholdReachedCommand="{Binding ShowMoreCommand}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Style="{DynamicResource FrameBorderStyle}"
+                                       IsClippedToBounds="True"
+                                       Margin="10, 5, 10, 0" Padding="0"
+                                       VerticalOptions="FillAndExpand"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Frame Style="{DynamicResource FrameBorderStyle}" Margin="1"
+                                                    Padding="-10">
+                                                <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                                    Aspect="AspectFill"
+                                                                    HeightRequest="230"
+                                                                DownsampleToViewSize="True"/>
+                                            </Frame>
+
+                                            <StackLayout Margin="15,10,15,10">
+                                                <controls1:JustifyLabel Style="{StaticResource ListViewLabelItemTitleStyle}" 
+                                                    Text="{Binding Name}"/>
+                                                <controls1:JustifyLabel Style="{StaticResource ListViewLabelItemSubStyle}"                                       
+                                                    Text="{Binding FullAddress}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" Margin="15,0,5,30" >
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Tags}" Style="{StaticResource LabelSubItem1Style}"/>
+                                                </StackLayout>
+                                                <StackLayout HorizontalOptions="EndAndExpand"
+                                                                 IsVisible="{Binding IsShowDistanceText, Converter={x:Static converters:InverseBoolConverter.Instance}}"
+                                                                Orientation="Horizontal">
+                                                    <Label Style="{StaticResource StarItemStyle}"
+                                                                Text="{StaticResource IconMarker}"/>
+                                                    <Label Text="{Binding Distance, StringFormat='{0} km'}" 
+                                                                Style="{StaticResource LabelSubItem1Style}" />
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>-->
+                    <StackLayout Grid.Row="16" 
+                                 VerticalOptions="EndAndExpand"
+                                 HorizontalOptions="EndAndExpand"
+                                 Margin="-10,0">
+                        <RefreshView 
+                                 IsRefreshing="{Binding IsRefreshing}" 
+                                 Command="{Binding RefreshCommand}" 
+                                 Margin="0,0">
+                            <ListView BackgroundColor="#E6EAED"
+                              ItemsSource="{Binding InfinitePage}"
+                              CachingStrategy="RecycleElement"                      
+                              ItemTapped="ListView_ItemTapped"
+                              HasUnevenRows="True"
+                              SeparatorVisibility="None"
+                              SelectionMode="None"
+                              Margin="0,0"
+                              x:Name="ListView16"
+                                      HeightRequest="{Binding RowHeightHome}"
+                              behaviors:ItemTappedAttached.Command="{Binding TappedPageCommand}">
+                                <ListView.Behaviors>
+                                    <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame Style="{DynamicResource FrameBorderStyle}"
+                                       IsClippedToBounds="True"
+                                       Margin="10, 5, 10, 0" Padding="0"
+                                       VerticalOptions="FillAndExpand"
+                                       behaviors:TappedGestureAttached.Command="{Binding Source={x:Reference HomePageRoot}, Path=BindingContext.TappedPageCommand}"
+                                       behaviors:TappedGestureAttached.CommandParameter="{Binding .}">
+                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Frame Style="{DynamicResource FrameBorderStyle}" Margin="1"
+                                                    Padding="-10">
+                                                        <forms1:CachedImage Source="{Binding ThumbnailUrl}"
+                                                                    Aspect="AspectFill"
+                                                                    HeightRequest="230"
+                                                                DownsampleToViewSize="True"/>
+                                                    </Frame>
+
+                                                    <StackLayout Margin="15,10,15,10">
+                                                        <controls1:JustifyLabel Style="{StaticResource ListViewLabelItemTitleStyle}" 
+                                                    Text="{Binding Name}"/>
+                                                        <controls1:JustifyLabel Style="{StaticResource ListViewLabelItemSubStyle}"                                       
+                                                    Text="{Binding FullAddress}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" Margin="15,0,5,30" >
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding Tags}" Style="{StaticResource LabelSubItem1Style}"/>
+                                                        </StackLayout>
+                                                        <StackLayout HorizontalOptions="EndAndExpand"
+                                                                 IsVisible="{Binding IsShowDistanceText, Converter={x:Static converters:InverseBoolConverter.Instance}}"
+                                                                Orientation="Horizontal">
+                                                            <Label Style="{StaticResource StarItemStyle}"
+                                                                Text="{StaticResource IconMarker}"/>
+                                                            <Label Text="{Binding Distance, StringFormat='{0} km'}" 
+                                                                Style="{StaticResource LabelSubItem1Style}" />
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </RefreshView>
+                    </StackLayout>
+                    
+                    <Grid Grid.Row="16" Padding="6" IsVisible="{Binding IsBusy}"  BackgroundColor="Transparent">
+                        <!-- set the footer to have a zero height when invisible -->
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                <Setter Property="HeightRequest" Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <!-- the loading content -->
+                        <Label Text="Đang tải..." TextColor="{DynamicResource PrimaryColor}" FontSize="11" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </ScrollView>
+            <StackLayout Grid.Row="2"
+                         IsVisible="{Binding IsShowHomePage, Converter={x:Static converters:InverseBoolConverter.Instance}}">
+                <Label Text="Chức năng này đang được phát triển"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

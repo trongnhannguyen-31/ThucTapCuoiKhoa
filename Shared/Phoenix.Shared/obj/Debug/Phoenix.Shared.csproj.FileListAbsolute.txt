@@ -1,0 +1,19 @@
+D:\ThucTap\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.dll
+D:\ThucTap\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.pdb
+D:\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.AssemblyReference.cache
+D:\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCompileInputs.cache
+D:\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
+D:\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.AssemblyReference.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCompileInputs.cache
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
+C:\Users\YOUR PC\Desktop\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.dll
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.pdb
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.xml
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.AssemblyReference.cache
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCompileInputs.cache
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
+E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb

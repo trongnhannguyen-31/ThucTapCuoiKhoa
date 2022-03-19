@@ -1,0 +1,26 @@
+[
+  {
+    "outputFileName": "Content/AdminLte24/css/AdminLTE.min.css",
+    "inputFiles": [
+      "Content/AdminLte24/css/AdminLTE.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/css/home.min.css",
+    "inputFiles": [
+      "Content/css/home.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/home.min.js",
+    "inputFiles": [
+      "Scripts/home.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/css/app.min.css",
+    "inputFiles": [
+      "Content/css/app.css"
+    ]
+  }
+]

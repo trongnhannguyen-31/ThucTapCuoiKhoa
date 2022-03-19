@@ -1,0 +1,111 @@
+﻿using Falcon.Web.Core.Helpers;
+using Phoenix.Server.Data.Entity;
+using Phoenix.Server.Services.Database;
+using Phoenix.Shared.Common;
+using Phoenix.Shared.ProductType;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Phoenix.Server.Services.MainServices
+{
+    public interface IProductTypeService
+    {
+        Task<BaseResponse<ProductTypeDto>> GetAllProductTypes(ProductTypeRequest request);
+
+        Task<BaseResponse<ProductTypeDto>> CreateProductTypes(ProductTypeRequest request);
+
+        Task<BaseResponse<ProductTypeDto>> GetProductTypesById(ProductTypeRequest request);
+    }
+    public class ProductTypeService : IProductTypeService
+    {
+        private readonly DataContext _dataContext;
+        public ProductTypeService(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
+        // Lấy danh sách loại sản phẩm
+        public async Task<BaseResponse<ProductTypeDto>> GetAllProductTypes(ProductTypeRequest request)
+        {
+            var result = new BaseResponse<ProductTypeDto>();
+            try
+            {
+                // setup query
+                var query = _dataContext.ProductTypes.AsQueryable();
+
+                // filter
+
+                if (!string.IsNullOrEmpty(request.Name))
+                {
+                    query = query.Where(d => d.Name.Contains(request.Name));
+                }
+
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
+                result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
+                result.Data = data.MapTo<ProductTypeDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+
+        // Create ProductType
+        public async Task<BaseResponse<ProductTypeDto>> CreateProductTypes(ProductTypeRequest request)
+        {
+            var result = new BaseResponse<ProductTypeDto>();
+            try
+            {
+                ProductType productTypes = new ProductType
+                {
+                    Name = request.Name,
+                    Deleted = false,
+                    UpdatedAt = request.UpdatedAt,
+                    CreatedAt = DateTime.Now
+                };
+                _dataContext.ProductTypes.Add(productTypes);
+                await _dataContext.SaveChangesAsync();
+
+                result.success = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResponse<ProductTypeDto>> GetProductTypesById(ProductTypeRequest request)
+        {
+            var result = new BaseResponse<ProductTypeDto>();
+            try
+            {
+                ProductType productTypes = new ProductType
+                {
+                    Name = request.Name,
+                    Deleted = false,
+                    UpdatedAt = request.UpdatedAt,
+                    CreatedAt = DateTime.Now
+                };
+                _dataContext.ProductTypes.Add(productTypes);
+                await _dataContext.SaveChangesAsync();
+
+                result.success = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+    }
+}

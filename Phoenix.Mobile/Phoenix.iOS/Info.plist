@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Cộng Đồng Bầu</string>
+	<key>CFBundleIdentifier</key>
+	<string>vn.phoenixcompany.congdongbau</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleName</key>
+	<string>CongDongBau</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Cộng Đồng Bầu cần truy cập vị trí của bạn để tìm cửa hàng gần nhất.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Cộng Đồng Bầu cần truy cập vị trí của bạn để tìm cửa hàng gần nhất.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Cộng Đồng Bầu cần truy cập vị trí của bạn để tìm cửa hàng gần nhất.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Cộng Đồng Bầu cần truy cập camera của bạn để cập nhật ảnh đại diện và quét BarCode.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Cộng Đồng Bầu cần truy cập thư viện của bạn để cập nhật ảnh đại diện.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Cộng Đồng Bầu cần lưu các hình ảnh đại diện hoặc mã bạn đã chụp vào thư viện của bạn.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Thin.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>materialdesignicons-webfont.ttf</string>
+		<string>iconize-fontawesome-regular.ttf</string>
+		<string>iconize-fontawesome-solid.ttf</string>
+		<string>iconize-fontawesome-brands.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImages.launchimage</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>5.0</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleVersion</key>
+	<string>5.0</string>
+</dict>
+</plist>

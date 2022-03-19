@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "298828482399",
+    "firebase_url": "https://congdongbau-phoenixdev.firebaseio.com",
+    "project_id": "congdongbau-phoenixdev",
+    "storage_bucket": "congdongbau-phoenixdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298828482399:android:52406cf3e2729e449b58ea",
+        "android_client_info": {
+          "package_name": "com.congdongbaucompany.phoenix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298828482399-gsscire1d21mg87c054qjk9j1ebmu4vo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr7WXYmHmBqwZQy_ULEEdhGlzn-u3gAA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298828482399-gsscire1d21mg87c054qjk9j1ebmu4vo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,377 @@
+﻿@using Falcon.Web.Mvc.HtmlExtensions
+@model SpotCheck.Sub.Web.Areas.Admin.Models.Project.ProjectModel
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 lg:col-span-6">
+        <div class="intro-y box p-5">
+            <div>
+                <label>Tên chương trình</label>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input w-full border mt-2" } })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="mt-3">
+                <label>Ngày bắt đầu</label>
+                <div class="mt-2">
+                    <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                        <i data-feather="calendar" class="w-4 h-4"></i>
+                    </div>
+                    @Html.EditorFor(model => model.StartAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
+                </div>
+            </div>
+            <div class="mt-3">
+                <label>Ngày kết thúc</label>
+                <div class="mt-2">
+                    <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                        <i data-feather="calendar" class="w-4 h-4"></i>
+                    </div>
+                    @Html.EditorFor(model => model.EndAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
+                </div>
+            </div>
+            <div class="mt-3">
+                <label>Hoạt động</label>
+                <div class="mt-2">
+                    @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "input input--switch border" } })
+                </div>
+            </div>
+            <div class="mt-3">
+                <label>Ghi chú</label>
+                <div class="mt-2">
+                    @Html.TextAreaFor(model => model.Note, new { @class = "editor", data_simple_toolbar = "true" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="content">
+        <div class="form-horizontal">
+            <div class="nav-tabs-custom">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Tên chương trình</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.FalconEditorFor(model => model.Name)
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Ngày bắt đầu</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="datetime" id="@Html.FieldIdFor(model => model.StartAt)" name="@Html.FieldIdFor(model => model.StartAt)" value="@Model.StartAt" />
+                                    <script>
+                                        $(document).ready(function() {
+                                            $("#@Html.FieldIdFor(model => model.StartAt)").kendoDateTimePicker({
+                                                culture: "vi-VN",
+                                                format: "dd-MM-yyyy HH:mm:ss"
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Ngày kết thúc</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="datetime" id="@Html.FieldIdFor(model => model.EndAt)" name="@Html.FieldIdFor(model => model.EndAt)" value="@Model.EndAt" />
+                                    <script>
+                                        $(document).ready(function() {
+                                            $("#@Html.FieldIdFor(model => model.EndAt)").kendoDateTimePicker({
+                                                culture: "vi-VN",
+                                                format: "dd-MM-yyyy HH:mm:ss"
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Ghi chú</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.FalconTextAreaFor(model => model.Note)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Hoạt động</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.FalconEditorFor(model => model.Active)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label">Hình ảnh</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ImageRecordId, "PictureNullable")
+                                    @Html.ValidationMessageFor(model => model.ImageRecordId)
+                                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                        Sau khi tải ảnh vui lòng nhấn "Lưu" hoặc "Lưu và chỉnh sửa"!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.Id > 0)
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Danh sách sản phẩm <b>thuộc chương trình</b>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="productProject-grid"></div>
+
+                                    <script>
+                                            $(document).ready(function() {
+                                                $("#productProject-grid").kendoGrid({
+                                                    dataSource: {
+                                                        type: "json",
+                                                        transport: {
+                                                            read: {
+                                                                url: "@Html.Raw(Url.Action("ProductInProject", "Project"))",
+                                                                type: "POST",
+                                                                dataType: "json",
+                                                                data: additionalData
+                                                            }
+                                                        },
+                                                        schema: {
+                                                            data: "Data",
+                                                            total: "Total",
+                                                            errors: "Errors"
+                                                        },
+                                                        error: function(e) {
+                                                            display_kendoui_grid_error(e);
+                                                            // Cancel the changes
+                                                            this.cancelChanges();
+                                                        },
+                                                        pageSize: @(defaultGridPageSize),
+                                                        serverPaging: true,
+                                                        serverFiltering: true,
+                                                        serverSorting: true
+                                                    },
+                                                    pageable: {
+                                                        refresh: true,
+                                                        pageSizes: [@(gridPageSizes)],
+                                                        messages: {
+                                                            itemsPerPage: "Số sản phẩm trên trang",
+                                                            empty: "Không có sản phẩm",
+                                                            display: "{0} - {1} của {2} sản phẩm",
+                                                        },
+                                                    },
+                                                    editable: {
+                                                        confirmation: "Delete",
+                                                        mode: "inline"
+                                                    },
+                                                    scrollable: false,
+                                                    columns: [
+                                                        {
+                                                            field: "Name",
+                                                            title: "Tên sản phẩm",
+                                                            width: 250,
+                                                            headerAttributes: { style: "text-align:center" },
+                                                        },
+                                                        {
+                                                            field: "Active",
+                                                            title: "Hoạt động",
+                                                            width: 80,
+                                                            headerAttributes: { style: "text-align:center" },
+                                                            attributes: { style: "text-align:center" },
+                                                            template: "#if(Active){#<i class='fa fa-check-square-o' aria-hidden='true'></i>#}else{#<i class='fa fa-square-o' aria-hidden='true'></i>#}#"
+                                                        },
+                                                        {
+                                                            width: 100,
+                                                            template:
+                                                                '<button class="btn btn-danger" type="button" onclick="RevokeProduct(#=Id#)">Bỏ</button>',
+                                                            headerAttributes: { style: "text-align:center" },
+                                                            attributes: { style: "text-align:center" }
+                                                        }
+                                                    ]
+                                                });
+                                            });
+                                    </script>
+                                    <script>
+                                        function additionalData() {
+                                            var data = {
+                                                Id: $('#Id').val(),
+                                            };
+                                            addAntiForgeryToken(data);
+                                            return data;
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Danh sách sản phẩm <b>không thuộc chương trình</b>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="width: 100%;">
+                                            <input type="text" name="productText" id="productText" class="form-control pull-right" placeholder="Tên sản phẩm">
+
+                                            <div class="input-group-btn">
+                                                <button id="btnSearch-RemainPlace" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="productNotProject-grid"></div>
+
+                                    <script>
+                                            $(document).ready(function() {
+                                                $("#productNotProject-grid").kendoGrid({
+                                                    dataSource: {
+                                                        type: "json",
+                                                        transport: {
+                                                            read: {
+                                                                url: "@Html.Raw(Url.Action("ProductNotInProject", "Project"))",
+                                                                type: "POST",
+                                                                dataType: "json",
+                                                                data: additionalData2
+                                                            }
+                                                        },
+                                                        schema: {
+                                                            data: "Data",
+                                                            total: "Total",
+                                                            errors: "Errors"
+                                                        },
+                                                        error: function(e) {
+                                                            display_kendoui_grid_error(e);
+                                                            // Cancel the changes
+                                                            this.cancelChanges();
+                                                        },
+                                                        pageSize: @(defaultGridPageSize),
+                                                        serverPaging: true,
+                                                        serverFiltering: true,
+                                                        serverSorting: true
+                                                    },
+                                                    pageable: {
+                                                        refresh: true,
+                                                        pageSizes: [@(gridPageSizes)],
+                                                        messages: {
+                                                            itemsPerPage: "Số sản phẩm trên trang",
+                                                            empty: "Không có sản phẩm",
+                                                            display: "{0} - {1} của {2} sản phẩm",
+                                                        },
+                                                    },
+                                                    editable: {
+                                                        confirmation: "Delete",
+                                                        mode: "inline"
+                                                    },
+                                                    scrollable: false,
+                                                    columns: [
+                                                        {
+                                                            field: "Name",
+                                                            title: "Tên sản phẩm",
+                                                            width: 250,
+                                                            headerAttributes: { style: "text-align:center" },
+                                                        },
+                                                        {
+                                                            field: "Active",
+                                                            title: "Hoạt động",
+                                                            width: 80,
+                                                            headerAttributes: { style: "text-align:center" },
+                                                            attributes: { style: "text-align:center" },
+                                                            template: "#if(Active){#<i class='fa fa-check-square-o' aria-hidden='true'></i>#}else{#<i class='fa fa-square-o' aria-hidden='true'></i>#}#"
+                                                        },
+                                                        {
+                                                            width: 100,
+                                                            template:
+                                                                '<button class="btn bg-green-active" type="button" onclick="ChooseProduct(#=Id#)"><i class="fa fa-plus"></i>Chọn</button>',
+                                                            headerAttributes: { style: "text-align:center" },
+                                                            attributes: { style: "text-align:center" }
+                                                        }
+                                                    ]
+                                                });
+                                            });
+                                    </script>
+                                    <script>
+                                        function additionalData2() {
+                                            var data = {
+                                                Id: $('#Id').val(),
+                                                Name: $("#prodcutText").val()
+                                            };
+                                            addAntiForgeryToken(data);
+                                            return data;
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <script>
+
+                        $("#btnSearch-RemainPlace").click(function() {
+                            var grid = $('#productNotProject-grid').data('kendoGrid');
+                            grid.dataSource.page(1); //new search. Set page size to 1
+                            return false;
+                        });
+
+                        function ChooseProduct(id) {
+                            var req = {
+                                Id: $("#Id").val(),
+                                ProductId: id
+                            };
+                            var choosePlaceResponse = $.post("@Html.Raw(Url.Action("ChooseProduct", "Project"))",
+                                addAntiForgeryToken(req));
+                            choosePlaceResponse.done(function(data) {
+                                if (data.Result > 0) {
+                                    alert(data.Message);
+                                }
+                            }).fail(function() {
+                                alert("error server");
+                            }).always(function() {
+                                var grid = $('#productProject-grid').data('kendoGrid');
+                                grid.dataSource.page(1); //new search. Set page size to 1
+                                var grid1 = $('#productNotProject-grid').data('kendoGrid');
+                                grid1.dataSource.page(1); //new search. Set page size to 1
+                            });
+
+                        }
+
+                        function RevokeProduct(id) {
+                            var req = {
+                                Id: $("#Id").val(),
+                                ProductId: id
+                            };
+                            var revokePlaceResponse = $.post("@Html.Raw(Url.Action("RevokeProduct", "Project"))",
+                                addAntiForgeryToken(req));
+                            revokePlaceResponse.done(function(data) {
+                                if (data.Result > 0) {
+                                    alert(data.Message);
+                                }
+                            }).fail(function() {
+                                alert("error server");
+                            }).always(function() {
+                                var grid = $('#productProject-grid').data('kendoGrid');
+                                grid.dataSource.page(1); //new search. Set page size to 1
+                                var grid1 = $('#productNotProject-grid').data('kendoGrid');
+                                grid1.dataSource.page(1); //new search. Set page size to 1
+                            });
+                        }
+                </script>
+            }
+        </div>
+    </div>*@
+

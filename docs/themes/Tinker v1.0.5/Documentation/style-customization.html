@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--
+Template Name: Midone HTML Admin Template
+Author: Left4code
+Website: http://www.left4code.com/
+Contact: muhammadrizki@left4code.com
+Purchase: https://themeforest.net/user/left4code/portfolio
+Renew Support: https://themeforest.net/user/left4code/portfolio
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html lang="en">
+  <!-- BEGIN: Head -->
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://localhost/dist/images/logo.svg" rel="shortcut icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities."
+    />
+    <meta
+      name="keywords"
+      content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app"
+    />
+    <meta name="author" content="LEFT4CODE" />
+    <title>Stye Customization - Midone - Tailwind HTML Admin Template</title>
+    <!-- BEGIN: CSS Assets-->
+    <link rel="stylesheet" href="dist/css/app.css" />
+    <!-- END: CSS Assets-->
+  </head>
+  <!-- END: Head -->
+  <body>
+    <div class="container grid grid-cols-12 -my-3 min-h-screen relative z-10">
+      <div class="col-span-3 bg-gray-800 py-10">
+        <a href="" class="intro-x flex items-center pl-5 mb-8">
+          <img
+            alt="Midone Tailwind HTML Admin Template"
+            class="w-6"
+            src="dist/images/logo.svg"
+          />
+          <span class="hidden xl:block text-2xl ml-3">
+            Mid<span class="font-medium">one</span> Docs
+          </span>
+        </a>
+        <a
+          href="index.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Getting Started</a
+        >
+        <a
+          href="file-structure.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >File Structure</a
+        >
+        <a
+          href="installation.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Installation</a
+        >
+        <a
+          href="style-customization.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out font-medium bg-gray-900"
+          >Style Customization</a
+        >
+        <a
+          href="javascript.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Javascript</a
+        >
+        <a
+          href="attributions.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Attributions</a
+        >
+        <a
+          href="support.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Support</a
+        >
+        <a
+          href="changelog.html"
+          class="intro-x flex items-center px-5 py-3 rounded-l hover:bg-gray-900 transition duration-300 ease-in-out"
+          >Changelog</a
+        >
+      </div>
+      <div class="col-span-9 border-l border-gray-800 bg-gray-900 py-10 px-10">
+        <h1
+          class="intro-y text-2xl font-medium pb-8 mb-10 border-b border-gray-800"
+        >
+          Style Customization
+        </h1>
+        <h2
+          class="intro-y text-xl font-medium pb-5 mb-5 border-b border-gray-800"
+        >
+          SASS Structure
+        </h2>
+        <div class="intro-y leading-relaxed">
+          <p class="mb-3">
+            Midone use SASS as a default css preprocessing, you can found all
+            the SASS files in one single place at
+            <span class="text-yellow-500">/sass/*</span> directory. Every single
+            component SASS file are imported in
+            <span class="text-yellow-500">/sass/app.scss</span>. You can modify
+            this file to add or remove components depends to your needs. Here is
+            the part things you need to know about the
+            <span class="text-yellow-500">/sass/app.scss</span> structure and
+            functions.
+          </p>
+          <ul class="list-decimal ml-6">
+            <li class="mt-4">
+              Fonts: This section is supposed to import all the template used
+              fonts.
+            </li>
+            <li class="mt-1">
+              Breakpoint: This file is contains screen breakpoint variables that
+              used by the template components.
+            </li>
+            <li class="mt-1">
+              3rd Parties: This section supposed to import all 3rd parties SASS
+              or CSS files.
+            </li>
+            <li class="mt-1">
+              Animations: This section supposed to import all custom animations
+              used by the template.
+            </li>
+            <li class="mt-1">
+              Components: This section supposed to import all component SASS
+              files used by the template.
+            </li>
+          </ul>
+          <pre class="source-preview overflow-hidden rounded-md mt-6 py-10">
+            <code class="scss text-xs p-0 rounded-md html pl-5 pt-4 -mb-10 -mt-20 -ml-24">
+                /*
+                |--------------------------------------------------------------------------
+                | TailwindCSS Directives
+                |--------------------------------------------------------------------------
+                |
+                | Import TailwindCSS directives and swipe out at build-time with all of
+                | the styles it generates based on your configured design system.
+                |
+                | Please check this link for more details:
+                | https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
+                |
+                */
+                @import "tailwind";
+
+                /*
+                |--------------------------------------------------------------------------
+                | Fonts
+                |--------------------------------------------------------------------------
+                |
+                | Import all fonts used in the template, the font configuration can be
+                | seen in "tailwind.config.js".
+                |
+                | Please check this link for more details:
+                | https://tailwindcss.com/docs/theme
+                |
+                */
+                @import "fonts/roboto";
+
+                /*
+                |--------------------------------------------------------------------------
+                | Breakpoints
+                |--------------------------------------------------------------------------
+                |
+                | Provide custom breakpoints for responsive layouts.
+                |
+                | Default values:
+                | xs: 0, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, xxl: 1536px
+                |
+                */
+                @import "~@left4code/tw-starter/dist/scss/breakpoint";
+
+                /*
+                |--------------------------------------------------------------------------
+                | Mixins
+                |--------------------------------------------------------------------------
+                |
+                | Import helper mixins.
+                |
+                */
+                @import "~@left4code/tw-starter/dist/scss/mixins/media";
+
+                /*
+                |--------------------------------------------------------------------------
+                | 3rd Party Libraries
+                |--------------------------------------------------------------------------
+                |
+                | Import 3rd party library CSS/SASS files.
+                |
+                */
+                @import "~@left4code/tw-starter/dist/scss/accordion";
+                @import "~@left4code/tw-starter/dist/scss/alert";
+                @import "~@left4code/tw-starter/dist/scss/btn";
+                @import "~@left4code/tw-starter/dist/scss/dropdown";
+                @import "~@left4code/tw-starter/dist/scss/file";
+                @import "~@left4code/tw-starter/dist/scss/form-check";
+                @import "~@left4code/tw-starter/dist/scss/form-control";
+                @import "~@left4code/tw-starter/dist/scss/form-help";
+                @import "~@left4code/tw-starter/dist/scss/form-inline";
+                @import "~@left4code/tw-starter/dist/scss/form-label";
+                @import "~@left4code/tw-starter/dist/scss/form-select";
+                @import "~@left4code/tw-starter/dist/scss/image-fit";
+                @import "~@left4code/tw-starter/dist/scss/input-group";
+                @import "~@left4code/tw-starter/dist/scss/intro";
+                @import "~@left4code/tw-starter/dist/scss/modal";
+                @import "~@left4code/tw-starter/dist/scss/pagination";
+                @import "~@left4code/tw-starter/dist/scss/progress";
+                @import "~@left4code/tw-starter/dist/scss/scrollbar";
+                @import "~@left4code/tw-starter/dist/scss/tab";
+                @import "~@left4code/tw-starter/dist/scss/table";
+                @import "~@left4code/tw-starter/dist/scss/typing-dots";
+                @import "~@left4code/tw-starter/dist/scss/zoom-in";
+                @import "~@left4code/tw-starter/dist/scss/box";
+                @import "~tiny-slider/src/tiny-slider";
+                @import "~highlight.js/scss/github";
+                @import "~tippy.js/dist/tippy";
+                @import "~tippy.js/themes/light";
+                @import "~tippy.js/dist/svg-arrow";
+                @import "~tippy.js/animations/shift-away";
+                @import "~tail.select/css/default/tail.select-light";
+                @import "~toastify-js/src/toastify";
+                @import "~dropzone/dist/dropzone";
+                @import "~zoom-vanilla.js/dist/zoom";
+                @import "~tabulator-tables/dist/css/tabulator";
+
+                /*
+                |--------------------------------------------------------------------------
+                | Components
+                |--------------------------------------------------------------------------
+                |
+                | Import CSS/SCSS components.
+                |
+                */
+                @import "components/global";
+                @import "components/main";
+                @import "components/top-bar";
+                @import "components/login";
+                @import "components/table-report";
+                @import "components/report-timeline";
+                @import "components/report-chart";
+                @import "components/search";
+                @import "components/notification";
+                @import "components/report-box";
+                @import "components/report-box-2";
+                @import "components/report-box-3";
+                @import "components/report-box-4";
+                @import "components/content";
+                @import "components/top-nav";
+                @import "components/side-nav";
+                @import "components/breadcrumb";
+                @import "components/toastify";
+                @import "components/toastify-content";
+                @import "components/feather-icon";
+                @import "components/top-bar-boxed";
+                @import "components/mobile-menu";
+                @import "components/inbox-filter";
+                @import "components/inbox";
+                @import "components/chat";
+                @import "components/boxed-tabs";
+                @import "components/chat-dropdown";
+                @import "components/wizard";
+                @import "components/blog";
+                @import "components/news";
+                @import "components/pricing-tabs";
+                @import "components/error-page";
+                @import "components/search-result";
+                @import "components/notification-content";
+                @import "components/report-maps";
+                @import "components/pos-dropdown";
+                @import "components/pos";
+                @import "components/post";
+                @import "components/litepicker";
+                @import "components/tiny-slider";
+                @import "components/tippy";
+                @import "components/tabulator";
+                @import "components/tail-select";
+                @import "components/dropzone";
+                @import "components/ckeditor";
+                @import "components/zoom-vanilla";
+                @import "components/dark-mode-switcher";
+                @import "components/hljs";
+                @import "components/source-preview";
+                @import "components/ads-box";
+                @import "components/full-calendar";
+                @import "components/pristine";
+            </code>
+        </pre>
+        </div>
+      </div>
+    </div>
+    <!-- BEGIN: JS Assets-->
+    <script src="dist/js/app.js"></script>
+    <!-- END: JS Assets-->
+  </body>
+</html>

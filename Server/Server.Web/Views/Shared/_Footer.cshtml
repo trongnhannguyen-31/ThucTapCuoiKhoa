@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="footer__nav">
+    <div class="container container--wide margin-bottom--0">
+        <div class="w-row">
+            <div class="w-col w-col-2 w-col-medium-4"><img src="~/Content/images/logo-green.png" width="120" height="120" class="footer__logo"></div>
+            <div class="w-clearfix w-col w-col-2 w-col-medium-4">
+                <a href="/" class="footer-link w--current">Trang chủ</a>
+                <a href="@Url.Action("AboutForGrower","About")" class="footer-link">Giới thiệu</a>
+                
+                <a href="@Url.Action("NewsInsights","News")" class="footer-link">Kiến thức & thông tin</a>
+            </div>
+            <div class="w-clearfix w-col w-col-2 w-col-medium-4">
+                <div class="footer-link footer-link-non-link">Sản phẩm:</div>
+                <a href="@Url.Action("ShizumiAgriculture","Product")" class="footer-link footer-link--sub">Giải pháp cho Trồng trọt</a>
+                <a href="@Url.Action("ShizumiAquaculture","Product")" class="footer-link footer-link--sub">Giải pháp cho Thủy sản</a>
+                <a href="@Url.Action("ShizumiApp","Product")" class="footer-link footer-link--sub">Tải ứng dụng</a>
+            </div>
+            <div class="w-clearfix w-col w-col-2 w-col-medium-4">
+                <div class="footer-link footer-link-non-link">Trao đổi thông tin:</div>
+                <a href="@Url.Action("AboutWorkWithUs","About")" class="footer-link footer-link--sub">Đăng ký</a>
+                <a href="@Url.Action("AboutWorkWithUs","About")" class="footer-link footer-link--sub">Đối tác</a>
+                <a href="@Url.Action("Contact","Home")" class="footer-link footer-link--sub">Liên hệ</a>
+            </div>
+            @*<div class="w-clearfix w-col w-col-2 w-col-medium-4">
+                <div class="footer-link footer-link-non-link">Our Company:</div>
+                <a href="@Url.Action("AboutCongDongBau","About")" class="footer-link footer-link--sub">The Yield Story</a>
+                <a href="@Url.Action("AboutJob","About")" class="footer-link footer-link--sub">Jobs</a>
+                <a href="@Url.Action("AboutFood","About")" class="footer-link footer-link--sub">Food Agility CRC</a>
+            </div>*@
+            @*<div class="w-clearfix w-col w-col-2 w-col-medium-4">
+                <a href="@Url.Action("Contact","Home")" class="footer-link">Join the Conversation</a>
+                <div class="footer__social--twitter w-widget w-widget-twitter"><iframe src="//platform.twitter.com/widgets/follow_button.html#screen_name=theyield&amp;show_count=false&amp;size=m&amp;show_screen_name=true&amp;dnt=true" scrolling="no" frameborder="0" allowtransparency="true" style="border: none; overflow: hidden; width: 100%; height: 21px;"></iframe></div>
+            </div>*@
+        </div>
+        <div class="footer__copyright">Bản quyển thuộc về &copy; CongDongBau Digital. 2018</div>
+    </div>
+</div>

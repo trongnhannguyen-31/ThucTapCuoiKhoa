@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             mc:Ignorable="d"
+             x:Class="Phoenix.Mobile.Pages.Common.ReadQrCodePage"
+             ControlTemplate="{StaticResource FullScreenHasBack}">
+    <ContentPage.Content>
+        <Grid Margin="0,5,0,0"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <zxing:ZXingScannerView x:Name="scannerView"
+                                    IsScanning="True"/>
+            <zxing:ZXingDefaultOverlay x:Name="scannerOverlay"
+                                       TopText=""
+                                       BottomText="Di chuyển camera đến nơi chứa mã QR Code"
+                                       ShowFlashButton="True"
+                                       />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

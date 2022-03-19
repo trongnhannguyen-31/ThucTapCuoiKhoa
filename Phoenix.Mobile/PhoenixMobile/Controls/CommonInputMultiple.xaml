@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="RootInput"
+             xmlns:controls="clr-namespace:Phoenix.Framework.Controls;assembly=Phoenix.Framework"
+             x:Class="Phoenix.Mobile.Controls.CommonInputMultiple">
+    <ContentView.Content>
+        <Frame CornerRadius="{Binding Radius,Source={x:Reference RootInput}}"
+               BackgroundColor="{Binding Background,Source={x:Reference RootInput}}"
+               Padding="{Binding ControlPadding,Source={x:Reference RootInput}}"
+               HeightRequest="{Binding HeightInput,Source={x:Reference RootInput}}"
+               BorderColor="{Binding BorderColor,Source={x:Reference RootInput}}"
+               HasShadow="{Binding HasShadow,Source={x:Reference RootInput}}">
+            <controls:BorderlessEditor Placeholder="{Binding Placeholder,Source={x:Reference RootInput}}"
+                                       PlaceHolderTextColor="{Binding PlaceholderColor,Source={x:Reference RootInput}}"
+                                       FontSize="{Binding FontSize,Source={x:Reference RootInput}}"
+                                       Text="{Binding Text,Source={x:Reference RootInput}}"
+                                       TextColor="{Binding TextColor,Source={x:Reference RootInput}}"
+                                       Keyboard="{Binding Keyboard,Source={x:Reference RootInput}}"
+                                       BackgroundColor="Transparent"
+                                       
+                                       ></controls:BorderlessEditor>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

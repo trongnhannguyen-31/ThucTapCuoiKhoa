@@ -1,0 +1,83 @@
+/*
+* Total Light Alternative theme
+*/
+
+.cover-container::before {
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, .6));
+}
+
+.cover-container {
+  background-color: rgb(255, 255, 255);
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+body, .navbar-light .navbar-brand {
+  color: rgb(17, 17, 17);
+}
+
+.text-muted {
+  color: rgb(133, 133, 133) !important;
+}
+
+.li.complete .status, .li.complete .timestamp {
+  color: rgb(133, 133, 133);
+}
+
+.li.complete .status::before, .li.complete .timestamp::after {
+  background-color: rgb(133, 133, 133);
+}
+
+.timestamp::after {
+  background-color: rgba(80, 80, 80, .2);
+}
+
+@media (min-width: 767px) {
+  .li.complete .status {
+    border-top: 2px solid rgb(133, 133, 133);
+  }
+
+  .status {
+    border-top: 2px solid rgba(80, 80, 80, .2);
+  }
+
+  .status::before {
+    background-color: rgba(80, 80, 80, .2);
+    border: 1px solid rgba(80, 80, 80, .2);
+  }
+}
+
+footer {
+  background: #FFF;
+  color: rgb(17, 17, 17);
+}
+
+footer input[type=text] {
+  border: 1px solid rgba(80, 80, 80, .2);
+}
+
+hr {
+  border-top: 1px solid rgba(80, 80, 80, .2) !important;
+}
+
+.square {
+  background: rgb(17, 17, 17);
+  color: #FFF;
+  box-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.2);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.2);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.2);
+}
+
+#scrolldown i {
+  color: rgb(17, 17, 17);
+}
+
+#loading {
+  background-color: rgb(255, 255, 255);
+}
+
+.double-bounce1, .double-bounce2 {
+  background-color: rgb(194, 194, 194);
+}

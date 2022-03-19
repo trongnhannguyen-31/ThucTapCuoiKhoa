@@ -1,0 +1,116 @@
+﻿@model dynamic
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A clean coming soon template">
+    <meta name="keywords" content="coming soon, template">
+    <meta name="author" content="Jakub Stęplowski">
+    <title>Phoenix Mobile Server</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+
+    <!-- CSS Styles Section -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/brands.min.css">
+    <link rel="stylesheet" href="~/Content/css/solid.min.css">
+    <link rel="stylesheet" href="~/Content/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/theme/dark.css">
+</head>
+<body class="text-center">
+    <!-- Loading Section -->
+    <div id="loading">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+
+    <div id="main-container" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="background-image: url('Content/img/backgrounds/bg-1.png');">
+        <!-- Particles Background -->
+        <div id="particles-js"></div>
+
+        <!-- Header Section -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Logo Section -->
+                <div class="justify-content-start">
+                    <span class="navbar-brand"><b>© by phoenixcompany.vn</b> <span class="navbar-brand-headline text-muted"> 2022</span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Counter Section -->
+        <main class="inner cover">
+            <div class="container">
+                <div class="row cover-heading">
+                    <div class="col-sm">
+                        <div>
+                            <span><h1>Mobile Server was running</h1></span>
+                        </div>
+                        <div>
+                            <small>Your local time</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Insert your date below (YYYY-MM-DDTHH:MM:SS) -->
+                <div id="js-server-time" class="row counter">
+                    <div class="col-sm">
+                        <div class="square">
+                            <div class="content">
+                                <span id="js-hours"></span><br>
+                                <span>hours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="square">
+                            <div class="content">
+                                <span id="js-minutes"></span><br>
+                                <span>minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="square">
+                            <div class="content">
+                                <span id="js-seconds"></span><br>
+                                <span>seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    
+    <script src="~/Content/js/js-counter-1.0.0.js"></script>
+    <script src="~/Content/js/animatescroll.min.js"></script>
+    <script src="~/Content/js/particles.min.js"></script>
+    <script type="text/javascript">
+        particlesJS.load('particles-js', 'Content/js/particles.json', function() {
+                console.log('callback - particles.js config loaded');
+        });
+        
+        setInterval(function () {
+            var now = new Date();
+            $('#js-hours').text(now.getHours())
+            $('#js-minutes').text(now.getMinutes())
+            $('#js-seconds').text(now.getSeconds())
+
+        }, 1000);
+    </script>
+</body>
+</html>

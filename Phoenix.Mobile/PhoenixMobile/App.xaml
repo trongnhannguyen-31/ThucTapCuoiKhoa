@@ -1,0 +1,895 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:Phoenix.Framework.Controls;assembly=Phoenix.Framework"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls1="clr-namespace:Phoenix.Mobile.Controls;assembly=Phoenix.Mobile"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:converters="clr-namespace:Phoenix.Framework.Converters;assembly=Phoenix.Framework"
+             xmlns:effects="clr-namespace:Phoenix.Mobile.Effects;assembly=Phoenix.Mobile"
+             x:Class="Phoenix.Mobile.App">
+
+    <Application.Resources>
+        <!-- common -->
+        <Color x:Key="MainThemeColor">#4AACC5</Color>
+        <Color x:Key="SecondThemeColor">#0066ff</Color>
+        <!--  Colors  -->
+        <Color x:Key="PrimaryTextColor">#073707</Color>
+        <Color x:Key="PageTitleTextColor">#073707</Color>
+        <Color x:Key="SubTextColor">#101010</Color>
+        <Color x:Key="DisableTextColor">#95a8b6</Color>
+        <Color x:Key="BorderColor">#d2d7dd</Color>
+        <Color x:Key="BaseTextColor">#000000</Color>
+        <Color x:Key="InverseTextColor">#ffffff</Color>
+        <Color x:Key="WarningTextColor">#d02f2a</Color>
+
+        <Color x:Key="InputTextColor">#073707</Color>
+        <Color x:Key="InputBackgroundColor">#ffffff</Color>
+        <Color x:Key="PlaceholderColor">#95a8b6</Color>
+        <Color x:Key="BasePageColor">#ffffff</Color>
+        <Color x:Key="IconFontTextColor">#FB7D80</Color>
+        <Color x:Key="TitleTextColor">#073707</Color>
+        <Color x:Key="FrameBackgroundColor">#dddddd</Color>
+
+        <Color x:Key="PrimaryColor">#0066ff</Color>
+        <!--Mau hong chính-->
+        <Color x:Key="SecondaryColor">#009e0f</Color>
+        <!--Mau xanh la cay-->
+        <Color x:Key="ThirdColor">#3F3F46</Color>
+        <Color x:Key="FourColor">#FA7C81</Color>
+
+        <Color x:Key="SemiLightColor">#AAFFFFFF</Color>
+        <Color x:Key="SemiDarkColor">#AA000000</Color>
+
+        <!--BackgroundGradients-->
+        <Color x:Key="BackgroundGradientStartColor">#FFF1EA</Color>
+        <Color x:Key="BackgroundGradientMidColor">#D6D7E3</Color>
+        <Color x:Key="BackgroundGradientEndColor">#F0F6FF</Color>
+
+        <!--Dark box Gradients-->
+        <Color x:Key="DarkGradientStartColor">#ffffff</Color>
+        <Color x:Key="DarkGradientEndColor">#66ccff</Color>
+
+        <!--  Fonts  -->
+        <OnPlatform x:Key="TextThin" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Montserrat Thin" />
+            <On Platform="Android" Value="Montserrat-Thin.ttf#Montserrat Thin" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <OnPlatform x:Key="TextLight" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Montserrat Light" />
+            <On Platform="Android" Value="Montserrat-Light.ttf#Montserrat Light" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <!--<OnPlatform x:Key="TextRegular" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="Roboto-Regular" />
+            <On Platform="Android" Value="Roboto-Regular.ttf#Roboto" />
+        </OnPlatform>-->
+        <OnPlatform x:Key="TextRegular" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Roboto-Regular" />
+            <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat Medium" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <OnPlatform x:Key="TextSemiBold" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Montserrat SemiBold" />
+            <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat SemiBold" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <OnPlatform x:Key="TextItalic" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Montserrat-Italic" />
+            <On Platform="Android" Value="Montserrat-Italic.ttf#Montserrat Italic" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <OnPlatform x:Key="TextBold" x:TypeArguments="x:String">
+            <!--<On Platform="iOS" Value="Montserrat-Bold" />
+            <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat Bold" />-->
+            <!--<On Platform="iOS" Value="HelveticaNeue-Bold" />
+            <On Platform="Android" Value="HelveticaNeue-Bold" />-->
+        </OnPlatform>
+        <OnPlatform x:Key="MaterialFont" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="Material Design Icons" />
+            <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+        </OnPlatform>
+
+        <!--  Typo  -->
+        <OnPlatform x:Key="LargeTitleFontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">34</On>
+            <On Platform="Android">32</On>
+        </OnPlatform>
+        <OnPlatform x:Key="Title1FontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">30</On>
+            <On Platform="Android">28</On>
+        </OnPlatform>
+        <OnPlatform x:Key="TitleCDBFontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">22</On>
+            <On Platform="Android">19</On>
+        </OnPlatform>
+
+        <OnPlatform x:Key="Title2FontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">22</On>
+            <On Platform="Android">18</On>
+        </OnPlatform>
+        <OnPlatform x:Key="Title3FontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">18</On>
+            <On Platform="Android">16</On>
+        </OnPlatform>
+        <OnPlatform x:Key="MediumFontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">16</On>
+            <On Platform="Android">14</On>
+        </OnPlatform>
+        <OnPlatform x:Key="SmallFontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">15</On>
+            <On Platform="Android">13</On>
+        </OnPlatform>
+        <OnPlatform x:Key="TinyFontSize" x:TypeArguments="x:Double">
+            <On Platform="iOS">13</On>
+            <On Platform="Android">11</On>
+        </OnPlatform>
+
+        <x:Double x:Key="CornerInput">10</x:Double>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}" />
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}" />
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="Header" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextThin}" />
+            <Setter Property="FontSize" Value="{StaticResource LargeTitleFontSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        </Style>
+        <Style x:Key="Title1" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource Title1FontSize}" />
+            <Setter Property="Margin" Value="0,25,0,0" />
+            <Setter Property="TextColor" Value="{DynamicResource TitleTextColor}" />
+        </Style>
+        <Style x:Key="Title2" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource Title2FontSize}" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+            <Setter Property="TextColor" Value="{DynamicResource TitleTextColor}" />
+        </Style>
+        <Style x:Key="SubText" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextLight}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource SubTextColor}" />
+        </Style>
+
+        <Style x:Key="SubTextSemiBold" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource SubTextColor}" />
+        </Style>
+
+        <Style x:Key="TinyText" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}" />
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+        <Style x:Key="PageTitleStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource Title1FontSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="LineBreakMode" Value="TailTruncation"/>
+        </Style>
+
+
+        <!--  Implicit Styles  -->
+
+        <Style TargetType="Grid">
+            <Setter Property="RowSpacing" Value="0" />
+            <Setter Property="ColumnSpacing" Value="0" />
+        </Style>
+
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HasShadow" Value="False" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="{StaticResource InputTextColor}" />
+            <Setter Property="Placeholder" Value="{StaticResource PlaceholderColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource InputBackgroundColor}" />
+        </Style>
+        <Style TargetType="Editor">
+            <Setter Property="TextColor" Value="{StaticResource InputTextColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource InputBackgroundColor}" />
+        </Style>
+
+        <Style TargetType="ActivityIndicator">
+            <Setter Property="Color" Value="{StaticResource PrimaryColor}" />
+        </Style>
+
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="{StaticResource BasePageColor}" />
+        </Style>
+
+        <Style TargetType="ContentView">
+            <Setter Property="BackgroundColor" Value="{StaticResource BasePageColor}" />
+        </Style>
+
+        <Style TargetType="ScrollView">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </Style>
+
+        <Style TargetType="TabbedPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource BasePageColor}" />
+        </Style>
+        <Style TargetType="StackLayout">
+            <Setter Property="Spacing" Value="0"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+        <!--full page control template-->
+        <ControlTemplate x:Key="FullScreenHasBack">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <controls1:NavigationBar Grid.Row="0" Style="{StaticResource NavigationBarStandard}"
+                                         HasLeftButton="True"
+                                         BackCommand="{TemplateBinding BindingContext.BackCommand}"
+                                         TitleDisplay="{TemplateBinding BindingContext.CurrentPage.Title}"
+                                         TitleFontSize="{DynamicResource Title3FontSize}"/>
+                <ScrollView Grid.Row="1" IsVisible="{TemplateBinding BindingContext.IsBusy,Converter={x:Static converters:InverseBoolConverter.Instance}}">
+                    <ContentPresenter VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <ContentPresenter.Effects>
+                            <effects:SafeAreaPaddingEffect/>
+                        </ContentPresenter.Effects>
+                    </ContentPresenter>
+                </ScrollView>
+
+            </Grid>
+
+        </ControlTemplate>
+        <ControlTemplate x:Key="FullScreenNoBack">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <controls1:NavigationBar Grid.Row="0" Style="{StaticResource NavigationBarStandard}"
+                                     HasLeftButton="False"                                     
+                                     TitleDisplay="{TemplateBinding BindingContext.CurrentPage.Title}"
+                                         TitleFontSize="{DynamicResource Title3FontSize}"/>
+                <ContentPresenter Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ContentPresenter.Effects>
+                        <effects:SafeAreaPaddingEffect/>
+                    </ContentPresenter.Effects>
+                </ContentPresenter>
+            </Grid>
+
+        </ControlTemplate>
+        <ControlTemplate x:Key="FullScreenTemplate">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <controls1:NavigationBar Grid.Row="0" Style="{StaticResource NavigationBarStandard}"
+                                         HasLeftButton="True"
+                                         BackCommand="{TemplateBinding BindingContext.BackCommand}"
+                                         TitleDisplay="{TemplateBinding BindingContext.CurrentPage.Title}"
+                                         TitleFontSize="{DynamicResource Title3FontSize}"/>
+                <ContentPresenter Grid.Row="1" IsVisible="{TemplateBinding BindingContext.IsBusy,Converter={x:Static converters:InverseBoolConverter.Instance}}">
+                    <ContentPresenter.Effects>
+                        <effects:SafeAreaPaddingEffect/>
+                    </ContentPresenter.Effects>
+                </ContentPresenter>
+                <!--<ActivityIndicator Grid.Row="1" IsVisible="{TemplateBinding BindingContext.IsBusy}"
+                        IsRunning="true"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />-->
+
+
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ModalFullScreenHasBack">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <controls1:NavigationBar Grid.Row="0" Style="{StaticResource NavigationBarStandard}"
+                                         HasLeftButton="True"
+                                         BackCommand="{TemplateBinding BindingContext.BackModalCommand}"
+                                         TitleDisplay="{TemplateBinding BindingContext.CurrentPage.Title}"
+                                         TitleFontSize="{DynamicResource Title3FontSize}"/>
+                <ContentPresenter Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ContentPresenter.Effects>
+                        <effects:SafeAreaPaddingEffect/>
+                    </ContentPresenter.Effects>
+                </ContentPresenter>
+
+            </Grid>
+
+        </ControlTemplate>
+        <!-- LAYOUT HELPERS -->
+        <Style x:Key="Spacer" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="HeightRequest" Value="20" />
+        </Style>
+        <Style x:Key="HorizontalRuleStyle" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="#EA267C" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="HeightRequest" Value="1" />
+        </Style>
+        <Style x:Key="VerticalRuleStyle" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="{StaticResource BorderColor}" />
+            <Setter Property="WidthRequest" Value="1" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+        <Style x:Key="HighlightBoxStyle" TargetType="pancakeView:PancakeView">
+            <Setter Property="BackgroundGradientStartColor" Value="{StaticResource BackgroundGradientStartColor}" />
+            <Setter Property="BackgroundGradientEndColor" Value="{StaticResource BackgroundGradientEndColor}" />
+            <Setter Property="BackgroundGradientAngle" Value="60" />
+            <Setter Property="IsClippedToBounds" Value="True" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <!--icons list-->
+        <x:String x:Key="IconMagnify">&#xf349;</x:String>
+        <x:String x:Key="IconRightOutline">&#xfa02;</x:String>
+        <x:String x:Key="IconPlusCircle">&#xf419;</x:String>
+        <x:String x:Key="IconPinwheel">&#xfad5;</x:String>
+        <x:String x:Key="IconSave">&#xf817;</x:String>
+        <x:String x:Key="IconAccount">&#xf004;</x:String>
+        <x:String x:Key="IconAccountCircle">&#xf009;</x:String>
+        <x:String x:Key="IconAccountMulti">&#xf00e;</x:String>
+        <x:String x:Key="IconUnlock">&#xf340;</x:String>
+        <x:String x:Key="IconChevronRight">&#xf142;</x:String>
+        <x:String x:Key="IconStar">&#xf4ce;</x:String>
+        <x:String x:Key="IconCalendar">&#xf678;</x:String>
+        <x:String x:Key="IconBellRing">&#xf09e;</x:String>
+        <x:String x:Key="IconHistory">&#xf2da;</x:String>
+        <x:String x:Key="IconArrowLeft">&#xf04d;</x:String>
+        <x:String x:Key="IconSignCaution">&#xf4a1;</x:String>
+        <x:String x:Key="IconSend">&#xf48a;</x:String>
+        <x:String x:Key="IconCheckCircle">&#xf133;</x:String>
+        <x:String x:Key="IconCalendarClock">&#xf0f0;</x:String>
+        <x:String x:Key="IconLogout">&#xf343;</x:String>
+        <x:String x:Key="IconPhone">&#xf3f2;</x:String>
+        <x:String x:Key="IconEmail">&#xf1ee;</x:String>
+        <x:String x:Key="IconSquare">&#xf46d;</x:String>
+        <x:String x:Key="IconCode">&#xf46d;</x:String>
+        <x:String x:Key="IconClock">&#xf150;</x:String>
+        <x:String x:Key="IconMarker">&#xf34e;</x:String>
+        <x:String x:Key="IconHelpCircle">&#xf2d7;</x:String>
+        <x:String x:Key="IconInformation">&#xf2fc;</x:String>
+        <x:String x:Key="IconKey">&#xf30b;</x:String>
+        <x:String x:Key="IconAlertCircle">&#xF028;</x:String>
+        <x:String x:Key="IconPaperClip">&#xf3e2;</x:String>
+        <x:String x:Key="IconEmoticonHappyOutline">&#xf1f5;</x:String>
+        <x:String x:Key="IconCart">&#xf110;</x:String>
+        <x:String x:Key="IconCurrency">&#xf1b3;</x:String>
+        <x:String x:Key="IconCakeVariant">&#xf0eb;</x:String>
+        <x:String x:Key="IconGenderMaleFemale">&#xf29e;</x:String>
+        <x:String x:Key="IconHandPointingRight">&#xf2c7;</x:String>
+        <x:String x:Key="IconCamera">&#xf100;</x:String>
+        <x:String x:Key="IconClear">&#xf15A;</x:String>
+        <x:String x:Key="IconQRCode">&#xf433;</x:String>
+
+
+
+        <!--icon styles-->
+        <Style TargetType="Label" x:Key="IconStyle">
+            <Setter Property="FontFamily" Value="{StaticResource MaterialFont}"/>
+            <Setter Property="FontSize" Value="{StaticResource Title2FontSize}"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+        </Style>
+        <Style x:Key="IconHeaderStyle" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="FontSize" Value="30"></Setter>
+        </Style>
+        <Style x:Key="IconItemStyle" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style x:Key="IconItem1Style" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="TextColor" Value="{DynamicResource MainThemeColor}"></Setter>
+            <Setter Property="FontSize" Value="22"></Setter>
+        </Style>
+        <Style x:Key="StarItemStyle" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Margin" Value="0,0,0,0"></Setter>
+            <Setter Property="TextColor" Value="OrangeRed"></Setter>
+        </Style>
+        <Style x:Key="IconMoreStyle" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="Text" Value="{StaticResource IconChevronRight}"></Setter>
+            <Setter Property="HorizontalOptions" Value="End"></Setter>
+        </Style>
+        <Style x:Key="IconFormStyle" TargetType="Label" BasedOn="{StaticResource IconStyle}">
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+        </Style>
+
+        <!--  Common Controls Styles  -->
+        <Style x:Key="ControlBoundStyle" TargetType="Frame">
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BackgroundColor" Value="{StaticResource InputBackgroundColor}" />
+        </Style>
+
+        <Style x:Key="ControlMainIconStyle" BasedOn="{StaticResource IconStyle}" TargetType="Label" >
+            <Setter Property="TextColor" Value="{StaticResource PlaceholderColor}"/>
+        </Style>
+        <Style x:Key="ControlCaptionStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextBold}" />
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+        <Style x:Key="SemiTransparentBoxStyle" TargetType="BoxView">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BackgroundColor" Value="{StaticResource InputBackgroundColor}" />
+        </Style>
+
+        <!--Frame-->
+        <Style x:Key="FrameBorderStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderColor" Value="#EDEDED" />
+            <Setter Property="Padding" Value="5,10,5,10" />
+        </Style>
+        <Style x:Key="StarBoundStyle" TargetType="Frame">
+            <Setter Property="HeightRequest" Value="35" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColor}" />
+        </Style>
+        <Style x:Key="SumStarBoundStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BackgroundColor" Value="#cc0000" />
+            <Setter Property="HeightRequest" Value="70" />
+        </Style>
+        <Style x:Key="FrameHeaderExpandStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="20"></Setter>
+            <Setter Property="VerticalOptions" Value="EndAndExpand"></Setter>
+            <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+        </Style>
+        <!--buttons-->
+        <Style x:Key="ButtonBoundStyle" TargetType="Frame">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </Style>
+        <Style x:Key="ButtonBoundSecondaryStyle" TargetType="Frame">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource ThirdColor }" />
+        </Style>
+
+        <Style x:Key="ButtonEndIconStyle" BasedOn="{StaticResource IconStyle}" TargetType="Label" >
+            <Setter Property="Text" Value="{StaticResource IconRightOutline}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+            <Setter Property="TextColor" Value="{StaticResource PlaceholderColor}"/>
+        </Style>
+        <Style x:Key="ButtonTextStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+        <!--borderless entry-->
+        <Style TargetType="controls:BorderlessEntry">
+            <Setter Property="TextColor" Value="{ StaticResource InputTextColor}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize }" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="BorderlessEntryValueStyle" TargetType="controls:BorderlessEntry">
+            <Setter Property="HorizontalTextAlignment" Value="End"></Setter>
+            <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+
+        </Style>
+        <!--borderless editor-->
+        <Style TargetType="controls:BorderlessEditor">
+            <Setter Property="TextColor" Value="{StaticResource InputTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}"></Setter>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            <Setter Property="MinimumHeightRequest" Value="50"></Setter>
+        </Style>
+        <Style TargetType="controls1:PickerView">
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize }" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}"></Setter>
+        </Style>
+        <!--List styles-->
+        <OnPlatform x:Key="SingleRowHeight" x:TypeArguments="x:Int32">
+            <On Platform="iOS">50</On>
+            <On Platform="Android">48</On>
+        </OnPlatform>
+        <OnPlatform x:Key="DoubleRowHeight" x:TypeArguments="x:Int32">
+            <On Platform="iOS">62</On>
+            <On Platform="Android">60</On>
+        </OnPlatform>
+        <Style TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="SeparatorColor" Value="{StaticResource BorderColor}" />
+            <Setter Property="SeparatorVisibility" Value="Default" />
+            <Setter Property="HasUnevenRows" Value="False"></Setter>
+        </Style>
+        <Style x:Key="ListItemBoundStyle" TargetType="Frame">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+        </Style>
+
+        <Style x:Key="ListHeadline" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+        <Style x:Key="ListSingleLine" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}" />
+            <Setter Property="FontSize" Value="{StaticResource Title2FontSize}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        </Style>
+
+        <!--COMMONINPUT-->
+        <Style TargetType="controls1:CommonInput">
+            <!--frame-->
+            <Setter Property="Radius" Value="{StaticResource CornerInput}"></Setter>
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <Setter Property="Background" Value="{StaticResource InputBackgroundColor}"></Setter>
+            <Setter Property="ControlPadding" Value="5,0,5,0"></Setter>
+            <Setter Property="BorderColor" Value="{StaticResource BorderColor}"></Setter>
+            <Setter Property="HeightInput" Value="60"></Setter>
+            <!--input-->
+            <Setter Property="TextColor" Value="{StaticResource InputTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+            <Setter Property="Keyboard" Value="Default"></Setter>
+            <Setter Property="EntryMargin" Value="0"></Setter>
+            <!--icon start-->
+            <Setter Property="IconFontFamily" Value="{StaticResource MaterialFont}"></Setter>
+            <Setter Property="IconFontSize" Value="20"></Setter>
+            <Setter Property="IconColor" Value="{StaticResource ThirdColor}"></Setter>
+        </Style>
+        <Style TargetType="controls1:CommonInputMultiple">
+            <!--frame-->
+            <Setter Property="Radius" Value="10"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="ControlPadding" Value="5,10,5,10"></Setter>
+            <Setter Property="HeightInput" Value="45"></Setter>
+            <Setter Property="BorderColor" Value="{StaticResource BorderColor}"></Setter>
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <!--editor-->
+            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+            <Setter Property="TextColor" Value="{StaticResource InputTextColor}"></Setter>
+            <Setter Property="Keyboard" Value="Default"></Setter>
+        </Style>
+        <Style x:Key="CommonInputPrimary" TargetType="controls1:CommonInput">
+            <Setter Property="Keyboard" Value="Text"></Setter>
+            <Setter Property="HeightInput" Value="50"></Setter>
+            <Setter Property="BorderColor" Value="#EA267C"></Setter>
+        </Style>
+        <Style x:Key="CommonInputMultiplePrimary" TargetType="controls1:CommonInputMultiple">
+
+        </Style>
+
+        <!--NAVIGATION BAR-->
+        <Style TargetType="controls1:NavigationBar">
+            <!--frame-->
+            <Setter Property="Background" Value="{DynamicResource MainThemeColor}"></Setter>
+            <Setter Property="HeightBar" Value="{OnPlatform Android=75,iOS=90}"/>
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <Setter Property="Radius" Value="20"></Setter>
+            <Setter Property="FramePadding" Value="0"></Setter>
+            <Setter Property="Margin" Value="0,-18,0,0"></Setter>
+            <!--left button-->
+            <Setter Property="BackSymbol" Value="{StaticResource IconArrowLeft}"></Setter>
+            <Setter Property="HasLeftButton" Value="True"></Setter>
+            <Setter Property="LeftFontFamily" Value="{StaticResource MaterialFont}"></Setter>
+            <Setter Property="LeftFontSize" Value="24"></Setter>
+            <Setter Property="LeftColor" Value="{StaticResource InverseTextColor}"></Setter>
+            <!--title-->
+            <Setter Property="TitleColor" Value="{StaticResource InverseTextColor}"></Setter>
+            <Setter Property="TitleFontSize" Value="20"></Setter>
+        </Style>
+        <Style x:Key="NavigationBarStandard" TargetType="controls1:NavigationBar">
+            <Setter Property="HeightBar" Value="{OnPlatform Android=75,iOS=90}"/>
+        </Style>
+
+        <!--COMMONBUTTON-->
+        <Style TargetType="controls1:CommonButton">
+            <!--frame-->
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+            <Setter Property="ButtonPadding" Value="5"></Setter>
+            <Setter Property="Radius" Value="15"></Setter>
+            <Setter Property="BorderColor" Value="Transparent"></Setter>
+            <Setter Property="HeightButton" Value="50"></Setter>
+            <!--iconstart-->
+            <Setter Property="HasIconStart" Value="True"></Setter>
+            <Setter Property="IconStartFontFamily" Value="{StaticResource MaterialFont}"></Setter>
+            <Setter Property="IconStartFontSize" Value="20"></Setter>
+            <Setter Property="IconStartColor" Value="{StaticResource InverseTextColor}"></Setter>
+            <Setter Property="TextColor" Value="{StaticResource InverseTextColor}"></Setter>
+            <Setter Property="IconStartWidth" Value="25"></Setter>
+            <!--header-->
+            <Setter Property="FontSize" Value="{StaticResource Title3FontSize}"></Setter>
+            <!--subtext-->
+            <Setter Property="SubFontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+
+        <Style x:Key="CommonButtonPrimary" TargetType="controls1:CommonButton">
+            <Setter Property="Background" Value="{StaticResource MainThemeColor}"></Setter>
+        </Style>
+        <Style x:Key="CommonButtonSecondary" TargetType="controls1:CommonButton">
+            <Setter Property="Background" Value="{StaticResource SecondaryColor}"></Setter>
+            <Setter Property="HeightButton" Value="40"></Setter>
+        </Style>
+        <Style x:Key="CommonButtonNoIconSecondary" TargetType="controls1:CommonButton">
+            <Setter Property="Background" Value="{StaticResource SecondaryColor}"></Setter>
+            <Setter Property="IconStartWidth" Value="10"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+        </Style>
+
+        <!--LABEL-->
+        <Style x:Key="LabelPageTitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource Title1FontSize}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="TextColor" Value="{StaticResource PageTitleTextColor}"></Setter>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="LabelTitle1Style" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource Title1FontSize}"></Setter>
+            <Setter Property="TextColor" Value="{StaticResource PageTitleTextColor}"></Setter>
+        </Style>
+        <Style x:Key="LabelPrimaryStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="Opacity" Value="0.7"></Setter>
+        </Style>
+        <Style x:Key="LabelNormal1Style" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+        </Style>
+
+        <Style x:Key="LabelNormal2Style" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}"></Setter>
+        </Style>
+        <Style x:Key="LabelIconHomeStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextRegular}"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="LabelUrlStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextItalic}"></Setter>
+            <Setter Property="TextColor" Value="{DynamicResource SecondThemeColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelSub1Style" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelItemHeader1Style" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource Title2FontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelItemHeader2Style" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource SecondaryColor}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource Title2FontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelItem1Style" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelItem2Style" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource Title3FontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelSubItem1Style" TargetType="Label">
+            <!--<Setter Property="FontFamily" Value="HelveticaNeue-Bold"></Setter>-->
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelSubItem2Style" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextItalic}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+            <Setter Property="TextColor" Value="{StaticResource MainThemeColor}"></Setter>
+        </Style>
+        <Style x:Key="LabelItemDisableStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DisableTextColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelWarningNote" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource ThirdColor}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}"></Setter>
+            <Setter Property="HorizontalOptions" Value="EndAndExpand"></Setter>
+            <Setter Property="VerticalOptions" Value="StartAndExpand"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Start"></Setter>
+        </Style>
+        <Style x:Key="LabelNoteStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextThin}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="LabelNote1Style" TargetType="Label">
+            <!--<Setter Property="FontFamily" Value="HelveticaNeue-Bold"></Setter>-->
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+        </Style>
+        <Style x:Key="LabelStatusStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}"></Setter>
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="LabelFormStyle" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+        </Style>
+        <Style x:Key="LabelFormWithIconStyle" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+            <Setter Property="Margin" Value="40,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="LabelFormWithIcon2Style" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+            <Setter Property="Margin" Value="20,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="LabelValueStyle" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="End"></Setter>
+        </Style>
+        <Style x:Key="LabelValueLookupStyle" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="End"></Setter>
+            <Setter Property="HorizontalTextAlignment" Value="End"></Setter>
+            <Setter Property="Margin" Value="0,0,30,0"></Setter>
+        </Style>
+        <Style x:Key="LabelHeaderStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource TextSemiBold}"></Setter>
+            <Setter Property="HorizontalOptions" Value="Start"></Setter>
+        </Style>
+        <!--FFIMAGELOADING-->
+        <Style x:Key="CachedImageIconHome" TargetType="forms1:CachedImage">
+            <Setter Property="Aspect" Value="AspectFit"></Setter>
+            <Setter Property="WidthRequest" Value="65"></Setter>
+        </Style>
+        <!--LISTVIEW-->
+        <Style x:Key="ListView1Style" TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+        </Style>
+        <Style x:Key="ListViewLabelItemTitleStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <!--<Setter Property="FontFamily" Value="HelveticaNeue-Bold"></Setter>-->
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"></Setter>
+            <Setter Property="Opacity" Value="0.8"></Setter>
+        </Style>
+        <Style x:Key="ListViewLabelItemSubStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource BaseTextColor}"></Setter>
+            <!--<Setter Property="FontFamily" Value="HelveticaNeue-Bold"></Setter>-->
+            <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"></Setter>
+            <Setter Property="Opacity" Value="0.8"></Setter>
+        </Style>
+        <Style x:Key="CollectionView1Style" TargetType="CollectionView">
+            <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+        </Style>
+        <!--FRAME-->
+        <Style x:Key="ItemBound1Style" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource SemiLightColor}"></Setter>
+            <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}"></Setter>
+            <Setter Property="Margin" Value="0,3,0,3"></Setter>
+        </Style>
+        <Style x:Key="ItemBound2Style" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource SemiLightColor}"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Margin" Value="0,3,0,3"></Setter>
+        </Style>
+        <Style x:Key="ItemBoundImageStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="Padding" Value="3"></Setter>
+            <Setter Property="BorderColor" Value="Transparent"></Setter>
+        </Style>
+        <Style x:Key="SmallButtonFrameStyle" TargetType="Frame">
+            <Setter Property="Padding" Value="3"></Setter>
+            <Setter Property="BorderColor" Value="Transparent"></Setter>
+            <Setter Property="WidthRequest" Value="30"></Setter>
+            <Setter Property="HeightRequest" Value="30"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource SemiLightColor}"></Setter>
+        </Style>
+        <Style x:Key="ItemBoundStatusStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="HeightRequest" Value="20"></Setter>
+            <Setter Property="BorderColor" Value="Transparent"></Setter>
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <Setter Property="Padding" Value="5,3"></Setter>
+            <Setter Property="HorizontalOptions" Value="StartAndExpand"></Setter>
+        </Style>
+        <Style x:Key="ItemBoundStatus2Style" TargetType="Frame" BasedOn="{StaticResource ItemBoundStatusStyle}">
+            <Setter Property="BackgroundColor" Value="{StaticResource ThirdColor}"></Setter>
+        </Style>
+        <!--GRID-->
+        <Style x:Key="GridPageWrapper" TargetType="Grid">
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="RowSpacing" Value="10"></Setter>
+        </Style>
+        <Style x:Key="GridCellStyle" TargetType="Grid">
+            <Setter Property="Padding" Value="5,10,5,10"></Setter>
+            <Setter Property="RowSpacing" Value="5"></Setter>
+        </Style>
+        <Style x:Key="GridCell2Style" TargetType="Grid">
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="RowSpacing" Value="0"></Setter>
+        </Style>
+        <Style x:Key="GridCellInTabStyle" TargetType="Grid">
+            <Setter Property="Padding" Value="0,10,0,10"></Setter>
+            <Setter Property="RowSpacing" Value="5"></Setter>
+        </Style>
+        <!--STACKLAYOUT-->
+        <Style x:Key="StackPageWrapper" TargetType="StackLayout">
+            <Setter Property="Padding" Value="5,10,5,10"></Setter>
+        </Style>
+        <!--RadioButton-->
+        <Style TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="{StaticResource ThirdColor}" />
+                                <Setter Property="Opacity"
+                                        Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="{StaticResource FourColor}" />
+                                <Setter Property="Opacity"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </Application.Resources>
+
+</Application>

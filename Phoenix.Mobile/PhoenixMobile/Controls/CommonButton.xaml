@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Phoenix.Framework.Core;assembly=Phoenix.Framework"
+             x:Class="Phoenix.Mobile.Controls.CommonButton"
+             Padding="0"
+             HorizontalOptions="CenterAndExpand"
+             x:Name="RootButton">
+    <ContentView.Content>
+        <Frame VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"
+               BackgroundColor="{Binding Background, Source={x:Reference RootButton}}"
+               CornerRadius="{Binding Radius, Source={x:Reference RootButton}}"
+               HasShadow="{Binding HasShadow,Source={x:Reference RootButton}}"
+               BorderColor="{Binding BorderColor,Source={x:Reference RootButton}}"               
+               HeightRequest="{Binding HeightButton,Source={x:Reference RootButton}}"
+               behaviors:TappedGestureAttached.Command="{Binding OnTap, Source={x:Reference RootButton}}" 
+               behaviors:TappedGestureAttached.CommandParameter="{Binding CommandParameter, Source={x:Reference RootButton}}">
+            <Grid ColumnSpacing="0" Margin="0" Padding="{Binding ButtonPadding,Source={x:Reference RootButton}}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                  RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding IconStartWidth, Source={x:Reference RootButton}}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"                       
+                       Text="{Binding IconStart, Source={x:Reference RootButton}}"                       
+                       IsVisible="{Binding HasIconStart,Source={x:Reference RootButton}}"
+                       FontFamily="{Binding IconStartFontFamily,Source={x:Reference RootButton}}"
+                       FontSize="{Binding IconStartFontSize,Source={x:Reference RootButton}}"
+                       TextColor="{Binding IconStartColor,Source={x:Reference RootButton}}"
+                       VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"
+                       />
+                <Label Grid.Column="1" Grid.Row="0"
+                       Text="{Binding Text, Source={x:Reference RootButton}}"
+                       FontSize="{Binding FontSize,Source={x:Reference RootButton}}"
+                       TextColor="{Binding TextColor,Source={x:Reference RootButton}}"
+                       HorizontalTextAlignment="Center" VerticalOptions="Center"
+                       />
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

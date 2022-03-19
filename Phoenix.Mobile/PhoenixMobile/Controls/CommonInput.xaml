@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Phoenix.Framework.Controls;assembly=Phoenix.Framework"
+             mc:Ignorable="d"
+             x:Class="Phoenix.Mobile.Controls.CommonInput"
+             Padding="0"
+             x:Name="RootInput">
+  <ContentView.Content>
+        <Frame     
+            CornerRadius="{Binding Radius, Source={x:Reference RootInput}}"
+           HasShadow="{Binding HasShadow, Source={x:Reference RootInput}}"
+           BackgroundColor="{Binding Background, Source={x:Reference RootInput}}"
+           Padding="{Binding ControlPadding, Source={x:Reference RootInput}}"
+           BorderColor="{Binding BorderColor, Source={x:Reference RootInput}}"
+        HeightRequest="{Binding HeightInput,Source={x:Reference RootInput}}"
+            VerticalOptions="Center">
+            <Grid ColumnSpacing="0" Margin="0" Padding="0" RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label FontFamily="{Binding IconFontFamily,Source={x:Reference RootInput}}"
+                       FontSize="{Binding IconFontSize,Source={x:Reference RootInput}}"
+                       TextColor="{Binding IconColor,Source={x:Reference RootInput}}"
+                       Text="{Binding IconStart,Source={x:Reference RootInput}}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Grid.Column="0"                                           
+                    ></Label>
+                <controls:BorderlessEntry Grid.Column="1" Margin="5,0,5,0"                                                                                                    
+                                  Text="{Binding Text, Source={x:Reference RootInput}}"
+                                   TextColor="{Binding TextColor, Source={x:Reference RootInput}}"
+                                   FontSize="{Binding FontSize, Source={x:Reference RootInput}}"
+                                   Placeholder="{Binding Placeholder, Source={x:Reference RootInput}}"
+                                   IsPassword="{Binding IsPassword, Source={x:Reference RootInput}}"
+                                    VerticalOptions="Center"  
+                                          Keyboard="{Binding Keyboard,Source={x:Reference RootInput}}"        
+                       />
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

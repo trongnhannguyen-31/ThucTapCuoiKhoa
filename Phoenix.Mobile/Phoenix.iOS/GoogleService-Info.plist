@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>467223605429-2tfpj9i4kghq7ahm3dtbh0f1jn1ajsvh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.467223605429-2tfpj9i4kghq7ahm3dtbh0f1jn1ajsvh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwaEyBF0I5D__w1TI3rODVBbHmWV7DHtk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>467223605429</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>vn.phoenixcompany.congdongbau</string>
+	<key>PROJECT_ID</key>
+	<string>congdongbaufcm</string>
+	<key>STORAGE_BUCKET</key>
+	<string>congdongbaufcm.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:467223605429:ios:09f866fca75b7a64874efc</string>
+	<key>DATABASE_URL</key>
+	<string>https://congdongbaufcm.firebaseio.com</string>
+</dict>
+</plist>

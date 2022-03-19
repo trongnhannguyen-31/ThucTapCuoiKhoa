@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D9FC869-B2BF-4381-92E2-C25360BDA137}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Phoenix.Shared</RootNamespace>
+    <AssemblyName>Phoenix.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|AnyCPU'">
+    <OutputPath>bin\Ad-Hoc\</OutputPath>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.LiveShare, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.LiveShare.1.1.57\lib\net461\Microsoft.VisualStudio.LiveShare.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth\CreateUserRequest.cs" />
+    <Compile Include="Auth\ExternalTokenRequest.cs" />
+    <Compile Include="Auth\LoginRequest.cs" />
+    <Compile Include="Auth\LoginResponse.cs" />
+    <Compile Include="Auth\TokenRequest.cs" />
+    <Compile Include="Auth\TokenResponse.cs" />
+    <Compile Include="Customer\CustomerDto.cs" />
+    <Compile Include="Customer\CustomerRequest.cs" />
+    <Compile Include="OrderDetail\OrderDetailDto.cs" />
+    <Compile Include="OrderDetail\OrderDetailRequest.cs" />
+    <Compile Include="Common\BaseRequest.cs" />
+    <Compile Include="Common\BaseResponse.cs" />
+    <Compile Include="Common\ImageResizeModes.cs" />
+    <Compile Include="Common\SettingDto.cs" />
+    <Compile Include="Common\SettingRequest.cs" />
+    <Compile Include="Common\SharedValues.cs" />
+    <Compile Include="Core\CommonErrorStatus.cs" />
+    <Compile Include="Core\CrudResult.cs" />
+    <Compile Include="Core\ListDto.cs" />
+    <Compile Include="Core\ResultDto.cs" />
+    <Compile Include="ProductSKU\ProductSKUDto.cs" />
+    <Compile Include="ProductSKU\ProductSKURequest.cs" />
+    <Compile Include="Rating\RatingDto.cs" />
+    <Compile Include="Rating\RatingRequest.cs" />
+    <Compile Include="Order\OrderDto.cs" />
+    <Compile Include="Order\OrderRequest.cs" />
+    <Compile Include="Media\FileInfoDto.cs" />
+    <Compile Include="Media\FileUploadDto.cs" />
+    <Compile Include="User\UserDto.cs" />
+    <Compile Include="User\UserRequest.cs" />
+    <Compile Include="Warehouse\WarehouseDto.cs" />
+    <Compile Include="Warehouse\WarehouseRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProductType\ProductTypeDto.cs" />
+    <Compile Include="ProductType\ProductTypeRequest.cs" />
+    <Compile Include="Product\ProductDto.cs" />
+    <Compile Include="Product\ProductRequest.cs" />
+    <Compile Include="Vendor\VendorDto.cs" />
+    <Compile Include="Vendor\VendorRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
