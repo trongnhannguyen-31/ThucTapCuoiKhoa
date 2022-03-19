@@ -27,4 +27,6 @@ namespace Phoenix.Shared.Order
 
         public bool Deleted { get; set; }
     }
+
+    //nhanphai 123
 }
