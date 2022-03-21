@@ -1,5 +1,13 @@
 ﻿@model Phoenix.Server.Web.Areas.Admin.Models.Warehouse.WarehouseModel
 
+@section Css {
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@1.7.5/dist/css/tom-select.css" rel="stylesheet">
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@1.7.5/dist/js/tom-select.complete.min.js"></script>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

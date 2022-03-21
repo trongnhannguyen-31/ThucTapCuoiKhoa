@@ -114,7 +114,7 @@ namespace Phoenix.Server.Services.MainServices
                 _dataContext.Products.Add(products);
                 await _dataContext.SaveChangesAsync();
 
-                result.success = true;
+                result.Success = true;
             }
             catch (Exception ex)
             {

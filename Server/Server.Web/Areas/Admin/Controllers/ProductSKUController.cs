@@ -78,7 +78,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Size = model.Size,
                 Special = model.Special,
             });
-            if (!productSKUs.success)
+            if (!productSKUs.Success)
             {
                 ErrorNotification("Lỗi");
                 return View(model);

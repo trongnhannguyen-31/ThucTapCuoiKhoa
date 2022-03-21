@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Falcon.Web.Core.Auth;
 using Phoenix.Server.Data.Entity;
+using Phoenix.Shared.Common;
 using Phoenix.Shared.Customer;
 using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
@@ -58,6 +59,13 @@ namespace Phoenix.Server.Services.Infrastructure
 
             // CreateMap User
             CreateMap<User, UserDto>();
+
+            CreateMap<ProductTypeDto, DropdownDto>();
+            
+            CreateMap<VendorDto, DropdownDto>();
+
+            CreateMap<Warehouse, DropdownDto>()
+                .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.ProductSKU.Product.Name));
         }
     }
 }

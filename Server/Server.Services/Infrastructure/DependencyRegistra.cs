@@ -13,6 +13,7 @@ using Falcon.Core.Domain.Users;
 using Phoenix.Server.Services.MainServices.Users;
 using Phoenix.Server.Services.MainServices.Auth;
 using Phoenix.Server.Services.MainServices;
+using Phoenix.Server.Services.ApiServices;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -42,6 +43,7 @@ namespace Phoenix.Server.Services.Infrastructure
             container.Register<IRatingService, RatingService>(Lifestyle.Scoped);
             container.Register<IWarehouseService, WarehouseService>(Lifestyle.Scoped);
             container.Register<ICustomerService, CustomerService>(Lifestyle.Scoped);
+            container.Register<IDropdownService, DropdownService>(Lifestyle.Scoped);
 
 
             EngineContext.Current.Init(new SimpleContainer(container));

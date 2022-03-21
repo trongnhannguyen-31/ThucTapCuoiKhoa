@@ -1212,6 +1212,7 @@
   <ItemGroup>
     <Compile Include="Api\AuthController.cs" />
     <Compile Include="Api\BaseApiController.cs" />
+    <Compile Include="Api\DropdownApiController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

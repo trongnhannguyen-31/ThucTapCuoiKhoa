@@ -30,7 +30,7 @@ namespace Phoenix.Server.Services.MainServices
         // Lấy danh sách loại sản phẩm
         public async Task<BaseResponse<ProductTypeDto>> GetAllProductTypes(ProductTypeRequest request)
         {
-            var result = new BaseResponse<ProductTypeDto>();
+            var result = new BaseResponse<ProductTypeDto>() { Success = true };
             try
             {
                 // setup query
@@ -51,7 +51,8 @@ namespace Phoenix.Server.Services.MainServices
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
@@ -73,7 +74,7 @@ namespace Phoenix.Server.Services.MainServices
                 _dataContext.ProductTypes.Add(productTypes);
                 await _dataContext.SaveChangesAsync();
 
-                result.success = true;
+                result.Success = true;
             }
             catch (Exception ex)
             {
@@ -98,7 +99,7 @@ namespace Phoenix.Server.Services.MainServices
                 _dataContext.ProductTypes.Add(productTypes);
                 await _dataContext.SaveChangesAsync();
 
-                result.success = true;
+                result.Success = true;
             }
             catch (Exception ex)
             {

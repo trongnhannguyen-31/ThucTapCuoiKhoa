@@ -66,7 +66,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Name = model.Name,
             });
-            if (!productTypes.success)
+            if (!productTypes.Success)
             {
                 ErrorNotification("Thêm mới không thành công");
                 return View(model);

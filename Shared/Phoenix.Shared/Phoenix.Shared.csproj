@@ -57,6 +57,7 @@
     <Compile Include="Auth\LoginResponse.cs" />
     <Compile Include="Auth\TokenRequest.cs" />
     <Compile Include="Auth\TokenResponse.cs" />
+    <Compile Include="Common\DropdownDto.cs" />
     <Compile Include="Customer\CustomerDto.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
     <Compile Include="OrderDetail\OrderDetailDto.cs" />

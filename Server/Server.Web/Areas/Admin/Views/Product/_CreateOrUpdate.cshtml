@@ -8,12 +8,70 @@
 
             <div>
                 <label>Loại sản phẩm</label>
-                @Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })
+                @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
+                <select id="selectProductType" name="ProductType_Id" class="tom-select"></select>
+                <script>
+                    var zsettings = {
+                        valueField: 'Id',
+                        labelField: 'Name',
+                        searchField: 'Name',
+                        placeholder: '-- Vui lòng chọn nhóm --',
+                        load: function (query, callback) {
+                            var url = '/api/dropdown/TakeAllProductTypes';
+                            fetch(url, { method: "post"})
+                                .then(response => response.json())
+                                .then(json => {
+                                    callback(json);
+                                }).catch(() => {
+                                    callback();
+                                });
+
+                        },
+                        render: {
+                            option: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            },
+                            item: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            }
+                        }
+                    };
+                    new TomSelect('#selectProductType', zsettings);
+                </script>
             </div>
 
             <div>
-                <label>Loại sản phẩm</label>
-                @Html.DropDownList("Vendor_Id", null, new { @class = "form-control input w-full border mt-2" })
+                <label>Hãng sản xuất</label>
+                @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
+                <select id="selectVendor" name="Vendor_Id" class="tom-select"></select>
+                <script>
+                    var zsettings = {
+                        valueField: 'Id',
+                        labelField: 'Name',
+                        searchField: 'Name',
+                        placeholder: '-- Vui lòng chọn nhóm --',
+                        load: function (query, callback) {
+                            var url = '/api/dropdown/TakeAllVendors';
+                            fetch(url, { method: "post" })
+                                .then(response => response.json())
+                                .then(json => {
+                                    callback(json);
+                                }).catch(() => {
+                                    callback();
+                                });
+
+                        },
+                        render: {
+                            option: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            },
+                            item: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            }
+                        }
+                    };
+                    new TomSelect('#selectVendor', zsettings);
+                </script>
             </div>
 
             <div>

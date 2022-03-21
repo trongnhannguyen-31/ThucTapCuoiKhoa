@@ -77,7 +77,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Phone = model.Phone,
                 Nation = model.Nation,
             });
-            if (!vendors.success)
+            if (!vendors.Success)
             {
                 ErrorNotification("Thêm mới không thành công");
                 return View(model);

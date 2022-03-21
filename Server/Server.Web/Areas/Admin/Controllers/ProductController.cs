@@ -75,13 +75,13 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 YearOfManufacture = 0,
             });
 
-            if (!res.success)
+            if (!res.Success)
             {
                 ErrorNotification("Thêm mới không thành công");
                 return View(model);
             }
             SuccessNotification("Thêm mới đại lý thành công");
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
 
         /*// Thêm sản phẩm

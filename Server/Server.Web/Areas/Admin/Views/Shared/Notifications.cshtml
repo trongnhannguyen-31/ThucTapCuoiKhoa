@@ -26,33 +26,42 @@
 
     //warning messages
     var warningMessages = new List<string>();
-    if (TempData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] != null) {
+    if (TempData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] != null)
+    {
         warningMessages.AddRange(TempData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] as IList<string>);
     }
-    if (ViewData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] != null) {
+    if (ViewData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] != null)
+    {
         warningMessages.AddRange(ViewData[string.Format("falcon.notifications.{0}", NotifyType.Warning)] as IList<string>);
     }
 }
 
 @foreach (var message in successMessages)
 {
-    <div class="alert alert-success alert-dismissable mb-5">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        @message
+    <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
+        <i data-feather="alert-triangle" class="w-6 h-6 mr-2"></i> @message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <i data-feather="x" class="w-4 h-4"></i>
+        </button>
     </div>
 }
 
 @foreach (var message in errorMessages)
 {
-    <div class="alert alert-danger alert-dismissable mb-5">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        @message
+    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+        <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> @message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <i data-feather="x" class="w-4 h-4"></i> 
+        </button>
     </div>
 }
 
-@foreach (var message in warningMessages) {
-    <div class="alert alert-warning alert-dismissable mb-5">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        @message
+@foreach (var message in warningMessages)
+{
+    <div class="alert alert-warning alert-dismissible show flex items-center mb-2" role="alert">
+        <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i> @message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <i data-feather="x" class="w-4 h-4"></i>
+        </button>
     </div>
 }

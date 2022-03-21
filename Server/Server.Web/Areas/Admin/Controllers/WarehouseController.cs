@@ -68,7 +68,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Quantity = model.Quantity
             });
 
-            if (!res.success)
+            if (!res.Success)
             {
                 ErrorNotification("Thêm mới không thành công");
                 return View(model);

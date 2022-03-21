@@ -386,6 +386,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiServices\DropdownService.cs" />
     <Compile Include="Constants\Calculates.cs" />
     <Compile Include="Constants\JwtConfig.cs" />
     <Compile Include="Constants\MimeTypes.cs" />
@@ -467,9 +468,7 @@
   <ItemGroup>
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ApiServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />

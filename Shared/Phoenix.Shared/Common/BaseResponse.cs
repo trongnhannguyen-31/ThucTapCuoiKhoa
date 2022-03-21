@@ -6,6 +6,7 @@ namespace Phoenix.Shared.Common
     {
         public List<T> Data { get; set; }
         public int DataCount { get; set; }
-        public bool success { get; set; }
+        public bool Success { get; set; }
+        public string Message { get; set; }
     }
 }
