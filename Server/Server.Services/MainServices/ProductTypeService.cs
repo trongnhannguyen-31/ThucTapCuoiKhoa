@@ -13,11 +13,13 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IProductTypeService
     {
+        ProductType GetProductTypesById(int id);
+
         Task<BaseResponse<ProductTypeDto>> GetAllProductTypes(ProductTypeRequest request);
 
         Task<BaseResponse<ProductTypeDto>> CreateProductTypes(ProductTypeRequest request);
 
-        Task<BaseResponse<ProductTypeDto>> GetProductTypesById(ProductTypeRequest request);
+        Task<BaseResponse<ProductTypeDto>> UpdateProductTypes(ProductTypeRequest request);
     }
     public class ProductTypeService : IProductTypeService
     {
@@ -103,10 +105,41 @@ namespace Phoenix.Server.Services.MainServices
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
+
+        // Get Product By Id
+        public ProductType GetProductTypesById(int id) => _dataContext.ProductTypes.Find(id);
+
+        public async Task<BaseResponse<ProductTypeDto>> UpdateProductTypes(ProductTypeRequest request)
+        {
+            var result = new BaseResponse<ProductTypeDto>();
+            try
+            {
+                ProductType productTypes = new ProductType
+                {
+                    Name = request.Name,
+                    Deleted = false,
+                    UpdatedAt = request.UpdatedAt,
+                    CreatedAt = DateTime.Now
+                };
+                //_dataContext.ProductTypes.Add(productTypes);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
     }
 }

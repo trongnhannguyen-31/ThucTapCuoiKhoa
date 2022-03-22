@@ -32,7 +32,6 @@ namespace Phoenix.Server.Services.ApiServices
             _productTypeService = productTypeService;
             _vendorService = vendorService;
             _warehouseService = warehouseService;
-
         }
 
         public async Task<List<DropdownDto>> TakeAllProductTypes()

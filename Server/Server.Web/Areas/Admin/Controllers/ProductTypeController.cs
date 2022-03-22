@@ -76,7 +76,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }
 
         // Update ProductType
-        /*public ActionResult Update(int id)
+        public ActionResult Update(int id)
         {
             var projectDto = _productTypeService.GetProductTypesById(id);
             if (projectDto == null)
@@ -91,15 +91,18 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Update(ProductTypeModel model)
         {
-            var project = _productTypeService.GetProductTypeById(model.Id);
+            var project = _productTypeService.GetProductTypesById(model.Id);
             if (project == null)
                 return RedirectToAction("List");
             if (!ModelState.IsValid)
                 return View(model);
-            await _productTypeService.Update(model.MapTo<ProductTypeDto>());
+            var productTypes = await _productTypeService.CreateProductTypes(new ProductTypeRequest
+            {
+                Name = model.Name,
+            });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });
-        }*/
+        }
 
         // Delete ProductType
         /*[HttpPost]

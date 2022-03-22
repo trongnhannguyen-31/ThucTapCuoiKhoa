@@ -36,7 +36,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 PageSize = command.PageSize,
                 Id = model.Id,
                 Quantity = model.Quantity,
-                //ProductSKU_Id = model.ProductSKU_Id
+                ProductSKU_Id = model.ProductSKU_Id
             });
 
             var gridModel = new DataSourceResult
@@ -50,9 +50,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Them
         public ActionResult Create()
         {
-            DataContext db = new DataContext();
-            ViewBag.ProductSKU_Id = new SelectList(db.ProductSKUs.OrderBy(n => n.Id), "Id", "Product_Id");
-
             var model = new WarehouseModel();
             return View(model);
         }

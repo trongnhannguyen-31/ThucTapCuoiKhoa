@@ -5,31 +5,25 @@
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-6">
         <div class="intro-y box p-5">
-            @*<div>
-            <label>Tên hãng sản xuất</label>
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>*@
 
             @*<div class="mt-3">
-            <label>Logo</label>
-            <div class="mt-2">
-                @Html.DropDownList("ProductSKU_Id", null, new { @class = "form-control input input--switch border" } )
-            </div>
-        </div>*@
+                <label>Logo</label>
+                <div class="mt-2">
+                    @Html.DropDownList("ProductSKU_Id", null, new { @class = "form-control input input--switch border" } )
+                </div>
+            </div>*@
 
             <div>
                 <label>Loại sản phẩm</label>
-                @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
-                <select id="selectProductName" name="Product_Id" class="tom-select"></select>
+                <select id="selectProductSKU" name="ProductSKU_Id" class="tom-select"></select>
                 <script>
                     var zsettings = {
                         valueField: 'Id',
-                        labelField: 'Product_Id',
-                        searchField: 'Product_Id',
+                        labelField: 'ProductSKU_Id',
+                        searchField: 'ProductSKU_Id',
                         placeholder: '-- Vui lòng chọn nhóm --',
                         load: function (query, callback) {
-                            var url = '/api/dropdown/TakeAllWarehouses';
+                            var url = '/api/dropdown/TakeAllProductTypes';
                             fetch(url, { method: "post" })
                                 .then(response => response.json())
                                 .then(json => {
@@ -41,16 +35,18 @@
                         },
                         render: {
                             option: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                                return `<option value="${item.Id}"> ${item.ProductSKU_Id} </option>`;
                             },
                             item: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                                return `<option value="${item.Id}"> ${item.ProductSKU_Id} </option>`;
                             }
                         }
                     };
-                    new TomSelect('#selectProductName", zsettings);
+                    new TomSelect('#selectProductSKU', zsettings);
                 </script>
             </div>
+
+
 
             <div class="mt-3">
                 <label>Số lượng tồn</label>
@@ -58,37 +54,6 @@
                     @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control input input--switch border" } })
                 </div>
             </div>
-
-            @*<div class="mt-3">
-            <label>Ngày bắt đầu</label>
-            <div class="mt-2">
-                <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
-                    <i data-feather="calendar" class="w-4 h-4"></i>
-                </div>
-                @Html.EditorFor(model => model.StartAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Ngày kết thúc</label>
-            <div class="mt-2">
-                <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
-                    <i data-feather="calendar" class="w-4 h-4"></i>
-                </div>
-                @Html.EditorFor(model => model.EndAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Hoạt động</label>
-            <div class="mt-2">
-                @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "input input--switch border" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Ghi chú</label>
-            <div class="mt-2">
-                @Html.TextAreaFor(model => model.Note, new { @class = "editor", data_simple_toolbar = "true" })
-            </div>
-        </div>*@
         </div>
     </div>
 </div>
