@@ -17,8 +17,6 @@ namespace Phoenix.Shared.Vendor
 
         public bool Deleted { get; set; }
 
-        public int ProductType_Id { get; set; }
-
         public DateTime CreateAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }

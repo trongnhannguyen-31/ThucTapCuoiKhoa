@@ -24,8 +24,6 @@ namespace Phoenix.Server.Data.Entity
 
         public double? Rating { get; set; }
 
-        public double Price { get; set; }
-
         public int? Image1 { get; set; }
         [ForeignKey("Image1")]
         public virtual ImageRecord ImageRecord1 { get; set; }

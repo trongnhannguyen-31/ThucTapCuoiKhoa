@@ -1,4 +1,5 @@
 ﻿using Falcon.Web.Core.Helpers;
+using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
 using Phoenix.Shared.Customer;
@@ -13,7 +14,11 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface ICustomerService
     {
+        Customer GetCustomersById(int id);
+
         Task<BaseResponse<CustomerDto>> GetAllCustomers(CustomerRequest request);
+
+        Task<BaseResponse<CustomerDto>> UpdateCustomers(CustomerRequest request);
     }
     public class CustomerService : ICustomerService
     {
@@ -52,6 +57,36 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
 
+            }
+
+            return result;
+        }
+
+        // Get Customer By Id
+        public Customer GetCustomersById(int id) => _dataContext.Customers.Find(id);
+
+        // Update Customer
+        public async Task<BaseResponse<CustomerDto>> UpdateCustomers(CustomerRequest request)
+        {
+            var result = new BaseResponse<CustomerDto>();
+            try
+            {
+                Customer customers = new Customer
+                {
+                    FullName = request.FullName,
+                    Phone = request.Phone,
+                    Email = request.Email,
+                    Address = request.Address,
+                };
+                //_dataContext.ProductTypes.Add(productTypes);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

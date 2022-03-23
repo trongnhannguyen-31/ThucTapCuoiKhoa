@@ -65,6 +65,8 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<VendorDto, DropdownDto>();
 
             CreateMap<WarehouseDto, DropdownDto>();
+                //.ForMember(d => d.Product_Name, o => o.MapFrom(s => s.Product_Name));
+
         }
     }
 }

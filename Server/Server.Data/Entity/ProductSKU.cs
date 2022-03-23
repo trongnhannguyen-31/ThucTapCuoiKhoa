@@ -14,6 +14,8 @@ namespace Phoenix.Server.Data.Entity
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
 
+        public double? Price { get; set; }
+
         public string Screen { get; set; }
 
         public string OperationSystem { get; set; }

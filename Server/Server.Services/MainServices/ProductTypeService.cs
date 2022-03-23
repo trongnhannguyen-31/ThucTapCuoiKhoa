@@ -86,32 +86,6 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
-        public async Task<BaseResponse<ProductTypeDto>> GetProductTypesById(ProductTypeRequest request)
-        {
-            var result = new BaseResponse<ProductTypeDto>();
-            try
-            {
-                ProductType productTypes = new ProductType
-                {
-                    Name = request.Name,
-                    Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
-                    CreatedAt = DateTime.Now
-                };
-                _dataContext.ProductTypes.Add(productTypes);
-                await _dataContext.SaveChangesAsync();
-
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            return result;
-        }
-
         // Get Product By Id
         public ProductType GetProductTypesById(int id) => _dataContext.ProductTypes.Find(id);
 

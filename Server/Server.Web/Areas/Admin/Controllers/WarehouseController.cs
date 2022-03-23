@@ -27,6 +27,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return View();
         }
 
+        // List Warehouse
         [HttpPost]
         public async Task<ActionResult> List(DataSourceRequest command, WarehouseModel model)
         {
@@ -47,7 +48,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
-        // Them
+        // Create Warehouse
         public ActionResult Create()
         {
             var model = new WarehouseModel();
@@ -72,6 +73,36 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             }
             SuccessNotification("Thêm mới đại lý thành công");
             return RedirectToAction("Create");
+        }
+
+        // Update Warehouse
+        public ActionResult Update(int id)
+        {
+            var projectDto = _warehouseService.GetWarehousesById(id);
+            if (projectDto == null)
+            {
+                return RedirectToAction("List");
+            }
+
+            var projectModel = projectDto.MapTo<WarehouseModel>();
+            return View(projectModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update(WarehouseModel model)
+        {
+            var project = _warehouseService.GetWarehousesById(model.Id);
+            if (project == null)
+                return RedirectToAction("List");
+            if (!ModelState.IsValid)
+                return View(model);
+            var res = await _warehouseService.CreateWarehouses(new WarehouseRequest
+            {
+                ProductSKU_Id = model.ProductSKU_Id,
+                Quantity = model.Quantity
+            });
+            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
+            return RedirectToAction("Update", new { id = model.Id });
         }
     }
 }

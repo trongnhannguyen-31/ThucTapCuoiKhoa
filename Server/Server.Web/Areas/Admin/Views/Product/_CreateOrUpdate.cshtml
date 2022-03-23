@@ -42,7 +42,6 @@
 
             <div>
                 <label>Hãng sản xuất</label>
-                @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
                 <select id="selectVendor" name="Vendor_Id" class="tom-select"></select>
                 <script>
                     var zsettings = {
@@ -84,12 +83,6 @@
                 <label>Model Code</label>
                 @Html.EditorFor(model => model.ModelCode, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
                 @Html.ValidationMessageFor(model => model.ModelCode)
-            </div>
-
-            <div>
-                <label>Giá bán</label>
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
-                @Html.ValidationMessageFor(model => model.Price)
             </div>
 
             <div>

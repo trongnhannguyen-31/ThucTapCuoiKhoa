@@ -107,7 +107,6 @@ namespace Phoenix.Server.Services.MainServices
                     Logo = request.Logo,
                     Nation = request.Nation,
                     Deleted = false,
-                    ProductType_Id = request.ProductType_Id,
                     UpdatedAt = request.UpdatedAt,
                     CreatedAt = DateTime.Now
                 };
@@ -136,7 +135,6 @@ namespace Phoenix.Server.Services.MainServices
                     Logo = request.Logo,
                     Nation = request.Nation,
                     Deleted = false,
-                    ProductType_Id = request.ProductType_Id,
                     UpdatedAt = request.UpdatedAt,
                     CreatedAt = DateTime.Now
                 };

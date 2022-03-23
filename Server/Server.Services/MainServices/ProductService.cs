@@ -97,7 +97,6 @@ namespace Phoenix.Server.Services.MainServices
                     Name = request.Name,
                     Model = request.Model,
                     Rating = 0,
-                    Price = request.Price,
                     Image1 = request.Image1,
                     Image2 = request.Image2,
                     Image3 = request.Image3,

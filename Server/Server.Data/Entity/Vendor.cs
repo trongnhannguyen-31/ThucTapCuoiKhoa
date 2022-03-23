@@ -11,10 +11,6 @@ namespace Phoenix.Server.Data.Entity
         [Key]
         public int Id { get; set; }
 
-        public int ProductType_Id { get; set; }
-        [ForeignKey("ProductType_Id")]
-        public virtual ProductType ProductType { get; set; }
-
         public string Name { get; set; }
 
         public int? Logo { get; set; }

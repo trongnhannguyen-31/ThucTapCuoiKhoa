@@ -16,8 +16,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.Vendor
 
         public bool Deleted { get; set; }
 
-        public int ProductType_Id { get; set; }
-
         public DateTime CreateAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }

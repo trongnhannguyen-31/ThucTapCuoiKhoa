@@ -49,17 +49,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
-        public void SetViewBag(long? selectedId = null)
-        {
-            DataContext db = new DataContext();
-            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selectedId);
-        }
-
         // Create Vendor
         public ActionResult Create()
         {
-            SetViewBag();
-
             var model = new VendorModel();
             return View(model);
         }
@@ -67,12 +59,10 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(VendorModel model)
         {
-            SetViewBag();
             if (!ModelState.IsValid)
                 return View(model);
             var vendors = await _vendorService.CreateVendors(new VendorRequest
             {
-                ProductType_Id = model.ProductType_Id,
                 Name = model.Name,
                 Phone = model.Phone,
                 Nation = model.Nation,

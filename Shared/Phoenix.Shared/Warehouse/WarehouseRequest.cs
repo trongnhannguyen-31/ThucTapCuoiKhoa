@@ -8,6 +8,8 @@ namespace Phoenix.Shared.Warehouse
 
         public int ProductSKU_Id { get; set; }
 
+        public string ProductSKU_Name { get; set; }
+
         public int Quantity { get; set; }
     }
 }

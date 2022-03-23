@@ -17,8 +17,6 @@ namespace Phoenix.Shared.Product
 
 		public double? Rating { get; set; }
 
-		public double Price { get; set; }
-
 		public int? Image1 { get; set; }
 
 		public int? Image2 { get; set; }

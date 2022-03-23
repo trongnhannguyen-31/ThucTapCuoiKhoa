@@ -81,7 +81,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var projectDto = _productTypeService.GetProductTypesById(id);
             if (projectDto == null)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
 
             var projectModel = projectDto.MapTo<ProductTypeModel>();
@@ -96,7 +96,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
             if (!ModelState.IsValid)
                 return View(model);
-            var productTypes = await _productTypeService.CreateProductTypes(new ProductTypeRequest
+            var productTypes = await _productTypeService.UpdateProductTypes(new ProductTypeRequest
             {
                 Name = model.Name,
             });

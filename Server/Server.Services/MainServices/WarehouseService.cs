@@ -15,8 +15,13 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IWarehouseService
     {
+        Warehouse GetWarehousesById(int id);
+
         Task<BaseResponse<WarehouseDto>> GetAllWarehouses(WarehouseRequest request);
+
         Task<BaseResponse<WarehouseDto>> CreateWarehouses(WarehouseRequest request);
+
+        Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request);
     }
     public class WarehouseService : IWarehouseService
     {
@@ -57,8 +62,6 @@ namespace Phoenix.Server.Services.MainServices
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
                 result.Data = data.MapTo<WarehouseDto>();
                 result.Success = true;
-
-
             }
             catch (Exception ex)
             {
@@ -69,6 +72,7 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        // Create Warehouse
         public async Task<BaseResponse<WarehouseDto>> CreateWarehouses(WarehouseRequest request)
         {
             var result = new BaseResponse<WarehouseDto>();
@@ -87,6 +91,34 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
 
+            }
+
+            return result;
+        }
+
+        // Get Warehouse By Id
+        public Warehouse GetWarehousesById(int id) => _dataContext.Warehouses.Find(id);
+
+        // Update Warehouse
+        public async Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request)
+        {
+            var result = new BaseResponse<WarehouseDto>();
+            try
+            {
+                Warehouse warehouses = new Warehouse
+                {
+                    ProductSKU_Id = request.ProductSKU_Id,
+                    Quantity = request.Quantity
+                };
+                //_dataContext.ProductTypes.Add(productTypes);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

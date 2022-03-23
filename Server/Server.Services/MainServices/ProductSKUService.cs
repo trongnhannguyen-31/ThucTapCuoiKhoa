@@ -71,6 +71,7 @@ namespace Phoenix.Server.Services.MainServices
                 ProductSKU productSKUs = new ProductSKU
                 {
                     Product_Id = request.Product_Id,
+                    Price = request.Price,
                     Screen = request.Screen,
                     OperationSystem = request.OperationSystem,
                     Processor = request.Processor,

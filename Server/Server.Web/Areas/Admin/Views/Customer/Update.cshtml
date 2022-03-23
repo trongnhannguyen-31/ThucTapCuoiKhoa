@@ -1,20 +1,20 @@
-﻿@model Phoenix.Server.Web.Areas.Admin.Models.ProductType.ProductTypeModel
+﻿@model Phoenix.Server.Web.Areas.Admin.Models.Customer.CustomerModel
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            @Model.Name
+            @Model.FullName
         </h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="@Html.Raw(Url.Action("List"))" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
+            <a href="@Html.Raw(Url.Action("List"))" class="btn btn-warning w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
                 <i data-feather="corner-down-left" class="w-4 h-4 mr-2"></i> Quay lại
             </a>
-            <button type="submit" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-9 text-white">
+            <button type="submit" class="btn btn-success w-32 mr-2 mb-2 flex items-center justify-center bg-theme-9 text-white">
                 <i data-feather="save" class="w-4 h-4 mr-2"></i>Lưu
             </button>
-            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-6 text-white">
+            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-dark w-32 mr-2 mb-2 flex items-center justify-center bg-theme-6 text-white">
                 <i data-feather="trash" class="w-4 h-4 mr-2"></i> Xóa
             </a>
         </div>

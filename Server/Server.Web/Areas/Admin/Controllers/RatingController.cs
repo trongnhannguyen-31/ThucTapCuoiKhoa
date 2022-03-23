@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Phoenix.Server.Web.Areas.Admin.Controllers
 {
-    public class RatingController : Controller
+    public class RatingController : BaseController
     {
         // GET: Admin/Rating
         private readonly IRatingService _ratingService;
@@ -26,6 +26,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return View();
         }
 
+        // List Rating
         [HttpPost]
         public async Task<ActionResult> List(DataSourceRequest command, RatingModel model)
         {
@@ -43,5 +44,19 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             };
             return Json(gridModel);
         }
+
+        /*// Delete Rating
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var project = _ratingService.GetRatingsById(id);
+            if (project == null)
+                //No email account found with the specified id
+                return RedirectToAction("List");
+
+            await _ratingService.Delete(project.Id);
+            SuccessNotification("Xóa đại lý thành công");
+            return RedirectToAction("List");
+        }*/
     }
 }

@@ -63,6 +63,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var productSKUs = await _productSKUService.CreateProductSKUs(new ProductSKURequest
             {
                 Product_Id = model.Product_Id,
+                Price = model.Price,
                 Screen = model.Screen,
                 OperationSystem = model.OperationSystem,
                 Processor = model.Processor,
