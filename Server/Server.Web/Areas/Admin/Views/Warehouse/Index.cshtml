@@ -70,20 +70,32 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                // { title: "Mã loại", field: "Id", sorter: "string", width: 180 },
+                {
+                    title: "Id", field: "Id", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Id}</a>`
+                    }
+                },
                 {
                     title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
                         return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Name}</a>`
                     }
                 },
-                { title: "Số lượng tồn", field: "Quantity", sorter: "string", width: 180 },
                 {
-                    title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                    title: "Số lượng tồn", field: "Quantity", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Quantity}</a>`
+                    }
+                },
+                @*{
+                    title: "Ngày tạo", field: "CreatedAt", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().CreatedAt}</a>`
+                    }
                 },
                 {
-                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },
+                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().UpdatedAt}</a>`
+                    }
+                },*@
             ],
         });
         let onSearch = (e) => {

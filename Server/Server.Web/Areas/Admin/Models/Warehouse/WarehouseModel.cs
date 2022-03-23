@@ -12,5 +12,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.Warehouse
         public int Quantity { get; set; }
 
         public int ProductSKU_Id { get; set; }
+
+        public string Product_Name { get; set; }
     }
 }

@@ -64,11 +64,13 @@ namespace Phoenix.Server.Services.Infrastructure
             
             CreateMap<VendorDto, DropdownDto>();
 
-            CreateMap<WarehouseDto, DropdownDto>()
-                .ForMember(d => d.Id, o => o.MapFrom(s => s.ProductSKU_Id))
-                .ForMember(d => d.Name, o => o.MapFrom(s => s.Product_Name));
+            CreateMap<WarehouseDto, DropdownDto>();
+            //.ForMember(d => d.Id, o => o.MapFrom(s => s.ProductSKU_Id))
+            //.ForMember(d => d.Name, o => o.MapFrom(s => s.Product_Name));
 
-
+            CreateMap<ProductSKUDto, DropdownDto>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Product_Id))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.NameProduct));
         }
     }
 }

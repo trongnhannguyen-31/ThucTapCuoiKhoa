@@ -29,5 +29,9 @@ namespace Phoenix.Server.Web.Api
         [Route("TakeAllWarehouses")]
         [HttpPost]
         public async Task<List<DropdownDto>> TakeAllWarehouses() => await _dropdownService.TakeAllWarehouses();
+
+        [Route("TakeAllProductSKUs")]
+        [HttpPost]
+        public async Task<List<DropdownDto>> TakeAllProductSKUs() => await _dropdownService.TakeAllProductSKUs();
     }
 }

@@ -3,7 +3,7 @@ using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Web.Areas.Admin.Models.Customer;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductType;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
-using Phoenix.Shared.ProductType;
+using Phoenix.Shared.Warehouse;
 
 namespace Phoenix.Server.Web.Infrastructure
 {

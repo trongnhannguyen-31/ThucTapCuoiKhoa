@@ -23,6 +23,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<WarehouseDto>> CreateWarehouses(WarehouseRequest request);
 
         Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request);
+
+        Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id);
     }
     public class WarehouseService : IWarehouseService
     {
@@ -91,7 +93,8 @@ namespace Phoenix.Server.Services.MainServices
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
@@ -106,19 +109,41 @@ namespace Phoenix.Server.Services.MainServices
             var result = new BaseResponse<WarehouseDto>();
             try
             {
-                Warehouse warehouses = new Warehouse
-                {
-                    ProductSKU_Id = request.ProductSKU_Id,
-                    Quantity = request.Quantity
-                };
-                //_dataContext.Warehouses.Add(warehouses);
+                var warehouses = GetWarehousesById(request.Id);
+
+                warehouses.Id = warehouses.Id;
+                warehouses.ProductSKU_Id = request.ProductSKU_Id;
+                warehouses.Quantity = request.Quantity;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Delete Warehouse
+        public async Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id)
+        {
+            var result = new BaseResponse<WarehouseDto>();
+            try
+            {
+
+                var warehouses = GetWarehousesById(Id);
+                _dataContext.Warehouses.Remove(warehouses);
                 await _dataContext.SaveChangesAsync();
 
                 result.Success = true;
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

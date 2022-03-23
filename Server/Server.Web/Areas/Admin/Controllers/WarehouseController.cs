@@ -81,7 +81,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var projectDto = _warehouseService.GetWarehousesById(id);
             if (projectDto == null)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             }
 
             var projectModel = projectDto.MapTo<WarehouseModel>();
@@ -93,16 +93,31 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         {
             var project = _warehouseService.GetWarehousesById(model.Id);
             if (project == null)
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             if (!ModelState.IsValid)
                 return View(model);
-            var res = await _warehouseService.CreateWarehouses(new WarehouseRequest
+            var warehouses = await _warehouseService.UpdateWarehouses(new WarehouseRequest
             {
+                Id = model.Id,
                 ProductSKU_Id = model.ProductSKU_Id,
                 Quantity = model.Quantity
             });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });
+        }
+
+        // Delete Warehouse
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var project = _warehouseService.GetWarehousesById(id);
+            if (project == null)
+                //No email account found with the specified id
+                return RedirectToAction("Index");
+
+            await _warehouseService.DeleteWarehousesById(project.Id);
+            SuccessNotification("Đã xóa thành công");
+            return RedirectToAction("Index");
         }
     }
 }
