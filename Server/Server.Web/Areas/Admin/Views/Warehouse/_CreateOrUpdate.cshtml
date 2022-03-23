@@ -11,8 +11,8 @@
                 <script>
                     var zsettings = {
                         valueField: 'Id',
-                        labelField: 'ProductSKU_Id',
-                        searchField: 'ProductSKU_Id',
+                        labelField: 'Name',
+                        searchField: 'Name',
                         placeholder: '-- Vui lòng chọn nhóm --',
                         load: function (query, callback) {
                             var url = '/api/dropdown/TakeAllWarehouses';
@@ -27,10 +27,10 @@
                         },
                         render: {
                             option: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.ProductSKU_Id} </option>`;
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
                             },
                             item: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.ProductSKU_Id} </option>`;
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
                             }
                         }
                     };

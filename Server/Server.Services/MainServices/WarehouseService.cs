@@ -2,6 +2,7 @@
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.Warehouse;
 using System;
@@ -110,15 +111,14 @@ namespace Phoenix.Server.Services.MainServices
                     ProductSKU_Id = request.ProductSKU_Id,
                     Quantity = request.Quantity
                 };
-                //_dataContext.ProductTypes.Add(productTypes);
+                //_dataContext.Warehouses.Add(warehouses);
                 await _dataContext.SaveChangesAsync();
 
                 result.Success = true;
             }
             catch (Exception ex)
             {
-                result.Success = false;
-                result.Message = ex.Message;
+
             }
 
             return result;

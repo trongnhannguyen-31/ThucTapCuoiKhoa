@@ -68,6 +68,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 return View(model);
             var customers = await _customerService.UpdateCustomers(new CustomerRequest
             {
+                Id = model.Id,
                 FullName = model.FullName,
                 Phone = model.Phone,
                 Address = model.Address,
@@ -78,7 +79,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }
 
         // Delete Customer
-        /*[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
             var project = _customerService.GetCustomersById(id);
@@ -86,9 +87,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 //No email account found with the specified id
                 return RedirectToAction("Index");
 
-            await _customerService.Delete(project.Id);
+            await _customerService.DeleteCustomersById(project.Id);
             SuccessNotification("Xóa đại lý thành công");
-            return RedirectToAction("List");
-        }*/
+            return RedirectToAction("Index");
+        }
     }
 }

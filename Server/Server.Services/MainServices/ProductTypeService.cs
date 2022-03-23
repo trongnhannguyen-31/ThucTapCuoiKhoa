@@ -20,6 +20,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductTypeDto>> CreateProductTypes(ProductTypeRequest request);
 
         Task<BaseResponse<ProductTypeDto>> UpdateProductTypes(ProductTypeRequest request);
+
+        Task<BaseResponse<ProductTypeDto>> DeleteProductTypes(int id);
     }
     public class ProductTypeService : IProductTypeService
     {
@@ -44,6 +46,11 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     query = query.Where(d => d.Name.Contains(request.Name));
                 }
+
+                /*if (request.Deleted == true)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
+                }*/
 
                 query = query.OrderByDescending(d => d.Id);
 
@@ -70,7 +77,7 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     Name = request.Name,
                     Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
+                    UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 };
                 _dataContext.ProductTypes.Add(productTypes);
@@ -86,24 +93,44 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
-        // Get Product By Id
+        // Get ProductType By Id
         public ProductType GetProductTypesById(int id) => _dataContext.ProductTypes.Find(id);
 
+        // Update ProductType
         public async Task<BaseResponse<ProductTypeDto>> UpdateProductTypes(ProductTypeRequest request)
         {
             var result = new BaseResponse<ProductTypeDto>();
             try
-            {
-                ProductType productTypes = new ProductType
-                {
-                    Name = request.Name,
-                    Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
-                    CreatedAt = DateTime.Now
-                };
-                //_dataContext.ProductTypes.Add(productTypes);
-                await _dataContext.SaveChangesAsync();
+            { 
+                var productTypes = GetProductTypesById(request.Id);
 
+                productTypes.Name = request.Name;
+                productTypes.Deleted = false;
+                productTypes.UpdatedAt = DateTime.Now;
+                
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Deleted ProductType
+        public async Task<BaseResponse<ProductTypeDto>> DeleteProductTypes(int Id)
+        {
+            var result = new BaseResponse<ProductTypeDto>();
+            try
+            {
+                var productTypes = GetProductTypesById(Id);
+
+                productTypes.Deleted = true;
+
+                await _dataContext.SaveChangesAsync();
                 result.Success = true;
             }
             catch (Exception ex)

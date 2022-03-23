@@ -74,7 +74,7 @@
                 {
                     title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
-                        return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Name}</a>`
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Name}</a>`
                     }
                 },
                 { title: "Số lượng tồn", field: "Quantity", sorter: "string", width: 180 },

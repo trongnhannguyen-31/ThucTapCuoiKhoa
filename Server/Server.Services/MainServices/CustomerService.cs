@@ -19,6 +19,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<CustomerDto>> GetAllCustomers(CustomerRequest request);
 
         Task<BaseResponse<CustomerDto>> UpdateCustomers(CustomerRequest request);
+
+        Task<BaseResponse<CustomerDto>> DeleteCustomersById(int Id);
     }
     public class CustomerService : ICustomerService
     {
@@ -71,14 +73,35 @@ namespace Phoenix.Server.Services.MainServices
             var result = new BaseResponse<CustomerDto>();
             try
             {
-                Customer customers = new Customer
-                {
-                    FullName = request.FullName,
-                    Phone = request.Phone,
-                    Email = request.Email,
-                    Address = request.Address,
-                };
-                //_dataContext.ProductTypes.Add(productTypes);
+
+                var customers = GetCustomersById(request.Id);
+                customers.FullName = request.FullName;
+                customers.Address = request.Address;
+                customers.Phone = request.Phone;
+                customers.Email = request.Email;
+
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Deleted Customer
+        public async Task<BaseResponse<CustomerDto>> DeleteCustomersById(int Id)
+        {
+            var result = new BaseResponse<CustomerDto>();
+            try
+            {
+
+                var customers = GetCustomersById(Id);
+                _dataContext.Customers.Remove(customers);
                 await _dataContext.SaveChangesAsync();
 
                 result.Success = true;

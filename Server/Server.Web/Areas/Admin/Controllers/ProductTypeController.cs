@@ -1,5 +1,6 @@
 ﻿using Falcon.Web.Core.Helpers;
 using Falcon.Web.Framework.Kendoui;
+using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductType;
 using Phoenix.Shared.ProductType;
@@ -24,6 +25,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            /*DataContext db = new DataContext();
+            return View(db.ProductTypes.Where(n => n.Deleted == true));*/
             return View();
         }
 
@@ -43,7 +46,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 {
                     Id = s.Id,
                     Name = s.Name,
-                    CreatedAt = s.CreatedAt.ToString()
+                    CreatedAt = s.CreatedAt.ToString(),
+                    UpdateAt = s.UpdatedAt.ToString(),
                 }),
                 Total = productTypes.DataCount
             };
@@ -93,11 +97,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         {
             var project = _productTypeService.GetProductTypesById(model.Id);
             if (project == null)
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             if (!ModelState.IsValid)
                 return View(model);
             var productTypes = await _productTypeService.UpdateProductTypes(new ProductTypeRequest
             {
+                Id = model.Id,
                 Name = model.Name,
             });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
@@ -105,17 +110,17 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }
 
         // Delete ProductType
-        /*[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
-            var project = _productTypeService.GetProductTypeById(id);
+            var project = _productTypeService.GetProductTypesById(id);
             if (project == null)
                 //No email account found with the specified id
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
 
-            await _productTypeService.Delete(project.Id);
+            await _productTypeService.DeleteProductTypes(project.Id);
             SuccessNotification("Xóa đại lý thành công");
-            return RedirectToAction("List");
-        }*/
+            return RedirectToAction("Index");
+        }
     }
 }
