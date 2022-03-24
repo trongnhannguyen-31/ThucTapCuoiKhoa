@@ -37,7 +37,7 @@ namespace Phoenix.Shared.ProductSKU
 
         public string Size { get; set; }
 
-        public string Special { get; set; }
+        public int YearOfManufacture { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

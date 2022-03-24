@@ -22,8 +22,6 @@ namespace Phoenix.Server.Data.Entity
 
         public string Model { get; set; }
 
-        public double? Rating { get; set; }
-
         public int? Image1 { get; set; }
         [ForeignKey("Image1")]
         public virtual ImageRecord ImageRecord1 { get; set; }
@@ -43,14 +41,6 @@ namespace Phoenix.Server.Data.Entity
         public int? Image5 { get; set; }
         [ForeignKey("Image5")]
         public virtual ImageRecord ImageRecord5 { get; set; }
-
-        public int? ViewCount { get; set; }
-
-        public int? CommentCount { get; set; }
-
-        public int? BuyCount { get; set; }
-
-        public int? YearOfManufacture { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

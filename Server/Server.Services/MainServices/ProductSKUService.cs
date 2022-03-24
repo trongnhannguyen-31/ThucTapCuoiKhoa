@@ -86,7 +86,7 @@ namespace Phoenix.Server.Services.MainServices
                     ConnectionPort = request.ConnectionPort,
                     Design = request.Design,
                     Size = request.Size,
-                    Special = request.Special,
+                    YearOfManufacture = request.YearOfManufacture,
                     Deleted = false,
                     UpdatedAt = request.UpdatedAt,
                     CreatedAt = DateTime.Now

@@ -70,19 +70,18 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                { title: "STT", field: "Id", sorter: "string", width: 100 },
                 {
-                    title: "Tên sản phẩm", field: "Name", sorter: "string", width: 360, formatter(cell, formatterParams)
-                    {
-                        return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Name}</a>`
+                    title: "Id", field: "Id", sorter: "string", width: 100, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Product/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Id}</a>`
                     }
                 },
-                { title: "Model", field: "Model", sorter: "string", width: 180 },
-                { title: "Số sao", field: "Rating", sorter: "string", width: 180 },
-                { title: "Lượt xem", field: "ViewCount", sorter: "string", width: 180 },
-                { title: "Lượt mua", field: "BuyCount", sorter: "string", width: 180 },
-                { title: "Lượt mua", field: "BuyCount", sorter: "string", width: 180 },
-                { title: "Năm sản xuất", field: "YearOfManufacture", sorter: "string", width: 180 },
+                {
+                    title: "Tên sản phẩm", field: "Name", sorter: "string", width: 300, formatter(cell, formatterParams)
+                    {
+                        return `<a href="../Admin/Product/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Name}</a>`
+                    }
+                },
+                { title: "Model", field: "Model", sorter: "string", width: 120 },
                 {
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },

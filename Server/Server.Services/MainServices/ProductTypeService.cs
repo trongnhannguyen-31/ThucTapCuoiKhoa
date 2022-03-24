@@ -47,10 +47,10 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Name.Contains(request.Name));
                 }
 
-                /*if (request.Deleted == true)
+                if (request.Deleted == false)
                 {
                     query = query.Where(d => d.Deleted.Equals(request.Deleted));
-                }*/
+                }
 
                 query = query.OrderByDescending(d => d.Id);
 

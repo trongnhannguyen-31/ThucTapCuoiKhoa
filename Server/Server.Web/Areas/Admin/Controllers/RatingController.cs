@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Framework.Kendoui;
+﻿using Falcon.Web.Core.Helpers;
+using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Rating;
 using Phoenix.Shared.Rating;
@@ -43,6 +44,18 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = ratings.DataCount
             };
             return Json(gridModel);
+        }
+
+        public ActionResult Update(int id)
+        {
+            var projectDto = _ratingService.GetRatingsById(id);
+            if (projectDto == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var projectModel = projectDto.MapTo<RatingModel>();
+            return View(projectModel);
         }
 
         // Delete Rating

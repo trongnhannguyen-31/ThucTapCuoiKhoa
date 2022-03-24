@@ -13,6 +13,10 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.ProductSKU
 
         public double? Price { get; set; }
 
+        public double Rating { get; set; }
+
+        public int BuyCount { get; set; }
+
         public string Screen { get; set; }
 
         public string OperationSystem { get; set; }
@@ -39,7 +43,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.ProductSKU
 
         public string Size { get; set; }
 
-        public string Special { get; set; }
+        public int YearOfManufacture { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

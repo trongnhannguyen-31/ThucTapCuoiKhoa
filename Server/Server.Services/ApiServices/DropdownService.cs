@@ -1,6 +1,7 @@
 ﻿using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Product;
 using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.ProductType;
 using Phoenix.Shared.Vendor;
@@ -19,25 +20,24 @@ namespace Phoenix.Server.Services.ApiServices
 
         Task<List<DropdownDto>> TakeAllVendors();
 
-        Task<List<DropdownDto>> TakeAllWarehouses();
-
         Task<List<DropdownDto>> TakeAllProductSKUs();
+
+        Task<List<DropdownDto>> TakeAllProducts();
     }
 
     public class DropdownService : IDropdownService
     {
         private readonly IProductTypeService _productTypeService;
         private readonly IVendorService _vendorService;
-        private readonly IWarehouseService _warehouseService;
         private readonly IProductSKUService _productSKUService;
+        private readonly IProductService _productService;
 
-        public DropdownService(IProductTypeService productTypeService, IVendorService vendorService, IWarehouseService warehouseService, IProductSKUService productSKUService)
+        public DropdownService(IProductTypeService productTypeService, IVendorService vendorService, IProductSKUService productSKUService, IProductService productService)
         {
             _productTypeService = productTypeService;
             _vendorService = vendorService;
-            _warehouseService = warehouseService;
             _productSKUService = productSKUService;
-
+            _productService = productService;
         }
 
         public async Task<List<DropdownDto>> TakeAllProductTypes()
@@ -60,9 +60,9 @@ namespace Phoenix.Server.Services.ApiServices
             return null;
         }
 
-        public async Task<List<DropdownDto>> TakeAllWarehouses()
+        public async Task<List<DropdownDto>> TakeAllProductSKUs()
         {
-            var data = await _warehouseService.GetAllWarehouses(new WarehouseRequest { PageSize = int.MaxValue });
+            var data = await _productSKUService.GetAllProductSKUs(new ProductSKURequest { PageSize = int.MaxValue });
             if (data.Success)
             {
                 return data.Data.MapTo<DropdownDto>();
@@ -70,9 +70,9 @@ namespace Phoenix.Server.Services.ApiServices
             return null;
         }
 
-        public async Task<List<DropdownDto>> TakeAllProductSKUs()
+        public async Task<List<DropdownDto>> TakeAllProducts()
         {
-            var data = await _productSKUService.GetAllProductSKUs(new ProductSKURequest { PageSize = int.MaxValue });
+            var data = await _productService.GetAllProducts(new ProductRequest { PageSize = int.MaxValue });
             if (data.Success)
             {
                 return data.Data.MapTo<DropdownDto>();

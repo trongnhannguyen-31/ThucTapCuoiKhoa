@@ -83,8 +83,10 @@ namespace Phoenix.Server.Services.MainServices
             {
                 Warehouse warehouses = new Warehouse
                 {
+                    // Id = request.Id,
                     ProductSKU_Id = request.ProductSKU_Id,
-                    Quantity = request.Quantity
+                    Quantity = request.Quantity,
+                    UpdatedAt = DateTime.Now,
                 };
                 _dataContext.Warehouses.Add(warehouses);
                 await _dataContext.SaveChangesAsync();

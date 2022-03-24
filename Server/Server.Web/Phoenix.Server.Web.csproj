@@ -770,6 +770,7 @@
     <Content Include="Areas\Admin\Views\Customer\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\Warehouse\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Rating\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Rating\_CreateOrUpdate.cshtml" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all-vsdoc.js" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all.min.intellisense.js" />
     <Content Include="assets\js\kendo\2019.3.1023\kendo.all.min.js" />

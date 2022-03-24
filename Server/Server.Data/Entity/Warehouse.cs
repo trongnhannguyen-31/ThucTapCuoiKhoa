@@ -19,5 +19,7 @@ namespace Phoenix.Server.Data.Entity
         public virtual ProductSKU ProductSKU { get; set; }
 
         public int Quantity { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

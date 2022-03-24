@@ -1,4 +1,5 @@
 ﻿using Phoenix.Shared.Common;
+using System;
 
 namespace Phoenix.Shared.Warehouse
 {
@@ -8,8 +9,8 @@ namespace Phoenix.Shared.Warehouse
 
         public int ProductSKU_Id { get; set; }
 
-        public string ProductSKU_Name { get; set; }
-
         public int Quantity { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

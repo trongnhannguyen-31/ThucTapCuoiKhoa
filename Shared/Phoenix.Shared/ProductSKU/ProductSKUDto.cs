@@ -8,9 +8,13 @@ namespace Phoenix.Shared.ProductSKU
 
         public int Product_Id { get; set; }
 
+        public string NameProduct { get; set; }
+
         public double? Price { get; set; }
 
-        public string NameProduct { get; set; }
+        public double Rating { get; set; }
+
+        public int BuyCount { get; set; }
 
         public string Screen { get; set; }
 
@@ -38,7 +42,7 @@ namespace Phoenix.Shared.ProductSKU
 
         public string Size { get; set; }
 
-        public string Special { get; set; }
+        public int YearOfManufacture { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

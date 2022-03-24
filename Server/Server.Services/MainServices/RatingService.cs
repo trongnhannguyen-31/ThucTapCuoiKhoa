@@ -89,7 +89,7 @@ namespace Phoenix.Server.Services.MainServices
             {
 
                 var ratings = GetRatingsById(Id);
-                _dataContext.Ratings.Remove(ratings);
+                ratings.Deleted = true;
                 await _dataContext.SaveChangesAsync();
 
                 result.Success = true;

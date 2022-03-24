@@ -1,75 +1,30 @@
 ﻿@using Falcon.Web.Mvc.HtmlExtensions
-@model Phoenix.Server.Web.Areas.Admin.Models.Vendor.VendorModel
+@model Phoenix.Server.Web.Areas.Admin.Models.Rating.RatingModel
+
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.Id)
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-6">
         <div class="intro-y box p-5">
             <div>
-                <label>Tên hãng sản xuất</label>
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
-                @Html.ValidationMessageFor(model => model.Name)
+                <label>Bình luận</label>
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "input w-full border mt-2" } })
+                @Html.ValidationMessageFor(model => model.Comment)
             </div>
 
             <div class="mt-3">
-                <label>Số điện thoại</label>
+                <label>Số sao</label>
                 <div class="mt-2">
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control input input--switch border" } })
-                </div>
-            </div>
-
-            <div class="mt-3">
-                <label>Quốc gia</label>
-                <div class="mt-2">
-                    @Html.EditorFor(model => model.Nation, new { htmlAttributes = new { @class = "form-control input input--switch border" } })
+                    @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "input input--switch border" } })
                 </div>
             </div>
 
             @*<div class="mt-3">
-            <label>Loại sản phẩm</label>
-            <div class="mt-2">
-                @Html.DropDownList("ProductType_Id", null, new { @class = "form-control input input--switch border" })
-            </div>
-        </div>*@
-
-            @*<div class="mt-3">
-                <label>Loại sản phẩm</label>
+                <label>Ghi chú</label>
                 <div class="mt-2">
-                    @Html.DropDownList("ProductType_Id", null, new { @class = "form-control input input--switch border" })
+                    @Html.TextAreaFor(model => model.Note, new { @class = "editor", data_simple_toolbar = "true" })
                 </div>
             </div>*@
-
-
-            @*<div class="mt-3">
-            <label>Ngày bắt đầu</label>
-            <div class="mt-2">
-                <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
-                    <i data-feather="calendar" class="w-4 h-4"></i>
-                </div>
-                @Html.EditorFor(model => model.StartAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Ngày kết thúc</label>
-            <div class="mt-2">
-                <div class="absolute rounded-l w-10 h-10 flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
-                    <i data-feather="calendar" class="w-4 h-4"></i>
-                </div>
-                @Html.EditorFor(model => model.EndAt, new { htmlAttributes = new { @class = "datepicker input pl-12 border", data_single_mode = "true" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Hoạt động</label>
-            <div class="mt-2">
-                @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "input input--switch border" } })
-            </div>
-        </div>
-        <div class="mt-3">
-            <label>Ghi chú</label>
-            <div class="mt-2">
-                @Html.TextAreaFor(model => model.Note, new { @class = "editor", data_simple_toolbar = "true" })
-            </div>
-        </div>*@
         </div>
     </div>
 </div>
@@ -404,43 +359,4 @@
             }
         </div>
     </div>*@
-<script>
-    $("#ProductTypeId").kendoComboBox({
-        dataTextField: "Name",
-        dataValueField: "Id",
-        dataSource: {
-            type: "json",
-            transport: {
-                read: {
-                    url: "@Html.Raw(Url.Action("List", "ProductType"))",
-                    type: "POST",
-                    datatype: "json"
-                }
-            },
-            schema: {
-                data: "Data",
-                total: "Total",
-                error: "Error"
-            }
-        }
-    });
-    $("#ProductTypeId").closest('.k-combobox').addClass("form-control");
-    //$("#ProductTypeId").kendoComboBox({
-    //    dataTextField: "Name",
-    //    dataValueField: "Id",
-    //    dataSource:
-    //        [{ Id: 1, Name: "A" },
-    //            {Id: 1, Name: "B"}
-    //        ]
-        
-    //});
-    //$("#ProductTypeId").closest('.k-combobox').addClass("form-control");
 
-    new TomSelect("#select-beast", {
-        create: true,
-        sortField: {
-            field: "text",
-            direction: "asc"
-        }
-    });
-</script>

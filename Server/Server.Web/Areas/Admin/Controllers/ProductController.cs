@@ -71,7 +71,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 ProductType_Id = model.ProductType_Id,
                 Name = model.Name,
                 Model = model.ModelCode,
-                YearOfManufacture = 0,
             });
 
             if (!res.Success)

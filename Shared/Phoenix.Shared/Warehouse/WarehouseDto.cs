@@ -1,4 +1,6 @@
-﻿namespace Phoenix.Shared.Warehouse
+﻿using System;
+
+namespace Phoenix.Shared.Warehouse
 {
     public class WarehouseDto
     {
@@ -9,5 +11,7 @@
         public string Product_Name { get; set; }
 
         public int Quantity { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

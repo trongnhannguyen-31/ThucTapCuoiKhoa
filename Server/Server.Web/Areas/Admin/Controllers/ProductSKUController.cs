@@ -77,7 +77,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 ConnectionPort = model.ConnectionPort,
                 Design = model.Design,
                 Size = model.Size,
-                Special = model.Special,
             });
             if (!productSKUs.Success)
             {

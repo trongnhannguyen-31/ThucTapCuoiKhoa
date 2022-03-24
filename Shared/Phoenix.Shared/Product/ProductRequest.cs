@@ -15,8 +15,6 @@ namespace Phoenix.Shared.Product
 
 		public string Model { get; set; }
 
-		public double? Rating { get; set; }
-
 		public int? Image1 { get; set; }
 
 		public int? Image2 { get; set; }
@@ -26,14 +24,6 @@ namespace Phoenix.Shared.Product
 		public int? Image4 { get; set; }
 
 		public int? Image5 { get; set; }
-
-		public int? ViewCount { get; set; }
-
-		public int? CommentCount { get; set; }
-
-		public int? BuyCount { get; set; }
-
-		public int YearOfManufacture { get; set; }
 
 		public DateTime CreatedAt { get; set; }
 

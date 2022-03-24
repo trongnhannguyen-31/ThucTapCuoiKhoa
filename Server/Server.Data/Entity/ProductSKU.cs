@@ -16,6 +16,10 @@ namespace Phoenix.Server.Data.Entity
 
         public double? Price { get; set; }
 
+        public double? Rating { get; set; }
+
+        public int BuyCount { get; set; }
+
         public string Screen { get; set; }
 
         public string OperationSystem { get; set; }
@@ -42,7 +46,7 @@ namespace Phoenix.Server.Data.Entity
 
         public string Size { get; set; }
 
-        public string Special { get; set; }
+        public int YearOfManufacture { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

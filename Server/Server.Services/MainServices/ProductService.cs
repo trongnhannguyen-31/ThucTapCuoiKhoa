@@ -73,11 +73,12 @@ namespace Phoenix.Server.Services.MainServices
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
                 result.Data = data.MapTo<ProductDto>();
 
+                result.Success = true;
 
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
             }
 
             return result;
@@ -96,16 +97,11 @@ namespace Phoenix.Server.Services.MainServices
                     ProductType_Id = request.ProductType_Id,
                     Name = request.Name,
                     Model = request.Model,
-                    Rating = 0,
                     Image1 = request.Image1,
                     Image2 = request.Image2,
                     Image3 = request.Image3,
                     Image4 = request.Image4,
                     Image5 = request.Image5,
-                    ViewCount = 0,
-                    CommentCount = 0,
-                    BuyCount = 0,
-                    YearOfManufacture = request.YearOfManufacture,
                     Deleted = false,
                     UpdatedAt = request.UpdatedAt,
                     CreatedAt = DateTime.Now

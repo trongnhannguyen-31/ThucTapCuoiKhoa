@@ -7,7 +7,7 @@
         <div class="intro-y box p-5">
             <div>
                 <label>Tên sản phẩm</label>
-                <select id="selectProductSKU" name="ProductSKU_Id" class="tom-select"></select>
+                <select id="selectProduct" name="ProductSKU_Id" class="tom-select"></select>
                 <script>
                     var zsettings = {
                         valueField: 'Id',
@@ -34,9 +34,10 @@
                             }
                         }
                     };
-                    new TomSelect('#selectProductSKU', zsettings);
+                    new TomSelect('#selectProduct', zsettings);
                 </script>
             </div>
+
 
             <div class="mt-3">
                 <label>Số lượng tồn</label>
