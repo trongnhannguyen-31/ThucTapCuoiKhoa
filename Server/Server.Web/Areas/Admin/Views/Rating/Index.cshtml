@@ -86,6 +86,11 @@
                         return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Comment}</a>`
                     }
                 },
+                {
+                    title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Rating/Delete/${cell.getData().Id}" class="btn btn-primary text-white shadow-md mr-2"}>Xóa</a>`
+                    }
+                },
                 @*{
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },

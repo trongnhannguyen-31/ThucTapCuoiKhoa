@@ -1,4 +1,5 @@
 ﻿using Falcon.Web.Core.Helpers;
+using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
 using Phoenix.Shared.Rating;
@@ -13,7 +14,11 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IRatingService
     {
+        Rating GetRatingsById(int id);
+
         Task<BaseResponse<RatingDto>> GetAllRatings(RatingRequest request);
+
+        Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
     }
     public class RatingService : IRatingService
     {
@@ -68,6 +73,31 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
 
+            }
+
+            return result;
+        }
+
+        // Get Rating By Id
+        public Rating GetRatingsById(int id) => _dataContext.Ratings.Find(id);
+
+        // Delete Rating
+        public async Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id)
+        {
+            var result = new BaseResponse<RatingDto>();
+            try
+            {
+
+                var ratings = GetRatingsById(Id);
+                _dataContext.Ratings.Remove(ratings);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

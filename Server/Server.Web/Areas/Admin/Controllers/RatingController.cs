@@ -45,18 +45,18 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
-        /*// Delete Rating
+        // Delete Rating
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
             var project = _ratingService.GetRatingsById(id);
             if (project == null)
                 //No email account found with the specified id
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
 
-            await _ratingService.Delete(project.Id);
+            await _ratingService.DeleteRatingsById(project.Id);
             SuccessNotification("Xóa đại lý thành công");
-            return RedirectToAction("List");
-        }*/
+            return RedirectToAction("Index");
+        }
     }
 }
