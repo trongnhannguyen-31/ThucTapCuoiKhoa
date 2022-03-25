@@ -48,9 +48,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            DataContext db = new DataContext();
-            ViewBag.Product_Id = new SelectList(db.Products.OrderBy(n => n.Name), "Id", "Name");
-
             var model = new ProductSKUModel();
             return View(model);
         }

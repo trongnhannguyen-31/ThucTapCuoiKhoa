@@ -70,43 +70,16 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                //{ title: "Mã loại", field: "Id", sorter: "string", width: 180 },
-                @*{
-                    title: "Tên sản phẩm", field: "Product_Id", sorter: "string", width: 180, formatter(cell, formatterParams)
-                    {
-                        return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Id}</a>`
+                { title: "Id", field: "Id", sorter: "string", width: 100 },
+                {
+                    title: "Tên sản phẩm", field: "NameProduct", sorter: "string", width: 350, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/ProductSKU/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().NameProduct}</a>`
                     }
-                },*@
-                { title: "Tên sản phẩm", field: "NameProduct", sorter: "string", width: 350 },
-
+                },
                 { title: "Giá bán", field: "Price", sorter: "string", width: 180 },
-
-                { title: "Màn hình", field: "Screen", sorter: "string", width: 180 },
-
-                { title: "Hệ điều hành", field: "OperationSystem", sorter: "string", width: 180 },
-
-                { title: "Chip", field: "Processor", sorter: "string", width: 180 },
-
+                { title: "Chip xử lý", field: "Processor", sorter: "string", width: 180 },
                 { title: "Ram", field: "Ram", sorter: "string", width: 180 },
-
                 { title: "Bộ nhớ", field: "Storage", sorter: "string", width: 180 },
-
-                { title: "Pin", field: "Battery", sorter: "string", width: 180 },
-
-                { title: "Camera Sau", field: "BackCamera", sorter: "string", width: 180 },
-
-                { title: "Camera Trước", field: "FrontCamera", sorter: "string", width: 180 },
-
-                { title: "Sim", field: "SimSlot", sorter: "string", width: 180 },
-
-                { title: "Card Đồ Họa", field: "GraphicCard", sorter: "string", width: 180 },
-
-                { title: "Cổng Kết Nối", field: "ConnectionPort", sorter: "string", width: 180 },
-
-                { title: "Thiết Kế", field: "Size", sorter: "string", width: 180 },
-
-                { title: "Đặc Biệt", field: "Special", sorter: "string", width: 180 },
-
                 {
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },

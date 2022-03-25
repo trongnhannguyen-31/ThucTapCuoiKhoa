@@ -60,8 +60,8 @@
         </li>
         <li>
             <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
-                <div class="side-menu__title"> Sản phẩm <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                <div class="side-menu__title"> Loại sản phẩm <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -70,12 +70,28 @@
                         <div class="side-menu__title"> Loại sản phẩm </div>
                     </a>
                 </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                <div class="side-menu__title"> Hãng sản xuất <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
                 <li>
                     <a href="@Html.Raw(Url.Action("Index", "Vendor"))" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                         <div class="side-menu__title"> Hãng sản xuất </div>
                     </a>
                 </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__title"> Sản phẩm <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
                 <li>
                     <a href="@Html.Raw(Url.Action("Index", "Product"))" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
@@ -116,7 +132,7 @@
                 </li>
             </ul>
         </li>
-        <li>
+       @* <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                 <div class="side-menu__title"> Báo cáo <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
@@ -147,7 +163,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>*@
     </ul>
 </nav>
 <!-- END: Side Menu -->

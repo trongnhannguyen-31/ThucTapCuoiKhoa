@@ -11,7 +11,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.ProductSKU
 
         public int Product_Id { get; set; }
 
-        public double? Price { get; set; }
+        public double Price { get; set; }
 
         public double Rating { get; set; }
 
