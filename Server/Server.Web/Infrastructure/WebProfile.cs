@@ -16,7 +16,8 @@ namespace Phoenix.Server.Web.Infrastructure
 
             CreateMap<Customer, CustomerModel>();
 
-            CreateMap<Warehouse, WarehouseModel>();
+            CreateMap<Warehouse, WarehouseModel>()
+                .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.ProductSKU.Product.Name)); 
 
             CreateMap<Rating, RatingModel>();
         }

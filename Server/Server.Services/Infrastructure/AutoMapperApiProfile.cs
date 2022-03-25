@@ -6,6 +6,7 @@ using Phoenix.Shared.Product;
 using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.Warehouse;
 using Phoenix.Shared.Order;
+using Phoenix.Shared.WarehouseMenu;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -26,6 +27,8 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<Warehouse, WarehouseDto>();
 
             CreateMap<Order, OrderDto>();
+            
+            CreateMap<WarehouseMenu, WarehouseMenuDto>();
         }
     }
 }

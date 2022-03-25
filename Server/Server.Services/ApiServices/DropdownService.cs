@@ -6,6 +6,7 @@ using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.ProductType;
 using Phoenix.Shared.Vendor;
 using Phoenix.Shared.Warehouse;
+using Phoenix.Shared.WarehouseMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace Phoenix.Server.Services.ApiServices
         Task<List<DropdownDto>> TakeAllProductSKUs();
 
         Task<List<DropdownDto>> TakeAllProducts();
+
+        Task<List<DropdownDto>> TakeAllWarehouseMenus();
     }
 
     public class DropdownService : IDropdownService
@@ -31,13 +34,15 @@ namespace Phoenix.Server.Services.ApiServices
         private readonly IVendorService _vendorService;
         private readonly IProductSKUService _productSKUService;
         private readonly IProductService _productService;
+        private readonly IWarehouseMenuService _warehouseMenuService;
 
-        public DropdownService(IProductTypeService productTypeService, IVendorService vendorService, IProductSKUService productSKUService, IProductService productService)
+        public DropdownService(IProductTypeService productTypeService, IVendorService vendorService, IProductSKUService productSKUService, IProductService productService, IWarehouseMenuService warehouseMenuService)
         {
             _productTypeService = productTypeService;
             _vendorService = vendorService;
             _productSKUService = productSKUService;
             _productService = productService;
+            _warehouseMenuService = warehouseMenuService;
         }
 
         public async Task<List<DropdownDto>> TakeAllProductTypes()
@@ -73,6 +78,16 @@ namespace Phoenix.Server.Services.ApiServices
         public async Task<List<DropdownDto>> TakeAllProducts()
         {
             var data = await _productService.GetAllProducts(new ProductRequest { PageSize = int.MaxValue });
+            if (data.Success)
+            {
+                return data.Data.MapTo<DropdownDto>();
+            }
+            return null;
+        }
+
+        public async Task<List<DropdownDto>> TakeAllWarehouseMenus()
+        {
+            var data = await _warehouseMenuService.GetAllWarehouseMenus(new WarehouseMenuRequest { PageSize = int.MaxValue });
             if (data.Success)
             {
                 return data.Data.MapTo<DropdownDto>();

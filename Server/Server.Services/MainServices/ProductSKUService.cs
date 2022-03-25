@@ -14,9 +14,13 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IProductSKUService
     {
+        ProductSKU GetProductSKUById(int id);
+
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
 
         Task<BaseResponse<ProductSKUDto>> CreateProductSKUs(ProductSKURequest request);
+
+        Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
     }
 
     public class ProductSKUService : IProductSKUService
@@ -48,7 +52,6 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Screen.Contains(request.Screen));
                 }
 
-
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
@@ -64,6 +67,7 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        // Create ProductSKU
         public async Task<BaseResponse<ProductSKUDto>> CreateProductSKUs(ProductSKURequest request)
         {
             var result = new BaseResponse<ProductSKUDto>();
@@ -73,6 +77,8 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     Product_Id = request.Product_Id,
                     Price = request.Price,
+                    Rating = 0,
+                    BuyCount = 0,
                     Screen = request.Screen,
                     OperationSystem = request.OperationSystem,
                     Processor = request.Processor,
@@ -88,22 +94,63 @@ namespace Phoenix.Server.Services.MainServices
                     Size = request.Size,
                     YearOfManufacture = request.YearOfManufacture,
                     Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
+                    UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 };
                 _dataContext.ProductSKUs.Add(productSKUs);
                 await _dataContext.SaveChangesAsync();
-
                 result.Success = true;
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
 
+        // Get ProducutSKU ById
+        public ProductSKU GetProductSKUById(int id) => _dataContext.ProductSKUs.Find(id);
+
+        // Update ProductSKU
+        public async Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request)
+        {
+            var result = new BaseResponse<ProductSKUDto>();
+            try
+            {
+                var productSKU = GetProductSKUById(request.Id);
+                productSKU.Id = request.Id;
+                productSKU.Product_Id = request.Product_Id;
+                productSKU.Price = request.Price;
+                productSKU.Screen = request.Screen;
+                productSKU.OperationSystem = request.OperationSystem;
+                productSKU.Processor = request.Processor;
+                productSKU.Ram = request.Ram;
+                productSKU.Storage = request.Storage;
+                productSKU.Battery = request.Battery;
+                productSKU.BackCamera = request.BackCamera;
+                productSKU.FrontCamera = request.FrontCamera;
+                productSKU.SimSlot = request.SimSlot;
+                productSKU.GraphicCard = request.GraphicCard;
+                productSKU.ConnectionPort = request.ConnectionPort;
+                productSKU.Design = request.Design;
+                productSKU.Size = request.Size;
+                productSKU.YearOfManufacture = request.YearOfManufacture;
+                productSKU.Deleted = false;
+                productSKU.UpdatedAt = DateTime.Now;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
 
     }
 }

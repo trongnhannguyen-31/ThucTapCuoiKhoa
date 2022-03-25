@@ -33,5 +33,10 @@ namespace Phoenix.Server.Web.Api
         [Route("TakeAllProducts")]
         [HttpPost]
         public async Task<List<DropdownDto>> TakeAllProducts() => await _dropdownService.TakeAllProducts();
+
+        [Route("TakeAllWarehouseMenus")]
+        [HttpPost]
+        public async Task<List<DropdownDto>> TakeAllWarehouseMenus() =>await _dropdownService.TakeAllWarehouseMenus();
+
     }
 }

@@ -15,7 +15,7 @@
                         searchField: 'Name',
                         placeholder: '-- Vui lòng chọn nhóm --',
                         load: function (query, callback) {
-                            var url = '/api/dropdown/TakeAllProductSKUs';
+                            var url = '/api/dropdown/TakeAllWarehouseMenus';
                             fetch(url, { method: "post" })
                                 .then(response => response.json())
                                 .then(json => {
@@ -34,7 +34,13 @@
                             }
                         }
                     };
-                    new TomSelect('#selectProduct', zsettings);
+                    var zproductSelect = new TomSelect('#selectProduct', zsettings);
+                    @if (Model.Id > 0)
+                    {
+                        <text>
+                            zproductSelect.setValue([@Model.ProductSKU_Id])
+                        </text>
+                    }
                 </script>
             </div>
 

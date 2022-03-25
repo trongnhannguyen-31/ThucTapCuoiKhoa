@@ -69,6 +69,7 @@
     <Compile Include="Entity\Log.cs" />
     <Compile Include="Entity\Vendor.cs" />
     <Compile Include="Entity\Warehouse.cs" />
+    <Compile Include="Entity\WarehouseMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

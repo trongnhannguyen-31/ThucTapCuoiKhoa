@@ -4,6 +4,7 @@ using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
 using Phoenix.Shared.Warehouse;
+using Phoenix.Shared.WarehouseMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
     {
         // GET: Admin/Warehouse
         private readonly IWarehouseService _warehouseService;
-        public WarehouseController(IWarehouseService warehouseService)
+        private readonly IWarehouseMenuService _warehouseMenuService;
+        public WarehouseController(IWarehouseService warehouseService, IWarehouseMenuService warehouseMenuService)
         {
             _warehouseService = warehouseService;
+            _warehouseMenuService = warehouseMenuService;
         }
 
         public ActionResult Index()
@@ -31,19 +34,19 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> List(DataSourceRequest command, WarehouseModel model)
         {
-            var warehouses = await _warehouseService.GetAllWarehouses(new WarehouseRequest()
+            var warehouseMenus = await _warehouseMenuService.GetAllWarehouseMenus(new WarehouseMenuRequest()
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,
-                Id = model.Id,
+                /*Id = model.Id,
                 Quantity = model.Quantity,
-                ProductSKU_Id = model.ProductSKU_Id
+                ProductSKU_Id = model.ProductSKU_Id*/
             });
 
             var gridModel = new DataSourceResult
             {
-                Data = warehouses.Data,
-                Total = warehouses.DataCount
+                Data = warehouseMenus.Data,
+                Total = warehouseMenus.DataCount
             };
             return Json(gridModel);
         }

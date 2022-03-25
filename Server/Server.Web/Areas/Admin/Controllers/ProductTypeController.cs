@@ -25,8 +25,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            /*DataContext db = new DataContext();
-            return View(db.ProductTypes.Where(n => n.Deleted == true));*/
             return View();
         }
 

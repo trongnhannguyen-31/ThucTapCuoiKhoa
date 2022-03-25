@@ -441,6 +441,7 @@
     <Compile Include="MainServices\Tasks\TaskRegistry.cs" />
     <Compile Include="MainServices\ProductTypeService.cs" />
     <Compile Include="MainServices\VendorService.cs" />
+    <Compile Include="MainServices\WarehouseMenuService.cs" />
     <Compile Include="MainServices\WarehouseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\EmailSettings.cs" />

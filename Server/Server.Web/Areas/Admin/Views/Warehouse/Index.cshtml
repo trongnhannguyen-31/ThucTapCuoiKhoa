@@ -71,14 +71,14 @@
             placeholder: "Chưa có dữ liệu",
             columns: [
                 {
-                    title: "Id", field: "Id", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Id}</a>`
+                    title: "Id", field: "SKUId", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().SKUId}</a>`
                     }
                 },
                 {
-                    title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    title: "Tên sản phẩm", field: "ProductName", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Name}</a>`
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().ProductName}</a>`
                     }
                 },
                 {

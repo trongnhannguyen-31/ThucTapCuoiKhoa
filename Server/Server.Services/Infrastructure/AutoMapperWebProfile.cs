@@ -12,6 +12,7 @@ using Phoenix.Shared.Rating;
 using Phoenix.Shared.User;
 using Phoenix.Shared.Vendor;
 using Phoenix.Shared.Warehouse;
+using Phoenix.Shared.WarehouseMenu;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -69,6 +70,12 @@ namespace Phoenix.Server.Services.Infrastructure
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.NameProduct));
 
             CreateMap<ProductDto, DropdownDto>();
+
+            CreateMap<WarehouseMenu, WarehouseMenuDto>();
+
+            CreateMap<WarehouseMenuDto, DropdownDto>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.SKUId))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.ProductName));
         }
     }
 }

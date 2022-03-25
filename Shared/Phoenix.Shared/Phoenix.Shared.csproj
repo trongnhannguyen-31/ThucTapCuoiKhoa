@@ -82,6 +82,8 @@
     <Compile Include="Media\FileUploadDto.cs" />
     <Compile Include="User\UserDto.cs" />
     <Compile Include="User\UserRequest.cs" />
+    <Compile Include="WarehouseMenu\WarehouseMenuDto.cs" />
+    <Compile Include="WarehouseMenu\WarehouseMenuRequest.cs" />
     <Compile Include="Warehouse\WarehouseDto.cs" />
     <Compile Include="Warehouse\WarehouseRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

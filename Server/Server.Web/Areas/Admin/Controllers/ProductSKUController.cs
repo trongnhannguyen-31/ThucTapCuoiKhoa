@@ -46,6 +46,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
+        // Create ProductSKU
         public ActionResult Create()
         {
             var model = new ProductSKUModel();
@@ -61,6 +62,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Product_Id = model.Product_Id,
                 Price = model.Price,
+                Rating = model.Rating,
+                BuyCount = model.BuyCount,
                 Screen = model.Screen,
                 OperationSystem = model.OperationSystem,
                 Processor = model.Processor,
@@ -74,6 +77,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 ConnectionPort = model.ConnectionPort,
                 Design = model.Design,
                 Size = model.Size,
+                YearOfManufacture = model.YearOfManufacture,
             });
             if (!productSKUs.Success)
             {
@@ -82,6 +86,51 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             }
             SuccessNotification("Thêm mới đại lý thành công");
             return RedirectToAction("Create");
+        }
+
+        // Update ProductSKU
+        public ActionResult Update(int id)
+        {
+            var projectDto = _productSKUService.GetProductSKUById(id);
+            if (projectDto == null)
+            {
+                return RedirectToAction("List");
+            }
+
+            var projectModel = projectDto.MapTo<ProductSKUModel>();
+            return View(projectModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update(ProductSKUModel model)
+        {
+            var projetc = _productSKUService.GetProductSKUById(model.Id);
+            if (projetc == null)
+                return RedirectToAction("List");
+            if (!ModelState.IsValid)
+                return View(model);
+            var productSKU = await _productSKUService.UpdateProductSKUs(new ProductSKURequest
+            {
+                Id = model.Id,
+                Product_Id = model.Product_Id,
+                Price = model.Price,
+                Screen = model.Screen,
+                OperationSystem = model.OperationSystem,
+                Processor = model.Processor,
+                Ram = model.Ram,
+                Storage = model.Storage,
+                Battery = model.Battery,
+                BackCamera = model.BackCamera,
+                FrontCamera = model.FrontCamera,
+                SimSlot = model.SimSlot,
+                GraphicCard = model.GraphicCard,
+                ConnectionPort = model.ConnectionPort,
+                Design = model.Design,
+                Size = model.Size,
+                YearOfManufacture = model.YearOfManufacture,
+            });
+            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
+            return RedirectToAction("Update", new { id = model.Id });
         }
     }
 }
