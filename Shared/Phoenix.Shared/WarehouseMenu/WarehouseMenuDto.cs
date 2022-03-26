@@ -8,11 +8,11 @@ namespace Phoenix.Shared.WarehouseMenu
 {
     public class WarehouseMenuDto
     {
-        public int WarehouseId { get; set; }
-
         public int SKUId { get; set; }
 
         public int ProductId { get; set; }
+
+        public int WarehouseId { get; set; }
 
         public int ProductType_Id { get; set; }
 

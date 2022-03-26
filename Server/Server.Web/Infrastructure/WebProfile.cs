@@ -4,6 +4,7 @@ using Phoenix.Server.Web.Areas.Admin.Models.Customer;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductType;
 using Phoenix.Server.Web.Areas.Admin.Models.Rating;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
+using Phoenix.Server.Web.Areas.Admin.Models.WarehouseMenu;
 using Phoenix.Shared.Warehouse;
 
 namespace Phoenix.Server.Web.Infrastructure
@@ -20,6 +21,9 @@ namespace Phoenix.Server.Web.Infrastructure
                 .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.ProductSKU.Product.Name)); 
 
             CreateMap<Rating, RatingModel>();
+
+            CreateMap<WarehouseMenu, WarehouseMenuModel>();
+
         }
     }
 }

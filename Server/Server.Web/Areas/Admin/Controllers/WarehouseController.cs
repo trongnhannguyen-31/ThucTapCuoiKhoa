@@ -3,6 +3,7 @@ using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
+using Phoenix.Server.Web.Areas.Admin.Models.WarehouseMenu;
 using Phoenix.Shared.Warehouse;
 using Phoenix.Shared.WarehouseMenu;
 using System;
@@ -81,13 +82,13 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Update Warehouse
         public ActionResult Update(int id)
         {
-            var projectDto = _warehouseService.GetWarehousesById(id);
+            var projectDto = _warehouseMenuService.GetWarehouseMenusById(id);
             if (projectDto == null)
             {
                 return RedirectToAction("Index");
             }
 
-            var projectModel = projectDto.MapTo<WarehouseModel>();
+            var projectModel = projectDto.MapTo<WarehouseMenuModel>();
             return View(projectModel);
         }
 

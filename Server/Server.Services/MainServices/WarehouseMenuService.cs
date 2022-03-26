@@ -1,4 +1,5 @@
 ﻿using Falcon.Web.Core.Helpers;
+using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
 using Phoenix.Shared.WarehouseMenu;
@@ -13,6 +14,8 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IWarehouseMenuService
     {
+        WarehouseMenu GetWarehouseMenusById(int id);
+
         Task<BaseResponse<WarehouseMenuDto>> GetAllWarehouseMenus(WarehouseMenuRequest request);
     }
 
@@ -33,10 +36,10 @@ namespace Phoenix.Server.Services.MainServices
                 var query = _dataContext.WarehouseMenus.AsQueryable();
 
                 //filter
-                /*if (request.WarehouseId > 0)
+                if (request.WarehouseId > 0)
                 {
                     query = query.Where(d => d.WarehouseId == request.WarehouseId);
-                }*/
+                }
 
                 if (request.SKUId > 0)
                 {
@@ -73,5 +76,8 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        public WarehouseMenu GetWarehouseMenusById(int id) => _dataContext.WarehouseMenus.Find(id);
+
     }
 }

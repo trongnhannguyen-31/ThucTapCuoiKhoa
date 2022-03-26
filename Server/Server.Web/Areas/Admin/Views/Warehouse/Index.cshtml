@@ -71,19 +71,19 @@
             placeholder: "Chưa có dữ liệu",
             columns: [
                 {
-                    title: "Id", field: "SKUId", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().SKUId}</a>`
+                    title: "Id", field: "WarehouseId", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().WarehouseId}</a>`
                     }
                 },
                 {
                     title: "Tên sản phẩm", field: "ProductName", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().ProductName}</a>`
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().ProductName}</a>`
                     }
                 },
                 {
                     title: "Số lượng tồn", field: "Quantity", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Quantity}</a>`
+                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Quantity}</a>`
                     }
                 },
                 @*{
