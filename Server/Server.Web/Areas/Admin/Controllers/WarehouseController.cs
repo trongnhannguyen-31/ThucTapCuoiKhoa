@@ -20,6 +20,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // GET: Admin/Warehouse
         private readonly IWarehouseService _warehouseService;
         private readonly IWarehouseMenuService _warehouseMenuService;
+
         public WarehouseController(IWarehouseService warehouseService, IWarehouseMenuService warehouseMenuService)
         {
             _warehouseService = warehouseService;
@@ -82,13 +83,13 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Update Warehouse
         public ActionResult Update(int id)
         {
-            var projectDto = _warehouseMenuService.GetWarehouseMenusById(id);
+            var projectDto = _warehouseService.GetWarehousesById(id);
             if (projectDto == null)
             {
                 return RedirectToAction("Index");
             }
 
-            var projectModel = projectDto.MapTo<WarehouseMenuModel>();
+            var projectModel = projectDto.MapTo<WarehouseModel>();
             return View(projectModel);
         }
 

@@ -1,5 +1,6 @@
 ﻿@using Falcon.Web.Mvc.HtmlExtensions
 @model Phoenix.Server.Web.Areas.Admin.Models.Warehouse.WarehouseModel
+@*@model Phoenix.Server.Web.Areas.Admin.Models.WarehouseMenu.WarehouseMenuModel*@
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.Id)
 <div class="grid grid-cols-12 gap-6 mt-5">
@@ -38,7 +39,7 @@
                     @if (Model.Id > 0)
                     {
                         <text>
-                            zproductSelect.setValue([@Model.ProductSKU_Id])
+                    zproductSelect.setValue([@Model.ProductSKU_Id])
                         </text>
                     }
                 </script>

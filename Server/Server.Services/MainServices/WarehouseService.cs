@@ -17,6 +17,8 @@ namespace Phoenix.Server.Services.MainServices
     public interface IWarehouseService
     {
         Warehouse GetWarehousesById(int id);
+        
+        Warehouse GetProductSKUById(int id);
 
         Task<BaseResponse<WarehouseDto>> GetAllWarehouses(WarehouseRequest request);
 
@@ -104,6 +106,8 @@ namespace Phoenix.Server.Services.MainServices
 
         // Get Warehouse By Id
         public Warehouse GetWarehousesById(int id) => _dataContext.Warehouses.Find(id);
+        
+        public Warehouse GetProductSKUById(int id) => _dataContext.Warehouses.Find(id);
 
         // Update Warehouse
         public async Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request)
