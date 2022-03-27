@@ -3,6 +3,7 @@ using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Product;
 using Phoenix.Shared.Product;
+using Phoenix.Shared.ProductSKU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
     {
         // GET: Admin/Product
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IProductSKUService _productSKUService;
+        public ProductController(IProductService productService, IProductSKUService productSKUService)
         {
             _productService = productService;
+            _productSKUService = productSKUService;
         }
 
         public ActionResult Index()
@@ -44,17 +47,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
-        public void SetViewBag(long? selectedId = null)
-        {
-            DataContext db = new DataContext();
-            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selectedId);
-            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", selectedId);
-        }
-
         // Create Product
         public ActionResult Create()
         {
-            SetViewBag();
             var model = new ProductModel();
             return View(model);
         }
@@ -62,7 +57,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(ProductModel model)
         {
-            SetViewBag();
             if (!ModelState.IsValid)
                 return View(model);
             var res = await _productService.CreateProducts(new ProductRequest
@@ -81,38 +75,5 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Thêm mới đại lý thành công");
             return RedirectToAction("Index");
         }
-
-        /*// Thêm sản phẩm
-        public ActionResult Create()
-        {
-            //DataContext db = new DataContext();
-            //ViewBag.ProductSKU_Id = new SelectList(db.ProductSKUs.OrderBy(n => n.Id), "Id", "Product_Id");
-
-            var model = new ProductModel();
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Create(ProductModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-            var res = await _productService.CreateWarehouses(new ProductRequest
-            {
-                Name = model.Name,
-
-
-                ProductSKU_Id = model.ProductSKU_Id,
-                Quantity = model.Q
-            });
-
-            if (!res.success)
-            {
-                ErrorNotification("Thêm mới không thành công");
-                return View(model);
-            }
-            SuccessNotification("Thêm mới đại lý thành công");
-            return RedirectToAction("Create");
-        }*/
     }
 }

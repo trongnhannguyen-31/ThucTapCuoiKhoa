@@ -32,7 +32,7 @@ namespace Phoenix.Server.Services.MainServices
             _dataContext = dataContext;
         }
 
-        // Lấy danh sách nhà cung cấp
+        // Get List ProductSKU
         public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request)
         {
             var result = new BaseResponse<ProductSKUDto>();
@@ -151,6 +151,5 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
-
     }
 }
