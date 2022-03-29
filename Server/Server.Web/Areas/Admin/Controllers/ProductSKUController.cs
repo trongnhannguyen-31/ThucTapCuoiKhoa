@@ -2,6 +2,7 @@
 using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
+using Phoenix.Server.Web.Areas.Admin.Models.Product;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
 using Phoenix.Shared.ProductSKU;
 using System;
@@ -23,10 +24,10 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _productSKUService = productSKUService;
         }
 
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View();
-        }
+        }*/
 
         [HttpPost]
         public async Task<ActionResult> List(DataSourceRequest command, ProductSKUModel model)
@@ -132,5 +133,41 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });
         }
+
+        #region
+        // Demo
+        public ActionResult Index(int id)
+        {
+            DataContext db = new DataContext();
+            var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
+            return View(products);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListProductSKU(DataSourceRequest command, ProductSKUModel model, int id)
+        {
+            DataContext db = new DataContext();
+            var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
+            if (products.Count != 0)
+            {
+                var productSKUs = await _productSKUService.GetAllProductSKUById(new ProductSKURequest()
+                {
+                    Page = command.Page - 1,
+                    PageSize = command.PageSize,
+                    Product_Id = model.Product_Id,
+                });
+
+                var gridModel = new DataSourceResult
+                {
+                    Data = productSKUs.Data,
+                    Total = productSKUs.DataCount
+                };
+                return Json(gridModel);
+            }
+
+            return View();
+        }
+
+        #endregion
     }
 }

@@ -54,8 +54,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }
 
         // Create Warehouse
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+
             var model = new WarehouseModel();
             return View(model);
         }

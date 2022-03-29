@@ -104,6 +104,46 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        /* // Nháp
+         //
+         //
+         public async Task<BaseResponse<WarehouseDto>> CreateWarehouses(WarehouseRequest request)
+         {
+             var result = new BaseResponse<WarehouseDto>();
+             try
+             {
+                 var warehouse_id = GetWarehousesById(request.Id);
+                 if (warehouse_id.Id == request.Id)
+                 {
+                     Warehouse warehouses = new Warehouse
+                     {
+                         // Id = request.Id,
+                         ProductSKU_Id = request.ProductSKU_Id,
+                         Quantity = warehouse_id.Quantity + request.Quantity,
+                         UpdatedAt = DateTime.Now,
+                     };
+                     _dataContext.Warehouses.Add(warehouses);
+                     await _dataContext.SaveChangesAsync();
+
+                     result.Success = true;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 result.Success = false;
+                 result.Message = ex.Message;
+             }
+
+             return result;
+         }*/
+        //
+        //
+        //
+
+
+
+
+
         // Get Warehouse By Id
         public Warehouse GetWarehousesById(int id) => _dataContext.Warehouses.Find(id);
         

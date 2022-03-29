@@ -88,6 +88,12 @@
                 {
                     title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },
+                {
+                    title: "Tên sản phẩm", field: "Name", sorter: "string", width: 300, formatter(cell, formatterParams)
+                    {
+                        return `<a href="../Admin/ProductSKU/Index/${cell.getData().Id}" class="btn btn-primary text-white shadow-md mr-2">Thêm mới</a>`
+                    }
+                },
             ],
         });
         let onSearch = (e) => {
