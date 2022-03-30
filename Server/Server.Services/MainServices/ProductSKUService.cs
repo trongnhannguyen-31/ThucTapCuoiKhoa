@@ -25,7 +25,7 @@ namespace Phoenix.Server.Services.MainServices
 
         Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
 
-        Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(ProductSKURequest request);
+        Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request);
     }
 
     public class ProductSKUService : IProductSKUService
@@ -169,35 +169,33 @@ namespace Phoenix.Server.Services.MainServices
         // Demo
         public Product GetProductById(int id) => _dataContext.Products.Find(id);
 
-        public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(ProductSKURequest request)
+        public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request)
         {
             var result = new BaseResponse<ProductSKUDto>();
             try
             {
-                var products = GetProductById(request.Product_Id);
-                if (products.Id == request.Product_Id)
+                //setup query
+                var query = _dataContext.ProductSKUs.AsQueryable();
+
+                //filter
+                if (request.Product_Id > 0)
                 {
-                    //setup query
-                    var query = _dataContext.ProductSKUs.AsQueryable();
+                    query = query.Where(d => d.Product_Id == request.Product_Id);
+                }
 
-                    //filter
-                    if (request.Product_Id > 0)
-                    {
-                        query = query.Where(d => d.Product_Id == request.Product_Id);
-                    }
+                if (!string.IsNullOrEmpty(request.Screen))
+                {
+                    query = query.Where(d => d.Screen.Contains(request.Screen));
+                }
 
-                    if (!string.IsNullOrEmpty(request.Screen))
-                    {
-                        query = query.Where(d => d.Screen.Contains(request.Screen));
-                    }
+                query = query.OrderByDescending(d => d.Id);
 
-                    query = query.OrderByDescending(d => d.Id);
+                var list = _dataContext.ProductSKUs.Where(p => p.Id.Equals(id));
 
-                    var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
-                    result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
-                    result.Data = data.MapTo<ProductSKUDto>();
-                    result.Success = true;
-                }                
+                var data = await list.ToListAsync();
+                result.Data = data.MapTo<ProductSKUDto>();
+                result.Success = true;
+            
             }
             catch (Exception ex)
             {

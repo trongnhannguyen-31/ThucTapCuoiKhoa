@@ -104,52 +104,15 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
-        /* // Nháp
-         //
-         //
-         public async Task<BaseResponse<WarehouseDto>> CreateWarehouses(WarehouseRequest request)
-         {
-             var result = new BaseResponse<WarehouseDto>();
-             try
-             {
-                 var warehouse_id = GetWarehousesById(request.Id);
-                 if (warehouse_id.Id == request.Id)
-                 {
-                     Warehouse warehouses = new Warehouse
-                     {
-                         // Id = request.Id,
-                         ProductSKU_Id = request.ProductSKU_Id,
-                         Quantity = warehouse_id.Quantity + request.Quantity,
-                         UpdatedAt = DateTime.Now,
-                     };
-                     _dataContext.Warehouses.Add(warehouses);
-                     await _dataContext.SaveChangesAsync();
-
-                     result.Success = true;
-                 }
-             }
-             catch (Exception ex)
-             {
-                 result.Success = false;
-                 result.Message = ex.Message;
-             }
-
-             return result;
-         }*/
-        //
-        //
-        //
-
-
-
-
-
         // Get Warehouse By Id
+        #region
         public Warehouse GetWarehousesById(int id) => _dataContext.Warehouses.Find(id);
         
         public Warehouse GetProductSKUById(int id) => _dataContext.Warehouses.Find(id);
+        #endregion
 
         // Update Warehouse
+        #region
         public async Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request)
         {
             var result = new BaseResponse<WarehouseDto>();
@@ -159,7 +122,7 @@ namespace Phoenix.Server.Services.MainServices
 
                 warehouses.Id = warehouses.Id;
                 warehouses.ProductSKU_Id = request.ProductSKU_Id;
-                warehouses.Quantity = request.Quantity;
+                warehouses.Quantity = warehouses.Quantity + request.NewQuantity;
 
                 await _dataContext.SaveChangesAsync();
                 result.Success = true;
@@ -172,8 +135,10 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
 
         // Delete Warehouse
+        #region
         public async Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id)
         {
             var result = new BaseResponse<WarehouseDto>();
@@ -194,5 +159,6 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
     }
 }

@@ -106,7 +106,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Id = model.Id,
                 ProductSKU_Id = model.ProductSKU_Id,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
+                NewQuantity = model.NewQuantity
             });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });

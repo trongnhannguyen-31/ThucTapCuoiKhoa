@@ -12,5 +12,7 @@ namespace Phoenix.Shared.Warehouse
         public int Quantity { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+
+        public int NewQuantity { get; set; }
     }
 }

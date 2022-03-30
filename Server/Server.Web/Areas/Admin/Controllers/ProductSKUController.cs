@@ -29,7 +29,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return View();
         }*/
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult> List(DataSourceRequest command, ProductSKUModel model)
         {
             var productSKUs = await _productSKUService.GetAllProductSKUs(new ProductSKURequest()
@@ -45,7 +45,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = productSKUs.DataCount
             };
             return Json(gridModel);
-        }
+        }*/
 
         // Create ProductSKU
         public ActionResult Create()
@@ -138,34 +138,29 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Demo
         public ActionResult Index(int id)
         {
-            DataContext db = new DataContext();
-            var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
-            return View(products);
+            //DataContext db = new DataContext();
+            // var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
+            var model = new ProductSKUModel();
+            model.Id = id;
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListProductSKU(DataSourceRequest command, ProductSKUModel model, int id)
+        public async Task<ActionResult> List(DataSourceRequest command, ProductSKUModel model)
         {
-            DataContext db = new DataContext();
-            var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
-            if (products.Count != 0)
+            var productSKUs = await _productSKUService.GetAllProductSKUById(model.Product_Id, new ProductSKURequest()
             {
-                var productSKUs = await _productSKUService.GetAllProductSKUById(new ProductSKURequest()
-                {
-                    Page = command.Page - 1,
-                    PageSize = command.PageSize,
-                    Product_Id = model.Product_Id,
-                });
+                Page = command.Page - 1,
+                PageSize = command.PageSize,
+                Product_Id = model.Product_Id,
+            });
 
-                var gridModel = new DataSourceResult
-                {
-                    Data = productSKUs.Data,
-                    Total = productSKUs.DataCount
-                };
-                return Json(gridModel);
-            }
-
-            return View();
+            var gridModel = new DataSourceResult
+            {
+                Data = productSKUs.Data,
+                Total = productSKUs.DataCount
+            };
+            return Json(gridModel);
         }
 
         #endregion
