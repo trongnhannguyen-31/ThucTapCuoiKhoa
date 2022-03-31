@@ -24,15 +24,18 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _productSKUService = productSKUService;
         }
 
-        /*public ActionResult Index()
+        #region
+        public ActionResult Index(int id)
         {
-            return View();
-        }*/
+            var model = new ProductSKUModel();
+            model.Id = id;
+            return View(model);
+        }
 
-        /*[HttpPost]
-        public async Task<ActionResult> List(DataSourceRequest command, ProductSKUModel model)
+        [HttpPost]
+        public async Task<ActionResult> Index(DataSourceRequest command, ProductSKUModel model)
         {
-            var productSKUs = await _productSKUService.GetAllProductSKUs(new ProductSKURequest()
+            var productSKUs = await _productSKUService.GetAllProductSKUById(model.Id, new ProductSKURequest()
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,
@@ -45,7 +48,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = productSKUs.DataCount
             };
             return Json(gridModel);
-        }*/
+        }
+
+        #endregion
 
         // Create ProductSKU
         public ActionResult Create()
@@ -133,36 +138,5 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });
         }
-
-        #region
-        // Demo
-        public ActionResult Index(int id)
-        {
-            //DataContext db = new DataContext();
-            // var products = db.ProductSKUs.Where(x => x.Product_Id == id).ToList();
-            var model = new ProductSKUModel();
-            model.Id = id;
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> List(DataSourceRequest command, ProductSKUModel model)
-        {
-            var productSKUs = await _productSKUService.GetAllProductSKUById(model.Product_Id, new ProductSKURequest()
-            {
-                Page = command.Page - 1,
-                PageSize = command.PageSize,
-                Product_Id = model.Product_Id,
-            });
-
-            var gridModel = new DataSourceResult
-            {
-                Data = productSKUs.Data,
-                Total = productSKUs.DataCount
-            };
-            return Json(gridModel);
-        }
-
-        #endregion
     }
 }

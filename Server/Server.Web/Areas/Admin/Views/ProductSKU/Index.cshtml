@@ -48,7 +48,7 @@
         }
         var table = new Tabulator("#main-grid", {
             layout: "fitDataFill",
-            ajaxURL: "@Html.Raw(Url.Action("List", "ProductSKU"))",
+            ajaxURL: "@Html.Raw(Url.Action("Index", "ProductSKU"))",
             // Nháp
             @*ajaxURL: "@Html.Raw(Url.Action("ListProductSKU", "ProductSKU"))",*@
             ajaxConfig: "post",

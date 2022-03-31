@@ -190,7 +190,7 @@ namespace Phoenix.Server.Services.MainServices
 
                 query = query.OrderByDescending(d => d.Id);
 
-                var list = _dataContext.ProductSKUs.Where(p => p.Id.Equals(id));
+                var list = _dataContext.ProductSKUs.Where(p => p.Product_Id.Equals(id));
 
                 var data = await list.ToListAsync();
                 result.Data = data.MapTo<ProductSKUDto>();
