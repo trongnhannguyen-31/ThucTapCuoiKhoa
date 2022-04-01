@@ -11,12 +11,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.OrderDetail
 
         public int Order_Id { get; set; }
 
-        public int Product_Id { get; set; }
+        public int ProductSKU_Id { get; set; }
 
-        public float Price { get; set; } // ghi chu
+        public double? Price { get; set; }
 
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
-        public double Total { get; set; }
+        public double? Total { get; set; }
     }
 }

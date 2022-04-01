@@ -44,10 +44,10 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.OrderDate == request.OrderDate);
                 }
 
-                if (request.Status > 0) 
+                /*if (request.Status > 0) 
                 {
                     query = query.Where(d => d.Status == request.Status); 
-                }
+                }*/
 
                 if (!string.IsNullOrEmpty(request.Address))
                 {

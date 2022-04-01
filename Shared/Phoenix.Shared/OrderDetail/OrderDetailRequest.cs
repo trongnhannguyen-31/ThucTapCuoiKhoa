@@ -8,12 +8,12 @@ namespace Phoenix.Shared.OrderDetail
 
 		public int Order_Id { get; set; }
 
-		public int Product_Id { get; set; }
+		public int ProductSKU_Id { get; set; }
 
-		public float Price { get; set; }
+		public double? Price { get; set; }
 
-		public int Quantity { get; set; }
+		public int? Quantity { get; set; }
 
-		public float Total { get; set; }
+		public double? Total { get; set; }
 	}
 }

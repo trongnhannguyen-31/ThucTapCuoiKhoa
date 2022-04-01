@@ -41,13 +41,13 @@ namespace Phoenix.Server.Services.Infrastructure
 
             // CreateMap Order
             CreateMap<Order, OrderDto>()
-                .ForMember(d => d.Customer_Name, o => o.MapFrom(s => s.Customer.FullName))
-                .ForMember(d => d.Status_Name, o => o.MapFrom(s => s.Status == 1 ? "Chờ duyệt" : s.Status == 2 ? "Đã duyệt" : s.Status == 3 ? "Đã giao" : "Hủy"));
+                .ForMember(d => d.Customer_Name, o => o.MapFrom(s => s.Customer.FullName));
+            //.ForMember(d => d.Status_Name, o => o.MapFrom(s => s.Status == 1 ? "Chờ duyệt" : s.Status == 2 ? "Đã duyệt" : s.Status == 3 ? "Đã giao" : "Hủy"));
 
 
             // CreateMap OrderDetail
-            CreateMap<OrderDetail, OrderDetailDto>()
-                .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.Product.Name));
+            CreateMap<OrderDetail, OrderDetailDto>();
+                //.ForMember(d => d.Product_Name, o => o.MapFrom(s => s.Product.Name));
 
 
             // CreateMap Customer

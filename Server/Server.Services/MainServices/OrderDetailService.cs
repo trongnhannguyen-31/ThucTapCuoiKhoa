@@ -47,9 +47,9 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Order_Id == request.Order_Id);
                 }
 
-                if (request.Product_Id > 0)
+                if (request.ProductSKU_Id > 0)
                 {
-                    query = query.Where(d => d.Product_Id == request.Product_Id);
+                    query = query.Where(d => d.ProductSKU_Id == request.ProductSKU_Id);
                 }
 
                 if (request.Price > 0)
@@ -94,31 +94,6 @@ namespace Phoenix.Server.Services.MainServices
                 if (request.Id > 0)
                 {
                     query = query.Where(d => d.Id == request.Id);
-                }
-
-                if (request.Order_Id > 0)
-                {
-                    query = query.Where(d => d.Order_Id == request.Order_Id);
-                }
-
-                if (request.Product_Id > 0)
-                {
-                    query = query.Where(d => d.Product_Id == request.Product_Id);
-                }
-
-                if (request.Price > 0)
-                {
-                    query = query.Where(d => d.Price == request.Price);
-                }
-
-                if (request.Quantity > 0)
-                {
-                    query = query.Where(d => d.Quantity == request.Quantity);
-                }
-
-                if (request.Total > 0)
-                {
-                    query = query.Where(d => d.Total == request.Total);
                 }
 
                 query = query.OrderByDescending(d => d.Id);

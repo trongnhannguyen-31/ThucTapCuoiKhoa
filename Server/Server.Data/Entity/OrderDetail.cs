@@ -13,9 +13,9 @@ namespace Phoenix.Server.Data.Entity
         [ForeignKey("Order_Id")]
         public virtual Order Order { get; set; }
 
-        public int Product_Id { get; set; }
-        [ForeignKey("Product_Id")]
-        public virtual Product Product { get; set; }
+        public int ProductSKU_Id { get; set; }
+        [ForeignKey("ProductSKU_Id")]
+        public virtual ProductSKU ProductSKU { get; set; }
 
         public double? Price { get; set; }
 

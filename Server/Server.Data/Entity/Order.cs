@@ -12,9 +12,9 @@ namespace Phoenix.Server.Data.Entity
 
         public DateTime OrderDate { get; set; }
 
-        public int Status { get; set; }
+        public string Status { get; set; }
 
-        public DateTime DeliveryDate { get; set; }
+        public DateTime? DeliveryDate { get; set; }
 
         public string Address { get; set; }
 
@@ -23,5 +23,9 @@ namespace Phoenix.Server.Data.Entity
         public int Customer_Id { get; set; }
         [ForeignKey("Customer_Id")]
         public virtual Customer Customer { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public bool Deleted { get; set; }
     }
 }

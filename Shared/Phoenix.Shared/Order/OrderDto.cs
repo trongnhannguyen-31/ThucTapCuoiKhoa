@@ -9,15 +9,15 @@ namespace Phoenix.Shared.Order
 
         public DateTime OrderDate { get; set; }
 
-        public int Status { get; set; }
+        public string Status { get; set; }
 
-        public string Status_Name { get; set; }
+        // public string Status_Name { get; set; }
 
-        public DateTime DeliveryDate { get; set; }
+        public DateTime? DeliveryDate { get; set; }
 
         public string Address { get; set; }
 
-        public float Total { get; set; }
+        public double? Total { get; set; }
 
         public int Customer_Id { get; set; }
 
@@ -27,6 +27,4 @@ namespace Phoenix.Shared.Order
 
         public bool Deleted { get; set; }
     }
-
-    //nhanphai 123
 }
