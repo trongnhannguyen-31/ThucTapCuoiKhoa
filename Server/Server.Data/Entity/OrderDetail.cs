@@ -9,18 +9,18 @@ namespace Phoenix.Server.Data.Entity
         [Key]
         public int Id { get; set; }
 
-        public int? Order_Id { get; set; }
+        public int Order_Id { get; set; }
         [ForeignKey("Order_Id")]
         public virtual Order Order { get; set; }
 
-        public int? Product_Id { get; set; }
+        public int Product_Id { get; set; }
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
-        public double Total { get; set; }
+        public double? Total { get; set; }
     }
 }

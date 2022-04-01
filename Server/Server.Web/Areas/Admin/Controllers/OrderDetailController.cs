@@ -45,15 +45,17 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }*/
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var model = new OrderDetailModel();
+            model.Id = id;
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> List(DataSourceRequest command, OrderDetailModel model)
+        public async Task<ActionResult> Index(DataSourceRequest command, OrderDetailModel model)
         {
-            var orderDetails = await _orderDetailService.GetAllOrderDetails(new OrderDetailRequest()
+            var orderDetails = await _orderDetailService.GetAllOrderDetailById(model.Id, new OrderDetailRequest()
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,

@@ -15,6 +15,8 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderDetailService
     {
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request);
+
+        Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request);
     }
     public class OrderDetailService : IOrderDetailService
     {
@@ -74,6 +76,63 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
 
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request)
+        {
+            var result = new BaseResponse<OrderDetailDto>();
+            try
+            {
+
+                //setup query
+                var query = _dataContext.OrderDatails.AsQueryable();
+
+                //filter
+                if (request.Id > 0)
+                {
+                    query = query.Where(d => d.Id == request.Id);
+                }
+
+                if (request.Order_Id > 0)
+                {
+                    query = query.Where(d => d.Order_Id == request.Order_Id);
+                }
+
+                if (request.Product_Id > 0)
+                {
+                    query = query.Where(d => d.Product_Id == request.Product_Id);
+                }
+
+                if (request.Price > 0)
+                {
+                    query = query.Where(d => d.Price == request.Price);
+                }
+
+                if (request.Quantity > 0)
+                {
+                    query = query.Where(d => d.Quantity == request.Quantity);
+                }
+
+                if (request.Total > 0)
+                {
+                    query = query.Where(d => d.Total == request.Total);
+                }
+
+                query = query.OrderByDescending(d => d.Id);
+
+                var list = _dataContext.OrderDatails.Where(p => p.Order_Id.Equals(id));
+
+                var data = await list.ToListAsync();
+                result.Data = data.MapTo<OrderDetailDto>();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

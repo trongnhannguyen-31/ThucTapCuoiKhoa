@@ -52,7 +52,7 @@
         }
         var table = new Tabulator("#main-grid", {
             layout: "fitDataFill",
-            ajaxURL: "@Html.Raw(Url.Action("List", "OrderDetail"))",
+            ajaxURL: "@Html.Raw(Url.Action("Index", "OrderDetail"))",
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
                 params.Id = $('#Id').val();
