@@ -22,7 +22,7 @@ namespace Phoenix.Shared.WarehouseMenu
 
         public string Storage { get; set; }
 
-        public string Model { get; set; }
+        public string ModelCode { get; set; }
 
         public int Quantity { get; set; }
 
@@ -33,7 +33,7 @@ namespace Phoenix.Shared.WarehouseMenu
                 if (ProductType_Id == 5)
                     return Name + " | " + Ram + "/" + Storage;
                 else
-                    return Name + " " + Model;
+                    return Name + " " + ModelCode;
             }
         }
     }

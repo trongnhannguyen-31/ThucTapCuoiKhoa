@@ -120,6 +120,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Id = model.Id,
                 Product_Id = model.Product_Id,
                 Price = model.Price,
+                // Rating = model.Rating,
+                // BuyCount = model.BuyCount,
                 Screen = model.Screen,
                 OperationSystem = model.OperationSystem,
                 Processor = model.Processor,
@@ -137,6 +139,20 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var project = _productSKUService.GetProductSKUById(id);
+            if (project == null)
+                //No email account found with the specified id
+                return RedirectToAction("List");
+
+            await _productSKUService.DeleteProductSKUs(project.Id);
+            SuccessNotification("Xóa đại lý thành công");
+            return RedirectToAction("List");
         }
     }
 }

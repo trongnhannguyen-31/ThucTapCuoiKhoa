@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Web.Areas.Admin.Models.Customer;
+using Phoenix.Server.Web.Areas.Admin.Models.Product;
+using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductType;
 using Phoenix.Server.Web.Areas.Admin.Models.Rating;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
@@ -24,6 +26,9 @@ namespace Phoenix.Server.Web.Infrastructure
 
             CreateMap<WarehouseMenu, WarehouseMenuModel>();
 
+            CreateMap<ProductSKU, ProductSKUModel>();
+
+            CreateMap<Product, ProductModel>();
         }
     }
 }

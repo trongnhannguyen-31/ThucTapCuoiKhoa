@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Framework.Kendoui;
+﻿using Falcon.Web.Core.Helpers;
+using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Product;
@@ -47,6 +48,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
+        #region Create
         // Create Product
         public ActionResult Create()
         {
@@ -64,7 +66,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Vendor_Id = model.Vendor_Id,
                 ProductType_Id = model.ProductType_Id,
                 Name = model.Name,
-                Model = model.ModelCode,
+                ModelCode = model.ModelCode,
             });
 
             if (!res.Success)
@@ -75,9 +77,60 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Thêm mới đại lý thành công");
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Update
+        public ActionResult Update(int id)
+        {
+            var projectDto = _productService.GetProductsById(id);
+            if (projectDto == null)
+            {
+                return RedirectToAction("List");
+            }
 
+            var projectModel = projectDto.MapTo<ProductModel>();
+            return View(projectModel);
+        }
 
+        [HttpPost]
+        public async Task<ActionResult> Update(ProductModel model)
+        {
+            var project = _productService.GetProductsById(model.Id);
+            if (project == null)
+                return RedirectToAction("List");
+            if (!ModelState.IsValid)
+                return View(model);
+            var products = await _productService.UpdateProducts(new ProductRequest
+            {
+                Id = model.Id,
+                Vendor_Id = model.Vendor_Id,
+                ProductType_Id = model.ProductType_Id,
+                Name = model.Name,
+                ModelCode = model.ModelCode,
+                Image1 = model.Image1,
+                Image2 = model.Image2,
+                Image3 = model.Image3,
+                Image4 = model.Image4,
+                Image5 = model.Image5,
+            });
+            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
+            return RedirectToAction("Update", new { id = model.Id });
+        }
+        #endregion
 
+        #region Delete
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var project = _productService.GetProductsById(id);
+            if (project == null)
+                //No email account found with the specified id
+                return RedirectToAction("List");
+
+            await _productService.DeleteProducts(project.Id);
+            SuccessNotification("Xóa đại lý thành công");
+            return RedirectToAction("Index");
+        }
+        #endregion
     }
 }

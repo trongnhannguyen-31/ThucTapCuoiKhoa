@@ -26,6 +26,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
 
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request);
+
+        Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id);
     }
 
     public class ProductSKUService : IProductSKUService
@@ -165,8 +167,28 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        public async Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id)
+        {
+            var result = new BaseResponse<ProductSKUDto>();
+            try
+            {
+                var productSKUs = GetProductSKUById(Id);
+
+                productSKUs.Deleted = true;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
         #region
-        // Demo
         public Product GetProductById(int id) => _dataContext.Products.Find(id);
 
         public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request)
@@ -188,6 +210,11 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Screen.Contains(request.Screen));
                 }
 
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
+                }
+
                 query = query.OrderByDescending(d => d.Id);
 
                 var list = _dataContext.ProductSKUs.Where(p => p.Product_Id.Equals(id));
@@ -206,5 +233,7 @@ namespace Phoenix.Server.Services.MainServices
         }
 
         #endregion
+
+
     }
 }

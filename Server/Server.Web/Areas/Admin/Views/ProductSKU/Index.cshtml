@@ -75,7 +75,7 @@
                 { title: "Id", field: "Id", sorter: "string", width: 100 },
                 {
                     title: "Tên sản phẩm", field: "NameProduct", sorter: "string", width: 350, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/ProductSKU/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().NameProduct}</a>`
+                        return `<a href="../Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().NameProduct}</a>`
                     }
                 },
                 { title: "Giá bán", field: "Price", sorter: "string", width: 180 },

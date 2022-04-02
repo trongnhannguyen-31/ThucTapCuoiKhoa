@@ -14,11 +14,15 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IProductService
     {
-        ProductSKU GetProductSKUById(int id);
+        Product GetProductsById(int id);
 
         Task<BaseResponse<ProductDto>> GetAllProducts(ProductRequest request);
 
         Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request);
+
+        Task<BaseResponse<ProductDto>> UpdateProducts(ProductRequest request);
+
+        Task<BaseResponse<ProductDto>> DeleteProducts(int Id);
     }
 
     public class ProductService : IProductService
@@ -70,6 +74,11 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Price.ToString().Contains(request.Price.ToString()));
                 }*/
 
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
+                }
+
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
@@ -99,14 +108,14 @@ namespace Phoenix.Server.Services.MainServices
                     Vendor_Id = request.Vendor_Id,
                     ProductType_Id = request.ProductType_Id,
                     Name = request.Name,
-                    Model = request.Model,
+                    ModelCode = request.ModelCode,
                     Image1 = request.Image1,
                     Image2 = request.Image2,
                     Image3 = request.Image3,
                     Image4 = request.Image4,
                     Image5 = request.Image5,
                     Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
+                    UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 };
                 _dataContext.Products.Add(products);
@@ -122,61 +131,57 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
-        public ProductSKU GetProductSKUById(int id) => _dataContext.ProductSKUs.Find(id);
+        public Product GetProductsById(int id) => _dataContext.Products.Find(id);
 
-
-        // Lấy danh sách ProductSKU
-        public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKU(ProductSKURequest request)
+        // Update Product
+        public async Task<BaseResponse<ProductDto>> UpdateProducts(ProductRequest request)
         {
-            var result = new BaseResponse<ProductSKUDto>();
+            var result = new BaseResponse<ProductDto>();
             try
             {
-                //setup query
-                var query = _dataContext.ProductSKUs.AsQueryable();
+                var products = GetProductsById(request.Id);
 
-                //filter
-                /*if (!string.IsNullOrEmpty(request.Id.ToString()))
-                {
-                    query = query.Where(d => d.Id.ToString().Contains(request.Id.ToString()));
-                }*/
+                products.Vendor_Id = request.Vendor_Id;
+                products.ProductType_Id = request.ProductType_Id;
+                products.Name = request.Name;
+                products.ModelCode = request.ModelCode;
+                products.Image1 = request.Image1;
+                products.Image2 = request.Image2;
+                products.Image3 = request.Image3;
+                products.Image4 = request.Image4;
+                products.Image5 = request.Image5;
+                products.Deleted = false;
+                products.UpdatedAt = DateTime.Now;
 
-                /*if (!string.IsNullOrEmpty(request.Vendor_Id.ToString()))
-                {
-                    query = query.Where(d => d.Vendor_Id.ToString().Contains(request.Vendor_Id.ToString()));
-                }*/
-
-                /*if (!string.IsNullOrEmpty(request.ProductType_Id.ToString()))
-                {
-                    query = query.Where(d => d.ProductType_Id.ToString().Contains(request.ProductType_Id.ToString()));
-                }*/
-
-                if (!string.IsNullOrEmpty(request.Screen))
-                {
-                    query = query.Where(d => d.Screen.Contains(request.Screen));
-                }
-
-                /*if (!string.IsNullOrEmpty(request.Model))
-                {
-                    query = query.Where(d => d.Model.Contains(request.Model));
-                }
-
-                if (!string.IsNullOrEmpty(request.Price.ToString()))
-                {
-                    query = query.Where(d => d.Price.ToString().Contains(request.Price.ToString()));
-                }*/
-
-                query = query.OrderByDescending(d => d.Id);
-
-                var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
-                result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
-                result.Data = data.MapTo<ProductSKUDto>();
-
+                await _dataContext.SaveChangesAsync();
                 result.Success = true;
-
             }
             catch (Exception ex)
             {
                 result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Delete Prodcuct
+        public async Task<BaseResponse<ProductDto>> DeleteProducts(int Id)
+        {
+            var result = new BaseResponse<ProductDto>();
+            try
+            {
+                var productTypes = GetProductsById(Id);
+
+                productTypes.Deleted = true;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
@@ -206,7 +211,7 @@ namespace Phoenix.Server.Services.MainServices
                     Vendor_Id = request.Vendor_Id,
                     ProductType_Id = request.ProductType_Id,
                     Name = request.Name,
-                    Model = request.Model,
+                    ModelCode = request.ModelCode,
                     Image1 = record.Id,
                     Image2 = record.Id,
                     Image3 = record.Id,
@@ -227,8 +232,7 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
-
-        #endregion
         }
+        #endregion
     }
 }

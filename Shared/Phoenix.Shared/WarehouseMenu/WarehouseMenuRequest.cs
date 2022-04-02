@@ -23,7 +23,7 @@ namespace Phoenix.Shared.WarehouseMenu
 
         public string Storage { get; set; }
 
-        public string Model { get; set; }
+        public string ModelCode { get; set; }
 
         public int Quantity { get; set; }
 
