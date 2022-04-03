@@ -1,5 +1,6 @@
 ﻿using Falcon.Core;
 using Falcon.Web.Core.Helpers;
+using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
 using Phoenix.Shared.Order;
@@ -14,6 +15,8 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IOrderService
     {
+        Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
+
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
     }
     public class OrderService : IOrderService
@@ -68,6 +71,42 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
 
+            }
+
+            return result;
+        }
+
+        // Lấy ID
+        public Order GetOrderById(int id) => _dataContext.Orders.Find(id);
+
+        // Thay đổi trạng thái
+        public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+                var orders = GetOrderById(id);
+                
+                if (orders.Status == "Chờ duyệt")
+                {
+                    orders.Status = "Đã duyệt, chờ giao hàng";
+                    /*ProductSKU productSKU = new ProductSKU();
+                    productSKU.BuyCount = productSKU.BuyCount + 1;*/
+                }
+                else if (orders.Status == "Đã duyệt, chờ giao hàng")
+                {
+                    orders.Status = "Đã giao hàng";
+                    orders.DeliveryDate = DateTime.Now;
+                }
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;

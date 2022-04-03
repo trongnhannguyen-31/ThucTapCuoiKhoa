@@ -1,6 +1,8 @@
 ﻿using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Order;
+using Phoenix.Server.Web.Areas.Admin.Models.OrderDetail;
+using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
 using Phoenix.Shared.Order;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Phoenix.Server.Web.Areas.Admin.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : BaseController
     {
         // GET: Admin/Order
         private readonly IOrderService _orderService;
@@ -43,6 +45,19 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = orders.DataCount
             };
             return Json(gridModel);
+        }
+
+        // Thay đổi trạng thái
+        public ActionResult ChangeStatus(int id)
+        {
+            var model = new OrderModel();
+            model.Id = id;
+            var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
+            {
+                Id = model.Id
+            });
+            SuccessNotification("Đổi trạng thái thành công");
+            return RedirectToAction("Index");
         }
     }
 }
