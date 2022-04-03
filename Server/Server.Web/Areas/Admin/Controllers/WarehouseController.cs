@@ -27,7 +27,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _warehouseMenuService = warehouseMenuService;
         }
 
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View();
         }
@@ -40,9 +40,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,
-                /*Id = model.Id,
+                *//*Id = model.Id,
                 Quantity = model.Quantity,
-                ProductSKU_Id = model.ProductSKU_Id*/
+                ProductSKU_Id = model.ProductSKU_Id*//*
             });
 
             var gridModel = new DataSourceResult
@@ -51,7 +51,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = warehouseMenus.DataCount
             };
             return Json(gridModel);
-        }
+        }*/
 
         // Create Warehouse
         public ActionResult Create(int id)
@@ -126,5 +126,32 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Đã xóa thành công");
             return RedirectToAction("Index");
         }
+
+        #region
+        public ActionResult Index(int Id)
+        {
+            var model = new WarehouseMenuModel();
+            model.SKUId = Id;
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Index(DataSourceRequest command, WarehouseMenuModel model)
+        {
+            var warehouseMenus = await _warehouseMenuService.GetAllWarehouseMenusById(model.SKUId, new WarehouseMenuRequest()
+            {
+                Page = command.Page - 1,
+                PageSize = command.PageSize,
+                SKUId = model.SKUId,
+            });
+
+            var gridModel = new DataSourceResult
+            {
+                Data = warehouseMenus.Data,
+                Total = warehouseMenus.DataCount
+            };
+            return Json(gridModel);
+        }
+        #endregion
     }
 }

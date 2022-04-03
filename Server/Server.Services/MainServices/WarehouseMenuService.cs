@@ -17,6 +17,8 @@ namespace Phoenix.Server.Services.MainServices
         WarehouseMenu GetWarehouseMenusById(int id);
 
         Task<BaseResponse<WarehouseMenuDto>> GetAllWarehouseMenus(WarehouseMenuRequest request);
+
+        Task<BaseResponse<WarehouseMenuDto>> GetAllWarehouseMenusById(int id, WarehouseMenuRequest request);
     }
 
     public class WarehouseMenuService : IWarehouseMenuService
@@ -78,6 +80,38 @@ namespace Phoenix.Server.Services.MainServices
         }
 
         public WarehouseMenu GetWarehouseMenusById(int id) => _dataContext.WarehouseMenus.Find(id);
+
+        public async Task<BaseResponse<WarehouseMenuDto>> GetAllWarehouseMenusById(int id, WarehouseMenuRequest request)
+        {
+            var result = new BaseResponse<WarehouseMenuDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.WarehouseMenus.AsQueryable();
+
+                //filter
+                if (request.ProductId > 0)
+                {
+                    query = query.Where(d => d.ProductId == request.ProductId);
+                }
+
+                query = query.OrderByDescending(d => d.ProductId);
+
+                var list = _dataContext.WarehouseMenus.Where(p => p.SKUId.Equals(id));
+
+                var data = await list.ToListAsync();
+                result.Data = data.MapTo<WarehouseMenuDto>();
+                result.Success = true;
+
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
 
     }
 }
