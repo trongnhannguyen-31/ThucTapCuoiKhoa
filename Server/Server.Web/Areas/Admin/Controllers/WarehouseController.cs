@@ -131,14 +131,14 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         public ActionResult Index(int Id)
         {
             var model = new WarehouseMenuModel();
-            model.SKUId = Id;
+            model.WarehouseId = Id;
             return View(model);
         }
 
         [HttpPost]
         public async Task<ActionResult> Index(DataSourceRequest command, WarehouseMenuModel model)
         {
-            var warehouseMenus = await _warehouseMenuService.GetAllWarehouseMenusById(model.SKUId, new WarehouseMenuRequest()
+            var warehouseMenus = await _warehouseMenuService.GetAllWarehouseMenusById(model.WarehouseId, new WarehouseMenuRequest()
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,

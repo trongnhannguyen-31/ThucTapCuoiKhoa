@@ -22,6 +22,9 @@
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
+                <input type="hidden" id="WarehouseId" class="form-control">
+            </div>
+            <div class="col-span-12 lg:col-span-6">
                 <label>Tên sản phẩm</label>
                 <input type="text" id="Product_Name" class="form-control">
             </div>
@@ -52,7 +55,8 @@
             ajaxURL: "@Html.Raw(Url.Action("Index", "Warehouse"))",
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
-                params.Product_Name = $('#Product_Name').val();
+                //params.WarehouseId = $('#WarehouseId').val();
+                //params.Product_Name = $('#ProductName').val();
             },
             ajaxResponse: function (url, params, response) {
                 return response;

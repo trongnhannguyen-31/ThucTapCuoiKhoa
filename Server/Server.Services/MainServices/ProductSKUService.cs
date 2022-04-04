@@ -227,13 +227,12 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
                 result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
 
         #endregion
-
-
     }
 }

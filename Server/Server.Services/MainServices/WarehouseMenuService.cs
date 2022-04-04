@@ -90,12 +90,17 @@ namespace Phoenix.Server.Services.MainServices
                 var query = _dataContext.WarehouseMenus.AsQueryable();
 
                 //filter
+                if (request.WarehouseId > 0)
+                {
+                    query = query.Where(d => d.WarehouseId == request.WarehouseId);
+                }
+
                 if (request.ProductId > 0)
                 {
                     query = query.Where(d => d.ProductId == request.ProductId);
                 }
 
-                query = query.OrderByDescending(d => d.ProductId);
+                query = query.OrderByDescending(d => d.WarehouseId);
 
                 var list = _dataContext.WarehouseMenus.Where(p => p.SKUId.Equals(id));
 

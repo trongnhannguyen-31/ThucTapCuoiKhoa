@@ -45,6 +45,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }*/
 
+        #region
         public ActionResult Index(int id)
         {
             var model = new OrderDetailModel();
@@ -59,9 +60,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Page = command.Page - 1,
                 PageSize = command.PageSize,
-                Order_Id = model.Order_Id,
-                Price = model.Price,
-                Quantity = model.Quantity
+                Order_Id = model.Order_Id
             });
 
             var gridModel = new DataSourceResult
@@ -71,5 +70,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             };
             return Json(gridModel);
         }
+
+        #endregion
     }
 }

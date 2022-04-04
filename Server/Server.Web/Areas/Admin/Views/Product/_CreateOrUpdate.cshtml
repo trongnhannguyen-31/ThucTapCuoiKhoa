@@ -49,6 +49,22 @@
                         labelField: 'Name',
                         searchField: 'Name',
                         placeholder: '-- Vui lòng chọn nhóm --',
+                        @*if(@Model.Vendor_Id == null) {
+                            load: function (query, callback) {
+                                var url = '/api/dropdown/TakeAllVendors';
+                                fetch(url, { method: "post" })
+                                    .then(response => response.json())
+                                    .then(json => {
+                                        callback(json);
+                                    }).catch(() => {
+                                        callback();
+                                    });
+
+                            },
+                        }
+                        else {
+                            setValue(@Model.Vendor_Id),
+                        },*@
                         load: function (query, callback) {
                             var url = '/api/dropdown/TakeAllVendors';
                             fetch(url, { method: "post" })
@@ -69,8 +85,14 @@
                             }
                         }
                     };
-                    new TomSelect('#selectVendor', zsettings);
+                    var vendor_id = new TomSelect('#selectVendor', zsettings);
                 </script>
+                @if (Model.Id > 0)
+                {
+                    <option>
+                        vendor_id.setValue(@Model.Vendor_Id);
+                    </option>
+                }
             </div>
 
             <div>

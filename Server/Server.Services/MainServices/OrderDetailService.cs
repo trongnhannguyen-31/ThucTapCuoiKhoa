@@ -18,6 +18,7 @@ namespace Phoenix.Server.Services.MainServices
 
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request);
     }
+
     public class OrderDetailService : IOrderDetailService
     {
         private readonly DataContext _dataContext;
@@ -81,19 +82,19 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        #region GetOrderDetailById
         public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request)
         {
             var result = new BaseResponse<OrderDetailDto>();
             try
             {
-
                 //setup query
                 var query = _dataContext.OrderDatails.AsQueryable();
 
                 //filter
-                if (request.Id > 0)
+                if (request.Order_Id > 0)
                 {
-                    query = query.Where(d => d.Id == request.Id);
+                    query = query.Where(d => d.Order_Id == request.Order_Id);
                 }
 
                 query = query.OrderByDescending(d => d.Id);
@@ -112,5 +113,6 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
     }
 }

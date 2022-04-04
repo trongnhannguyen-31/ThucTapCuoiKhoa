@@ -86,12 +86,12 @@ namespace Phoenix.Server.Services.MainServices
             try
             {
                 var orders = GetOrderById(id);
-                
+
                 if (orders.Status == "Chờ duyệt")
                 {
                     orders.Status = "Đã duyệt, chờ giao hàng";
-                    /*ProductSKU productSKU = new ProductSKU();
-                    productSKU.BuyCount = productSKU.BuyCount + 1;*/
+                    ProductSKU productSKU = new ProductSKU();
+                    productSKU.BuyCount = productSKU.BuyCount + 1;
                 }
                 else if (orders.Status == "Đã duyệt, chờ giao hàng")
                 {
@@ -111,5 +111,46 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        /*public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+                var orders = GetOrderById(id);
+
+                if (orders.Status == "Chờ duyệt")
+                {
+                    orders.Status = "Đã duyệt, chờ giao hàng";
+                    OrderDetail orderDetails = new OrderDetail();
+                    ProductSKU productSKU = new ProductSKU();
+                    orders.Id = orderDetails.Order_Id;
+                    if (orderDetails != null)
+                    {
+                        orderDetails.ProductSKU_Id = productSKU.Id;
+                        productSKU.BuyCount = productSKU.BuyCount - 1;
+                    }    
+
+                    *//*ProductSKU productSKU = new ProductSKU();
+                    productSKU.BuyCount = productSKU.BuyCount + 1;*//*
+                }
+                else if (orders.Status == "Đã duyệt, chờ giao hàng")
+                {
+                    orders.Status = "Đã giao hàng";
+                    orders.DeliveryDate = DateTime.Now;
+                }
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }*/
     }
 }
