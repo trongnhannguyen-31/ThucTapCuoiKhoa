@@ -72,6 +72,8 @@
     <Compile Include="Core\CrudResult.cs" />
     <Compile Include="Core\ListDto.cs" />
     <Compile Include="Core\ResultDto.cs" />
+    <Compile Include="Order\ChangeStatusDto.cs" />
+    <Compile Include="Order\ChangeStatusRequest.cs" />
     <Compile Include="ProductSKU\ProductSKUDto.cs" />
     <Compile Include="ProductSKU\ProductSKURequest.cs" />
     <Compile Include="Rating\RatingDto.cs" />

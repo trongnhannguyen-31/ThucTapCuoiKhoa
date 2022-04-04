@@ -1246,6 +1246,7 @@
     <Compile Include="Areas\Admin\Models\Account\UserModel.cs" />
     <Compile Include="Areas\Admin\Models\Account\UserRuleModel.cs" />
     <Compile Include="Areas\Admin\Models\BaseModel.cs" />
+    <Compile Include="Areas\Admin\Models\ChangeStatus\ChangeStatusModel.cs" />
     <Compile Include="Areas\Admin\Models\Common\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\Common\MimeTypes.cs" />
     <Compile Include="Areas\Admin\Models\Customer\CustomerModel.cs" />

@@ -4,6 +4,7 @@ using Phoenix.Server.Web.Areas.Admin.Models.Order;
 using Phoenix.Server.Web.Areas.Admin.Models.OrderDetail;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
 using Phoenix.Shared.Order;
+using Phoenix.Shared.OrderDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
     {
         // GET: Admin/Order
         private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _orderService = orderService;
+            _orderDetailService = orderDetailService;
         }
 
         public ActionResult Index()
@@ -48,14 +51,36 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }
 
         // Thay đổi trạng thái
-        public ActionResult ChangeStatus(int id)
+        /*public ActionResult ChangeStatus(int id)
         {
             var model = new OrderModel();
             model.Id = id;
+            var order_detail = new OrderDetailModel();
+            
             var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
             {
                 Id = model.Id
             });
+
+            var OrderDetails = _orderDetailService.GetAllOrderDetailById(model.Id, new OrderDetailRequest()
+            {
+                Id = order_detail.Order_Id
+            });
+            //SuccessNotification("Đổi trạng thái thành công");
+            return RedirectToAction("Index");
+        }*/
+
+        public ActionResult ChangeStatus(int id)
+        {
+            var model = new OrderModel();
+            model.Id = id;
+            
+
+            var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
+            {
+                Id = model.Id
+            });
+
             SuccessNotification("Đổi trạng thái thành công");
             return RedirectToAction("Index");
         }
