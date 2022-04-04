@@ -29,5 +29,8 @@ namespace Phoenix.Server.Data.Entity
         public string ModelCode { get; set; }
 
         public int Quantity { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+
     }
 }

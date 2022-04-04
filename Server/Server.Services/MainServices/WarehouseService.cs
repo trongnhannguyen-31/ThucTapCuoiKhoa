@@ -123,6 +123,7 @@ namespace Phoenix.Server.Services.MainServices
                 warehouses.Id = warehouses.Id;
                 warehouses.ProductSKU_Id = request.ProductSKU_Id;
                 warehouses.Quantity = warehouses.Quantity + request.NewQuantity;
+                warehouses.UpdatedAt = DateTime.Now;
 
                 await _dataContext.SaveChangesAsync();
                 result.Success = true;

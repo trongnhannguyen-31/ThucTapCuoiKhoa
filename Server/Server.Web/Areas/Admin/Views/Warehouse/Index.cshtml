@@ -6,27 +6,21 @@
 @section Breadcrumb{
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
         <span>Chương trình</span> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <a href="#" class="breadcrumb--active">Số lượng tồn</a>
+        <a href="#" class="breadcrumb--active">Kho hàng</a>
     </div>
 }
 @Html.AntiForgeryToken()
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">
-        Số lượng tồn
+        Kho hàng
     </h2>
-    @*<div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-        <a href="@Url.Action("Create","Warehouse")" class="btn btn-primary text-white shadow-md mr-2">Thêm mới</a>
-    </div>*@
 </div>
 <div class="grid gap-6 mt-5">
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
-                <input type="hidden" id="WarehouseId" class="form-control">
-            </div>
-            <div class="col-span-12 lg:col-span-6">
-                <label>Tên sản phẩm</label>
-                <input type="text" id="Product_Name" class="form-control">
+                <label>Tên Sản Phẩm</label>
+                <input type="text" id="WarehouseId" class="form-control">
             </div>
         </div>
         <div class="grid mt-3">
@@ -51,12 +45,12 @@
         }
         var table = new Tabulator("#main-grid", {
             layout: "fitDataFill",
-            @*ajaxURL: "@Html.Raw(Url.Action("List", "Warehouse"))",*@
             ajaxURL: "@Html.Raw(Url.Action("Index", "Warehouse"))",
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
-                //params.WarehouseId = $('#WarehouseId').val();
-                //params.Product_Name = $('#ProductName').val();
+                params.WarehouseId = @Model.WarehouseId;
+                //$('#WarehouseId').value();
+                //params.NameProduct = $('#NameProduct').val();
             },
             ajaxResponse: function (url, params, response) {
                 return response;
@@ -75,39 +69,37 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
+                //{ title: "Id", field: "WarehouseId", sorter: "string", width: 100 },
                 {
-                    title: "Id", field: "WarehouseId", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().WarehouseId}</a>`
+                    title: "Id", field: "WarehouseId", sorter: "string", width: 350, formatter(cell, formatterParams) {
+                        return `<a href="../Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().WarehouseId}</a>`
                     }
                 },
                 {
-                    title: "Tên sản phẩm", field: "ProductName", sorter: "string", width: 180, formatter(cell, formatterParams)
-                    {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().ProductName}</a>`
+                    title: "Tên sản phẩm", field: "Name", sorter: "string", width: 350, formatter(cell, formatterParams) {
+                        return `<a href="../Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Name}</a>`
                     }
                 },
                 {
-                    title: "Số lượng tồn", field: "Quantity", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Quantity}</a>`
-                    }
-                },
-                @*{
-                    title: "Ngày tạo", field: "CreatedAt", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().CreatedAt}</a>`
+                    title: "Số lượng", field: "Quantity", sorter: "string", width: 350, formatter(cell, formatterParams) {
+                        return `<a href="../Update/${cell.getData().WarehouseId}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Quantity}</a>`
                     }
                 },
                 {
-                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Warehouse/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().UpdatedAt}</a>`
+                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "", field: "", sorter: "string", width: 350, formatter(cell, formatterParams) {
+                        return `<a href="../Update/${cell.getData().WarehouseId}" class="btn btn-primary text-white shadow-md mr-2"> Cập nhật </a>`
                     }
-                },*@
+                },
             ],
         });
         let onSearch = (e) => {
             table.setData();
         }
         let onResetSearch = (e) => {
-            $('#Product_Name').val('');
+            $('#NameProduct').val('');
             table.setData();
         }
     </script>

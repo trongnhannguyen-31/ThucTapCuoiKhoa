@@ -28,5 +28,7 @@ namespace Phoenix.Shared.WarehouseMenu
         public int Quantity { get; set; }
 
         public string ProductName { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
     }
 }

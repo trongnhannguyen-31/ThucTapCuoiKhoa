@@ -24,5 +24,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.WarehouseMenu
         public string Model { get; set; }
 
         public int Quantity { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }
