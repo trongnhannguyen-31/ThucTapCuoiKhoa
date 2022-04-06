@@ -19,14 +19,14 @@
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
-                <label>Khách hàng</label>
+                <label>Tên khách hàng</label>
                 <input type="text" id="FullName" class="form-control">
             </div>
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
                 <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -67,9 +67,9 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                { title: "Mã khách hàng", field: "Id", sorter: "string", width: 180 },
+                { title: "Mã khách hàng", field: "Id", sorter: "string", width: 160 },
                 {
-                    title: "Tên khách hàng", field: "FullName", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    title: "Tên khách hàng", field: "FullName", sorter: "string", width: 200, formatter(cell, formatterParams)
                     {
                         return `<a href="../Admin/Customer/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().FullName}</a>`
                     }

@@ -45,7 +45,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                     Id = s.Id,
                     Name = s.Name,
                     CreatedAt = s.CreatedAt.ToString(),
-                    UpdateAt = s.UpdatedAt.ToString(),
+                    UpdatedAt = s.UpdatedAt.ToString(),
                 }),
                 Total = productTypes.DataCount
             };
@@ -102,6 +102,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             {
                 Id = model.Id,
                 Name = model.Name,
+                UpdatedAt = model.UpdatedAt,
             });
             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
             return RedirectToAction("Update", new { id = model.Id });

@@ -26,14 +26,13 @@
                 <input type="text" id="Customer_Name" class="form-control">
             </div>
             <div class="col-span-12 lg:col-span-6">
-                <!-- <label>Tên khách hàng</label> -->
                 <input type="hidden" id="Product_Name" class="form-control">
             </div>
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
                 <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -57,7 +56,6 @@
             ajaxRequesting: function (url, params) {
                 params.Customer_Name = $('#Customer_Name').val(),
                 params.Product_Name = $('#Product_Name').val();
-
             },
             ajaxResponse: function (url, params, response) {
                 return response;
@@ -76,34 +74,28 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                // { title: "Mã khách hàng", field: "Id", sorter: "string", width: 180 },
+                { title: "Id", field: "Id", sorter: "string", width: 100 },
                 {
                     title: "Tên khách hàng", field: "Customer_Name", sorter: "string", width: 180, formatter(cell, formatterParams) {
                         return `<a href="../Admin/Rating/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Customer_Name}</a>`
                     }
                 },
                 {
-                    title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                    title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 280, formatter(cell, formatterParams) {
                         return `<a href="../Admin/Rating/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Name}</a>`
                     }
                 },
                 {
-                    title: "Số sao", field: "Rate", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Rating/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Rate}</a>`
+                    title: "Số sao", field: "Rate", sorter: "string", width: 100, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Rating/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Rate}</a>`
                     }
                 },
                 {
-                    title: "Bình luận", field: "Comment", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    title: "Bình luận", field: "Comment", sorter: "string", width: 280, formatter(cell, formatterParams)
                     {
                         return `<a href="../Rating/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Comment}</a>`
                     }
                 },
-                @*{
-                    title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },
-                {
-                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },*@
             ],
         });
         let onSearch = (e) => {

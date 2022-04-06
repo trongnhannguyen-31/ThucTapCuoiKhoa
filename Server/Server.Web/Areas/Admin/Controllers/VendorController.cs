@@ -105,30 +105,37 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }*/
 
 
-        /*public ActionResult Update(int id)
-         {
-             var VendorDto = _vendorService.GetVendorsById(id);
-             if (VendorDto == null)
-             {
-                 return RedirectToAction("List");
-             }
+        public ActionResult Update(int id)
+        {
+            var VendorDto = _vendorService.GetVendorsById(id);
+            if (VendorDto == null)
+            {
+                return RedirectToAction("List");
+            }
 
-             var projectModel = VendorDto.MapTo<VendorModel>();
-             return View(projectModel);
-         }*/
+            var projectModel = VendorDto.MapTo<VendorModel>();
+            return View(projectModel);
+        }
 
-        /* [HttpPost]
-         public async Task<ActionResult> Update(VendorModel model)
-         {
-             var vendor = _vendorService.GetVendorsById(model.Id);
-             if (vendor == null)
-                 return RedirectToAction("List");
-             if (!ModelState.IsValid)
-                 return View(model);
-             await _vendorService.Update(model.MapTo<VendorDto>());
-             SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
-             return RedirectToAction("Update", new { id = model.Id });
-         }*/
+        [HttpPost]
+        public async Task<ActionResult> Update(VendorModel model)
+        {
+            var vendor = _vendorService.GetVendorsById(model.Id);
+            if (vendor == null)
+                return RedirectToAction("List");
+            if (!ModelState.IsValid)
+                return View(model);
+            var vendors = await _vendorService.UpdateVendors(new VendorRequest
+            {
+                Name = model.Name,
+                Phone = model.Phone,
+                Nation = model.Nation,
+                Logo = model.Logo,
+                UpdatedAt = model.UpdatedAt,
+            });
+            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
+            return RedirectToAction("Update", new { id = model.Id });
+        }
 
 
         /* // Upload hình ảnh

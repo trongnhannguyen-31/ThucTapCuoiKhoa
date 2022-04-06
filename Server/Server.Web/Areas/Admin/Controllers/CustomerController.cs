@@ -63,7 +63,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         {
             var project = _customerService.GetCustomersById(model.Id);
             if (project == null)
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             if (!ModelState.IsValid)
                 return View(model);
             var customers = await _customerService.UpdateCustomers(new CustomerRequest

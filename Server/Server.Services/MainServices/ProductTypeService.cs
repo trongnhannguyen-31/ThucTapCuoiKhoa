@@ -34,7 +34,7 @@ namespace Phoenix.Server.Services.MainServices
         // Lấy danh sách loại sản phẩm
         public async Task<BaseResponse<ProductTypeDto>> GetAllProductTypes(ProductTypeRequest request)
         {
-            var result = new BaseResponse<ProductTypeDto>() { Success = true };
+            var result = new BaseResponse<ProductTypeDto>();
             try
             {
                 // setup query
@@ -57,6 +57,7 @@ namespace Phoenix.Server.Services.MainServices
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
                 result.Data = data.MapTo<ProductTypeDto>();
+                result.Success = true;
             }
             catch (Exception ex)
             {

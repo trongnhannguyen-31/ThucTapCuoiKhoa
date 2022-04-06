@@ -95,12 +95,6 @@
                         return '<a href="@Url.Action("Update","Vendor")" class="btn btn-primary text-white shadow-md mr-2">Chỉnh sửa</a>'
                     }
                 },
-
-                {
-                    title: "", field: "Name", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return '<a href="@Url.Action("Delete","Vendor")" class="btn btn-primary text-white shadow-md mr-2">Xóa</a>'
-                    }
-                },
             ],
         });
         let onSearch = (e) => {

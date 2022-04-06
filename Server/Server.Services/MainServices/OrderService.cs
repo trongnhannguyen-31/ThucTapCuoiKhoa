@@ -147,7 +147,7 @@ namespace Phoenix.Server.Services.MainServices
                 var list = query.Select(mapper.Map<ChangeStatusDto>).ToList();
 
                 result.Data = list.MapTo<ChangeStatusDto>();
-                //result.Success = true;
+                result.Success = true;
             }
             catch (Exception ex)
             {
@@ -167,24 +167,23 @@ namespace Phoenix.Server.Services.MainServices
         public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
             var result = new BaseResponse<OrderDto>();
+            //var change = new BaseResponse<ChangeStatusDto>();
             try
             {
-                //var orders = GetOrderById(id);
-                ChangeStatusRequest.Id = id;
-                var data = GetListById(ChangeStatusRequest);
+                var orders = GetOrderById(id);
+                //ChangeStatusRequest.Id = id;
+                //var data = GetListById(ChangeStatusRequest);
                 //ListOrder = data;
 
-                if (request.Status == "Chờ xử lý")
-                {
-                    request.Status = "Đã duyệt, chờ giao hàng";
 
-                    ProductSKU productSKU = new ProductSKU();
-                    productSKU.BuyCount = productSKU.BuyCount + 1;
-                }
-                else if (request.Status == "Đã duyệt, chờ giao hàng")
+                if (orders.Status == "Chờ xử lý")
                 {
-                    request.Status = "Đã giao hàng";
-                    request.DeliveryDate = DateTime.Now;
+                    orders.Status = "Đã duyệt, chờ giao hàng";
+                }
+                else if (orders.Status == "Đã duyệt, chờ giao hàng")
+                {
+                    orders.Status = "Đã giao hàng";
+                    orders.DeliveryDate = DateTime.Now;
                 }
 
                 await _dataContext.SaveChangesAsync();

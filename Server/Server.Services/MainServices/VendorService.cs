@@ -15,10 +15,13 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IVendorService
     {
-        Task<BaseResponse<VendorDto>> GetAllVendors(VendorRequest request);
-        Task<BaseResponse<VendorDto>> CreateVendors(VendorRequest request);
-        Task<BaseResponse<VendorDto>> GetVendorsById(VendorRequest request);
+        Vendor GetVendorsById(int id);
 
+        Task<BaseResponse<VendorDto>> GetAllVendors(VendorRequest request);
+
+        Task<BaseResponse<VendorDto>> CreateVendors(VendorRequest request);
+
+        Task<BaseResponse<VendorDto>> UpdateVendors(VendorRequest request);
     }
     public class VendorService : IVendorService
     {
@@ -107,7 +110,7 @@ namespace Phoenix.Server.Services.MainServices
                     Logo = request.Logo,
                     Nation = request.Nation,
                     Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
+                    UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 };
                 _dataContext.Vendors.Add(vendors);
@@ -117,41 +120,42 @@ namespace Phoenix.Server.Services.MainServices
             }
             catch(Exception ex)
             {
-
+                result.Success = true;
+                result.Message = ex.Message;
             }
 
             return result;
         }
 
-        public async Task<BaseResponse<VendorDto>> GetVendorsById(VendorRequest request)
+        public Vendor GetVendorsById(int id) => _dataContext.Vendors.Find(id);
+
+        #region Update
+        public async Task<BaseResponse<VendorDto>> UpdateVendors(VendorRequest request)
         {
             var result = new BaseResponse<VendorDto>();
             try
             {
-                Vendor vendors = new Vendor
-                {
-                    Name = request.Name,
-                    Phone = request.Phone,
-                    Logo = request.Logo,
-                    Nation = request.Nation,
-                    Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
-                    CreatedAt = DateTime.Now
-                };
-                _dataContext.Vendors.Add(vendors);
-                await _dataContext.SaveChangesAsync();
+                var vendors = GetVendorsById(request.Id);
 
+                vendors.Name = request.Name;
+                vendors.Phone = request.Phone;
+                vendors.Logo = request.Logo;
+                vendors.Nation = request.Nation;
+                vendors.Deleted = false;
+                vendors.UpdatedAt = DateTime.Now;
+
+                await _dataContext.SaveChangesAsync();
                 result.Success = true;
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
-
-
+        #endregion
 
     }
 }

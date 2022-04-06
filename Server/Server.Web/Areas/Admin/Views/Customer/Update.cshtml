@@ -8,13 +8,16 @@
             @Model.FullName
         </h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="@Html.Raw(Url.Action("List"))" class="btn btn-warning w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
+            <a href="@Html.Raw(Url.Action("Index"))" class="btn btn-warning w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
                 <i data-feather="corner-down-left" class="w-4 h-4 mr-2"></i> Quay lại
             </a>
             <button type="submit" class="btn btn-success w-32 mr-2 mb-2 flex items-center justify-center bg-theme-9 text-white">
                 <i data-feather="save" class="w-4 h-4 mr-2"></i>Lưu
             </button>
-            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-dark w-32 mr-2 mb-2 flex items-center justify-center bg-theme-6 text-white">
+            @*<a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-dark w-32 mr-2 mb-2 flex items-center justify-center bg-theme-6 text-white">
+                <i data-feather="trash" class="w-4 h-4 mr-2"></i> Xóa
+            </a>*@
+            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-danger w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
                 <i data-feather="trash" class="w-4 h-4 mr-2"></i> Xóa
             </a>
         </div>
@@ -31,8 +34,10 @@
         @using (Html.BeginForm("Delete", "Customer", new { id = Model.Id }))
         {
             <div class="px-5 pb-8 text-center">
-                <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Không! cảm ơn.</button>
-                <button type="submit" class="button w-24 bg-theme-6 text-white">Đồng ý</button>
+                @*<button type="button" data-dismiss="modal" class="btn btn-warning w-24 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Không! cảm ơn.</button>
+                <button type="submit" class="btn btn-success w-24 bg-theme-9 text-white">Đồng ý</button>*@
+                <button type="button" data-dismiss="modal" class="btn btn-warning w-24 text-white mr-1">Không! Cám ơn.</button>
+                <button type="submit" class="btn btn-success w-24 bg-theme-9 text-white">Đồng ý</button>
             </div>
         }
     </div>

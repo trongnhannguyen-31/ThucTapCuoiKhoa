@@ -34,7 +34,5 @@ namespace Phoenix.Server.Data.Entity
         public int Product_Id { get; set; }
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
-
-        public bool Deleted { get; set; }
     }
 }
