@@ -18,6 +18,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.Vendor
 
         public DateTime CreateAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

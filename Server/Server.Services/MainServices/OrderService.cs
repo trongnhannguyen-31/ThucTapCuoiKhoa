@@ -180,6 +180,10 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     orders.Status = "Đã duyệt, chờ giao hàng";
                 }
+                else if (orders.Status == "Yeu cau huy")
+                {
+                    orders.Status = "Xác nhận hủy đơn";
+                }
                 else if (orders.Status == "Đã duyệt, chờ giao hàng")
                 {
                     orders.Status = "Đã giao hàng";

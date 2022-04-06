@@ -774,6 +774,7 @@
     <Content Include="Areas\Admin\Views\ProductSKU\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\ProductSKU\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Vendor\Update.cshtml" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all-vsdoc.js" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all.min.intellisense.js" />
     <Content Include="assets\js\kendo\2019.3.1023\kendo.all.min.js" />
@@ -1258,7 +1259,6 @@
     <Compile Include="Areas\Admin\Models\Product\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\Rating\RatingModel.cs" />
     <Compile Include="Areas\Admin\Models\Vendor\VendorModel.cs" />
-    <Compile Include="Areas\Admin\Models\Vendor\VendorPhoto.cs" />
     <Compile Include="Areas\Admin\Models\WarehouseMenu\WarehouseMenuModel.cs" />
     <Compile Include="Areas\Admin\Models\Warehouse\WarehouseModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />

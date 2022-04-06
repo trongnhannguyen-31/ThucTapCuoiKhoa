@@ -59,6 +59,11 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Screen.Contains(request.Screen));
                 }
 
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
+                }
+
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();

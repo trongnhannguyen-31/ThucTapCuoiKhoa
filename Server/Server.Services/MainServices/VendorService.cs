@@ -22,6 +22,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<VendorDto>> CreateVendors(VendorRequest request);
 
         Task<BaseResponse<VendorDto>> UpdateVendors(VendorRequest request);
+
+        Task<BaseResponse<VendorDto>> DeleteVendors(int Id);
     }
     public class VendorService : IVendorService
     {
@@ -48,6 +50,11 @@ namespace Phoenix.Server.Services.MainServices
                 if (!string.IsNullOrEmpty(request.Phone))
                 {
                     query = query.Where(d => d.Phone.Contains(request.Phone));
+                }
+
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
                 }
 
                 query = query.OrderByDescending(d => d.Id);
@@ -129,6 +136,7 @@ namespace Phoenix.Server.Services.MainServices
 
         public Vendor GetVendorsById(int id) => _dataContext.Vendors.Find(id);
 
+
         #region Update
         public async Task<BaseResponse<VendorDto>> UpdateVendors(VendorRequest request)
         {
@@ -137,10 +145,11 @@ namespace Phoenix.Server.Services.MainServices
             {
                 var vendors = GetVendorsById(request.Id);
 
+                vendors.Id = request.Id;
                 vendors.Name = request.Name;
-                vendors.Phone = request.Phone;
                 vendors.Logo = request.Logo;
                 vendors.Nation = request.Nation;
+                vendors.Phone = request.Phone;
                 vendors.Deleted = false;
                 vendors.UpdatedAt = DateTime.Now;
 
@@ -157,5 +166,27 @@ namespace Phoenix.Server.Services.MainServices
         }
         #endregion
 
+        #region Delete
+        public async Task<BaseResponse<VendorDto>> DeleteVendors(int Id)
+        {
+            var result = new BaseResponse<VendorDto>();
+            try
+            {
+                var vendors = GetVendorsById(Id);
+
+                vendors.Deleted = true;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

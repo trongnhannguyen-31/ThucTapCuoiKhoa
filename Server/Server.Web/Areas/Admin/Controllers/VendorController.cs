@@ -76,9 +76,55 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return RedirectToAction("Create");
         }
 
+        #region Update
+        public ActionResult Update(int id)
+        {
+            var projectDto = _vendorService.GetVendorsById(id);
+            if (projectDto == null)
+            {
+                return RedirectToAction("List");
+            }
 
+            var projectModel = projectDto.MapTo<VendorModel>();
+            return View(projectModel);
+        }
 
+        [HttpPost]
+        public async Task<ActionResult> Update(VendorModel model)
+        {
+            var projetc = _vendorService.GetVendorsById(model.Id);
+            if (projetc == null)
+                return RedirectToAction("List");
+            if (!ModelState.IsValid)
+                return View(model);
+            var vendors = await _vendorService.UpdateVendors(new VendorRequest
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Phone = model.Phone,
+                Logo = model.Logo,
+                Nation = model.Nation,
+                UpdatedAt = model.UpdatedAt,
+            });
+            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
+            return RedirectToAction("Update", new { id = model.Id });
+        }
+        #endregion
 
+        #region
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var project = _vendorService.GetVendorsById(id);
+            if (project == null)
+                //No email account found with the specified id
+                return RedirectToAction("List");
+
+            await _vendorService.DeleteVendors(project.Id);
+            SuccessNotification("Xóa hãng sản xuất thành công");
+            return RedirectToAction("List");
+        }
+        #endregion
 
 
 
@@ -105,37 +151,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         }*/
 
 
-        public ActionResult Update(int id)
-        {
-            var VendorDto = _vendorService.GetVendorsById(id);
-            if (VendorDto == null)
-            {
-                return RedirectToAction("List");
-            }
 
-            var projectModel = VendorDto.MapTo<VendorModel>();
-            return View(projectModel);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Update(VendorModel model)
-        {
-            var vendor = _vendorService.GetVendorsById(model.Id);
-            if (vendor == null)
-                return RedirectToAction("List");
-            if (!ModelState.IsValid)
-                return View(model);
-            var vendors = await _vendorService.UpdateVendors(new VendorRequest
-            {
-                Name = model.Name,
-                Phone = model.Phone,
-                Nation = model.Nation,
-                Logo = model.Logo,
-                UpdatedAt = model.UpdatedAt,
-            });
-            SuccessNotification("Chỉnh sửa thông tin chương trình thành công");
-            return RedirectToAction("Update", new { id = model.Id });
-        }
 
 
         /* // Upload hình ảnh

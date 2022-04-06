@@ -6,6 +6,7 @@ using Phoenix.Server.Web.Areas.Admin.Models.Product;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductType;
 using Phoenix.Server.Web.Areas.Admin.Models.Rating;
+using Phoenix.Server.Web.Areas.Admin.Models.Vendor;
 using Phoenix.Server.Web.Areas.Admin.Models.Warehouse;
 using Phoenix.Server.Web.Areas.Admin.Models.WarehouseMenu;
 using Phoenix.Shared.Warehouse;
@@ -32,6 +33,9 @@ namespace Phoenix.Server.Web.Infrastructure
             CreateMap<Product, ProductModel>();
 
             CreateMap<OrderDetail, OrderDetailModel>();
+
+            CreateMap<Vendor, VendorModel>();
+
         }
     }
 }
