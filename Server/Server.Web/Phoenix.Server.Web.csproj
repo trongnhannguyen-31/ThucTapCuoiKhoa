@@ -741,6 +741,7 @@
     <Content Include="assets\images\profile-9.jpg" />
     <Content Include="assets\images\woman-illustration.svg" />
     <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\jquery.filedrop.js" />
     <Content Include="assets\js\kendo\2019.3.1023\angular.min.js" />
     <Content Include="assets\js\kendo\2019.3.1023\cultures\kendo.culture.vi-VN.min.js" />
     <Content Include="assets\js\kendo\2019.3.1023\jquery.min.js" />
@@ -1325,6 +1326,7 @@
     <Folder Include="Areas\Admin\Views\Export\" />
     <Folder Include="Areas\Admin\Views\WarehouseMenu\" />
     <Folder Include="Models\Home\" />
+    <Folder Include="UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

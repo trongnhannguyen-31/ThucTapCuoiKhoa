@@ -7,6 +7,7 @@ using Phoenix.Shared.Product;
 using Phoenix.Shared.ProductSKU;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -48,7 +49,21 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
-        #region Create
+
+        [HttpPost]
+        public ActionResult UploadFiles(IEnumerable<HttpPostedFileBase> files)
+        {
+            foreach (var file in files)
+            {
+                string filePath = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                file.SaveAs(Path.Combine(Server.MapPath("~/UploadImage"), filePath));
+                //Here you can write code for save this information in your database if you want
+            }
+
+            return Json("file uploaded successfully");
+        }
+
+        #region
         // Create Product
         public ActionResult Create()
         {

@@ -97,7 +97,6 @@ namespace Phoenix.Server.Services.MainServices
         }
 
 
-        // Create Product
         public async Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request)
         {
             var result = new BaseResponse<ProductDto>();
@@ -130,6 +129,40 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        // Create Product
+        /*public async Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request)
+        {
+            var result = new BaseResponse<ProductDto>();
+            try
+            {
+                Product products = new Product
+                {
+                    Vendor_Id = request.Vendor_Id,
+                    ProductType_Id = request.ProductType_Id,
+                    Name = request.Name,
+                    ModelCode = request.ModelCode,
+                    Image1 = request.Image1,
+                    Image2 = request.Image2,
+                    Image3 = request.Image3,
+                    Image4 = request.Image4,
+                    Image5 = request.Image5,
+                    Deleted = false,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                };
+                _dataContext.Products.Add(products);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }*/
 
         public Product GetProductsById(int id) => _dataContext.Products.Find(id);
 
