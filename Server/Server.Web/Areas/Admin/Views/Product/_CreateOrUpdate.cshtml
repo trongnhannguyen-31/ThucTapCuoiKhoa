@@ -107,69 +107,46 @@
                 @Html.ValidationMessageFor(model => model.ModelCode)
             </div>
 
-            @if (Model.Id > 0)
-            {
-                <div>
-                    <h2>Drag & Drop file upload </h2>
-                    <div id="dropArea">
-                        Drop your files here
-                    </div>
-                    <h4>Uploaded files : </h4>
-                    <ul class="list-group" id="uploadList">
-                    </ul>
-                </div>
-            }
-
 
         </div>
     </div>
+
+    @if (Model.Id > 0)
+    {
+        <div class="intro-y col-span-12 lg:col-span-6">
+            <div class="intro-y box p-5">
+                <div class="dropzone" id="dZUpload">
+                    <div class="fallback"> <input name="file" type="file" /> </div>
+                    <div class="dz-default dz-message" data-dz-message>
+                        <div class="text-lg font-medium">Drop files here or click to upload.</div>
+                        <div class="text-gray-600"> This is just a demo dropzone. Selected files are <span class="font-medium">not</span> actually uploaded.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
 </div>
 
-<style>
-    #dropArea {
-        background: #b5b5b5;
-        border: black dashed 1px;
-        height: 50px;
-        text-align: center;
-        color: #fff;
-        padding-top: 12px;
-    }
-
-    .active-drop {
-        background: #77bafa !important;
-        border: solid 2px blue !important;
-        opacity: .5;
-        color: black !important;
-    }
-</style>
-
-@section Scripts{
-    <script type="text/javascript">
-        $(function () {
-            $('#dropArea').filedrop({
-                url: '@Url.Action("UploadFiles")',
-                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
-                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
-                paramname: 'files',
-                maxfiles: 5,
-                maxfilesize: 5, // in MB
-                dragOver: function () {
-                    $('#dropArea').addClass('active-drop');
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            //Simple Dropzonejs 
+            $("#dZUpload").dropzone({
+                url: "hn_SimpeFileUploader.ashx",
+                maxFiles: 5,
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    console.log("Successfully uploaded :" + imgName);
                 },
-                dragLeave: function () {
-                    $('#dropArea').removeClass('active-drop');
-                },
-                drop: function () {
-                    $('#dropArea').removeClass('active-drop');
-                },
-                afterAll: function (e) {
-                    $('#dropArea').html('file(s) uploaded successfully');
-                },
-                uploadFinished: function (i, file, response, time) {
-                    $('#uploadList').append('<li class="list-group-item">'+file.name+'</li>')
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
                 }
-            })
-        })
+            });
+        });
     </script>
-}
 
+}

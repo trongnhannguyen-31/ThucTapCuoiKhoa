@@ -8,10 +8,13 @@ using Phoenix.Shared.ProductSKU;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
+
 
 namespace Phoenix.Server.Web.Areas.Admin.Controllers
 {
@@ -47,20 +50,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Total = products.DataCount
             };
             return Json(gridModel);
-        }
-
-
-        [HttpPost]
-        public ActionResult UploadFiles(IEnumerable<HttpPostedFileBase> files)
-        {
-            foreach (var file in files)
-            {
-                string filePath = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                file.SaveAs(Path.Combine(Server.MapPath("~/UploadImage"), filePath));
-                //Here you can write code for save this information in your database if you want
-            }
-
-            return Json("file uploaded successfully");
         }
 
         #region
@@ -147,5 +136,70 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        #region Upload
+        public static System.Drawing.Image ResizeMyImage(System.Drawing.Image image, int maxHeight)
+        {
+            var ratio = (double)maxHeight / image.Height;
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var g = Graphics.FromImage(newImage))
+            {
+                g.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+            return newImage;
+        }
+
+        public void ProcessRequest(HttpContext context)
+        {
+            context.Response.ContentType = "text/plain";
+
+            string dirFullPath = HttpContext.Server.MapPath("~/UploadImage/");
+
+            //string dirFullPath = HttpContext.Current.Server.MapPath("~/MediaUploader/");
+            string[] files;
+            int numFiles;
+            files = System.IO.Directory.GetFiles(dirFullPath);
+            numFiles = files.Length;
+            numFiles = numFiles + 1;
+
+            string str_image = "";
+
+            foreach (string s in context.Request.Files)
+            {
+                HttpPostedFile file = context.Request.Files[s];
+                string fileName = file.FileName;
+                string fileExtension = file.ContentType;
+
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    fileExtension = Path.GetExtension(fileName);
+                    str_image = "MyPHOTO_" + numFiles.ToString() + fileExtension;
+                    string pathToSave = HttpContext.Server.MapPath("~/UploadImage/") + str_image;
+                    //string pathToSave = HttpContext.Current.Server.MapPath("~/MediaUploader/") + str_image;
+                    System.Drawing.Bitmap bmpPostedImage = new System.Drawing.Bitmap(file.InputStream);
+
+                    //ResizeMyImage method call
+                    System.Drawing.Image objImage = ResizeMyImage(bmpPostedImage, 200);
+                    objImage.Save(pathToSave, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+            context.Response.Write(str_image);
+        }
+        #endregion
+
+        public ActionResult AddImages(int id)
+        {
+            var model = new ProductModel();
+            model.Id = id;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UploadProductImages(int id, HttpPostedFileBase file)
+        {
+            return AddImages(id);
+        }
     }
 }
