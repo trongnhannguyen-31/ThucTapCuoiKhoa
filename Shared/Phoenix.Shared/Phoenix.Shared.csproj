@@ -64,6 +64,8 @@
     <Compile Include="Common\DropdownDto.cs" />
     <Compile Include="Customer\CustomerDto.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
+    <Compile Include="ImageRecord\ImageRecordDto.cs" />
+    <Compile Include="ImageRecord\ImageRecordRequest.cs" />
     <Compile Include="OrderDetail\OrderDetailAppDto.cs" />
     <Compile Include="OrderDetail\OrderDetailAppRequest.cs" />
     <Compile Include="OrderDetail\OrderDetailDto.cs" />

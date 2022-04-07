@@ -11,60 +11,72 @@
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Phoenix.Mobile.Pages.Auth.LoginPage">
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource StackPageWrapper}" Spacing="10" Margin="20,0">
-            <forms:CachedImage Source="unknown" Aspect="AspectFit"
-                               HeightRequest="80"
+        <StackLayout Style="{StaticResource StackPageWrapper}" Spacing="10" Margin="0,0" BackgroundColor="#121e38">
+            <forms:CachedImage Source="logo" Aspect="AspectFit"
+                               HeightRequest="200"
                                Margin="0,30,0,20"/>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Đăng nhập" 
                        FontSize="26"
                        HorizontalOptions="CenterAndExpand"
-                       TextColor="{StaticResource PrimaryTextColor}"/>
+                       TextColor="#fff"/>
             </StackLayout>
             <controls:CommonInput Style="{StaticResource CommonInputPrimary}"
-                                  IconColor="{DynamicResource PrimaryColor}"
+                                  IconColor="#00adef"
+                                  TextColor="#00adef"
                                   Text="{Binding Username}" Margin="0,15,0,0"
                                   Placeholder="Tên đăng nhập"
                                   ControlPadding="15,0,0,0"
                                   IconStart="{StaticResource IconPhone}"></controls:CommonInput>
             <controls:CommonInput Style="{StaticResource CommonInputPrimary}"
-                                  IconColor="{DynamicResource PrimaryColor}"
+                                  TextColor="#00adef"
+                                  IconColor="#00adef"
                                   Text="{Binding Password}"
                                   ControlPadding="15,0,0,0"
                                   Placeholder="Mật khẩu"
                                   IsPassword="True"
                                   IconStart="{StaticResource IconKey}"></controls:CommonInput>
-            <!--<controls:CommonButton Style="{StaticResource CommonButtonPrimary}" Margin="0,20,0,0"
+            <StackLayout Orientation="Horizontal">
+                <CheckBox
+                          Color="#00adef"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Start"/>
+                <Label 
+                       Text="Ghi nhớ mật khẩu"
+                       TextColor="#fff"
+                       VerticalTextAlignment="Center"></Label>
+                <controls:CommonButton Style="{StaticResource CommonButtonPrimary}" Margin="0,20,0,0"
                                    IconStartWidth="0" ButtonPadding="50,0"
                                    Text="Đăng nhập" 
                                    xe:TouchEffect.Color="AliceBlue"
                                    xe:Commands.Tap="{Binding LoginCommand}"
-                                   IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}"/>-->
+                                   IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}"/>
+            </StackLayout>
             <StackLayout Margin="0,20,0,0"
                          IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}">
-                <!--<AbsoluteLayout HorizontalOptions="Center">
-                    <Grid xe:TouchEffect.Color="AliceBlue"
-                          xe:Commands.Tap="{Binding LoginCommand}">
-                        <forms:CachedImage Source="Buttons" 
-                                           Grid.Row="0"
-                                           HeightRequest="50"/>
-                        <Label Grid.Row="0"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               TextColor="#fff"
-                               Text="Đăng nhập"/>
-                    </Grid>
-                </AbsoluteLayout>-->
-                <controls:CommonButton Text="Sign in" 
+                <!--<absolutelayout horizontaloptions="center">
+                    <grid xe:toucheffect.color="aliceblue"
+                          xe:commands.tap="{binding logincommand}">
+                        <forms:cachedimage source="buttons" 
+                                           grid.row="0"
+                                           heightrequest="50"/>
+                        <label grid.row="0"
+                               horizontaloptions="center"
+                               fontattributes="bold"
+                               textcolor="#fff"
+                               text="đăng nhập"/>
+                    </grid>
+                </absolutelayout>-->
+                <!--<controls:CommonButton Text="Sign in" 
                                        TextColor="#fff" BackgroundColor="#000"
                                        WidthRequest="240"
                                        Radius="15"
                                        IconStart="{StaticResource IconKey}"
                                        Command="{Binding LoginCommand}"
-                                       />
-               
-               
+                                       />-->
+
+
 
             </StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}"
@@ -73,6 +85,7 @@
                         VerticalOptions="Center" />
             <Label Style="{StaticResource LabelUrlStyle}" HorizontalOptions="Center"
                    Margin="0,10,0,0" FontSize="{Binding MediumFontSize}"
+                   TextColor="#fff"
                    Text="Quên mật khẩu?" FontAttributes="Italic"
                    behaviors:TappedGestureAttached.Command="{Binding ForgotPassCommand}"></Label>
         </StackLayout>

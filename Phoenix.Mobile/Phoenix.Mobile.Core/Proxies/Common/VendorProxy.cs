@@ -1,5 +1,6 @@
 ﻿using Phoenix.Framework.Core;
 using Phoenix.Mobile.Core.Framework;
+using Phoenix.Shared.Common;
 using Phoenix.Shared.Vendor;
 using Refit;
 using System;
@@ -11,30 +12,30 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 {
     public interface IVendorProxy
     {
-        Task<List<VendorDto>> GetAllVendors(VendorRequest request);
+        Task<BaseResponse<VendorDto>> GetAllVendors(VendorRequest request);
     }
 
     public class VendorProxy : BaseProxy, IVendorProxy
     {
-        public async Task<List<VendorDto>> GetAllVendors(VendorRequest request)
+        public async Task<BaseResponse<VendorDto>> GetAllVendors(VendorRequest request)
         {
             try
             {
                 var api = RestService.For<IVendorApi>(GetHttpClient());
-                var result = await api.GetAllVendors(request);
-                if (result == null) return new List<VendorDto>();
-                return result;
+                //List<VendorDto> result = await api.GetAllVendors(request);
+                //if (result == null) return new List<VendorDto>();
+                return await api.GetAllVendors(request);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(new NetworkException(ex), true);
-                return new List<VendorDto>();
+                return null;
             }
         }
         public interface IVendorApi
         {
             [Post("/vendor/GetAllVendors")]
-            Task<List<VendorDto>> GetAllVendors([Body] VendorRequest request);
+            Task<BaseResponse<VendorDto>> GetAllVendors([Body] VendorRequest request);
 
         }
     }

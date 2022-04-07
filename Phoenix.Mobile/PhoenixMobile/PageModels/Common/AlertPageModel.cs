@@ -1,36 +1,91 @@
-﻿using Phoenix.Mobile.Core.Models.Vendor;
+﻿using Phoenix.Mobile.Core.Infrastructure;
+using Phoenix.Mobile.Core.Models.ImageRecord;
+using Phoenix.Mobile.Core.Models.Order;
 using Phoenix.Mobile.Core.Services.Common;
 using Phoenix.Mobile.Helpers;
+//using Phoenix.Shared.ImageRecord;
+using Phoenix.Shared.Order;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
     public class AlertPageModel : BasePageModel
     {
-        public AlertPageModel()
+        private readonly IOrderService _orderService;
+        private readonly IDialogService _dialogService;
+        public AlertPageModel(IOrderService orderService, IDialogService dialogService)
         {
-            
+            _orderService = orderService;
+            _dialogService = dialogService;
         }
+
         public override async void Init(object initData)
         {
             base.Init(initData);
             NavigationPage.SetHasNavigationBar(CurrentPage, false);
-            CurrentPage.Title = "AlertPage";
+            CurrentPage.Title = "Nhà cung cấp";
         }
         protected override async void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            TestString = "hello world";
+            await LoadData();
         }
 
-        #region commands
+        private async Task LoadData()
+        {
+            request.Customer_Id = 1;
+            var data = await _orderService.GetAllAppOrders(request);
+            if (data == null)
+            {
+                await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
+            }
+            else
+            {
 
-        #endregion
+                Orders = data;
+                RaisePropertyChanged(nameof(Orders));
+            }
+        }
+
+        public ObservableCollection<OrderModel> Order { get; set; }
+        private OrderModel _selectedOrder;
+        public OrderModel SelectedOrder
+        {
+            get
+            {
+                return _selectedOrder;
+            }
+            set
+            {
+                _selectedOrder = value;
+                if (value != null)
+                    OrderSelected.Execute(value);
+            }
+        }
+
+        public Command<OrderModel> OrderSelected
+        {
+            get
+            {
+                return new Command<OrderModel>(async (order) => {
+                        await CoreMethods.PushPageModel<OrderDetailPageModel>(order);
+                });
+            }
+        }
 
         #region properties
-        public string TestString { get; set; }
+        public List<OrderModel> Orders { get; set; } = new List<OrderModel>();
+
+        public OrderRequest request { get; set; } = new OrderRequest();
+
         #endregion
     }
+
+
+
 }

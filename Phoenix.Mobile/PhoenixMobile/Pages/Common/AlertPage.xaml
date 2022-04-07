@@ -1,12 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phoenix.Mobile.Pages.Common.AlertPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Phoenix.Mobile.Controls"
+              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects" 
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common"
+             xmlns:order="clr-namespace:Phoenix.Mobile.Core.Models.Order;assembly=Phoenix.Mobile.Core"
+             x:Class="Phoenix.Mobile.Pages.Common.AlertPage"
+             x:DataType="common:AlertPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding TestString}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Orders}"
+                      HasUnevenRows="True"
+                      BackgroundColor="#ecf0f1"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedOrder}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="order:OrderModel">
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"/>
+                                <!--<Label Text="{Binding Address}"
+                                       FontSize="Small"/>-->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Address}"
+                                       FontSize="Small"/>
+                                    <Label Text="{Binding Total, StringFormat='{0:N0} đ'}"
+                                       TextColor="Red"
+                                       FontSize="Small"
+                                           HorizontalOptions="EndAndExpand"
+                                       FontAttributes="Bold"/>
+                                </StackLayout>
+                                <Label Text="{Binding Status}"
+                                       TextColor="#009e45"
+                                       FontSize="Small"
+                                       FontAttributes="Italic"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

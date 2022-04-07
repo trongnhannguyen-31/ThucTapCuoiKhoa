@@ -62,6 +62,14 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<IUserService, UserService>();
             FreshIOC.Container.Register<IFileService, FileService>();
             FreshIOC.Container.Register<IVendorService, VendorService>();
+            FreshIOC.Container.Register<IProductTypeService, ProductTypeService>();
+            FreshIOC.Container.Register<IProductService, ProductService>();
+            FreshIOC.Container.Register<IProductSKUService, ProductSKUService>();
+            FreshIOC.Container.Register<IImageRecordService, ImageRecordService>();
+            FreshIOC.Container.Register<IProductMenuService, ProductMenuService>();
+            FreshIOC.Container.Register<ICartItemService, CartItemService>();
+            FreshIOC.Container.Register<IOrderDetailService,OrderDetailService>();
+            FreshIOC.Container.Register<IOrderService, OrderService>();
 
 
             //proxy
@@ -69,6 +77,16 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<IUserProxy, UserProxy>();
             FreshIOC.Container.Register<IFileProxy, FileProxy>();
             FreshIOC.Container.Register<IVendorProxy, VendorProxy>();
+            FreshIOC.Container.Register<IProductTypeProxy, ProductTypeProxy>();
+            FreshIOC.Container.Register<IProductProxy, ProductProxy>();
+            FreshIOC.Container.Register<IProductSKUProxy, ProductSKUProxy>();
+            FreshIOC.Container.Register<IOrderProxy, OrderProxy>();
+            FreshIOC.Container.Register<IOrderDetailProxy, OrderDetailProxy>();
+            FreshIOC.Container.Register<IRatingProxy, RatingProxy>();
+            FreshIOC.Container.Register<IImageRecordProxy, ImageRecordProxy>();
+            FreshIOC.Container.Register<IProductMenuProxy, ProductMenuProxy>();
+            FreshIOC.Container.Register<ICartItemProxy, CartItemProxy>();
         }
     }
+    
 }

@@ -25,11 +25,11 @@ namespace Phoenix.Mobile.Helpers
                 var mainPage = new FreshTabbedNavigationContainer(MainNavigationStack);
                 mainPage.AddTab<HomePageModel>(string.Empty, "ic_act_home");
                 mainPage.AddTab<AlertPageModel>(string.Empty, "ic_act_notify");
-                //mainPage.AddTab<EndowPageModel>(string.Empty, "ic_act_code");
-                //mainPage.AddTab<PluginPageModel>(string.Empty, "ic_act_idea");
+                mainPage.AddTab<CartPageModel>(string.Empty, "ic_act_code");
+                //mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_idea");
                 //mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_more");
                 mainPage.BarTextColor = Color.White;
-                mainPage.BarBackgroundColor = Color.FromHex("#4AACC5");
+                mainPage.BarBackgroundColor = Color.FromHex("#168dc3");
                 Application.Current.MainPage = mainPage;
             }
             else if (Device.RuntimePlatform == Device.iOS)

@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
+             xmlns:productSKU="clr-namespace:Phoenix.Mobile.Core.Models.ProductSKU;assembly=Phoenix.Mobile.Core"
+             xmlns:product="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
+             x:DataType="common:PhoneDetailPageModel"
+             x:Class="Phoenix.Mobile.Pages.Common.PhoneDetailPage"
+             ControlTemplate="{StaticResource FullScreenHasBack}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Image Source="@drawable/defaultcart"
+                   HeightRequest="200"
+                   VerticalOptions="Center"/>
+
+                <Label Text="{Binding Product.ProductName}"
+                   FontSize="20"
+                   Margin="10,0,0,0"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+
+                <Label Text="{Binding Product.Price, StringFormat='{0:n0}đ'}"
+                   Margin="10,0,0,0"
+                   FontSize="15"
+                   TextColor="Red"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding ProductSKUs.Rating}"
+                   FontSize="15"
+                   Margin="10,0,0,0"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+                    <Image Source="@drawable/ic_star"
+                        HorizontalOptions="Start"/>
+
+                    <Label Text="{Binding ProductSKUs.BuyCount, StringFormat='Đã bán {0}'}"
+                   FontSize="15"
+                   Margin="0,0,10,0"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center" />
+                </StackLayout>
+
+
+
+                <Label Text="Cấu hình chi tiết"
+                   FontAttributes="Bold"
+                   FontSize="15"
+                   Margin="10,0,0,0"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"/>
+
+                <Grid BackgroundColor="Black"
+                  Padding="1"
+                  Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <!--Màn hình-->
+                    <BoxView Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Màn hình"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="0"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Screen}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+                    <!--Hệ điều hành-->
+                    <BoxView Grid.Row="1"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Hệ điều hành"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="1"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.OperationSystem}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+                    <!--Chip-->
+                    <BoxView Grid.Row="2"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Chip"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="2"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Processor}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+                    <!--Ram-->
+                    <BoxView Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0,0,0,1"
+                        BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="3"
+                    Grid.Column="0"
+                    Text="RAM"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="3"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="1,0,0,1"
+                        BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding ProductSKUs.Ram}"
+                    FontSize="15"
+                    Margin="5,0,0,0"
+                    HorizontalOptions="Start"></Label>
+                    <!--Lưu trữ-->
+                    <BoxView Grid.Row="4"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Bộ nhớ lưu trữ"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="4"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="4"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Storage}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+
+                    <!--Camera trước-->
+                    <BoxView Grid.Row="5"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Text="Camera trước"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="5"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="5"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.FrontCamera}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Camera sau-->
+                    <BoxView Grid.Row="6"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="6"
+                       Grid.Column="0"
+                       Text="Camera sau"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="6"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="6"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.BackCamera}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Sim-->
+                    <BoxView Grid.Row="7"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="7"
+                       Grid.Column="0"
+                       Text="Khay SIM"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="7"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="7"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.SimSlot}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Cổng kết nôi-->
+                    <BoxView Grid.Row="8"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="8"
+                       Grid.Column="0"
+                       Text="Cổng kết nối"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="8"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="8"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.ConnectionPort}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Pin-->
+                    <BoxView Grid.Row="9"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="9"
+                       Grid.Column="0"
+                       Text="Pin"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="9"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="9"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Battery}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Thiết kế-->
+                    <BoxView Grid.Row="10"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="10"
+                       Grid.Column="0"
+                       Text="Thiết kế"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="10"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="10"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Design}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    <!--Kích thước và trọng lượng-->
+                    <BoxView Grid.Row="11"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="11"
+                       Grid.Column="0"
+                       Text="Kích thước &amp;&#10;Trọng lượng"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="11"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="11"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.Size}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+                    
+
+                    <!--Thời điểm ra mắt-->
+                    <BoxView Grid.Row="12"
+                         Grid.Column="0"
+                         Margin="0,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="12"
+                       Grid.Column="0"
+                       Text="Thời điểm ra mắt"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       HorizontalOptions="Center"></Label>
+                    <BoxView Grid.Row="12"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="1,0,0,1"
+                         BackgroundColor="White"></BoxView>
+                    <Label Grid.Row="12"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding ProductSKUs.YearOfManufacture}"
+                       FontSize="15"
+                       Margin="5,0,0,0"
+                       HorizontalOptions="Start"></Label>
+
+
+                </Grid>
+
+                <!--<StackLayout x:Name="Container">
+                    <Label BindingContext="{x:Reference stepper}" Text="1" />
+                    <Stepper Minimum="0" Maximum="10" x:Name="stepper" Increment="1" />
+                </StackLayout>-->
+                <StackLayout>
+                    <Label Text="{Binding ProductQuantity}" />
+                    <Stepper Minimum="0" Maximum="100" Increment="1" Value="{Binding ProductQuantity}" />
+                </StackLayout>
+
+                <Button Text="THÊM VÀO GIỎ HÀNG"
+                    VerticalOptions="EndAndExpand"
+                    Margin="20,0,20,20"
+                        Command="{Binding AddItemToCart}"></Button>
+                <Label Text="Đánh giá sản phẩm"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+
+                <Label Text="Sản phẩm cùng loại"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                <!--<ListView ItemsSource="{Binding SameVendors}"
+                          Rotation="270"
+                          RowHeight="40">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="product:ProductModel">
+                            <ViewCell>
+                                <Label Text="{Binding Name}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+
+                <CollectionView ItemsSource="{Binding SameTypes}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal"
+                                         />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="product:ProductModel">
+                            <Label Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Sản phẩm cùng nhà sản xuất"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+                
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

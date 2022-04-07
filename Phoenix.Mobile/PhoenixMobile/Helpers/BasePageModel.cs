@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+using Phoenix.Mobile.Core.Models.Product;
+
 namespace Phoenix.Mobile.Helpers
 {
     public class BasePageModel : FreshBasePageModel

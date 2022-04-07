@@ -227,6 +227,7 @@
   <ItemGroup>
     <Compile Include="Api\AuthController.cs" />
     <Compile Include="Api\BaseApiController.cs" />
+    <Compile Include="Api\CartItemController.cs" />
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\OrderDetailController.cs" />
     <Compile Include="Api\ProductController.cs" />

@@ -32,7 +32,7 @@ namespace Phoenix.Mobile.PageModels.Auth
             if (IsBusy) return;
             IsBusy = true;
 #if DEBUG
-            Username = "0343039383";
+            Username = "admin";
             Password = "123456";
 #endif
             IsBusy = false;
@@ -79,6 +79,7 @@ namespace Phoenix.Mobile.PageModels.Auth
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
+                    
                     NavigationHelpers.ToMainPage();
                 });
             }
@@ -95,7 +96,7 @@ namespace Phoenix.Mobile.PageModels.Auth
         private async Task ForgotPassExecute()
         {
             IsBusy = true;
-            //await CoreMethods.PushPageModel<ForgotPasswordPageModel>();
+            await CoreMethods.PushPageModel<ForgotPasswordPageModel>();
             IsBusy = false;
         }
         #endregion

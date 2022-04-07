@@ -368,7 +368,7 @@
       <Project>{097f2088-c157-41dd-826c-e65652349e88}</Project>
       <Name>Phoenix.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CongDongBau.Core\CongDongBau.Core.csproj">
+    <ProjectReference Include="..\Phoenix.Mobile.Core\Phoenix.Mobile.Core.csproj">
       <Project>{4518ED33-7AA1-433F-B679-CF0C29B2966B}</Project>
       <Name>CongDongBau.Core</Name>
     </ProjectReference>

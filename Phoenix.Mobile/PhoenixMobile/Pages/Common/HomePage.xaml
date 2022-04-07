@@ -1,12 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phoenix.Mobile.Pages.Common.HomePage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
+             
+             xmlns:productMenu="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
+             x:Class="Phoenix.Mobile.Pages.Common.HomePage"
+             x:DataType="common:HomePageModel"
+             x:Name="ProductDetail"><!--xmlns:productMenu="clr-namespace:Phoenix.Mobile.Core.Models.ProductMenu;assembly=Phoenix.Mobile.Core"-->
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Homepage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <CollectionView ItemsSource="{Binding ProductMenus}"
+                            BackgroundColor="#ecf0f1"
+                            
+                            SelectionMode="Single"
+                            
+                            SelectedItem="{Binding SelectedProduct}"
+                            
+                            >
+                <!--SelectionChangedCommand="{Binding ProductDetailCommand}"-->
+                <!--SelectedItem="{Binding SelectedProduct}"-->
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"
+                                     HorizontalItemSpacing="5"
+                                     VerticalItemSpacing="5"
+                                     />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="productMenu:ProductMenuModel">
+                        <StackLayout Margin="10"    
+                                     BackgroundColor="White"
+                                    
+                                     >
+                            <Label Text="Hình ở đây" 
+                                   Margin="8"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"/>
+                            <Label Text="{Binding ProductName}"
+                                   Margin="8,2,8,4"
+                                   FontSize="Subtitle"
+                                   HeightRequest="60"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            
+                            <Label Text="{Binding Price, StringFormat='{0:N0} đ'}"
+                                   Margin="8,2,8,4"
+                                   FontSize="Default"   
+                                   FontAttributes="Bold"
+                                   TextColor="Red"/>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Rating}" 
+                                       HorizontalOptions="Start"
+                                       Margin="10,0,0,0"
+                                        FontSize="Small"/>
+                                <Image Source="@drawable/ic_star"
+                                       HorizontalOptions="Start"/>
+                                <Label Text="{Binding BuyCount, StringFormat='Đã bán {0}'}" 
+                                       HorizontalOptions="EndAndExpand"
+                                       Margin="0,0,10,0"
+                                       FontSize="Small"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

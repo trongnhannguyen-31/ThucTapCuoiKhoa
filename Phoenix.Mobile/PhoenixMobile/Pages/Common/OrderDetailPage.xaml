@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
+             x:Class="Phoenix.Mobile.Pages.Common.OrderDetailPage"
+             x:DataType="common:OrderDetailPageModel"
+             xmlns:orderDetail="clr-namespace:Phoenix.Mobile.Core.Models.OrderDetail;assembly=Phoenix.Mobile.Core"
+             ControlTemplate="{StaticResource FullScreenHasBack}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Order.Status, StringFormat='Thông tin vận chuyển: {0}'}"               
+                HorizontalOptions="StartAndExpand" />
+            <Label Text="{Binding Order.Address, StringFormat='Địa chỉ nhận hàng: {0}'}"               
+                HorizontalOptions="StartAndExpand" />
+
+            <Label Text="Sản phẩm:"
+                HorizontalOptions="StartAndExpand" />
+
+            <StackLayout>
+                <ListView ItemsSource="{Binding OrderDetails}"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="orderDetail:OrderDetailHistoryModel">
+                            <ViewCell>
+                                <Grid x:Name="Item">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="@drawable/defaultcart"
+                                       Grid.RowSpan="3"
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"/>
+
+                                    <Label Grid.Column="1"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding ProductName}"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Start" />
+
+                                    <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Type}"
+                                       HorizontalOptions="Start" />
+
+                                    <Label Grid.Row="1"
+                                       Grid.Column="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Quantity, StringFormat='x{0}'}"
+                                       FontSize="Small"
+                                       HorizontalOptions="End" />
+
+                                    <Label Grid.Row="2"
+                                       Grid.Column="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Price,StringFormat='{0:N0} đ'}"
+                                       HorizontalOptions="End" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tổng tiền:"
+                       HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Order.Total, StringFormat='{0:N0} đ'}"
+                       HorizontalOptions="EndAndExpand" />
+                </StackLayout>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Đặt hàng lúc:"
+                       HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding Order.OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
+                       HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Nhận hàng lúc:"
+                       HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding Order.DeliveryDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
+                       HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <Button Text="Xem đánh giá của tôi"/>
+            <Button Text="Mua lại"
+                    Command="{Binding ReBuyCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

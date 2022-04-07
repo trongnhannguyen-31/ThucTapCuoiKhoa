@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Phoenix.Mobile.Pages.Common.CheckOutPage"
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
+             xmlns:cartList="clr-namespace:Phoenix.Mobile.Core.Models.CartItem;assembly=Phoenix.Mobile.Core"
+             x:DataType="common:CheckOutPageModel">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding CartList}"
+                      x:Name="ListCartItem"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="cartList:CartListModel">
+                        <ViewCell>
+                            <Grid x:Name="Item">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <BoxView Color="Green"
+                                         Grid.RowSpan="3"/>
+                                <Image Source="@drawable/defaultcart"
+                                       Grid.RowSpan="3"
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"/>
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding ProductName}"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="End" />
+
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Type}"
+                                       FontSize="Small"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Quantity, StringFormat='Số lượng: {0}'}"
+                                       FontSize="Small"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start" />
+
+                                <Label Grid.Column="3"
+                                       Grid.RowSpan="3"
+                                       FontSize="Small"
+                                       Text="{Binding Total,StringFormat='{0:N0} đ'}"    
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="#0394fc" VerticalOptions="EndAndExpand" >
+                <StackLayout Orientation="Horizontal">
+                    <Label  Text="Tổng cộng" 
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"/>
+                    <Label  Text="0đ" 
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <Button Text="Thanh toán"
+                        Margin="0,20,0,20"
+                        Command="{Binding AddOrder}"></Button>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
