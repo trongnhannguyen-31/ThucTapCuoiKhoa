@@ -1,5 +1,7 @@
 ﻿using Phoenix.Server.Services.MainServices.Auth;
+using Phoenix.Server.Services.MainServices.Users;
 using Phoenix.Shared.Core;
+using Phoenix.Shared.z_User;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -9,6 +11,7 @@ namespace Phoenix.Server.Api.Api
     public class UserApiController : BaseApiController
     {
         private readonly UserAuthService _userAuthService;
+        private readonly UserService _userService;
         public UserApiController(UserAuthService userAuthService)
         {
             _userAuthService = userAuthService;
@@ -23,5 +26,12 @@ namespace Phoenix.Server.Api.Api
         //[AllowAnonymous]
         //[Route("forgotpwd")]
         //public async Task<CrudResult> ForgotPassword(string phone, string newPwd) => await _userAuthService.ForgotPassword(phone, newPwd);
+
+        //[HttpPost]
+        //[Route("CreateAccount")]
+        //public Task<CrudResult> CreateAccount([FromBody] z_UserRequest request)
+        //{
+        //    return _userService.CreateAccount(request);
+        //}
     }
 }

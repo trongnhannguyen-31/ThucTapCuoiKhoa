@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\CartItem.cs" />
     <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\OrderDetail.cs" />
     <Compile Include="Entity\ProductSKU.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Entity\Vendor.cs" />
     <Compile Include="Entity\Warehouse.cs" />
     <Compile Include="Entity\WarehouseMenu.cs" />
+    <Compile Include="Entity\z_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

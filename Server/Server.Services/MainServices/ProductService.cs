@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Core.Helpers;
+﻿using AutoMapper;
+using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
@@ -15,14 +16,13 @@ namespace Phoenix.Server.Services.MainServices
     public interface IProductService
     {
         Product GetProductsById(int id);
-
         Task<BaseResponse<ProductDto>> GetAllProducts(ProductRequest request);
-
         Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request);
-
         Task<BaseResponse<ProductDto>> UpdateProducts(ProductRequest request);
-
         Task<BaseResponse<ProductDto>> DeleteProducts(int Id);
+        ///
+        Task<BaseResponse<ProductDto>> GetAllAppProducts(ProductRequest request);
+        Task<BaseResponse<ProductMenuDto>> GetProductMenus(ProductMenuRequest request);
     }
 
     public class ProductService : IProductService
@@ -258,6 +258,105 @@ namespace Phoenix.Server.Services.MainServices
                 await _dataContext.SaveChangesAsync();
 
                 result.Success = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetAllAppProducts
+        public async Task<BaseResponse<ProductDto>> GetAllAppProducts(ProductRequest request)
+        {
+            var result = new BaseResponse<ProductDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.Products.AsQueryable().Where(r => !r.Deleted);
+
+                if (!string.IsNullOrEmpty(request.Name))
+                {
+                    query = query.Where(d => d.Name.Contains(request.Name));
+                }
+
+                //San pham cung nha san xuat
+                else if (request.Vendor_Id != 0)
+                {
+                    query = query.Where(d => d.Vendor_Id.Equals(request.Vendor_Id));
+                }
+
+                //San pham cung loai
+
+                else if (request.ProductType_Id != 0)
+                {
+                    query = query.Where(d => d.ProductType_Id.Equals(request.ProductType_Id));
+                }
+
+
+
+
+                // query = query.Where(d => d.Rating.Equals(request.Rating));
+
+
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
+                result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
+                result.Data = data.MapTo<ProductDto>();
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetProductMenus
+        public async Task<BaseResponse<ProductMenuDto>> GetProductMenus(ProductMenuRequest request)
+        {
+            var result = new BaseResponse<ProductMenuDto>();
+            try
+            {
+                var query = (from p in _dataContext.Products
+                             join s in _dataContext.ProductSKUs on p.Id equals s.Product_Id
+                             select new
+                             {
+                                 ProductId = p.Id,
+                                 ProductType_Id = p.ProductType_Id,
+                                 Vendor_Id = p.Vendor_Id,
+                                 Name = p.Name,
+                                 Image1 = p.Image1,
+                                 Price = s.Price,
+                                 Rating = s.Rating,
+                                 Ram = s.Ram,
+                                 Storage = s.Storage,
+                                 BuyCount = s.BuyCount,
+                                 ModelCode = p.ModelCode,
+                                 SKUId = s.Id
+                             }).AsQueryable();
+                // query = query.Where(d => d.Name.Contains(request.Name));
+                if (!string.IsNullOrEmpty(request.Name))
+                {
+                    query = query.Where(d => d.Name.Contains(request.Name));
+                }
+
+                var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
+                var mapper = config.CreateMapper();
+                //var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
+                var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
+
+                //var data = await query.ToListAsync();
+
+                //result.Data = data.MapTo<CartListDto>();
+                result.Data = listcart.MapTo<ProductMenuDto>();
+
             }
             catch (Exception ex)
             {

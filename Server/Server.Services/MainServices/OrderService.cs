@@ -4,6 +4,7 @@ using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Order;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,11 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderService
     {
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
-
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
+        ///
+        Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
+        Task<CrudResult> AddOrder(OrderRequest request);
+        Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
     }
     public class OrderService : IOrderService
     {
@@ -120,7 +124,7 @@ namespace Phoenix.Server.Services.MainServices
             try
             {
                 var query = (from o in _dataContext.Orders
-                             join d in _dataContext.OrderDatails on o.Id equals d.Order_Id
+                             join d in _dataContext.OrderDetails on o.Id equals d.Order_Id
                              join s in _dataContext.ProductSKUs on d.ProductSKU_Id equals s.Id
                              join w in _dataContext.Warehouses on d.ProductSKU_Id equals w.ProductSKU_Id
                              select new
@@ -201,5 +205,81 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        #region GetAllAppOrders
+        public async Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+
+                //setup query
+                var query = _dataContext.Orders.AsQueryable();
+                //filter
+                query = query.Where(d => d.Customer_Id.Equals(request.Customer_Id));
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.ToListAsync();
+                result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
+                result.Data = data.MapTo<OrderDto>();
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region AddOrder
+        public async Task<CrudResult> AddOrder(OrderRequest request)
+        {
+            var Order = new Order();
+            Order.OrderDate = request.OrderDate;
+            Order.Status = request.Status;
+            Order.DeliveryDate = request.DeliveryDate;
+            Order.Address = request.Address;
+            Order.Total = request.Total;
+            Order.Customer_Id = request.Customer_Id;
+            Order.CreatedAt = request.CreatedAt;
+            Order.Deleted = request.Deleted;
+
+            _dataContext.Orders.Add(Order);
+
+            await _dataContext.SaveChangesAsync();
+            //int a = Order.Id;
+            return new CrudResult() { IsOk = true };
+        }
+        #endregion
+
+        #region GetLatestOrder
+        public async Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.Orders.AsQueryable();
+
+                if (!string.IsNullOrEmpty(request.Address))
+                {
+                    query = query.Where(d => d.Address.Contains(request.Address));
+                }
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.FirstAsync();
+                result.Record = data.MapTo<OrderDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

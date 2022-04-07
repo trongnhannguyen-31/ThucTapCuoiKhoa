@@ -415,6 +415,7 @@
     <Compile Include="MainServices\Auth\RoleService.cs" />
     <Compile Include="MainServices\Auth\SearchRoleRequest.cs" />
     <Compile Include="MainServices\BaseRequest.cs" />
+    <Compile Include="MainServices\CartItemService.cs" />
     <Compile Include="MainServices\Common\Models\ImageRecordDto.cs" />
     <Compile Include="MainServices\Common\Models\NameValueModel.cs" />
     <Compile Include="MainServices\Common\SettingAdminService.cs" />

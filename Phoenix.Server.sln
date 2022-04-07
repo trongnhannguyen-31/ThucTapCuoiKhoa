@@ -67,8 +67,8 @@ Global
 		{1D9FC869-B2BF-4381-92E2-C25360BDA137} = {BD7EC0CF-9646-4B8D-9E23-3E17C10DDA88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2CB3DAC4-47A9-481C-A5B6-0296BEFAF516}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {2CB3DAC4-47A9-481C-A5B6-0296BEFAF516}
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
 		Project = ".\FalconCommerce.ndproj"

@@ -16,18 +16,14 @@ namespace Phoenix.Server.Services.MainServices
     {
         // Nhap
         Product GetProductById(int id);
-
         ProductSKU GetProductSKUById(int id);
-
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
-
         Task<BaseResponse<ProductSKUDto>> CreateProductSKUs(ProductSKURequest request);
-
         Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
-
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request);
-
         Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id);
+        ///
+        Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
     }
 
     public class ProductSKUService : IProductSKUService
@@ -239,5 +235,31 @@ namespace Phoenix.Server.Services.MainServices
         }
 
         #endregion
+
+        #region GetProductById
+        public async Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request)
+        {
+            var result = new BaseResponse<ProductSKUDto>();
+            try
+            {
+
+                //setup query
+                var query = _dataContext.ProductSKUs.AsQueryable();
+                //filter
+                //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+                var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+
+                //var data = await query.FindAsync(request.Id);
+                result.Record = data.MapTo<ProductSKUDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
+
     }
 }

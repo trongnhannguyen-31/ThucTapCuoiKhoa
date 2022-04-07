@@ -57,10 +57,18 @@
     <Compile Include="Auth\LoginResponse.cs" />
     <Compile Include="Auth\TokenRequest.cs" />
     <Compile Include="Auth\TokenResponse.cs" />
+    <Compile Include="CartItem\CartItemDto.cs" />
+    <Compile Include="CartItem\CartItemRequest.cs" />
+    <Compile Include="CartItem\CartListDto.cs" />
+    <Compile Include="CartItem\CartListRequest.cs" />
     <Compile Include="Common\DropdownDto.cs" />
     <Compile Include="Customer\CustomerDto.cs" />
     <Compile Include="Customer\CustomerRequest.cs" />
+    <Compile Include="OrderDetail\OrderDetailAppDto.cs" />
+    <Compile Include="OrderDetail\OrderDetailAppRequest.cs" />
     <Compile Include="OrderDetail\OrderDetailDto.cs" />
+    <Compile Include="OrderDetail\OrderDetailHistoryDto.cs" />
+    <Compile Include="OrderDetail\OrderDetailHistoryRequest.cs" />
     <Compile Include="OrderDetail\OrderDetailRequest.cs" />
     <Compile Include="Common\BaseRequest.cs" />
     <Compile Include="Common\BaseResponse.cs" />
@@ -74,8 +82,12 @@
     <Compile Include="Core\ResultDto.cs" />
     <Compile Include="Order\ChangeStatusDto.cs" />
     <Compile Include="Order\ChangeStatusRequest.cs" />
+    <Compile Include="Order\OrderAppDto.cs" />
+    <Compile Include="Order\OrderAppRequest.cs" />
     <Compile Include="ProductSKU\ProductSKUDto.cs" />
     <Compile Include="ProductSKU\ProductSKURequest.cs" />
+    <Compile Include="Product\ProductMenuDto.cs" />
+    <Compile Include="Product\ProductMenuRequest.cs" />
     <Compile Include="Rating\RatingDto.cs" />
     <Compile Include="Rating\RatingRequest.cs" />
     <Compile Include="Order\OrderDto.cs" />
@@ -95,6 +107,8 @@
     <Compile Include="Product\ProductRequest.cs" />
     <Compile Include="Vendor\VendorDto.cs" />
     <Compile Include="Vendor\VendorRequest.cs" />
+    <Compile Include="z_User\z_UserDto.cs" />
+    <Compile Include="z_User\z_UserRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

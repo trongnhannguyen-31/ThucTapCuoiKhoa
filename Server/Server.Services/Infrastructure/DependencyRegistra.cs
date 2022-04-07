@@ -45,6 +45,7 @@ namespace Phoenix.Server.Services.Infrastructure
             container.Register<ICustomerService, CustomerService>(Lifestyle.Scoped);
             container.Register<IDropdownService, DropdownService>(Lifestyle.Scoped);
             container.Register<IWarehouseMenuService, WarehouseMenuService>(Lifestyle.Scoped);
+            container.Register<ICartItemService, CartItemService>(Lifestyle.Scoped);
 
 
             EngineContext.Current.Init(new SimpleContainer(container));

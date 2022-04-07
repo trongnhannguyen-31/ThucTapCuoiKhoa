@@ -22,25 +22,16 @@ namespace Phoenix.Server.Services.Database
         //modules
 
         public virtual DbSet<Vendor> Vendors { get; set; }
-
         public virtual DbSet<ProductType> ProductTypes { get; set; }
-
         public virtual DbSet<Product> Products { get; set; }
-
         public virtual DbSet<ProductSKU> ProductSKUs { get; set; }
-
         public virtual DbSet<Warehouse> Warehouses { get; set; }
-
         public virtual DbSet<Order> Orders { get; set; }
-
-        public virtual DbSet<OrderDetail> OrderDatails { get; set; }
-
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
-
         public virtual DbSet<Customer> Customers { get; set; }
-
+        public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<WarehouseMenu> WarehouseMenus { get; set; }
-
         #endregion
 
     }

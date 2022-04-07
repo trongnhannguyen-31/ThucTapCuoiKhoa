@@ -1,6 +1,9 @@
 ﻿using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Server.Data.Entity;
+using System.Data.Entity;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.OrderDetail;
 using System;
 using System.Collections.Generic;
@@ -8,6 +11,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Phoenix.Server.Services.MainServices
 {
@@ -15,8 +19,10 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderDetailService
     {
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request);
-
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request);
+        ////
+        Task<CrudResult> AddOrderDetail(OrderDetailRequest request);
+        Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
     }
 
     public class OrderDetailService : IOrderDetailService
@@ -27,6 +33,7 @@ namespace Phoenix.Server.Services.MainServices
             _dataContext = dataContext;
         }
 
+        #region GetAllOrderDetails
         // Lấy danh sách chi tiết đơn hàng
         public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request)
         {
@@ -35,8 +42,8 @@ namespace Phoenix.Server.Services.MainServices
             {
 
                 //setup query
-                var query = _dataContext.OrderDatails.AsQueryable();
-                
+                var query = _dataContext.OrderDetails.AsQueryable();
+
                 //filter
                 if (request.Id > 0)
                 {
@@ -81,6 +88,7 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
 
         #region GetOrderDetailById
         public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request)
@@ -89,7 +97,7 @@ namespace Phoenix.Server.Services.MainServices
             try
             {
                 //setup query
-                var query = _dataContext.OrderDatails.AsQueryable();
+                var query = _dataContext.OrderDetails.AsQueryable();
 
                 //filter
                 if (request.Order_Id > 0)
@@ -99,7 +107,7 @@ namespace Phoenix.Server.Services.MainServices
 
                 query = query.OrderByDescending(d => d.Id);
 
-                var list = _dataContext.OrderDatails.Where(p => p.Order_Id.Equals(id));
+                var list = _dataContext.OrderDetails.Where(p => p.Order_Id.Equals(id));
 
                 var data = await list.ToListAsync();
                 result.Data = data.MapTo<OrderDetailDto>();
@@ -109,6 +117,75 @@ namespace Phoenix.Server.Services.MainServices
             {
                 result.Success = false;
                 result.Message = ex.Message;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region AddOrderDetail
+        public async Task<CrudResult> AddOrderDetail(OrderDetailRequest request)
+        {
+            var OrderDetail = new OrderDetail();
+            OrderDetail.Order_Id = request.Order_Id;
+            OrderDetail.ProductSKU_Id = request.ProductSKU_Id;
+            OrderDetail.Price = request.Price;
+            OrderDetail.Quantity = request.Quantity;
+            OrderDetail.Total = (request.Price * request.Quantity);
+
+            _dataContext.OrderDetails.Add(OrderDetail);
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
+        }
+        #endregion
+
+        #region GetOrderDetailHistory
+        public async Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request)
+        {
+            var result = new BaseResponse<OrderDetailHistoryDto>();
+            try
+            {
+                var query = (from o in _dataContext.Orders
+                             join d in _dataContext.OrderDetails on o.Id equals d.Order_Id
+                             join s in _dataContext.ProductSKUs on d.ProductSKU_Id equals s.Id
+                             join p in _dataContext.Products on s.Product_Id equals p.Id
+                             select new
+                             {
+                                 Image = p.Image1,
+                                 Name = p.Name,
+                                 ProductTypeId = p.ProductType_Id,
+                                 ModelCode = p.ModelCode,
+                                 Ram = s.Ram,
+                                 Storage = s.Storage,
+                                 Quantity = d.Quantity,
+                                 Price = d.Price,
+                                 ProductSKU_Id = d.ProductSKU_Id,
+                                 Order_Id = o.Id
+                             }).AsQueryable();
+                //if (request.Order_Id != 0)
+                //{
+                //    //var data = await query.FirstOrDefaultAsync(d => d.Order_Id.Equals(request.Order_Id));
+                //    //query = query.Where(d => d.Order_Id.Equals(request.Order_Id));
+                //    //query = query.(d => d.Order_Id.Equals(request.Order_Id));
+                //}
+
+
+
+                var congfig = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
+                var mapper = congfig.CreateMapper();
+                //var detail = query.FirstOrDefault(mapper.Map<OrderDetailHistoryDto>);
+                var detail = query.Select(mapper.Map<OrderDetailHistoryDto>).Where(d => d.Order_Id == request.Order_Id);
+                // detail = detail.FirstOrDefault(d => d.Order_Id.Equals(request.Order_Id));
+
+                //var data = await query.ToListAsync();
+
+                //result.Data = data.MapTo<CartListDto>();
+                result.Data = detail.MapTo<OrderDetailHistoryDto>();
+
+            }
+            catch (Exception ex)
+            {
+
             }
 
             return result;
