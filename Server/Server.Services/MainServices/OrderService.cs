@@ -19,17 +19,21 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IOrderService
     {
+        Order GetOrderById(int id);
+
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
+
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
-<<<<<<< HEAD
+
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
-=======
-        ///
+
         Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
+
         Task<CrudResult> AddOrder(OrderRequest request);
+
         Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
->>>>>>> e0043f41016a5ee3ddbcc90eae27ddcd380b6b7e
+
     }
     public class OrderService : IOrderService
     {
@@ -188,7 +192,7 @@ namespace Phoenix.Server.Services.MainServices
             try
             {
                 //setup query
-                var query = _dataContext.OrderDatails.AsQueryable();
+                var query = _dataContext.OrderDetails.AsQueryable();
 
                 query = query.Where(x => x.Order_Id == request.Order_Id);
 
