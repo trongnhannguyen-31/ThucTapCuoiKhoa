@@ -21,6 +21,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<CustomerDto>> UpdateCustomers(CustomerRequest request);
 
         Task<BaseResponse<CustomerDto>> DeleteCustomersById(int Id);
+        ///
+        Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request);
     }
     public class CustomerService : ICustomerService
     {
@@ -114,5 +116,30 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        #region GetCustomerApptById
+        public async Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request)
+        {
+            var result = new BaseResponse<CustomerDto>();
+            try
+            {
+
+                //setup query
+                var query = _dataContext.Customers.AsQueryable();
+                //filter
+                //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+                var data = await query.FirstOrDefaultAsync(d => d.zUser_Id == request.zUser_Id);
+
+                //var data = await query.FindAsync(request.Id);
+                result.Record = data.MapTo<CustomerDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

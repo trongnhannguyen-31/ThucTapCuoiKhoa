@@ -17,15 +17,6 @@ E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj
 E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
 E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
 E:\ThucTap\ThucTap\ThucTap\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.dll
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.pdb
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.xml
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.AssemblyReference.cache
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCompileInputs.cache
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
-D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.dll
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.pdb
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
@@ -35,3 +26,11 @@ E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCom
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.dll
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Phoenix.Shared.pdb
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.dll
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\bin\Debug\Microsoft.VisualStudio.LiveShare.xml
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCompileInputs.cache
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
