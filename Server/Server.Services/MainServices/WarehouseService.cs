@@ -17,9 +17,7 @@ namespace Phoenix.Server.Services.MainServices
     public interface IWarehouseService
     {
         Warehouse GetWarehousesById(int id);
-
         
-
         Warehouse GetProductSKUById(int id);
 
         Task<BaseResponse<WarehouseDto>> GetAllWarehouses(WarehouseRequest request);

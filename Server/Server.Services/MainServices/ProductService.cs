@@ -8,7 +8,6 @@ using Phoenix.Shared.ProductSKU;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -198,56 +197,6 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
-
-        /*public async Task<BaseResponse<ProductDto>> UpdateProducts(ProductRequest request)
-        {
-            var result = new BaseResponse<ProductDto>();
-            try
-            {
-                var products = GetProductsById(request.Id);
-
-                products.Vendor_Id = request.Vendor_Id;
-                products.ProductType_Id = request.ProductType_Id;
-                products.Name = request.Name;
-                products.ModelCode = request.ModelCode;
-                products.Image1 = request.Image1;
-                products.Image2 = request.Image2;
-                products.Image3 = request.Image3;
-                products.Image4 = request.Image4;
-                products.Image5 = request.Image5;
-                products.Deleted = false;
-                products.UpdatedAt = DateTime.Now;
-
-                if (file != null && file.ContentLength > 0)
-                {
-                    ImageResponse imageSave = new ImageResponse();
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        file.InputStream.CopyTo(ms);
-                        byte[] content = ms.GetBuffer();
-                        imageSave = await _imageService.InsertImage(content, file.FileName);
-
-                    }
-                    if (imageSave.IsOk && imageSave.Image != null && imageSave.Image.Id > 0)
-                    {
-                        //lưu image về item
-                        lstItem.ImageRecordId = imageSave.Image.Id;
-                    }
-                }
-
-                await _dataContext.SaveChangesAsync();
-                result.Success = true;
-
-                
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            return result;
-        }*/
 
         // Delete Prodcuct
         public async Task<BaseResponse<ProductDto>> DeleteProducts(int Id)

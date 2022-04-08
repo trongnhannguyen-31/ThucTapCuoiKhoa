@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Web;
 using Falcon.Core;
 using Phoenix.Server.Data.Entity;
-using Falcon.Services.Security;
 
 namespace Phoenix.Server.Services.MainServices.Media
 {
@@ -168,51 +167,5 @@ namespace Phoenix.Server.Services.MainServices.Media
 
             return result;
         }
-
-        /*public async Task<ImageResponse> InsertImage(byte[] pictureBinary, string filename, string storeName = "pos123")
-        {
-            var _posContext = TokenHelper.PosContext();
-            var storageFolder = $@"\uploads\{storeName}";
-            if (!Directory.Exists(LocalMapPath(storageFolder)))
-                Directory.CreateDirectory(LocalMapPath(storageFolder));
-
-            #region validate
-            if (pictureBinary == null || pictureBinary.Length < 0) return new ImageResponse() { Message = "File empty" };
-            if (string.IsNullOrEmpty(filename)) return new ImageResponse() { Message = "File" };
-            filename = Path.GetFileName(filename);
-
-            if (!CheckImageFileType(filename))
-                return new ImageResponse() { Message = "Image file type: .jpg, .png" };
-            #endregion
-            string newFileName = $"{DateTime.Now.Ticks}{Path.GetExtension(filename)}";
-            var storageFolderPath = Path.Combine(LocalMapPath(storageFolder), newFileName);
-            File.WriteAllBytes(storageFolderPath, pictureBinary);
-
-            var relativePath = Path.Combine(storageFolder, newFileName);
-            var serversettings = _settingService.LoadSetting<ServerSettings>();
-
-            var image = new ImageRecord()
-            {
-#if DEBUG
-                AbsolutePath = HostAddress + GenAbsolutePath(relativePath),
-#else
-                AbsolutePath = (string.IsNullOrEmpty(serversettings.CdnServer) ? HostAddress : serversettings.CdnServer) + GenAbsolutePath(relativePath),
-#endif
-                RelativePath = relativePath,
-                IsUsed = true,
-                IsExternal = false,
-                CreatedAt = DateTime.Now,
-                FileName = newFileName,
-            };
-            _posContext.ImageRecords.Add(image);
-            await _posContext.SaveChangesAsync();
-            return new ImageResponse()
-            {
-                IsOk = true,
-                Message = "Success",
-                Image = image.MapTo<ImageDto>()
-            };
-            _posContext.Dispose();
-        }*/
     }
 }

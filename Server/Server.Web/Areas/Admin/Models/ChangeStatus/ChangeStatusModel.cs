@@ -13,6 +13,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.ChangeStatus
 
         public string Status { get; set; }
 
+        // public string Status_Name { get; set; }
+
         public DateTime? DeliveryDate { get; set; }
 
         public string Address { get; set; }

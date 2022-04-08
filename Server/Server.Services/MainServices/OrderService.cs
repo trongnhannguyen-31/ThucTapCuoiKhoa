@@ -19,21 +19,14 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IOrderService
     {
-        Order GetOrderById(int id);
-
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
-
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
-
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
-
+        ///
         Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
-
         Task<CrudResult> AddOrder(OrderRequest request);
-
         Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
-
     }
     public class OrderService : IOrderService
     {

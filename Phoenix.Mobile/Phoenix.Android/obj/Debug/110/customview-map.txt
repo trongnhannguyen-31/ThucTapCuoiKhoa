@@ -50,6 +50,7 @@ corners;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\2
 corners;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\29\jl\res\drawable\segmented_control_last_background.xml
 corners;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\4\jl\res\drawable\roundedbg.xml
 corners;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\4\jl\res\drawable\roundedbgdark.xml
+crc64720bb2db43a66fe9.FormsViewPager;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\89\jl\res\layout\rootlayout.xml
 declare-styleable;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\12\jl\res\values\values.xml
 declare-styleable;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\4\jl\res\values\attrs.xml
 declare-styleable;D:\ThucTap\ThucTapNhom\Phoenix.Mobile\Phoenix.Android\obj\Debug\110\lp\89\jl\res\values\attrs.xml

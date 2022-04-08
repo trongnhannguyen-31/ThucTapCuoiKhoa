@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
+             x:Class="Phoenix.Mobile.Pages.Common.AccountPage"
+             x:DataType="common:AccountPageModel">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="#267cfc">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.RowSpan="3"
+                       HeightRequest="60"
+                       WidthRequest="60"
+                       Source="@drawable/user_icon"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"/>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="UserName"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="FullName"
+                       TextColor="White"/>
+            </Grid>
+
+            <Button Text="Đơn hàng của tôi"
+                    Command="{Binding ViewOrderCommand}"/>
+            <Button Text="Chỉnh sửa thông tin cá nhân"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Đổi mật khẩu"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="210"/>
+                <Button Text="Đăng xuất"
+                        HorizontalOptions="EndAndExpand"
+                        WidthRequest="210"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

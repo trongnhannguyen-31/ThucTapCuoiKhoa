@@ -26,7 +26,7 @@ namespace Phoenix.Mobile.Helpers
                 mainPage.AddTab<HomePageModel>(string.Empty, "ic_act_home");
                 mainPage.AddTab<AlertPageModel>(string.Empty, "ic_act_notify");
                 mainPage.AddTab<CartPageModel>(string.Empty, "ic_act_code");
-                //mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_idea");
+                mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_idea");
                 //mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_more");
                 mainPage.BarTextColor = Color.White;
                 mainPage.BarBackgroundColor = Color.FromHex("#168dc3");

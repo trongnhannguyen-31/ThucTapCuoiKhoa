@@ -165,7 +165,7 @@
                     <virtualDirectory path="/" physicalPath="D:\ThucTap\ThucTapNhom\Server\Server.Api" />
                 </application>
                 <bindings>
-                    <binding protocol="http" bindingInformation="*:63199:localhost"
+                    <binding protocol="http" bindingInformation="*:63199:localhost"/>
 					<binding protocol="http" bindingInformation="*:63199:192.168.1.15"
 					/>
                 </bindings>
