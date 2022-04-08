@@ -76,13 +76,16 @@
             columns: [
                 { title: "Id", field: "Id", sorter: "string", width: 100 },
                 {
-                    title: "Tên loại", field: "Name", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    title: "Tên hãng sản xuất", field: "Name", sorter: "string", width: 200, formatter(cell, formatterParams)
                     {
                         return `<a href="../Admin/Vendor/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Name}</a>`
                     }
                 },
-                //{ title: "Logo", field: "Logo_Link", sorter: "string", width: 180 },
-                { title: "Số điện thoại", field: "Phone", sorter: "string", width: 180 },
+                {
+                    title: "Số điện thoại", field: "Phone", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Vendor/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Phone}</a>`
+                    }
+                },
                 {
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },
@@ -92,7 +95,7 @@
 
                 {
                     title: "", field: "Name", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Vendor/Update/${cell.getData().Id}" class="btn btn-primary text-white shadow-md mr-2">Chỉnh sửa</a>`
+                        return `<a href="../Admin/Vendor/Update/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Chỉnh sửa </a>`
                     }
                 },
             ],
