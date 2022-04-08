@@ -87,12 +87,12 @@
                     };
                     var vendor_id = new TomSelect('#selectVendor', zsettings);
                 </script>
-                @if (Model.Id > 0)
-                {
-                    <option>
-                        vendor_id.setValue(@Model.Vendor_Id);
-                    </option>
-                }
+                @*@if (Model.Id > 0)
+                    {
+                        <option>
+                            vendor_id.setValue(@Model.Vendor_Id);
+                        </option>
+                    }*@
             </div>
 
             <div>
@@ -115,24 +115,24 @@
     {
         <div class="intro-y col-span-12 lg:col-span-6">
             <div class="intro-y box p-5">
-                <div class="dropzone" id="dZUpload">
-                    <div class="fallback"> <input name="file" type="file" /> </div>
-                    <div class="dz-default dz-message" data-dz-message>
-                        <div class="text-lg font-medium">Drop files here or click to upload.</div>
-                        <div class="text-gray-600"> This is just a demo dropzone. Selected files are <span class="font-medium">not</span> actually uploaded.</div>
+                <div id="dZUpload" class="dropzone">
+                    <div class="dz-default dz-message">
+                        Drop image here.
                     </div>
                 </div>
-
             </div>
         </div>
     }
 </div>
 
 @section Scripts {
+    <script src="latestJs_1.11/jquery.min.js"></script>
+    <script src="~/Scripts/dropzone/dropzone.js"></script>
+    <link href="~/Scripts/dropzone/dropzone.css" rel="stylesheet" />
     <script>
         $(document).ready(function () {
             Dropzone.autoDiscover = false;
-            //Simple Dropzonejs 
+            //Simple Dropzonejs
             $("#dZUpload").dropzone({
                 url: "hn_SimpeFileUploader.ashx",
                 maxFiles: 5,

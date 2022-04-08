@@ -6,6 +6,8 @@ using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
 using Phoenix.Shared.Core;
 using Phoenix.Shared.Order;
+using Phoenix.Shared.OrderDetail;
+using Phoenix.Shared.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,17 +21,24 @@ namespace Phoenix.Server.Services.MainServices
     {
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
+<<<<<<< HEAD
+        
+        Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
+=======
         ///
         Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
         Task<CrudResult> AddOrder(OrderRequest request);
         Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
+>>>>>>> e0043f41016a5ee3ddbcc90eae27ddcd380b6b7e
     }
     public class OrderService : IOrderService
     {
         private readonly DataContext _dataContext;
-        public OrderService(DataContext dataContext)
+        private readonly IWarehouseService _warehouseService;
+        public OrderService(DataContext dataContext, IWarehouseService warehouseService)
         {
             _dataContext = dataContext;
+            _warehouseService = warehouseService;
         }
 
         //lấy danh sách nhà cung cấp
@@ -138,7 +147,7 @@ namespace Phoenix.Server.Services.MainServices
                                  Customer_Id = o.Customer_Id,
                                  CreatedAt = o.CreatedAt,
                                  Deleted = o.Deleted,
-                                 Order_Id = d.Id,
+                                 Order_Id = o.Id,
                                  ProductSKU_Id = s.Id,
                                  Warehouse_Id = w.Id,
                              }).AsQueryable();
@@ -166,17 +175,77 @@ namespace Phoenix.Server.Services.MainServices
         public List<ChangeStatusDto> ListOrder { get; set; } = new List<ChangeStatusDto>();
 
         public ChangeStatusRequest ChangeStatusRequest { get; set; } = new ChangeStatusRequest();
+
+        public OrderDetailRequest OrderDetailRequest { get; set; } = new OrderDetailRequest();
+        public WarehouseRequest warehouseRequest { get; set; } = new WarehouseRequest();
+        public List<OrderDetailDto> ListDetail { get; set; } = new List<OrderDetailDto>();
         #endregion
+
+        #region GetOrderDetailById
+        public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request)
+        {
+            var result = new BaseResponse<OrderDetailDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.OrderDatails.AsQueryable();
+
+                query = query.Where(x => x.Order_Id == request.Order_Id);
+
+                //filter
+                //if (request.Order_Id > 0)
+                //{
+                //    query = query.Where(d => d.Order_Id == request.Order_Id);
+                //}
+
+               // query = query.OrderByDescending(d => d.Id);
+
+                //var list = _dataContext.OrderDatails.Where(p => p.Order_Id.Equals(request.Order_Id));
+
+                var data = query.ToList();
+                result.Data = data.MapTo<OrderDetailDto>();
+                //result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+        #endregion
+
 
         public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
+            //tru so luong warehouse
+            OrderDetailRequest.Order_Id = id;
+            var data1 = await this.GetAllOrderDetailById(OrderDetailRequest);
+            ListDetail = data1.Data.MapTo<OrderDetailDto>();
+
+            foreach (var item in ListDetail)
+            {
+                warehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+                var warehouses = _warehouseService.GetAllWarehouses(warehouseRequest);
+
+                /*warehouses.Id = warehouseRequest.Id;
+                warehouses.ProductSKU_Id = warehouseRequest.ProductSKU_Id;
+                warehouses.Quantity = warehouses.Quantity - (int)warehouseRequest.Quantity;
+                warehouses.UpdatedAt = DateTime.Now;*/
+
+                await _dataContext.SaveChangesAsync();
+            }
+
+
             var result = new BaseResponse<OrderDto>();
             //var change = new BaseResponse<ChangeStatusDto>();
             try
             {
+
                 var orders = GetOrderById(id);
-                //ChangeStatusRequest.Id = id;
-                //var data = GetListById(ChangeStatusRequest);
+                ChangeStatusRequest.Id = id;
+                var data = GetListById(ChangeStatusRequest);
                 //ListOrder = data;
 
 
