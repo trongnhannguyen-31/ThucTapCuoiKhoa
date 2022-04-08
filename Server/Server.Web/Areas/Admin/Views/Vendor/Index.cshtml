@@ -32,7 +32,7 @@
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
                 <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -74,14 +74,14 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                { title: "Mã loại", field: "Id", sorter: "string", width: 180 },
+                { title: "Id", field: "Id", sorter: "string", width: 100 },
                 {
                     title: "Tên loại", field: "Name", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
                         return `<a href="../Admin/Vendor/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Name}</a>`
                     }
                 },
-                { title: "Logo", field: "Logo_Link", sorter: "string", width: 180 },
+                //{ title: "Logo", field: "Logo_Link", sorter: "string", width: 180 },
                 { title: "Số điện thoại", field: "Phone", sorter: "string", width: 180 },
                 {
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter

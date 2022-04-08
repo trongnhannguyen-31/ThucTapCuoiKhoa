@@ -33,7 +33,7 @@ namespace Phoenix.Server.Services.MainServices
             _dataContext = dataContext;
         }
 
-        //lấy danh sách nhà cung cấp
+        #region GetAllVendors
         public async Task<BaseResponse<VendorDto>> GetAllVendors(VendorRequest request)
         {
             var result = new BaseResponse<VendorDto>();
@@ -72,39 +72,9 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
 
-        // add hinh
-        /*private readonly DataContext db = new DataContext();
-        public int UploadImageInDataBase(HttpPostedFileBase file, ImageRecord imageRecordModel)
-        {
-            imageRecordModel.RelativePath = file; // = ConvertToBytes(file);
-            var Content = new Content
-            {
-                Title = contentViewModel.Title,
-                Description = contentViewModel.Description,
-                Contents = contentViewModel.Contents,
-                Image = contentViewModel.Image
-            };
-            db.Contents.Add(Content);
-            int i = db.SaveChanges();
-            if (i == 1)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }*/
-       /* public byte[] ConvertToBytes(HttpPostedFileBase image)
-        {
-            byte[] imageBytes = null;
-            BinaryReader reader = new BinaryReader(image.InputStream);
-            imageBytes = reader.ReadBytes((int)image.ContentLength);
-            return imageBytes;
-        }*/
-
-        // Insert Vendor
+        #region CreateVendors
         public async Task<BaseResponse<VendorDto>> CreateVendors(VendorRequest request)
         {
             var result = new BaseResponse<VendorDto>();
@@ -133,9 +103,9 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
 
         public Vendor GetVendorsById(int id) => _dataContext.Vendors.Find(id);
-
 
         #region Update
         public async Task<BaseResponse<VendorDto>> UpdateVendors(VendorRequest request)
@@ -187,6 +157,39 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #endregion
+
+        #region Image
+        // add hinh
+        /*private readonly DataContext db = new DataContext();
+        public int UploadImageInDataBase(HttpPostedFileBase file, ImageRecord imageRecordModel)
+        {
+            imageRecordModel.RelativePath = file; // = ConvertToBytes(file);
+            var Content = new Content
+            {
+                Title = contentViewModel.Title,
+                Description = contentViewModel.Description,
+                Contents = contentViewModel.Contents,
+                Image = contentViewModel.Image
+            };
+            db.Contents.Add(Content);
+            int i = db.SaveChanges();
+            if (i == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }*/
+        /* public byte[] ConvertToBytes(HttpPostedFileBase image)
+         {
+             byte[] imageBytes = null;
+             BinaryReader reader = new BinaryReader(image.InputStream);
+             imageBytes = reader.ReadBytes((int)image.ContentLength);
+             return imageBytes;
+         }*/
         #endregion
     }
 }
