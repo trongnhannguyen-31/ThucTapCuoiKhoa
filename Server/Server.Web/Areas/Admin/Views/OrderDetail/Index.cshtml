@@ -25,10 +25,10 @@
                 <label>Tên Loại</label>
                 <input type="text" id="Id" class="form-control">
             </div>
-            @*<div class="col-span-12 lg:col-span-6">
+            <div class="col-span-12 lg:col-span-6">
                  <label>Tên sản phẩm</label> 
                 <input type="hidden" id="Product_Name" class="form-control">
-            </div>*@
+            </div>
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
@@ -58,7 +58,7 @@
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
                 //params.Id = $('#Id').val();
-                //params.Product_Name = $('#Product_Name').val();
+                params.Product_Name = $('#Product_Name').val();
 
             },
             ajaxResponse: function (url, params, response) {
@@ -79,14 +79,14 @@
             placeholder: "Chưa có dữ liệu",
             columns: [
                 //{ title: "Mã đơn", field: "Id", sorter: "string", width: 180 },
-                { title: "Mã đơn", field: "Order_Id", sorter: "string", width: 180 },
+                { title: "Mã đơn", field: "Order_Id", sorter: "string", width: 120 },
                 @*{
                     title: "Sản Phẩm", field: "Product_Id", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
                         return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Product_Id}</a>`
                     }
                 },*@
-                //{ title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 180 },
+                { title: "Tên sản phẩm", field: "Product_Name", sorter: "string", width: 280 },
                 { title: "Giá", field: "Price", sorter: "string", width: 180 },
                 { title: "Số lượng", field: "Quantity", sorter: "string", width: 180 },
                 { title: "Tổng tiền", field: "Total", sorter: "string", width: 180 },
