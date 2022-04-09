@@ -2,6 +2,7 @@
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Customer;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<CustomerDto>> DeleteCustomersById(int Id);
         ///
         Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request);
+        Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
     }
     public class CustomerService : ICustomerService
     {
@@ -139,6 +141,23 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
+        }
+        #endregion
+
+        #region UpdateCustomerDetail
+        public async Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request)
+        {
+            var Customer = _dataContext.Customers.Find(Id);
+            Customer.FullName = request.FullName;
+            Customer.Gender = request.Gender;
+            Customer.Birthday = request.Birthday;
+            Customer.Phone = request.Phone;
+            Customer.Email = request.Email;
+            Customer.Address = request.Address;
+            Customer.zUser_Id = request.zUser_Id;
+
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
         }
         #endregion
     }

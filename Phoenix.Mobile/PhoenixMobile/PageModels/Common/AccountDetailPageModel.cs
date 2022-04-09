@@ -24,7 +24,7 @@ namespace Phoenix.Mobile.PageModels.Common
 
         public override async void Init(object initData)
         {
-            base.Init(initData);
+            //base.Init(initData);
             NavigationPage.SetHasNavigationBar(CurrentPage, false);
             CurrentPage.Title = "Account";
         }
@@ -33,10 +33,25 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             base.ViewIsAppearing(sender, e);
             await LoadData();
+            if (IsBusy) return;
+            IsBusy = true;
+#if DEBUG
+            Id = Customer.Id;
+            FullName = Customer.FullName;
+            Gender = Customer.Gender;
+            Birthday = Customer.Birthday;
+            Phone = Customer.Phone;
+            Email = Customer.Email;
+            Address = Customer.Address;
+            zUser_Id = Customer.zUser_Id;
+#endif
+            IsBusy = false;
         }
 
         private async Task LoadData()
         {
+
+
             request.zUser_Id = 1;
             var data = await _customerDetailService.GetCustomerApptById(request);
             if (data == null)
@@ -53,6 +68,61 @@ namespace Phoenix.Mobile.PageModels.Common
         #region properties
         public CustomerModel Customer { get; set; } = new CustomerModel();
         public CustomerRequest request { get; set; } = new CustomerRequest();
+        public bool IsEnabled { get; set; } = false;
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Gender { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public int zUser_Id { get; set; }
+
+
+
+
+
+        #endregion
+
+        #region EditCommand
+        public Command EditCommand => new Command(async (p) => await EditExecute(), (p) => !IsBusy);
+        private async Task EditExecute()
+        {
+            IsEnabled = true;
+
+        }
+        #endregion
+
+        #region UpdateCustomerDetailCommand
+        public Command UpdateCustomerDetailCommand => new Command(async (p) => await UpdateCustomerDetailExecute(), (p) => !IsBusy);
+        private async Task UpdateCustomerDetailExecute()
+        {
+            try
+            {
+                if (IsBusy) return;
+                IsBusy = true;
+
+                var data = await _customerDetailService.UpdateCustomerDetail(Id, new CustomerRequest
+                {
+                    Id = Id,
+                    FullName = FullName,
+                    Gender = Gender,
+                    Birthday = Birthday,
+                    Phone = Phone,
+                    Email = Email,
+                    Address = Address,
+                    zUser_Id = zUser_Id
+                });
+                await _dialogService.AlertAsync("Cập nhật thành công");
+                await CoreMethods.PushPageModel<AccountPageModel>();                
+                IsBusy = false;
+
+            }
+            catch (Exception e)
+            {
+                await _dialogService.AlertAsync("Cập nhật thất bại");
+            }
+        }
         #endregion
     }
 }

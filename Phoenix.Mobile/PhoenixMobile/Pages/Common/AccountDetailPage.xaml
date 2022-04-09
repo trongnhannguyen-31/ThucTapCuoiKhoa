@@ -3,15 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Phoenix.Mobile.Pages.Common.AccountDetailPage"
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common"
+             NavigationPage.HasNavigationBar="False"
+             
              x:DataType="common:AccountDetailPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Customer.FullName, StringFormat='Họ tên: {0}'}"/>
-            <Label Text="{Binding Customer.Gender, StringFormat='Giới tính: {0}'}"/>
-            <Label Text="{Binding Customer.Birthday, StringFormat='Ngày sinh: {0}'}"/>
-            <Label Text="{Binding Customer.Phone, StringFormat='Số điện thoại: {0}'}"/>
-            <Label Text="{Binding Customer.Email, StringFormat='Email: {0}'}"/>
-            <Label Text="{Binding Customer.Address, StringFormat='Địa chỉ: {0}'}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Họ tên:"/>
+                <Entry Grid.Row="0"
+                       Grid.Column="1"
+                       Placeholder="Nhập họ tên"
+                       Text="{Binding FullName}"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Giới tính:"/>
+                <Entry Grid.Row="1"
+                       Grid.Column="1"
+                       Placeholder="Nhập giới tính"
+                       Text="{Binding Gender}"/>
+
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Ngày sinh:"/>
+                <Entry Grid.Row="2"
+                       Grid.Column="1"
+                       Placeholder="Nhập ngày sinh"
+                       Text="{Binding Birthday}"/>
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="Số điện thoại:"/>
+                <Entry Grid.Row="3"
+                       Grid.Column="1"
+                       Placeholder="Nhập số điện thoại"
+                       Text="{Binding Phone}"/>
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Email:"/>
+                <Entry Grid.Row="4"
+                       Grid.Column="1"
+                       Placeholder="Nhập email"
+                       Text="{Binding Email}"/>
+
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Text="Địa chỉ:"/>
+                <Entry Grid.Row="5"
+                       Grid.Column="1"
+                       Placeholder="Nhập địa chỉ"
+                       Text="{Binding Address}"/>
+            </Grid>
+            <Button Text="Luu"
+                    Command="{Binding UpdateCustomerDetailCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

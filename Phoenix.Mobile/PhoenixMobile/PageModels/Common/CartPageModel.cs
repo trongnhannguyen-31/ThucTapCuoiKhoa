@@ -353,15 +353,7 @@ namespace Phoenix.Mobile.PageModels.Common
         private async Task TestCommandExecute()
         {
             //ait CoreMethods.DisplayAlert("Thông báo", "Bạn đã chọn:" + , "Đóng");
-            try
-            {
-                await _dialogService.AlertAsync("Xóa thất bại");
-
-            }
-            catch (Exception e)
-            {
-                await _dialogService.AlertAsync("Xóa thất bại");
-            }
+            updateTotalPrice();
 
         }
         #endregion

@@ -27,5 +27,12 @@ namespace Phoenix.Server.Api.Api
         {
             return await _customerService.GetCustomerApptById(request);
         }
+
+        [HttpPost]
+        [Route("UpdateCustomerDetail")]
+        public Task<CrudResult> UpdateCustomerDetail(int Id, [FromBody] CustomerRequest request)
+        {
+            return _customerService.UpdateCustomerDetail(Id, request);
+        }
     }
 }

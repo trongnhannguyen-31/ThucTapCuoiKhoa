@@ -1,6 +1,7 @@
 ﻿using Phoenix.Mobile.Core.Models.Customer;
 using Phoenix.Mobile.Core.Proxies.Common;
 using Phoenix.Mobile.Core.Utils;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Customer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace Phoenix.Mobile.Core.Services.Common
     public interface ICustomerService
     {
         Task<CustomerModel> GetCustomerApptById(CustomerRequest request);
+        Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
     }
 
     public class CustomerService : ICustomerService
@@ -24,6 +26,11 @@ namespace Phoenix.Mobile.Core.Services.Common
         {
             var customer = await _customerProxy.GetCustomerApptById(request);
             return customer.Record.MapTo<CustomerModel>();
+        }
+
+        public Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request)
+        {
+            return _customerProxy.UpdateCustomerDetail(Id, request);
         }
     }
 }
