@@ -174,7 +174,8 @@ namespace Phoenix.Server.Services.MainServices
         public ChangeStatusRequest ChangeStatusRequest { get; set; } = new ChangeStatusRequest();
 
         public OrderDetailRequest OrderDetailRequest { get; set; } = new OrderDetailRequest();
-        public WarehouseRequest warehouseRequest { get; set; } = new WarehouseRequest();
+        public WarehouseOrderRequest warehouseRequest { get; set; } = new WarehouseOrderRequest();
+        public WarehouseOrderDto wareHouse { get; set; } = new WarehouseOrderDto();
         public List<OrderDetailDto> ListDetail { get; set; } = new List<OrderDetailDto>();
         #endregion
 
@@ -224,7 +225,13 @@ namespace Phoenix.Server.Services.MainServices
             foreach (var item in ListDetail)
             {
                 warehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
-                var warehouses = _warehouseService.GetAllWarehouses(warehouseRequest);
+               var data = _warehouseService.GetWarehouseByProductSKUId(warehouseRequest);
+               wareHouse = data.Result.Record;
+                Warehouse warehouse1 = new Warehouse();
+                warehouse1.Id = wareHouse.Id;
+                warehouse1.ProductSKU_Id = wareHouse.ProductSKU_Id;
+                warehouse1.Quantity = wareHouse.Quantity;
+
 
                 /*warehouses.Id = warehouseRequest.Id;
                 warehouses.ProductSKU_Id = warehouseRequest.ProductSKU_Id;

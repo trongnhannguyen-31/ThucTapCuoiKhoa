@@ -36,6 +36,8 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<Order, OrderDto>();
             CreateMap<z_User, z_UserDto>();
             CreateMap<Customer, CustomerDto>();
+
+            CreateMap<Warehouse, WarehouseOrderDto>();
         }
     }
 }

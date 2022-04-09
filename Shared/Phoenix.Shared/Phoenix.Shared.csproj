@@ -101,6 +101,8 @@
     <Compile Include="WarehouseMenu\WarehouseMenuDto.cs" />
     <Compile Include="WarehouseMenu\WarehouseMenuRequest.cs" />
     <Compile Include="Warehouse\WarehouseDto.cs" />
+    <Compile Include="Warehouse\WarehouseOrderDto.cs" />
+    <Compile Include="Warehouse\WarehouseOrderRequest.cs" />
     <Compile Include="Warehouse\WarehouseRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductType\ProductTypeDto.cs" />
