@@ -14,30 +14,19 @@
     <h2 class="text-lg font-medium mr-auto">
         Đơn hàng
     </h2>
-    <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-        <a href="@Url.Action("Create","Project")" class="btn btn-primary text-white shadow-md mr-2">Thêm mới</a>
-    </div>
 </div>
 <div class="grid gap-6 mt-5">
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
-                <label>Tên Loại</label>
-                <input type="text" id="Id" class="form-control">
-            </div>
-            <div class="col-span-12 lg:col-span-6">
                 <label>Tên khách hàng</label>
                 <input type="text" id="Customer_Name" class="form-control">
-            </div>
-            <div class="col-span-12 lg:col-span-6">
-                <!--<label>Tên khách hàng</label>-->
-                <input type="hidden" id="Status_Name" class="form-control">
             </div>
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
-                <button type="button" onclick="onResetSearch();" class="btn btn-success text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -60,9 +49,7 @@
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
                 params.Id = $('#Id').val(),
-                params.Id = $('#Customer_Name').val();
-                params.Id = $('#Status_Name').val();
-
+                params.Customer_Name = $('#Customer_Name').val();
             },
             ajaxResponse: function (url, params, response) {
                 return response;

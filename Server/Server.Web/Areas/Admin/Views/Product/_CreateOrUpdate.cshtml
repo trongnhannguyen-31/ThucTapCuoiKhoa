@@ -82,8 +82,20 @@
                             },
                             item: function (item, escape) {
                                 return `<option value="${item.Id}"> ${item.Name} </option>`;
-                            }
+                            },
                         }
+                        @*@if (@Model.Id > 0)
+                        {
+                            render:
+                                {
+                                option: function(item, escape) {
+                                        return `<option value = "${item.Id}" > ${ item.Name} </ option >`;
+                                    },
+                                item: function(item, escape) {
+                                        return `<option value = "${item.Id}" > ${ item.Name} </ option >`;
+                                    },
+                            },
+                        }*@
                     };
                     var vendor_id = new TomSelect('#selectVendor', zsettings);
                 </script>

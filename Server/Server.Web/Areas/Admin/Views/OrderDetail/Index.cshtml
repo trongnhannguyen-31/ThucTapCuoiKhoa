@@ -14,26 +14,30 @@
     <h2 class="text-lg font-medium mr-auto">
         Chi tiết đơn đặt hàng
     </h2>
-    <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-        <a href="@Url.Action("Create","Project")" class="btn btn-primary text-white shadow-md mr-2">Thêm mới</a>
-    </div>
 </div>
 <div class="grid gap-6 mt-5">
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
-                <label>Tên Loại</label>
-                <input type="text" id="Id" class="form-control">
+                <label>Tên sản phẩm</label>
+                <input type="text" id="Product_Name" class="form-control">
             </div>
+<<<<<<< HEAD
+            <div class="col-span-12 lg:col-span-6">
+                @*<label>Tên Loại</label>*@
+                <input type="hidden" id="Id" class="form-control">
+            </div>
+=======
             @*<div class="col-span-12 lg:col-span-6">
                  <label>Tên sản phẩm</label> 
                 <input type="hidden" id="Product_Name" class="form-control">
             </div>*@
+>>>>>>> ccccc30cbe638b00831332b6019542978c7f6380
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
-                <button type="button" onclick="onResetSearch();" class="btn btn-success text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -90,19 +94,13 @@
                 { title: "Giá", field: "Price", sorter: "string", width: 180 },
                 { title: "Số lượng", field: "Quantity", sorter: "string", width: 180 },
                 { title: "Tổng tiền", field: "Total", sorter: "string", width: 180 },
-                {
-                    title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },
-                {
-                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },
             ],
         });
         let onSearch = (e) => {
             table.setData();
         }
         let onResetSearch = (e) => {
-            $('#Name').val('');
+            $('#Product_Name').val('');
             table.setData();
         }
     </script>
