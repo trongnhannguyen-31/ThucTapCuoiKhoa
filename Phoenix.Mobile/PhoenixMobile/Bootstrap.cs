@@ -70,6 +70,7 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<ICartItemService, CartItemService>();
             FreshIOC.Container.Register<IOrderDetailService,OrderDetailService>();
             FreshIOC.Container.Register<IOrderService, OrderService>();
+            FreshIOC.Container.Register<ICustomerService, CustomerService>();
 
 
             //proxy
@@ -86,6 +87,7 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<IImageRecordProxy, ImageRecordProxy>();
             FreshIOC.Container.Register<IProductMenuProxy, ProductMenuProxy>();
             FreshIOC.Container.Register<ICartItemProxy, CartItemProxy>();
+            FreshIOC.Container.Register<ICustomerProxy, CustomerProxy>();
         }
     }
     

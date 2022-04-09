@@ -93,11 +93,11 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
 
-                                <Button Grid.Column="4"
+                                <!--<Button Grid.Column="4"
                                         Grid.Row="1"
                                         Command="{Binding Path=BindingContext.RemoveItemCommand, Source={x:Reference Name=ListCartItem}}"
                                         CommandParameter="{Binding .}"
-                                        Text="Xóa"/>
+                                        Text="Xóa"/>-->
                                 <!--<controls:CommonButton Grid.Column="4" Grid.Row="1"
                                     Style="{StaticResource CommonButtonPrimary}" Margin="0,20,0,0"
                                    IconStartWidth="0" ButtonPadding="50,0"
@@ -131,7 +131,7 @@
                             FontSize="20"
                             HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
-                <Button Text="Thanh toán"
+                <Button Text="Xóa"
                         Margin="0,20,0,20"
                         Command="{Binding RemoveItemCommand}"></Button>
                 <Button Text="Thanh toán"

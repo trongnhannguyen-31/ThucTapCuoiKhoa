@@ -21,5 +21,15 @@ namespace Phoenix.Mobile.PageModels.Common
 
         }
         #endregion
+
+        #region AccountDetailCommand
+        public Command AccountDetailCommand => new Command(async (p) => await AccountDetailExecute(), (p) => !IsBusy);
+        private async Task AccountDetailExecute()
+        {
+
+            await CoreMethods.PushPageModel<AccountDetailPageModel>();
+
+        }
+        #endregion
     }
 }

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Phoenix.Mobile.Pages.Common.AccountDetailPage"
+             xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common"
+             x:DataType="common:AccountDetailPageModel">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Customer.FullName, StringFormat='Họ tên: {0}'}"/>
+            <Label Text="{Binding Customer.Gender, StringFormat='Giới tính: {0}'}"/>
+            <Label Text="{Binding Customer.Birthday, StringFormat='Ngày sinh: {0}'}"/>
+            <Label Text="{Binding Customer.Phone, StringFormat='Số điện thoại: {0}'}"/>
+            <Label Text="{Binding Customer.Email, StringFormat='Email: {0}'}"/>
+            <Label Text="{Binding Customer.Address, StringFormat='Địa chỉ: {0}'}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -11,6 +11,7 @@ using Phoenix.Shared.CartItem;
 using Phoenix.Shared.OrderDetail;
 using Phoenix.Server.Services.MainServices.Common.Models;
 using Phoenix.Shared.z_User;
+using Phoenix.Shared.Customer;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -34,6 +35,7 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<OrderDetail, OrderDetailDto>();
             CreateMap<Order, OrderDto>();
             CreateMap<z_User, z_UserDto>();
+            CreateMap<Customer, CustomerDto>();
         }
     }
 }

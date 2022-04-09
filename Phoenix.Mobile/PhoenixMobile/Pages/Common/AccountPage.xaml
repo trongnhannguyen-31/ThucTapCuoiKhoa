@@ -40,7 +40,8 @@
 
             <Button Text="Đơn hàng của tôi"
                     Command="{Binding ViewOrderCommand}"/>
-            <Button Text="Chỉnh sửa thông tin cá nhân"/>
+            <Button Text="Chỉnh sửa thông tin cá nhân"
+                    Command="{Binding AccountDetailCommand}"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Đổi mật khẩu"
                         HorizontalOptions="StartAndExpand"

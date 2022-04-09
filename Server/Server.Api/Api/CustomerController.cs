@@ -21,6 +21,7 @@ namespace Phoenix.Server.Api.Api
             _customerService = customerService;
         }
 
+        [HttpPost]
         [Route("GetCustomerApptById")]
         public async Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request)
         {

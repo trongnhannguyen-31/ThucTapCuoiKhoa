@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Genymotion Google Pixel XL</SelectedDevice>
-    <ActiveDebugProfile>Genymotion Google Pixel XL</ActiveDebugProfile>
+    <SelectedDevice>phone_m-dpi_5_4</SelectedDevice>
+    <ActiveDebugProfile>phone_m-dpi_5_4</ActiveDebugProfile>
     <DefaultDevice>phone_m-dpi_5_4</DefaultDevice>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
