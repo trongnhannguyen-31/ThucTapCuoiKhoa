@@ -9,6 +9,22 @@
              x:Name="ProductDetail"><!--xmlns:productMenu="clr-namespace:Phoenix.Mobile.Core.Models.ProductMenu;assembly=Phoenix.Mobile.Core"-->
     <ContentPage.Content>
         <StackLayout>
+            <!--<SearchBar Placeholder="Nhập tên sản phẩm..."
+                       SearchCommand="{Binding SearchCommand}"
+                       Text="{Binding SearchText}" 
+                       />-->
+            <StackLayout Orientation="Horizontal">
+                <Entry Placeholder="Nhập tên sản phẩm..."
+                       WidthRequest="250"
+                       Margin="10,0,0,0"
+                       Text="{Binding SearchText}"/>
+                <Button WidthRequest="70"
+                        Text="Tìm"
+                        Command="{Binding SearchCommand}"/>
+                <Button WidthRequest="70"
+                        Text="Xóa"
+                        Command="{Binding ClearSearchCommand}"/>
+            </StackLayout>           
             <CollectionView ItemsSource="{Binding ProductMenus}"
                             BackgroundColor="#ecf0f1"
                             
