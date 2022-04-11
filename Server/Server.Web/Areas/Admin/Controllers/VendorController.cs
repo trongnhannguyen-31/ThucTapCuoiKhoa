@@ -118,11 +118,11 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var project = _vendorService.GetVendorsById(id);
             if (project == null)
                 //No email account found with the specified id
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
 
             await _vendorService.DeleteVendors(project.Id);
             SuccessNotification("Xóa hãng sản xuất thành công");
-            return RedirectToAction("List");
+            return RedirectToAction("Index");
         }
         #endregion
 
