@@ -30,7 +30,7 @@ namespace Phoenix.Server.Data.Entity
 
         public int Quantity { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
     }
 }

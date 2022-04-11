@@ -29,6 +29,6 @@ namespace Phoenix.Shared.WarehouseMenu
 
         public string ProductName { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }
