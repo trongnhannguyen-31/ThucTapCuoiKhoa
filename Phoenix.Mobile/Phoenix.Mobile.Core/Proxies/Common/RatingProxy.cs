@@ -15,6 +15,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
     public interface IRatingProxy
     {
         Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
+        Task<RatingAppDto> AddRating(RatingAppRequest request);
     }
 
     public class RatingProxy : BaseProxy, IRatingProxy
@@ -34,10 +35,29 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
-    public interface IRatingApi
+        public async Task<RatingAppDto> AddRating(RatingAppRequest request)
+        {
+            try
+            {
+                var api = RestService.For<IRatingApi>(GetHttpClient());
+                var result = await api.AddRating(request);
+                if (result == null) return new RatingAppDto();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return new RatingAppDto();
+            }
+        }
+
+        public interface IRatingApi
         {
             [Post("/rating/GetRatingByProductSKUId")]
             Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId([Body] RatingAppRequest request);
+
+            [Post("/rating/AddRating")]
+            Task<RatingAppDto> AddRating([Body] RatingAppRequest request);
         }
     }
 }

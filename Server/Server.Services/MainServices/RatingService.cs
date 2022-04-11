@@ -3,6 +3,7 @@ using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Rating;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
         
         Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
+        /////
+        Task<CrudResult> AddRating(RatingAppRequest request);
     }
     public class RatingService : IRatingService
     {
@@ -144,6 +147,29 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
+        }
+        #endregion
+
+        #region AddRating
+        public async Task<CrudResult> AddRating(RatingAppRequest request)
+        {
+            var Rating = new Rating();
+            Rating.Rate = request.Rate;
+            Rating.Comment = request.Comment;
+            Rating.CreatedDate = request.CreatedDate;
+            Rating.Image1 = request.Image1;
+            Rating.Image2 = request.Image2;
+            Rating.Image3 = request.Image3;
+            Rating.Customer_Id = request.Customer_Id;
+            Rating.ProductSKU_Id = request.ProductSKU_Id;
+            Rating.Order_Id = request.Order_Id;
+            Rating.Deleted = request.Deleted;
+
+            _dataContext.Ratings.Add(Rating);
+
+            await _dataContext.SaveChangesAsync();
+            //int a = Order.Id;
+            return new CrudResult() { IsOk = true };
         }
         #endregion
     }

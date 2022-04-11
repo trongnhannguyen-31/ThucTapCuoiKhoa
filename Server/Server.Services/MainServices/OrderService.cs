@@ -27,6 +27,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request);
         Task<CrudResult> AddOrder(OrderAppRequest request);
         Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request);
+        Task<CrudResult> EditOrder(int Id, OrderAppRequest request);
     }
     public class OrderService : IOrderService
     {
@@ -353,6 +354,17 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
+        }
+        #endregion
+
+        #region EditOrder
+        public async Task<CrudResult> EditOrder(int Id, OrderAppRequest request)
+        {
+            var Order = _dataContext.Orders.Find(Id);
+            Order.IsRated = request.IsRated;
+
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
         }
         #endregion
     }

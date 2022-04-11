@@ -1,5 +1,6 @@
 ﻿using Phoenix.Server.Services.MainServices;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Rating;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,14 @@ namespace Phoenix.Server.Api.Api
         public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request)
         {
             return await _ratingService.GetRatingByProductSKUId(request);
+        }
+
+        [HttpPost]
+        [Route("AddRating")]
+        public Task<CrudResult> AddRating([FromBody] RatingAppRequest request)
+
+        {
+            return _ratingService.AddRating(request);
         }
     }
 }

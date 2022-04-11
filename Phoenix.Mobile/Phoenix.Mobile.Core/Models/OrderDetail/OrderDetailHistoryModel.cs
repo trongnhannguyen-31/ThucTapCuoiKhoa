@@ -7,6 +7,7 @@ namespace Phoenix.Mobile.Core.Models.OrderDetail
 {
     public class OrderDetailHistoryModel : OrderDetailHistoryDto
     {
-
+        public string Comment1 { get; set; }
+        public int Rate1 { get; set; }
     }
 }

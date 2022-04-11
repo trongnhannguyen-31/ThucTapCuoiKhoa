@@ -36,6 +36,10 @@ namespace Phoenix.Server.Data.Entity
         public int ProductSKU_Id { get; set; }
         [ForeignKey("ProductSKU_Id")]
         public virtual ProductSKU ProductSKU { get; set; }
+
+        public int Order_Id { get; set; }
+        [ForeignKey("Order_Id")]
+        public virtual Order Order { get; set; }
         public bool Deleted { get; set; }
     }
 }

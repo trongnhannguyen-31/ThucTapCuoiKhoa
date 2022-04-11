@@ -381,5 +381,14 @@ namespace Phoenix.Mobile.PageModels.Common
         //        }
         //    }
         //}
+
+        #region Refresh
+        public Command Refresh => new Command(async (p) => await RefreshExecute(), (p) => !IsBusy);
+        private async Task RefreshExecute()
+        {
+            LoadData();
+
+        }
+        #endregion
     }
 }

@@ -94,9 +94,14 @@
                        HorizontalOptions="EndAndExpand" />
             </StackLayout>
             <Button Text="Xem đánh giá của tôi"
-                    IsVisible="{Binding ViewRatingButton}"/>
+                    IsVisible="{Binding ViewRatingButton}"
+                    Command="{Binding ViewRatingCommand}"/>
             <Button Text="Đánh giá"
-                    IsVisible="{Binding RatingButton}"/>
+                    IsVisible="{Binding RatingButton}"
+                    Command="{Binding RatingCommand}"/>
+            <Button Text="Hủy đơn"
+                    IsVisible="{Binding CancelButton}"
+                    Command="{Binding RatingCommand}"/>
             <Button Text="Mua lại"
                     Command="{Binding ReBuyCommand}"/>
         </StackLayout>

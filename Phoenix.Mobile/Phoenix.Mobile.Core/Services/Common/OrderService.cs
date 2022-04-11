@@ -1,6 +1,7 @@
 ﻿using Phoenix.Mobile.Core.Models.Order;
 using Phoenix.Mobile.Core.Proxies.Common;
 using Phoenix.Mobile.Core.Utils;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Order;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Phoenix.Mobile.Core.Services.Common
         Task<List<OrderModel>> GetAllAppOrders(OrderAppRequest request);
         Task<OrderModel> AddOrder(OrderAppRequest request);
         Task<OrderModel> GetLatestOrder(OrderAppRequest request);
+        Task<CrudResult> EditOrder(int Id, OrderAppRequest request);
     }
 
     public class OrderService : IOrderService
@@ -37,6 +39,11 @@ namespace Phoenix.Mobile.Core.Services.Common
         {
             var data = await _orderProxy.GetLatestOrder(request);
             return data.Record.MapTo<OrderModel>();
+        }
+
+        public Task<CrudResult> EditOrder(int Id, OrderAppRequest request)
+        {
+            return _orderProxy.EditOrder(Id, request);
         }
     }
 }

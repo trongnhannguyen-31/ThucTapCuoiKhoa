@@ -35,17 +35,16 @@ namespace Phoenix.Shared.OrderDetail
 			}
 		}
 
-		public string ProductName
+        public string ProductName
 		{
 			get
 			{
 				if (ProductTypeId == 5)
 					return Name + " | " + Ram + "/" + Storage;
-				else
-					return Name + " " + ModelCode;
-			}
-		}
-
+                else
+                    return Name + " " + ModelCode;
+            }
+        }
 
 	}
 }

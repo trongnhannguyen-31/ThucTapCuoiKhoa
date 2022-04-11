@@ -52,6 +52,7 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
+            //if Status = ĐÃ hủy -> isvisible false tất cả nút
             //Load thông tin chi tiết điện thoại
             request.Order_Id = Order.Id;
             var data = await _orderDetailService.GetOrderDetailHistory(request);
@@ -65,15 +66,23 @@ namespace Phoenix.Mobile.PageModels.Common
                 OrderDetails = data;
                 ListViewHeight = 60 * OrderDetails.Count;
                 RaisePropertyChanged(nameof(OrderDetails));
-                if(Order.IsRated == true)
+                if(Order.DeliveryDate == null)
+                {
+                    RatingButton = false;
+                    ViewRatingButton = false;
+                    CancelButton = true;
+                }
+                else if(Order.IsRated == true || Order.DeliveryDate != null)
                 {
                     RatingButton = false;
                     ViewRatingButton = true;
+                    CancelButton = false;
                 }
                 else
                 {
                     RatingButton = true;
                     ViewRatingButton = false;
+                    CancelButton = false;
                 }
             }
         }
@@ -84,6 +93,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public OrderDetailHistoryRequest request { get; set; } = new OrderDetailHistoryRequest();
         public bool RatingButton { get; set; }
         public bool ViewRatingButton { get; set; }
+        public bool CancelButton { get; set; }
         public int ListViewHeight { get; set; }
 
         #endregion
@@ -117,6 +127,26 @@ namespace Phoenix.Mobile.PageModels.Common
                 await _dialogService.AlertAsync("Thêm thất bại");
 
             }
+        }
+        #endregion
+
+        #region RatingCommand
+        public Command RatingCommand => new Command(async (p) => await RatingExecute(), (p) => !IsBusy);
+        private async Task RatingExecute()
+        {
+
+            await CoreMethods.PushPageModel<RatingPageModel>(OrderDetails);
+
+        }
+        #endregion
+
+        #region ViewRatingCommand
+        public Command ViewRatingCommand => new Command(async (p) => await ViewRatingExecute(), (p) => !IsBusy);
+        private async Task ViewRatingExecute()
+        {
+
+            await CoreMethods.PushPageModel<ViewRatingPageModel>();
+
         }
         #endregion
     }

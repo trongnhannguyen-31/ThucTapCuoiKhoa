@@ -41,5 +41,12 @@ namespace Phoenix.Server.Api.Api
         {
             return await _orderService.GetLatestOrder(request);
         }
+
+        [HttpPost]
+        [Route("EditOrder")]
+        public Task<CrudResult> EditOrder(int Id, [FromBody] OrderAppRequest request)
+        {
+            return _orderService.EditOrder(Id, request);
+        }
     }
 }
