@@ -7450,26 +7450,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\YOUR PC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.iOS\\Phoenix.iOS.csproj",
-      "projectName": "CongDongBau.iOS",
-      "projectPath": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.iOS\\Phoenix.iOS.csproj",
-      "packagesPath": "C:\\Users\\YOUR PC\\.nuget\\packages\\",
-      "outputPath": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.iOS\\obj\\",
+      "projectUniqueName": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.iOS\\Phoenix.iOS.csproj",
+      "projectName": "Phoenix.iOS",
+      "projectPath": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.iOS\\Phoenix.iOS.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\YOUR PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
@@ -7481,8 +7481,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {
-              "projectPath": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj"
+            "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {
+              "projectPath": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj"
             }
           }
         }

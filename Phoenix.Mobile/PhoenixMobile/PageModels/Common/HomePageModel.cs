@@ -83,17 +83,6 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            //var data = await _productMenuService.GetAllProductMenus(menurequest);
-
-            //if (data == null)
-            //{
-            //    await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
-            //}
-            //else
-            //{
-            //    ProductMenus = data;
-            //    RaisePropertyChanged(nameof(ProductMenus));
-            //}
 
             var data = await _productService.GetProductMenus(menurequest);
 
@@ -135,6 +124,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public ProductRequest request { get; set; } = new ProductRequest();
         public ProductSKURequest sKUrequest { get; set; } = new ProductSKURequest();
         public ProductMenuRequest menurequest { get; set; } = new ProductMenuRequest();
+        public string SearchText { get; set; }
 
         #endregion
 
@@ -148,6 +138,34 @@ namespace Phoenix.Mobile.PageModels.Common
         }
         #endregion
 
-       
+        #region SearchCommand
+        public Command SearchCommand => new Command(async (p) => await SearchExecute(), (p) => !IsBusy);
+        private async Task SearchExecute()
+        {
+            menurequest.Name = SearchText;
+            var data = await _productService.GetProductMenus(menurequest);
+
+            if (data == null)
+            {
+                await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
+            }
+            else
+            {
+                ProductMenus = data;
+                RaisePropertyChanged(nameof(ProductMenus));
+            }
+        }
+        #endregion
+
+        #region ClearSearchCommand
+        public Command ClearSearchCommand => new Command(async (p) => await ClearExecute(), (p) => !IsBusy);
+        private async Task ClearExecute()
+        {
+            SearchText = "";
+            menurequest.Name = SearchText;
+            await LoadData();
+        }
+        #endregion
+
     }
 }
