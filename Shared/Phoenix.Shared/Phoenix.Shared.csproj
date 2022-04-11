@@ -90,12 +90,14 @@
     <Compile Include="ProductSKU\ProductSKURequest.cs" />
     <Compile Include="Product\ProductMenuDto.cs" />
     <Compile Include="Product\ProductMenuRequest.cs" />
+    <Compile Include="Rating\RatingAppDto.cs" />
     <Compile Include="Rating\RatingDto.cs" />
     <Compile Include="Rating\RatingRequest.cs" />
     <Compile Include="Order\OrderDto.cs" />
     <Compile Include="Order\OrderRequest.cs" />
     <Compile Include="Media\FileInfoDto.cs" />
     <Compile Include="Media\FileUploadDto.cs" />
+    <Compile Include="Rating\RatingAppRequest.cs" />
     <Compile Include="User\UserDto.cs" />
     <Compile Include="User\UserRequest.cs" />
     <Compile Include="WarehouseMenu\WarehouseMenuDto.cs" />

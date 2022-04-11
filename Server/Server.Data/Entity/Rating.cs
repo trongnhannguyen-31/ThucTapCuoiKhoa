@@ -33,9 +33,9 @@ namespace Phoenix.Server.Data.Entity
         [ForeignKey("Customer_Id")]
         public virtual Customer Customer { get; set; }
 
-        public int Product_Id { get; set; }
-        [ForeignKey("Product_Id")]
-        public virtual Product Product { get; set; }
+        public int ProductSKU_Id { get; set; }
+        [ForeignKey("ProductSKU_Id")]
+        public virtual ProductSKU ProductSKU { get; set; }
         public bool Deleted { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Core.Helpers;
+﻿using AutoMapper;
+using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
@@ -20,7 +21,7 @@ namespace Phoenix.Server.Services.MainServices
 
         Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
         ///
-
+        Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
     }
     public class RatingService : IRatingService
     {
@@ -63,7 +64,7 @@ namespace Phoenix.Server.Services.MainServices
 
                 if (request.Product_Id > 0)
                 {
-                    query = query.Where(d => d.Product_Id == request.Product_Id);
+                    query = query.Where(d => d.ProductSKU_Id == request.Product_Id);
                 }
 
                 query = query.OrderByDescending(d => d.Id);
@@ -106,5 +107,43 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        #region GetRatingByProductSKUId
+        public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request)
+        {
+            var result = new BaseResponse<RatingAppDto>();
+            try
+            {
+                var query = (from r in _dataContext.Ratings
+                             join c in _dataContext.Customers on r.Customer_Id equals c.Id
+                             select new
+                             {
+                                 Id = r.Id,
+                                 Rate = r.Rate,
+                                 Comment = r.Comment,
+                                 CreatedDate = r.CreatedDate,
+                                 Image1 = r.Image1,
+                                 Image2 = r.Image2,
+                                 Image3 = r.Image3,
+                                 Customer_Name = c.FullName,
+                                 ProductSKU_Id = r.ProductSKU_Id
+                             }).AsQueryable();
+                    query = query.Where(d => d.ProductSKU_Id == request.ProductSKU_Id);
+
+                var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
+                var mapper = config.CreateMapper();
+                //var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
+                var listcart = query.Select(mapper.Map<RatingAppDto>).ToList();
+                result.Data = listcart.MapTo<RatingAppDto>();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
     }
 }
