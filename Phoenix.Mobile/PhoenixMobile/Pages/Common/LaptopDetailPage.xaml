@@ -4,7 +4,7 @@
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
              xmlns:productSKU="clr-namespace:Phoenix.Mobile.Core.Models.ProductSKU;assembly=Phoenix.Mobile.Core"             
              xmlns:product="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
-             xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"
+             xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"    
              x:DataType="common:LaptopDetailPageModel"
              x:Class="Phoenix.Mobile.Pages.Common.LaptopDetailPage"
              ControlTemplate="{StaticResource FullScreenHasBack}">

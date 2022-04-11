@@ -20,6 +20,7 @@
                 <ListView ItemsSource="{Binding OrderDetails}"
                       VerticalOptions="FillAndExpand"
                       HorizontalOptions="FillAndExpand"
+                          HeightRequest="{Binding ListViewHeight}"
                       HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="orderDetail:OrderDetailHistoryModel">
@@ -92,7 +93,10 @@
                 <Label Text="{Binding Order.DeliveryDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
                        HorizontalOptions="EndAndExpand" />
             </StackLayout>
-            <Button Text="Xem đánh giá của tôi"/>
+            <Button Text="Xem đánh giá của tôi"
+                    IsVisible="{Binding ViewRatingButton}"/>
+            <Button Text="Đánh giá"
+                    IsVisible="{Binding RatingButton}"/>
             <Button Text="Mua lại"
                     Command="{Binding ReBuyCommand}"/>
         </StackLayout>

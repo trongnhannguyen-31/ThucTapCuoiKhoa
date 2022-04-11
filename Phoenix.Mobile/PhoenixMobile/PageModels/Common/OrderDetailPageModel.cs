@@ -62,13 +62,19 @@ namespace Phoenix.Mobile.PageModels.Common
             }
             else
             {
-                //Vendors = data;
-
                 OrderDetails = data;
-                //SameVendors = sameVendor;
-                //RaisePropertyChanged("Customers");
+                ListViewHeight = 60 * OrderDetails.Count;
                 RaisePropertyChanged(nameof(OrderDetails));
-                //RaisePropertyChanged(nameof(SameVendors));
+                if(Order.IsRated == true)
+                {
+                    RatingButton = false;
+                    ViewRatingButton = true;
+                }
+                else
+                {
+                    RatingButton = true;
+                    ViewRatingButton = false;
+                }
             }
         }
 
@@ -76,6 +82,9 @@ namespace Phoenix.Mobile.PageModels.Common
         public List<OrderDetailHistoryModel> OrderDetails { get; set; } = new List<OrderDetailHistoryModel>();
 
         public OrderDetailHistoryRequest request { get; set; } = new OrderDetailHistoryRequest();
+        public bool RatingButton { get; set; }
+        public bool ViewRatingButton { get; set; }
+        public int ListViewHeight { get; set; }
 
         #endregion
 
