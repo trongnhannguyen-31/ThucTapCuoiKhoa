@@ -40,6 +40,41 @@
                 </script>
             </div>
 
+            @*
+            <div>
+                <label>Hãng sản xuất</label>
+                <select id="selectVendor" name="Vendor_Id" class="tom-select"></select>
+                <script>
+                    var zsettings = {
+                        valueField: 'Id',
+                        labelField: 'Name',
+                        searchField: 'Name',
+                        placeholder: '-- Vui lòng chọn nhóm --',
+                        load: function (query, callback) {
+                            var url = '/api/dropdown/TakeAllVendors';
+                            fetch(url, { method: "post" })
+                                .then(response => response.json())
+                                .then(json => {
+                                    callback(json);
+                                }).catch(() => {
+                                    callback();
+                                });
+
+                        },
+                        render: {
+                            option: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            },
+                            item: function (item, escape) {
+                                return `<option value="${item.Id}"> ${item.Name} </option>`;
+                            },
+                        }
+                    };
+                    var vendor_id = new TomSelect('#selectVendor', zsettings);
+                </script>
+            </div>
+            *@
+
             <div>
                 <label>Hãng sản xuất</label>
                 <select id="selectVendor" name="Vendor_Id" class="tom-select"></select>
@@ -84,23 +119,22 @@
                                 return `<option value="${item.Id}"> ${item.Name} </option>`;
                             },
                         }
-                       @* @if (@Model.Id > 0)
-                        {
-                            render:
-                                {
-                                option: function(item, escape) {
-                                        return `<option value = "${item.Id}" > ${ item.Name} </ option >`;
-                                    },
-                                item: function(item, escape) {
-                                        return `<option value = "${item.Id}" > ${ item.Name} </ option >`;
-                                    },
-                            },
-                        }*@
+                        onInitialize: function () {
+                                var selectize = this;
+                                $.get("/api/dropdown/TakeAllVendors", function (data) {
+                                    selectize.addOption(data); // This is will add to option
+                                    var selected_items = [];
+                                    $.each(data, function (i, obj) {
+                                        selected_items.push(obj.Id);
+                                    });
+                                    selectize.setValue(selected_items); //this will set option values as default
+                                });
+                            }
+                        });
                     };
                     var vendor_id = new TomSelect('#selectVendor', zsettings);
-
                 </script>
-                @if (@Model.Id > 0)
+                @if (Model.Id > 0)
                 {
                     <option class="tom-select">
                         vendor_id.setValue(@Model.Vendor_Id);
