@@ -14,6 +14,8 @@ using Phoenix.Shared.CartItem;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Phoenix.Mobile.Core.Models;
+using Phoenix.Mobile.Core.Models.Rating;
+using Phoenix.Shared.Rating;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
@@ -23,15 +25,16 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IDialogService _dialogService;
         private readonly ICartItemService _cartItemService;
         private readonly IProductService _productService;
+        private readonly IRatingService _ratingService;
         //Thêm vô giỏ
         //
-        public LaptopDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService)
+        public LaptopDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService, IRatingService ratingService)
         {
             _productSKUService = productSKUService;
             _dialogService = dialogService;
             _productService = productService;
             _cartItemService = cartItemService;
-
+            _ratingService = ratingService;
         }
         //public ProductDetailPageModel ProductDetail { get; set; }
 
@@ -58,23 +61,30 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            //Load thông tin chi tiết điện thoại
             request.Id = Product.SKUId;
             var data = await _productSKUService.GetProductById(request);
-            //var sameVendor = await _productService.GetAllProducts(sameVendorRequest);
             if (data == null)
             {
                 await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
             }
             else
             {
-                //Vendors = data;
-
                 ProductSKUs = data;
-                //SameVendors = sameVendor;
-                //RaisePropertyChanged("Customers");
                 RaisePropertyChanged(nameof(ProductSKUs));
-                //RaisePropertyChanged(nameof(SameVendors));
+                ratingRequest.ProductSKU_Id = ProductSKUs.Id;
+                var data2 = await _ratingService.GetRatingByProductSKUId(ratingRequest);
+                if (data2 == null || data2.Count < 1)
+                {
+                    LabelVisible = true;
+                    RatingListVisible = false;
+                }
+                else
+                {
+                    Ratings = data2;
+                    LabelVisible = false;
+                    RatingListVisible = true;
+                    RaisePropertyChanged(nameof(Ratings));
+                }
             }
         }
 
@@ -105,6 +115,10 @@ namespace Phoenix.Mobile.PageModels.Common
         public ProductSKURequest request { get; set; } = new ProductSKURequest();
         public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
         public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();
+        public List<RatingModel> Ratings { get; set; } = new List<RatingModel>();
+        public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();
+        public bool LabelVisible { get; set; }
+        public bool RatingListVisible { get; set; }
 
         #endregion
 

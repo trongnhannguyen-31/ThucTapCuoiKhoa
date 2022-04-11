@@ -4,6 +4,7 @@
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
              xmlns:productSKU="clr-namespace:Phoenix.Mobile.Core.Models.ProductSKU;assembly=Phoenix.Mobile.Core"             
              xmlns:product="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
+             xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"
              x:DataType="common:LaptopDetailPageModel"
              x:Class="Phoenix.Mobile.Pages.Common.LaptopDetailPage"
              ControlTemplate="{StaticResource FullScreenHasBack}">
@@ -384,14 +385,43 @@
                 <Label Text="Đánh giá sản phẩm"
                    FontAttributes="Bold"
                    FontSize="Medium"/>
+                <Label Text="Hiện không có đánh giá nào."
+                       IsVisible ="{Binding LabelVisible}"
+                       HeightRequest="60"
+                       VerticalTextAlignment="Center"/>
+                <ListView ItemsSource="{Binding Ratings}"
+                          HasUnevenRows="True"
+                          BackgroundColor="#ecf0f1"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          HeightRequest="180"
+                          SelectionMode="None"
+                          IsVisible="{Binding RatingListVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="rating:RatingModel">
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Customer_Name}"
+                                           HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding Rate}"
+                                           HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Comment}"/>
+                                    <Label Text="{Binding CreatedDate}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-                <Label Text="Sản phẩm cùng loại"
+                <!--<Label Text="Sản phẩm cùng loại"
                    FontAttributes="Bold"
                    FontSize="Medium"/>
 
                 <Label Text="Sản phẩm cùng nhà sản xuất"
                    FontAttributes="Bold"
-                   FontSize="Medium"/>
+                   FontSize="Medium"/>-->
                 
             </StackLayout>
 

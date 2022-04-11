@@ -407,32 +407,40 @@
                 <Label Text="Đánh giá sản phẩm"
                    FontAttributes="Bold"
                    FontSize="Medium"/>
+                <Label Text="Hiện không có đánh giá nào."
+                       IsVisible ="{Binding LabelVisible}"
+                       HeightRequest="60"
+                       VerticalTextAlignment="Center"/>
                 <ListView ItemsSource="{Binding Ratings}"
                           HasUnevenRows="True"
                           BackgroundColor="#ecf0f1"
                           HorizontalOptions="FillAndExpand"
                           VerticalOptions="FillAndExpand"
-                          SelectionMode="None">
+                          HeightRequest="180"
+                          SelectionMode="None"
+                          IsVisible="{Binding RatingListVisible}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="rating:RatingModel">
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Customer_Name}"
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Customer_Name}"
                                            HorizontalOptions="StartAndExpand"/>
-                                    <Label Text="{Binding Rate}"
+                                        <Label Text="{Binding Rate}"
                                            HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Comment}"/>
+                                    <Label Text="{Binding CreatedDate}"/>
                                 </StackLayout>
-                                <Label Text="{Binding Comment}"/>
-                                <Label Text="{Binding CreatedDate}"/>
-                            </StackLayout>
+                            </ViewCell>                            
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Label Text="Sản phẩm cùng loại"
+                <!--<Label Text="Sản phẩm cùng loại"
                    FontAttributes="Bold"
                    FontSize="Medium"/>
-                <!--<ListView ItemsSource="{Binding SameVendors}"
+                --><!--<ListView ItemsSource="{Binding SameVendors}"
                           Rotation="270"
                           RowHeight="40">
                     <ListView.ItemTemplate>
@@ -444,7 +452,7 @@
                     </ListView.ItemTemplate>
                 </ListView>-->
 
-                <CollectionView ItemsSource="{Binding SameTypes}">
+                <!--<CollectionView ItemsSource="{Binding SameTypes}">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Horizontal"
                                          />
@@ -454,11 +462,11 @@
                             <Label Text="{Binding Name}"/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
+                </CollectionView>-->
 
-                <Label Text="Sản phẩm cùng nhà sản xuất"
+                <!--<Label Text="Sản phẩm cùng nhà sản xuất"
                    FontAttributes="Bold"
-                   FontSize="Medium"/>
+                   FontSize="Medium"/>-->
                 
             </StackLayout>
 

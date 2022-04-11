@@ -76,12 +76,19 @@ namespace Phoenix.Mobile.PageModels.Common
                 RaisePropertyChanged(nameof(ProductSKUs));
                 ratingRequest.ProductSKU_Id = ProductSKUs.Id;
                 var data2 = await _ratingService.GetRatingByProductSKUId(ratingRequest);
-                if (data == null)
+                if (data2 == null || data2.Count < 1)
                 {
-                    return;
+                    LabelVisible = true;
+                    RatingListVisible = false;
                 }
-                Ratings = data2;
-                RaisePropertyChanged(nameof(Ratings));
+                else
+                {
+                    Ratings = data2;
+                    LabelVisible = false;
+                    RatingListVisible = true;
+                    RaisePropertyChanged(nameof(Ratings));
+                }
+                
             }
         }
 
@@ -117,7 +124,8 @@ namespace Phoenix.Mobile.PageModels.Common
 
         public List<RatingModel> Ratings { get; set; } = new List<RatingModel>();
         public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();
-
+        public bool LabelVisible { get; set; }
+        public bool RatingListVisible { get; set; }
         #endregion
 
         #region QuantityButton
