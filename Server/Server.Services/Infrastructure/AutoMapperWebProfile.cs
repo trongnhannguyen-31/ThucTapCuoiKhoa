@@ -54,9 +54,9 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<Customer, CustomerDto>();
 
             // CreateMap Rating
-            //CreateMap<Rating, RatingDto>()
-            //    .ForMember(d => d.Customer_Name, o => o.MapFrom(s => s.Customer.FullName))
-            //    .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.Product.Name));
+            CreateMap<Rating, RatingDto>()
+                .ForMember(d => d.Customer_Name, o => o.MapFrom(s => s.Customer.FullName))
+                .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.ProductSKU.Product.Name));
 
             // CreateMap User
             CreateMap<User, UserDto>();
