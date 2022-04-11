@@ -67,7 +67,7 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                { title: "Mã khách hàng", field: "Id", sorter: "string", width: 160 },
+                { title: "ID", field: "Id", sorter: "string", width: 100 },
                 {
                     title: "Tên khách hàng", field: "FullName", sorter: "string", width: 200, formatter(cell, formatterParams)
                     {
@@ -91,11 +91,11 @@
                         return `<a href="../Admin/Customer/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Address}</a>`
                     }
                 },
-                @*{
-                    title: " ", field: "Id", hozAlign: "center", formatter(cell, formatterParams) {
-                        return `<a href="../Admin/Customer/Update/${cell.getData().Id}" class="btn btn-primary w-24 mr-1 mb-2 bg-theme-1 text-white"> Danh sách nhóm </a>`
+                {
+                    title: "", field: "", sorter: "string", width: 220, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Customer/Update/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Cập nhật thông tin </a>`
                     }
-                },*@
+                },
             ],
         });
         let onSearch = (e) => {

@@ -84,7 +84,7 @@
                                 return `<option value="${item.Id}"> ${item.Name} </option>`;
                             },
                         }
-                        @*@if (@Model.Id > 0)
+                       @* @if (@Model.Id > 0)
                         {
                             render:
                                 {
@@ -98,10 +98,11 @@
                         }*@
                     };
                     var vendor_id = new TomSelect('#selectVendor', zsettings);
+
                 </script>
-                @if (Model.Id > 0)
+                @if (@Model.Id > 0)
                 {
-                    <option>
+                    <option class="tom-select">
                         vendor_id.setValue(@Model.Vendor_Id);
                     </option>
                 }

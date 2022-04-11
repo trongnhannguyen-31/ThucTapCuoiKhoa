@@ -20,7 +20,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request);
         Task<BaseResponse<ProductDto>> UpdateProducts(ProductRequest request);
         Task<BaseResponse<ProductDto>> DeleteProducts(int Id);
-        ///
+        
         Task<BaseResponse<ProductDto>> GetAllAppProducts(ProductRequest request);
         Task<BaseResponse<ProductMenuDto>> GetProductMenus(ProductMenuRequest request);
     }
@@ -91,12 +91,13 @@ namespace Phoenix.Server.Services.MainServices
             catch (Exception ex)
             {
                 result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
 
-
+        #region
         public async Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request)
         {
             var result = new BaseResponse<ProductDto>();
@@ -124,45 +125,13 @@ namespace Phoenix.Server.Services.MainServices
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
-
-        // Create Product
-        /*public async Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request)
-        {
-            var result = new BaseResponse<ProductDto>();
-            try
-            {
-                Product products = new Product
-                {
-                    Vendor_Id = request.Vendor_Id,
-                    ProductType_Id = request.ProductType_Id,
-                    Name = request.Name,
-                    ModelCode = request.ModelCode,
-                    Image1 = request.Image1,
-                    Image2 = request.Image2,
-                    Image3 = request.Image3,
-                    Image4 = request.Image4,
-                    Image5 = request.Image5,
-                    Deleted = false,
-                    UpdatedAt = DateTime.Now,
-                    CreatedAt = DateTime.Now
-                };
-                _dataContext.Products.Add(products);
-                await _dataContext.SaveChangesAsync();
-
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return result;
-        }*/
+        #endregion
 
         public Product GetProductsById(int id) => _dataContext.Products.Find(id);
 
@@ -219,54 +188,6 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
-
-        #region
-        // Create Product
-        public async Task<BaseResponse<ProductDto>> CreateProducts(ProductRequest request, ImageRecord record)
-        {
-            var result = new BaseResponse<ProductDto>();
-            try
-            {
-                ImageRecord imageRecords = new ImageRecord
-                {
-                    FileName = record.FileName,
-                    RelativePath = record.RelativePath,
-                    AbsolutePath = record.AbsolutePath,
-                    IsExternal = false,
-                    CreatedAt = DateTime.Now,
-                    IsUsed = false,
-                    Deleted = false,
-                };
-                _dataContext.ImageRecords.Add(imageRecords);
-
-                Product products = new Product
-                {
-                    Vendor_Id = request.Vendor_Id,
-                    ProductType_Id = request.ProductType_Id,
-                    Name = request.Name,
-                    ModelCode = request.ModelCode,
-                    Image1 = record.Id,
-                    Image2 = record.Id,
-                    Image3 = record.Id,
-                    Image4 = record.Id,
-                    Image5 = record.Id,
-                    Deleted = false,
-                    UpdatedAt = request.UpdatedAt,
-                    CreatedAt = DateTime.Now
-                };
-                _dataContext.Products.Add(products);
-                await _dataContext.SaveChangesAsync();
-
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return result;
-        }
-        #endregion
 
         #region GetAllAppProducts
         public async Task<BaseResponse<ProductDto>> GetAllAppProducts(ProductRequest request)
