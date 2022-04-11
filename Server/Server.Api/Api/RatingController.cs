@@ -28,7 +28,6 @@ namespace Phoenix.Server.Api.Api
 
         [HttpPost]
         [Route("GetRatingByProductSKUId")]
-        //public async Task<BaseResponse<CartItemDto>> GetAllCartItems(CartItemRequest request)
         public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request)
         {
             return await _ratingService.GetRatingByProductSKUId(request);

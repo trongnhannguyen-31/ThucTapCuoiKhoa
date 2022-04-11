@@ -14,6 +14,8 @@ using Phoenix.Shared.CartItem;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Phoenix.Mobile.Core.Models;
+using Phoenix.Mobile.Core.Models.Rating;
+using Phoenix.Shared.Rating;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
@@ -23,14 +25,16 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IDialogService _dialogService;
         private readonly ICartItemService _cartItemService;
         private readonly IProductService _productService;
-        
-        
-        public PhoneDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService)
+        private readonly IRatingService _ratingService;
+
+
+        public PhoneDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService, IRatingService ratingService)
         {
             _productSKUService = productSKUService;
             _dialogService = dialogService;
             _productService = productService;
             _cartItemService = cartItemService;
+            _ratingService = ratingService;
 
 
         }
@@ -70,6 +74,14 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 ProductSKUs = data;
                 RaisePropertyChanged(nameof(ProductSKUs));
+                ratingRequest.ProductSKU_Id = ProductSKUs.Id;
+                var data2 = await _ratingService.GetRatingByProductSKUId(ratingRequest);
+                if (data == null)
+                {
+                    return;
+                }
+                Ratings = data2;
+                RaisePropertyChanged(nameof(Ratings));
             }
         }
 
@@ -102,6 +114,9 @@ namespace Phoenix.Mobile.PageModels.Common
         public ProductSKURequest request { get; set; } = new ProductSKURequest();
         public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
         public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();
+
+        public List<RatingModel> Ratings { get; set; } = new List<RatingModel>();
+        public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();
 
         #endregion
 

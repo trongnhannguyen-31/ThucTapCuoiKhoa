@@ -71,6 +71,7 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<IOrderDetailService,OrderDetailService>();
             FreshIOC.Container.Register<IOrderService, OrderService>();
             FreshIOC.Container.Register<ICustomerService, CustomerService>();
+            FreshIOC.Container.Register<IRatingService, RatingService>();
 
 
             //proxy
@@ -83,11 +84,11 @@ namespace Phoenix.Mobile
             FreshIOC.Container.Register<IProductSKUProxy, ProductSKUProxy>();
             FreshIOC.Container.Register<IOrderProxy, OrderProxy>();
             FreshIOC.Container.Register<IOrderDetailProxy, OrderDetailProxy>();
-            FreshIOC.Container.Register<IRatingProxy, RatingProxy>();
             FreshIOC.Container.Register<IImageRecordProxy, ImageRecordProxy>();
             FreshIOC.Container.Register<IProductMenuProxy, ProductMenuProxy>();
             FreshIOC.Container.Register<ICartItemProxy, CartItemProxy>();
             FreshIOC.Container.Register<ICustomerProxy, CustomerProxy>();
+            FreshIOC.Container.Register<IRatingProxy, RatingProxy>();
         }
     }
     

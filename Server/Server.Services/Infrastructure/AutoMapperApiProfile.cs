@@ -12,6 +12,7 @@ using Phoenix.Shared.OrderDetail;
 using Phoenix.Server.Services.MainServices.Common.Models;
 using Phoenix.Shared.z_User;
 using Phoenix.Shared.Customer;
+using Phoenix.Shared.Rating;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -36,7 +37,7 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<Order, OrderAppDto>();
             CreateMap<z_User, z_UserDto>();
             CreateMap<Customer, CustomerDto>();
-
+            CreateMap<Rating, RatingAppDto>();
             CreateMap<Warehouse, WarehouseOrderDto>();
         }
     }

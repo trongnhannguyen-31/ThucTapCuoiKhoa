@@ -1,5 +1,8 @@
 ﻿using Phoenix.Framework.Core;
 using Phoenix.Mobile.Core.Framework;
+using Phoenix.Mobile.Core.Models.Rating;
+using Phoenix.Mobile.Core.Services.Common;
+using Phoenix.Shared.Common;
 using Phoenix.Shared.Rating;
 using Refit;
 using System;
@@ -11,19 +14,18 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 {
     public interface IRatingProxy
     {
-        Task<List<RatingDto>> GetAllRatings(RatingRequest request);
+        Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
     }
 
     public class RatingProxy : BaseProxy, IRatingProxy
     {
-        public async Task<List<RatingDto>> GetAllRatings(RatingRequest request)
+
+        public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request)
         {
             try
             {
                 var api = RestService.For<IRatingApi>(GetHttpClient());
-                var result = await api.GetAllRatings(request);
-                if (result == null) return new List<RatingDto>();
-                return result;
+                return await api.GetRatingByProductSKUId(request);
             }
             catch (Exception ex)
             {
@@ -31,11 +33,11 @@ namespace Phoenix.Mobile.Core.Proxies.Common
                 return null;
             }
         }
-        public interface IRatingApi
-        {
-            [Post("/rating/GetAllRatings")]
-            Task<List<RatingDto>> GetAllRatings([Body] RatingRequest request);
 
+    public interface IRatingApi
+        {
+            [Post("/rating/GetRatingByProductSKUId")]
+            Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId([Body] RatingAppRequest request);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Phoenix.Mobile.Core.Infrastructure
             CreateMap<OrderDetailAppDto, OrderDetailModel>();
             CreateMap<CustomerDto, CustomerModel>();
             CreateMap<WarehouseDto, WarehouseModel>();
-            CreateMap<RatingDto, RatingModel>();
+            CreateMap<RatingAppDto, RatingModel>();
             CreateMap<ImageRecordDto, ImageRecordModel>();
 
             CreateMap<ProductMenuDto, ProductMenuModel>();
