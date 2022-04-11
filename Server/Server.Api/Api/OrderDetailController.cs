@@ -30,7 +30,7 @@ namespace Phoenix.Server.Api.Api
 
         [HttpPost]
         [Route("AddOrderDetail")]
-        public Task<CrudResult> AddOrderDetail([FromBody] OrderDetailRequest request)
+        public Task<CrudResult> AddOrderDetail([FromBody] OrderDetailAppRequest request)
         {
             return _orderDetailService.AddOrderDetail(request);
         }

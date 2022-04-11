@@ -21,7 +21,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request);
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request);
         ////
-        Task<CrudResult> AddOrderDetail(OrderDetailRequest request);
+        Task<CrudResult> AddOrderDetail(OrderDetailAppRequest request);
         Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
     }
 
@@ -124,7 +124,7 @@ namespace Phoenix.Server.Services.MainServices
         #endregion
 
         #region AddOrderDetail
-        public async Task<CrudResult> AddOrderDetail(OrderDetailRequest request)
+        public async Task<CrudResult> AddOrderDetail(OrderDetailAppRequest request)
         {
             var OrderDetail = new OrderDetail();
             OrderDetail.Order_Id = request.Order_Id;

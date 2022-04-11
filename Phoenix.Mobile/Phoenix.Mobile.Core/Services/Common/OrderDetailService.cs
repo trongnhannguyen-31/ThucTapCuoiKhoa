@@ -10,8 +10,8 @@ namespace Phoenix.Mobile.Core.Services.Common
 {
     public interface IOrderDetailService
     {
-        Task<List<OrderDetailModel>> GetAllOrderDetails(OrderDetailRequest request);
-        Task<OrderDetailModel> AddOrderDetail(OrderDetailRequest request);
+        Task<List<OrderDetailModel>> GetAllOrderDetails(OrderDetailAppRequest request);
+        Task<OrderDetailModel> AddOrderDetail(OrderDetailAppRequest request);
         Task<List<OrderDetailHistoryModel>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
     }
 
@@ -22,13 +22,13 @@ namespace Phoenix.Mobile.Core.Services.Common
         {
             _orderDetailProxy = orderDetailProxy;
         }
-        public async Task<List<OrderDetailModel>> GetAllOrderDetails(OrderDetailRequest request)
+        public async Task<List<OrderDetailModel>> GetAllOrderDetails(OrderDetailAppRequest request)
         {
             var data = await _orderDetailProxy.GetAllOrderDetails(request);
             return data.MapTo<OrderDetailModel>();
         }
 
-        public async Task<OrderDetailModel> AddOrderDetail(OrderDetailRequest request)
+        public async Task<OrderDetailModel> AddOrderDetail(OrderDetailAppRequest request)
         {
             var data = await _orderDetailProxy.AddOrderDetail(request);
             return data.MapTo<OrderDetailModel>();

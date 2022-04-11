@@ -18,6 +18,8 @@ namespace Phoenix.Shared.Order
 
         public double Total { get; set; }
 
+        public bool IsRated { get; set; }
+
         public int Customer_Id { get; set; }
 
         public DateTime CreatedAt { get; set; }

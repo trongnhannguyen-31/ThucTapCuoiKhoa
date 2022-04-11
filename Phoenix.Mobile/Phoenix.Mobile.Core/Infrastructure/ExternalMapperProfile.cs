@@ -45,8 +45,8 @@ namespace Phoenix.Mobile.Core.Infrastructure
             CreateMap<ProductTypeDto, ProductTypeModel>();
             CreateMap<ProductDto, ProductModel>();
             CreateMap<ProductSKUDto, ProductSKUModel>();
-            CreateMap<OrderDto, OrderModel>();
-            CreateMap<OrderDetailDto, OrderDetailModel>();
+            CreateMap<OrderAppDto, OrderModel>();
+            CreateMap<OrderDetailAppDto, OrderDetailModel>();
             CreateMap<CustomerDto, CustomerModel>();
             CreateMap<WarehouseDto, WarehouseModel>();
             CreateMap<RatingDto, RatingModel>();

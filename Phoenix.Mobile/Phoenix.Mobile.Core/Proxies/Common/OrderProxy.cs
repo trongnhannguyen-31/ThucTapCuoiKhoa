@@ -12,14 +12,14 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 {
     public interface IOrderProxy
     {
-        Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
-        Task<OrderDto> AddOrder(OrderRequest request);
-        Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
+        Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request);
+        Task<OrderAppDto> AddOrder(OrderAppRequest request);
+        Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request);
     }
 
     public class OrderProxy : BaseProxy, IOrderProxy
     {
-        public async Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request)
         {
             try
             {
@@ -33,23 +33,23 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
-        public async Task<OrderDto> AddOrder(OrderRequest request)
+        public async Task<OrderAppDto> AddOrder(OrderAppRequest request)
         {
             try
             {
                 var api = RestService.For<IOrderApi>(GetHttpClient());
                 var result = await api.AddOrder(request);
-                if (result == null) return new OrderDto();
+                if (result == null) return new OrderAppDto();
                 return result;
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(new NetworkException(ex), true);
-                return new OrderDto();
+                return new OrderAppDto();
             }
         }
 
-        public async Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request)
         {
             try
             {
@@ -68,11 +68,11 @@ namespace Phoenix.Mobile.Core.Proxies.Common
         public interface IOrderApi
         {
             [Post("/order/GetAllAppOrders")]
-            Task<BaseResponse<OrderDto>> GetAllAppOrders([Body] OrderRequest request);
+            Task<BaseResponse<OrderAppDto>> GetAllAppOrders([Body] OrderAppRequest request);
             [Post("/order/AddOrder")]
-            Task<OrderDto> AddOrder([Body] OrderRequest request);
+            Task<OrderAppDto> AddOrder([Body] OrderAppRequest request);
             [Post("/order/GetLatestOrder")]
-            Task<BaseResponse<OrderDto>> GetLatestOrder([Body] OrderRequest request);
+            Task<BaseResponse<OrderAppDto>> GetLatestOrder([Body] OrderAppRequest request);
         }
     }
 }

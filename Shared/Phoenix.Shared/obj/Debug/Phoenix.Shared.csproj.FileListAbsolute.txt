@@ -34,3 +34,4 @@ E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CoreCom
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.CopyComplete
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.dll
 E:\ThucTapCuoiKhoa\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.pdb
+D:\ThucTap\ThucTapNhom\Shared\Phoenix.Shared\obj\Debug\Phoenix.Shared.csproj.AssemblyReference.cache

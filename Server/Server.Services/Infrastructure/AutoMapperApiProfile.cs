@@ -32,8 +32,8 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<ImageRecord, ImageRecordDto>();
             //CreateMap<ProductMenu, ProductMenuDto>();
             CreateMap<CartItem, CartItemDto>();
-            CreateMap<OrderDetail, OrderDetailDto>();
-            CreateMap<Order, OrderDto>();
+            CreateMap<OrderDetail, OrderDetailAppDto>();
+            CreateMap<Order, OrderAppDto>();
             CreateMap<z_User, z_UserDto>();
             CreateMap<Customer, CustomerDto>();
 

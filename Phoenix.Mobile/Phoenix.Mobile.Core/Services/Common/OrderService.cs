@@ -9,9 +9,9 @@ namespace Phoenix.Mobile.Core.Services.Common
 {
     public interface IOrderService
     {
-        Task<List<OrderModel>> GetAllAppOrders(OrderRequest request);
-        Task<OrderModel> AddOrder(OrderRequest request);
-        Task<OrderModel> GetLatestOrder(OrderRequest request);
+        Task<List<OrderModel>> GetAllAppOrders(OrderAppRequest request);
+        Task<OrderModel> AddOrder(OrderAppRequest request);
+        Task<OrderModel> GetLatestOrder(OrderAppRequest request);
     }
 
     public class OrderService : IOrderService
@@ -21,19 +21,19 @@ namespace Phoenix.Mobile.Core.Services.Common
         {
             _orderProxy = orderProxy;
         }
-        public async Task<List<OrderModel>> GetAllAppOrders(OrderRequest request)
+        public async Task<List<OrderModel>> GetAllAppOrders(OrderAppRequest request)
         {
             var productMenu = await _orderProxy.GetAllAppOrders(request);
             return productMenu.Data.MapTo<OrderModel>();
         }
 
-        public async Task<OrderModel> AddOrder(OrderRequest request)
+        public async Task<OrderModel> AddOrder(OrderAppRequest request)
         {
             var data = await _orderProxy.AddOrder(request);            
             return data.MapTo<OrderModel>();
         }
 
-        public async Task<OrderModel> GetLatestOrder(OrderRequest request)
+        public async Task<OrderModel> GetLatestOrder(OrderAppRequest request)
         {
             var data = await _orderProxy.GetLatestOrder(request);
             return data.Record.MapTo<OrderModel>();

@@ -14,21 +14,21 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 {
     public interface IOrderDetailProxy
     {
-        Task<List<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request);
+        Task<List<OrderDetailAppDto>> GetAllOrderDetails(OrderDetailAppRequest request);
 
-        Task<OrderDetailDto> AddOrderDetail(OrderDetailRequest request);
+        Task<OrderDetailAppDto> AddOrderDetail(OrderDetailAppRequest request);
         Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
     }
 
     public class OrderDetailProxy : BaseProxy, IOrderDetailProxy
     {
-        public async Task<List<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request)
+        public async Task<List<OrderDetailAppDto>> GetAllOrderDetails(OrderDetailAppRequest request)
         {
             try
             {
                 var api = RestService.For<IOrderDetailApi>(GetHttpClient());
                 var result = await api.GetAllOrderDetails(request);
-                if (result == null) return new List<OrderDetailDto>();
+                if (result == null) return new List<OrderDetailAppDto>();
                 return result;
             }
             catch (Exception ex)
@@ -38,19 +38,19 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
-        public async Task<OrderDetailDto> AddOrderDetail(OrderDetailRequest request)
+        public async Task<OrderDetailAppDto> AddOrderDetail(OrderDetailAppRequest request)
         {
             try
             {
                 var api = RestService.For<IOrderDetailApi>(GetHttpClient());
                 var result = await api.AddOrderDetail(request);
-                if (result == null) return new OrderDetailDto();
+                if (result == null) return new OrderDetailAppDto();
                 return result;
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(new NetworkException(ex), true);
-                return new OrderDetailDto();
+                return new OrderDetailAppDto();
             }
         }
 
@@ -71,10 +71,10 @@ namespace Phoenix.Mobile.Core.Proxies.Common
         public interface IOrderDetailApi
         {
             [Post("/orderDetail/GetAllOrderDetails")]
-            Task<List<OrderDetailDto>> GetAllOrderDetails([Body] OrderDetailRequest request);
+            Task<List<OrderDetailAppDto>> GetAllOrderDetails([Body] OrderDetailAppRequest request);
 
             [Post("/orderDetail/AddOrderDetail")]
-            Task<OrderDetailDto> AddOrderDetail([Body] OrderDetailRequest request);
+            Task<OrderDetailAppDto> AddOrderDetail([Body] OrderDetailAppRequest request);
 
             [Post("/orderDetail/GetOrderDetailHistory")]
             Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory([Body] OrderDetailHistoryRequest request);

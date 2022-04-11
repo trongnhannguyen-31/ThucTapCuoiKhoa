@@ -1,4 +1,4 @@
-﻿using Phoenix.Mobile.Core.Infrastructure;
+﻿ using Phoenix.Mobile.Core.Infrastructure;
 using Phoenix.Mobile.Core.Models.ImageRecord;
 using Phoenix.Mobile.Core.Models.Order;
 using Phoenix.Mobile.Core.Services.Common;
@@ -81,7 +81,7 @@ namespace Phoenix.Mobile.PageModels.Common
         #region properties
         public List<OrderModel> Orders { get; set; } = new List<OrderModel>();
 
-        public OrderRequest request { get; set; } = new OrderRequest();
+        public OrderAppRequest request { get; set; } = new OrderAppRequest();
 
         #endregion
     }

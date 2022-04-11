@@ -55,15 +55,39 @@ namespace Phoenix.Mobile.PageModels.Common
             else
             {
                 CartList = data;
+                updateTotalPrice();
                 RaisePropertyChanged(nameof(CartList));
             }
+        }
+
+        private double totalPrice;
+
+        public double TotalPrice
+        {
+            get
+            {
+                return totalPrice;
+            }
+
+            set
+            {
+                totalPrice = value;
+            }
+        }
+
+        private void updateTotalPrice()
+        {
+            //using Linq
+            double total = CartList.Sum(p => p.Total);
+
+            TotalPrice = total;
         }
 
         #region properties
         public List<CartListModel> CartList { get; set; } = new List<CartListModel>();
         public OrderModel InsertedOrder { get; set; } = new OrderModel();
         public CartListRequest request { get; set; } = new CartListRequest();
-        public OrderRequest orderRequest { get; set; } = new OrderRequest();
+        public OrderAppRequest orderRequest { get; set; } = new OrderAppRequest();
 
         public int Id { get; set; }
         #endregion
@@ -76,13 +100,15 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 if (IsBusy) return;
                 IsBusy = true;
-                var data = _orderService.AddOrder(new OrderRequest
+                var data = _orderService.AddOrder(new OrderAppRequest
                 {
                     OrderDate = DateTime.Now,
                     Status = "Chờ xử lý",
                     DeliveryDate = null,
                     Address = "abc",
-                    Total = CartList.Sum(item => item.Total),
+                    //Total = CartList.Sum(item => item.Total),
+                    Total = TotalPrice,
+                    IsRated = false,
                     Customer_Id = 1,
                     CreatedAt = DateTime.Now,
                     Deleted = false
@@ -109,7 +135,7 @@ namespace Phoenix.Mobile.PageModels.Common
                         if (IsBusy) return;
                         IsBusy = true;
 
-                        var data3 = _orderDetailService.AddOrderDetail(new OrderDetailRequest
+                        var data3 = _orderDetailService.AddOrderDetail(new OrderDetailAppRequest
                         {
                             Order_Id = InsertedOrder.Id,
                             ProductSKU_Id = item.ProductSKUId,

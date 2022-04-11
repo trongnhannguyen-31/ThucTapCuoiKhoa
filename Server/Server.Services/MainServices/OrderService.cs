@@ -24,9 +24,9 @@ namespace Phoenix.Server.Services.MainServices
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
         ///
-        Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request);
-        Task<CrudResult> AddOrder(OrderRequest request);
-        Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request);
+        Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request);
+        Task<CrudResult> AddOrder(OrderAppRequest request);
+        Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request);
     }
     public class OrderService : IOrderService
     {
@@ -280,9 +280,9 @@ namespace Phoenix.Server.Services.MainServices
         }
 
         #region GetAllAppOrders
-        public async Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request)
         {
-            var result = new BaseResponse<OrderDto>();
+            var result = new BaseResponse<OrderAppDto>();
             try
             {
 
@@ -294,7 +294,7 @@ namespace Phoenix.Server.Services.MainServices
 
                 var data = await query.ToListAsync();
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
-                result.Data = data.MapTo<OrderDto>();
+                result.Data = data.MapTo<OrderAppDto>();
 
 
             }
@@ -308,7 +308,7 @@ namespace Phoenix.Server.Services.MainServices
         #endregion
 
         #region AddOrder
-        public async Task<CrudResult> AddOrder(OrderRequest request)
+        public async Task<CrudResult> AddOrder(OrderAppRequest request)
         {
             var Order = new Order();
             Order.OrderDate = request.OrderDate;
@@ -316,6 +316,7 @@ namespace Phoenix.Server.Services.MainServices
             Order.DeliveryDate = request.DeliveryDate;
             Order.Address = request.Address;
             Order.Total = request.Total;
+            Order.IsRated = request.IsRated;
             Order.Customer_Id = request.Customer_Id;
             Order.CreatedAt = request.CreatedAt;
             Order.Deleted = request.Deleted;
@@ -329,9 +330,9 @@ namespace Phoenix.Server.Services.MainServices
         #endregion
 
         #region GetLatestOrder
-        public async Task<BaseResponse<OrderDto>> GetLatestOrder(OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request)
         {
-            var result = new BaseResponse<OrderDto>();
+            var result = new BaseResponse<OrderAppDto>();
             try
             {
                 //setup query
@@ -344,7 +345,7 @@ namespace Phoenix.Server.Services.MainServices
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.FirstAsync();
-                result.Record = data.MapTo<OrderDto>();
+                result.Record = data.MapTo<OrderAppDto>();
             }
             catch (Exception ex)
             {

@@ -130,7 +130,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public List<CartListModel> CartList { get; set; } = new List<CartListModel>();
         public OrderModel InsertedOrder { get; set; } = new OrderModel();
         public CartListRequest request { get; set; } = new CartListRequest();
-        public OrderRequest orderRequest { get; set; } = new OrderRequest();
+        public OrderAppRequest orderRequest { get; set; } = new OrderAppRequest();
 
         public int Id { get; set; }
 
@@ -148,7 +148,7 @@ namespace Phoenix.Mobile.PageModels.Common
                     if (IsBusy) return;
                     IsBusy = true;
 
-                    var data = _orderDetailService.AddOrderDetail(new OrderDetailRequest
+                    var data = _orderDetailService.AddOrderDetail(new OrderDetailAppRequest
                     {
                         Order_Id = 4,
                         ProductSKU_Id = item.ProductSKUId,
@@ -178,7 +178,7 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 if (IsBusy) return;
                 IsBusy = true;
-                var data = _orderService.AddOrder(new OrderRequest
+                var data = _orderService.AddOrder(new OrderAppRequest
                 {
                     OrderDate = DateTime.Now,
                     Status = "Chờ xử lý",
@@ -210,7 +210,7 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 if (IsBusy) return;
                 IsBusy = true;
-                var data = _orderService.AddOrder(new OrderRequest
+                var data = _orderService.AddOrder(new OrderAppRequest
                 {
                     OrderDate = DateTime.Now,
                     Status = "Chờ xử lý",
@@ -242,7 +242,7 @@ namespace Phoenix.Mobile.PageModels.Common
                         //if (IsBusy) return;
                         //IsBusy = true;
 
-                        var data3 = _orderDetailService.AddOrderDetail(new OrderDetailRequest
+                        var data3 = _orderDetailService.AddOrderDetail(new OrderDetailAppRequest
                         {
                             Order_Id = InsertedOrder.Id,
                             ProductSKU_Id = item.ProductSKUId,

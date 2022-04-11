@@ -20,6 +20,8 @@ namespace Phoenix.Server.Data.Entity
 
         public double? Total { get; set; }
 
+        public bool IsRated { get; set; }
+
         public int Customer_Id { get; set; }
         [ForeignKey("Customer_Id")]
         public virtual Customer Customer { get; set; }

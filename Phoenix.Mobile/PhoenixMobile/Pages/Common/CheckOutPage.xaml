@@ -7,6 +7,58 @@
              x:DataType="common:CheckOutPageModel">
     <ContentPage.Content>
         <StackLayout>
+            <Grid Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Text="Thông tin nhận hàng"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"/>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       Text="Tên người nhận:"/>
+                <Entry Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Placeholder="Nhập tên người nhận"/>
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       Text="Địa chỉ:"/>
+                <Entry Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Placeholder="Nhập địa chỉ"/>
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       Text="Số điện thoại:"/>
+                <Entry Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Placeholder="Nhập số điện thoại"/>
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       FontSize="Medium"
+                       Text="Email:"/>
+                <Entry Grid.Row="4"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Placeholder="Nhập email"/>
+            </Grid>
             <ListView ItemsSource="{Binding CartList}"
                       x:Name="ListCartItem"
                       HorizontalOptions="FillAndExpand"
@@ -79,7 +131,7 @@
                     <Label  Text="Tổng cộng" 
                             FontSize="20"
                             HorizontalOptions="StartAndExpand"/>
-                    <Label  Text="0đ" 
+                    <Label  Text="{Binding TotalPrice, StringFormat='{0:N0} đ'}" 
                             FontAttributes="Bold"
                             FontSize="20"
                             HorizontalOptions="EndAndExpand"/>

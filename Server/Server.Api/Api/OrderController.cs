@@ -22,14 +22,14 @@ namespace Phoenix.Server.Api.Api
 
         [HttpPost]  
         [Route("GetAllAppOrders")]
-        public async Task<BaseResponse<OrderDto>> GetAllAppOrders(OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request)
         {
             return await _orderService.GetAllAppOrders(request);
         }
 
         [HttpPost]
         [Route("AddOrder")]
-        public Task<CrudResult> AddOrder([FromBody] OrderRequest request)
+        public Task<CrudResult> AddOrder([FromBody] OrderAppRequest request)
 
         {
             return _orderService.AddOrder(request);
@@ -37,7 +37,7 @@ namespace Phoenix.Server.Api.Api
 
         [HttpPost]
         [Route("GetLatestOrder")]
-        public async Task<BaseResponse<OrderDto>> GetLatestOrder([FromBody] OrderRequest request)
+        public async Task<BaseResponse<OrderAppDto>> GetLatestOrder([FromBody] OrderAppRequest request)
         {
             return await _orderService.GetLatestOrder(request);
         }
