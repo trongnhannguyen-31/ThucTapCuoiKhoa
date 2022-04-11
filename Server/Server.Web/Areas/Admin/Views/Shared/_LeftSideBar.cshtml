@@ -132,38 +132,20 @@
                 </li>*@
             </ul>
         </li>
-       @* <li>
+        <li>
             <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                <div class="side-menu__title"> Báo cáo <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="log-out"></i> </div>
+                <div class="side-menu__title"> Đăng xuất <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
-                    <a href="#" class="side-menu">
+                    <a href="@Html.Raw(Url.Action("LogOut", "Admin"))" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Chấm công </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Lịch làm việc </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Sản phẩm </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Thông báo </div>
+                        <div class="side-menu__title"> Đăng xuất </div>
                     </a>
                 </li>
             </ul>
-        </li>*@
+        </li>
     </ul>
 </nav>
 <!-- END: Side Menu -->

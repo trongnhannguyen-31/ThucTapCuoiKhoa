@@ -46,8 +46,8 @@ namespace Phoenix.Server.Services.Infrastructure
 
 
             // CreateMap OrderDetail
-            CreateMap<OrderDetail, OrderDetailDto>();
-                //.ForMember(d => d.Product_Name, o => o.MapFrom(s => s.Product.Name));
+            CreateMap<OrderDetail, OrderDetailDto>()
+                .ForMember(d => d.Product_Name, o => o.MapFrom(s => s.ProductSKU.Product.Name));
 
 
             // CreateMap Customer
