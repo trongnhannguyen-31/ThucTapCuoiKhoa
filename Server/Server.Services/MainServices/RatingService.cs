@@ -20,7 +20,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<RatingDto>> GetAllRatings(RatingRequest request);
 
         Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
-        ///
+        
         Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
     }
     public class RatingService : IRatingService
@@ -41,11 +41,6 @@ namespace Phoenix.Server.Services.MainServices
                 var query = _dataContext.Ratings.AsQueryable();
 
                 //filter
-                /*if (request.Id > 0)
-                {
-                    query = query.Where(d => d.Id == request.Id);
-                } */
-
                 if (request.Rate > 0)
                 {
                     query = query.Where(d => d.Rate == request.Rate);
@@ -65,6 +60,11 @@ namespace Phoenix.Server.Services.MainServices
                 if (request.Product_Id > 0)
                 {
                     query = query.Where(d => d.ProductSKU_Id == request.Product_Id);
+                }
+
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
                 }
 
                 query = query.OrderByDescending(d => d.Id);
@@ -94,9 +94,10 @@ namespace Phoenix.Server.Services.MainServices
             {
 
                 var ratings = GetRatingsById(Id);
-                _dataContext.Ratings.Remove(ratings);
-                await _dataContext.SaveChangesAsync();
+                
+                ratings.Deleted = true;
 
+                await _dataContext.SaveChangesAsync();
                 result.Success = true;
             }
             catch (Exception ex)

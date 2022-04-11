@@ -21,5 +21,7 @@ namespace Phoenix.Shared.Rating
         public string Customer_Name { get; set; }
 
         public int Product_Id { get; set; } 
+
+        public bool Deleted { get; set; }
     }
 }
