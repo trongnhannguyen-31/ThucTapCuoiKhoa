@@ -19,6 +19,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<RatingDto>> GetAllRatings(RatingRequest request);
 
         Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
+        ///
+
     }
     public class RatingService : IRatingService
     {

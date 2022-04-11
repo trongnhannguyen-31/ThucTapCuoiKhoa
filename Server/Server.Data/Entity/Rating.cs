@@ -15,6 +15,8 @@ namespace Phoenix.Server.Data.Entity
 
         public string Comment { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+
         public int? Image1 { get; set; }
         [ForeignKey("Image1")]
         public virtual ImageRecord ImageRecord1 { get; set; }
@@ -34,5 +36,6 @@ namespace Phoenix.Server.Data.Entity
         public int Product_Id { get; set; }
         [ForeignKey("Product_Id")]
         public virtual Product Product { get; set; }
+        public bool Deleted { get; set; }
     }
 }
