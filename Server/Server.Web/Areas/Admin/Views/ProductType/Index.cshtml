@@ -70,7 +70,7 @@
             },
             placeholder: "Chưa có dữ liệu",
             columns: [
-                { title: "Mã loại", field: "Id", sorter: "string", width: 180 },
+                { title: "Id", field: "Id", sorter: "string", width: 180 },
                 {
                     title: "Tên loại", field: "Name", sorter: "string", width: 180, formatter(cell, formatterParams)
                     {
@@ -85,7 +85,7 @@
                 },
                 {
                     title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
-                        return `<a href="../Admin/ProductType/Update/${cell.getData().Id}" class="btn btn-primary text-white shadow-md mr-2"> Chỉnh sửa </a>`
+                        return `<a href="../Admin/ProductType/Update/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Chỉnh sửa </a>`
                     }
                 },
             ],
