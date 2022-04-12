@@ -26,6 +26,8 @@ using Phoenix.Shared.Rating;
 using Phoenix.Shared.ImageRecord;
 using Phoenix.Shared.CartItem;
 using Phoenix.Mobile.Core.Models.CartItem;
+using Phoenix.Shared.User;
+using Phoenix.Mobile.Core.Models.User;
 
 namespace Phoenix.Mobile.Core.Infrastructure
 {
@@ -56,6 +58,7 @@ namespace Phoenix.Mobile.Core.Infrastructure
             CreateMap<CartItemDto, CartItemModel>();
             CreateMap<CartListDto, CartListModel>();
             CreateMap<OrderDetailHistoryDto, OrderDetailHistoryModel>();
+            CreateMap<UserDto, UserModel>();
 
         }
     }
