@@ -1,6 +1,7 @@
 ﻿using Phoenix.Server.Services.MainServices.Auth;
 using Phoenix.Server.Services.MainServices.Users;
 using Phoenix.Shared.Core;
+using Phoenix.Shared.User;
 using Phoenix.Shared.z_User;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -33,5 +34,12 @@ namespace Phoenix.Server.Api.Api
         //{
         //    return _userService.CreateAccount(request);
         //}
+
+        [HttpPost]
+        [Route("CreateUser")]
+        public Task<CrudResult> CreateUser([FromBody] UserRequest request)
+        {
+            return _userService.CreateUser(request);
+        }
     }
 }

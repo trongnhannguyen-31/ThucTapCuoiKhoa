@@ -12,6 +12,7 @@ using Phoenix.Shared.User;
 using System.Data.Entity;
 using Falcon.Web.Core.Helpers;
 using System;
+using Phoenix.Shared.Core;
 
 namespace Phoenix.Server.Services.MainServices.Users
 {
@@ -20,6 +21,9 @@ namespace Phoenix.Server.Services.MainServices.Users
         User GetUserById(int id);
 
         Task<BaseResponse<UserDto>> GetAllUsers(UserRequest request);
+
+        ////
+        Task<CrudResult> CreateUser(UserRequest request);
 
     }
 
@@ -90,6 +94,24 @@ namespace Phoenix.Server.Services.MainServices.Users
             }
 
             return result;
+        }
+
+        public async Task<CrudResult> CreateUser(UserRequest request)
+        {
+            var User = new User();
+            User.UserName = request.UserName;
+            User.DisplayName = request.DisplayName;
+            var salt = _encryptionService.CreateSaltKey(SaltLenght);
+            User.Salt = salt;
+            User.Password = _encryptionService.CreatePasswordHash(request.Password, salt);
+            // User.Salt = request.Salt;
+            User.Active = true;
+            User.Roles = "Admin";
+            User.Deleted = request.Deleted;
+
+            _dataContext.Users.Add(User);
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
         }
     }
 }

@@ -6,6 +6,8 @@
              x:DataType="common:AccountPageModel">
     <ContentPage.Content>
         <StackLayout>
+            <!--<Image Source="http://172.31.99.6:63199/Uploads/NSX/acer.png"
+                   HeightRequest="100"/>-->
             <Grid BackgroundColor="#267cfc">
                 <Grid.RowDefinitions>
                     <RowDefinition />

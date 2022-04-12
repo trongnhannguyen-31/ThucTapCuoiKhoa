@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Phoenix.Shared.User;
 
 namespace Phoenix.Mobile.Core.Proxies.Common
 {
@@ -13,6 +14,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
     {
         Task<CrudResult> ChangePassword(string phone, string oldPwd, string newPwd);
         Task<CrudResult> ForgotPassword(string phone, string newPwd);
+        Task<CrudResult> CreateUser(UserRequest request);
     }
 
     public class UserProxy : BaseProxy, IUserProxy
@@ -49,6 +51,22 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
+        public async Task<CrudResult> CreateUser(UserRequest request)
+        {
+            try
+            {
+                var api = RestService.For<IUserApi>(GetHttpClient());
+                var result = await api.CreateUser(request);
+                if (result == null) return new CrudResult();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return new CrudResult();
+            }
+        }
+
         public interface IUserApi
         {
             [Post("/user/changepwd")]
@@ -57,6 +75,9 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 
             [Post("/user/forgotpwd")]
             Task<CrudResult> ForgotPassword(string phone, string newPwd);
+
+            [Post("/user/CreateUser")]
+            Task<CrudResult> CreateUser(UserRequest request);
         }
     }
 }

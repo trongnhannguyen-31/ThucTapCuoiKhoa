@@ -52,6 +52,7 @@
                                    xe:TouchEffect.Color="AliceBlue"
                                    xe:Commands.Tap="{Binding LoginCommand}"
                                    IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}"/>
+                <Button Command="{Binding RegisterCommand}"/>
             </StackLayout>
             <StackLayout Margin="0,20,0,0"
                          IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}">
