@@ -20,7 +20,8 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderService
     {
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
-        
+
+
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
@@ -42,6 +43,7 @@ namespace Phoenix.Server.Services.MainServices
             _warehouseService = warehouseService;
         }
 
+        #region List
         //lấy danh sách nhà cung cấp
         public async Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request)
         {
@@ -62,11 +64,6 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.OrderDate == request.OrderDate);
                 }
 
-                /*if (request.Status > 0) 
-                {
-                    query = query.Where(d => d.Status == request.Status); 
-                }*/
-
                 if (!string.IsNullOrEmpty(request.Address))
                 {
                     query = query.Where(d => d.Address.Contains(request.Address));
@@ -82,14 +79,17 @@ namespace Phoenix.Server.Services.MainServices
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
                 result.Data = data.MapTo<OrderDto>();
+                result.Success = true;
             }
             catch (Exception ex)
             {
-
+                result.Success = false;
+                result.Message = ex.Message;
             }
 
             return result;
         }
+        #endregion
 
         public async Task<BaseResponse<OrderDto>> GetAllCancelOrders(OrderRequest request)
         {
@@ -98,20 +98,20 @@ namespace Phoenix.Server.Services.MainServices
             {
                 //setup query
                 var query = _dataContext.Orders.AsQueryable();
-
                 
-                    query = query.Where(d => d.CancelRequest == true);
-                
+                query = query.Where(d => d.CancelRequest == true);            
 
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
                 result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
                 result.Data = data.MapTo<OrderDto>();
+                result.Success = true;
             }
             catch (Exception ex)
             {
-
+                result.Success= false;
+                result.Message= ex.Message;
             }
 
             return result;
@@ -119,10 +119,9 @@ namespace Phoenix.Server.Services.MainServices
 
         // Lấy ID
         public Order GetOrderById(int id) => _dataContext.Orders.Find(id);
-        //public OrderDetail GetOrderDetailById(int id) => _dataContext.OrderDatails.Find(id);
 
         // Thay đổi trạng thái
-        /*public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
+        public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
             var result = new BaseResponse<OrderDto>();
             try
@@ -131,12 +130,17 @@ namespace Phoenix.Server.Services.MainServices
 
                 if (orders.Status == "Chờ xử lý")
                 {
-                    orders.Status = "Đã duyệt, chờ giao hàng";
-
-                    ProductSKU productSKU = new ProductSKU();
-                    productSKU.BuyCount = productSKU.BuyCount + 1;
+                    orders.Status = "Đã duyệt, đang xử lý";
                 }
-                else if (orders.Status == "Đã duyệt, chờ giao hàng")
+                else if (orders.CancelRequest == true && orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, đang xử lý")
+                {
+                    orders.Status = "Hủy đơn hàng thành công";
+                }
+                else if (orders.CancelRequest == true && orders.Status == "Đang giao" || orders.Status == "Đã giao")
+                {
+                    orders.Status = "Không thể hủy đơn hàng";
+                }
+                else if (orders.Status == "Đã duyệt, đang xử lý")
                 {
                     orders.Status = "Đã giao hàng";
                     orders.DeliveryDate = DateTime.Now;
@@ -152,52 +156,7 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
-        }*/
-
-        public async Task<BaseResponse<ChangeStatusDto>> GetListById(ChangeStatusRequest request)
-        {
-            var result = new BaseResponse<ChangeStatusDto>();
-            try
-            {
-                var query = (from o in _dataContext.Orders
-                             join d in _dataContext.OrderDetails on o.Id equals d.Order_Id
-                             join s in _dataContext.ProductSKUs on d.ProductSKU_Id equals s.Id
-                             join w in _dataContext.Warehouses on d.ProductSKU_Id equals w.ProductSKU_Id
-                             select new
-                             {
-                                 Id = o.Id,
-                                 OrderDate = o.OrderDate,
-                                 Status = o.Status,
-                                 DeliveryDate = o.DeliveryDate,
-                                 Address = o.Address,
-                                 Total = o.Total,
-                                 Customer_Id = o.Customer_Id,
-                                 CreatedAt = o.CreatedAt,
-                                 Deleted = o.Deleted,
-                                 Order_Id = o.Id,
-                                 ProductSKU_Id = s.Id,
-                                 Warehouse_Id = w.Id,
-                             }).AsQueryable();
-                if (request.Id != 0)
-                {
-                    query = query.Where(o => o.Id == request.Id);
-                }
-                var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
-                var mapper = config.CreateMapper();
-                var list = query.Select(mapper.Map<ChangeStatusDto>).ToList();
-
-                result.Data = list.MapTo<ChangeStatusDto>();
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            return result;
         }
-
 
         #region properties
         public List<ChangeStatusDto> ListOrder { get; set; } = new List<ChangeStatusDto>();
@@ -244,71 +203,6 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
         #endregion
-
-
-        public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
-        {
-            //tru so luong warehouse
-            OrderDetailRequest.Order_Id = id;
-            var data1 = await this.GetAllOrderDetailById(OrderDetailRequest);
-            ListDetail = data1.Data.MapTo<OrderDetailDto>();
-
-            foreach (var item in ListDetail)
-            {
-                warehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
-               var data = _warehouseService.GetWarehouseByProductSKUId(warehouseRequest);
-               wareHouse = data.Result.Record;
-                Warehouse warehouse1 = new Warehouse();
-                warehouse1.Id = wareHouse.Id;
-                warehouse1.ProductSKU_Id = wareHouse.ProductSKU_Id;
-                warehouse1.Quantity = wareHouse.Quantity;
-
-
-                /*warehouses.Id = warehouseRequest.Id;
-                warehouses.ProductSKU_Id = warehouseRequest.ProductSKU_Id;
-                warehouses.Quantity = warehouses.Quantity - (int)warehouseRequest.Quantity;
-                warehouses.UpdatedAt = DateTime.Now;*/
-
-                await _dataContext.SaveChangesAsync();
-            }
-
-
-            var result = new BaseResponse<OrderDto>();
-            //var change = new BaseResponse<ChangeStatusDto>();
-            try
-            {
-
-                var orders = GetOrderById(id);
-                ChangeStatusRequest.Id = id;
-                var data = GetListById(ChangeStatusRequest);
-                //ListOrder = data;
-
-
-                if (orders.Status == "Chờ xử lý")
-                {
-                    orders.Status = "Đã duyệt, chờ giao hàng";
-                }
-                else if (orders.Status == "Yeu cau huy")
-                {
-                    orders.Status = "Xác nhận hủy đơn";
-                }
-                else if (orders.Status == "Đã duyệt, chờ giao hàng")
-                {
-                    orders.Status = "Đã giao hàng";
-                    orders.DeliveryDate = DateTime.Now;
-                }
-
-                await _dataContext.SaveChangesAsync();
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            return result;
-        }
 
         #region GetAllAppOrders
         public async Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request)

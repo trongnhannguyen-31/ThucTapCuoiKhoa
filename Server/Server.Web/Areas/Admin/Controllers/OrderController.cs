@@ -74,31 +74,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
+        #region ChangStatus
         // Thay đổi trạng thái
-        /*public ActionResult ChangeStatus(int id)
-        {
-            var model = new OrderModel();
-            model.Id = id;
-            var order_detail = new OrderDetailModel();
-            
-            var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
-            {
-                Id = model.Id
-            });
-
-            var OrderDetails = _orderDetailService.GetAllOrderDetailById(model.Id, new OrderDetailRequest()
-            {
-                Id = order_detail.Order_Id
-            });
-            //SuccessNotification("Đổi trạng thái thành công");
-            return RedirectToAction("Index");
-        }*/
-
         public ActionResult ChangeStatus(int id)
         {
             var model = new OrderModel();
             model.Id = id;
-            
 
             var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
             {
@@ -108,5 +89,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             SuccessNotification("Đổi trạng thái thành công");
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }
