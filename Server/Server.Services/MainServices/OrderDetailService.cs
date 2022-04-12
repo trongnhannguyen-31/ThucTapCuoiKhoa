@@ -19,9 +19,12 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderDetailService
     {
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetails(OrderDetailRequest request);
+        
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(int id, OrderDetailRequest request);
-        ////
+
+
         Task<CrudResult> AddOrderDetail(OrderDetailAppRequest request);
+
         Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
     }
 
