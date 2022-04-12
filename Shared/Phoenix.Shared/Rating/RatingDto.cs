@@ -18,7 +18,7 @@
 
         public string Customer_Name { get; set; }
 
-        public int Product_Id { get; set; }
+        public int ProductSKU_Id { get; set; }
 
         public string Product_Name { get; set; }
     }
