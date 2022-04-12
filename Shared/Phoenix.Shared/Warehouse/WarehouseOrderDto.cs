@@ -8,7 +8,6 @@ namespace Phoenix.Shared.Warehouse
 
         public int ProductSKU_Id { get; set; }
 
-
         public int Quantity { get; set; }
 
         public DateTime? UpdatedAt { get; set; }

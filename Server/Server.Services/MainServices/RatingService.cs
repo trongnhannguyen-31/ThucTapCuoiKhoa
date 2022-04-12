@@ -60,9 +60,9 @@ namespace Phoenix.Server.Services.MainServices
 
                 }
 
-                if (request.Product_Id > 0)
+                if (request.ProductSKU_Id > 0)
                 {
-                    query = query.Where(d => d.ProductSKU_Id == request.Product_Id);
+                    query = query.Where(d => d.ProductSKU_Id == request.ProductSKU_Id);
                 }
 
                 if (request.Deleted == false)
