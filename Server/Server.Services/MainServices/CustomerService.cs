@@ -22,8 +22,9 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<CustomerDto>> UpdateCustomers(CustomerRequest request);
 
         Task<BaseResponse<CustomerDto>> DeleteCustomersById(int Id);
-        ///
+
         Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request);
+
         Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
     }
     public class CustomerService : ICustomerService
