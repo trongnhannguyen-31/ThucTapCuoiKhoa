@@ -13,9 +13,10 @@ namespace Phoenix.Server.Api.Api
     {
         private readonly UserAuthService _userAuthService;
         private readonly UserService _userService;
-        public UserApiController(UserAuthService userAuthService)
+        public UserApiController(UserAuthService userAuthService, UserService userService)
         {
             _userAuthService = userAuthService;
+            _userService = userService;
         }
 
         [HttpPost]
