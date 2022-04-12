@@ -420,6 +420,7 @@
     <Compile Include="MainServices\Common\Models\NameValueModel.cs" />
     <Compile Include="MainServices\Common\SettingAdminService.cs" />
     <Compile Include="MainServices\CustomerService.cs" />
+    <Compile Include="MainServices\ImageService.cs" />
     <Compile Include="MainServices\OrderDetailService.cs" />
     <Compile Include="MainServices\OrderService.cs" />
     <Compile Include="MainServices\ProductService.cs" />

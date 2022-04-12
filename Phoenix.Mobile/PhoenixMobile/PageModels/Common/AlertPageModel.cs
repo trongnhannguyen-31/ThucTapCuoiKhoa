@@ -3,6 +3,7 @@ using Phoenix.Mobile.Core.Models.ImageRecord;
 using Phoenix.Mobile.Core.Models.Order;
 using Phoenix.Mobile.Core.Services.Common;
 using Phoenix.Mobile.Helpers;
+using Phoenix.Shared.ImageRecord;
 //using Phoenix.Shared.ImageRecord;
 using Phoenix.Shared.Order;
 using System;
@@ -18,10 +19,12 @@ namespace Phoenix.Mobile.PageModels.Common
     {
         private readonly IOrderService _orderService;
         private readonly IDialogService _dialogService;
-        public AlertPageModel(IOrderService orderService, IDialogService dialogService)
+        private readonly IImageRecordService _imageRecordService;
+        public AlertPageModel(IOrderService orderService, IDialogService dialogService, IImageRecordService imageRecordService)
         {
             _orderService = orderService;
             _dialogService = dialogService;
+            _imageRecordService = imageRecordService;
         }
 
         public override async void Init(object initData)
@@ -38,8 +41,7 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            request.Customer_Id = 1;
-            var data = await _orderService.GetAllAppOrders(request);
+            var data = await _imageRecordService.GetAllImages(imageRequest);
             if (data == null)
             {
                 await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
@@ -47,9 +49,21 @@ namespace Phoenix.Mobile.PageModels.Common
             else
             {
 
-                Orders = data;
-                RaisePropertyChanged(nameof(Orders));
+                Images = data;
+                RaisePropertyChanged(nameof(Images));
             }
+            //request.Customer_Id = 1;
+            //var data = await _orderService.GetAllAppOrders(request);
+            //if (data == null)
+            //{
+            //    await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
+            //}
+            //else
+            //{
+
+            //    Orders = data;
+            //    RaisePropertyChanged(nameof(Orders));
+            //}
         }
 
         public ObservableCollection<OrderModel> Order { get; set; }
@@ -82,6 +96,10 @@ namespace Phoenix.Mobile.PageModels.Common
         public List<OrderModel> Orders { get; set; } = new List<OrderModel>();
 
         public OrderAppRequest request { get; set; } = new OrderAppRequest();
+
+        public List<ImageRecordModel> Images { get; set; } = new List<ImageRecordModel>();
+
+        public ImageRecordRequest imageRequest { get; set; } = new ImageRecordRequest();
 
         #endregion
     }

@@ -34,7 +34,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
         }
         public interface IImageRecordApi
         {
-            [Post("/imageRecord/GetAllImages")]
+            [Post("/image/GetAllImages")]
             Task<BaseResponse<ImageRecordDto>> GetAllImages([Body] ImageRecordRequest request);
 
         }

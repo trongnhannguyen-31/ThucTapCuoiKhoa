@@ -28,13 +28,13 @@
                 <Label Grid.Row="0"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Text="UserName"
+                       Text="{Binding Username}"
                        FontAttributes="Bold"
                        TextColor="White"/>
                 <Label Grid.Row="1"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Text="FullName"
+                       Text="{Binding FullName}"
                        TextColor="White"/>
             </Grid>
 
@@ -48,6 +48,7 @@
                         WidthRequest="210"/>
                 <Button Text="Đăng xuất"
                         HorizontalOptions="EndAndExpand"
+                        Command="{Binding LogoutCommand}"
                         WidthRequest="210"/>
             </StackLayout>
             

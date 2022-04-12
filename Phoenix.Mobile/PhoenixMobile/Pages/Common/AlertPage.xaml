@@ -5,11 +5,12 @@
               xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects" 
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common"
              xmlns:order="clr-namespace:Phoenix.Mobile.Core.Models.Order;assembly=Phoenix.Mobile.Core"
+             xmlns:image="clr-namespace:Phoenix.Mobile.Core.Models.ImageRecord;assembly=Phoenix.Mobile.Core"
              x:Class="Phoenix.Mobile.Pages.Common.AlertPage"
              x:DataType="common:AlertPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Orders}"
+            <!--<ListView ItemsSource="{Binding Orders}"
                       HasUnevenRows="True"
                       BackgroundColor="#ecf0f1"
                       HorizontalOptions="FillAndExpand"
@@ -23,8 +24,8 @@
                                 <Label Text="{Binding OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
                                        FontSize="Medium"
                                        FontAttributes="Bold"/>
-                                <!--<Label Text="{Binding Address}"
-                                       FontSize="Small"/>-->
+                                --><!--<Label Text="{Binding Address}"
+                                       FontSize="Small"/>--><!--
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Address}"
                                        FontSize="Small"/>
@@ -38,6 +39,26 @@
                                        TextColor="#009e45"
                                        FontSize="Small"
                                        FontAttributes="Italic"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            <ListView ItemsSource="{Binding Images}"
+                      HasUnevenRows="True"
+                      BackgroundColor="#ecf0f1"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedOrder}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="image:ImageRecordModel">
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Id}"/>
+                                <Label Text="{Binding FileName}"/>
+                                <Label Text="{Binding RelativePath}"/>
+                                <Image Source="{Binding RelativePath}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

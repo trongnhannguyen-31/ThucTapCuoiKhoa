@@ -12,9 +12,10 @@
         <ScrollView>
             <StackLayout>
 
-                <Image Source="@drawable/defaultcart"
+                <Image Source="{Binding Product.Image1}"
                    HeightRequest="200"
                    VerticalOptions="Center"/>
+                <Label Text="{Binding Product.Image1}"/>
 
                 <Label Text="{Binding Product.ProductName}"
                    FontSize="20"

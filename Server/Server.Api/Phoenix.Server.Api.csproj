@@ -229,6 +229,7 @@
     <Compile Include="Api\BaseApiController.cs" />
     <Compile Include="Api\CartItemController.cs" />
     <Compile Include="Api\CustomerController.cs" />
+    <Compile Include="Api\ImageController.cs" />
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\OrderDetailController.cs" />
     <Compile Include="Api\ProductController.cs" />
