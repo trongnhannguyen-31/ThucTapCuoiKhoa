@@ -25,6 +25,8 @@ namespace Phoenix.Server.Services.MainServices
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
 
+        Task<BaseResponse<OrderDto>> GetAllCancelOrders(OrderRequest request);
+
         Task<BaseResponse<OrderAppDto>> GetAllAppOrders(OrderAppRequest request);
         Task<CrudResult> AddOrder(OrderAppRequest request);
         Task<BaseResponse<OrderAppDto>> GetLatestOrder(OrderAppRequest request);
@@ -74,6 +76,32 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     query = query.Where(d => d.Total == request.Total);
                 }
+
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
+                result.DataCount = (int)((await query.CountAsync()) / request.PageSize) + 1;
+                result.Data = data.MapTo<OrderDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResponse<OrderDto>> GetAllCancelOrders(OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.Orders.AsQueryable();
+
+                
+                    query = query.Where(d => d.CancelRequest == true);
+                
 
                 query = query.OrderByDescending(d => d.Id);
 
@@ -169,6 +197,7 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
 
         #region properties
         public List<ChangeStatusDto> ListOrder { get; set; } = new List<ChangeStatusDto>();

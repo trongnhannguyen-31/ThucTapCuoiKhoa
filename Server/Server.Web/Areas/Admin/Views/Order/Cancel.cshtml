@@ -1,0 +1,121 @@
+﻿@using Phoenix.Server.Services.Database;
+@section Scripts{
+    <script type="text/javascript" src="~/assets/js/tabulator.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+}
+@section Breadcrumb{
+    <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
+        <span>Chương trình</span> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <a href="#" class="breadcrumb--active">Hủy đơn hàng</a>
+    </div>
+}
+@Html.AntiForgeryToken()
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Hủy đơn hàng
+    </h2>
+</div>
+<div class="grid gap-6 mt-5">
+    <div class="intro-y box p-5">
+        <div class="grid grid-cols-12 gap-2">
+            <div class="col-span-12 lg:col-span-6">
+                <label>Tên khách hàng</label>
+                <input type="text" id="Customer_Name" class="form-control">
+            </div>
+        </div>
+        <div class="grid mt-3">
+            <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
+                <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="intro-y box p-5 mt-5">
+    <div id="main-grid"></div>
+    <script>
+        var dateFormatter = function (cell, formatterParams) {
+            var value = cell.getValue();
+
+            if (value) {
+                value = moment(value).format("DD/MM/YYYY HH:mm:ss");
+            }
+
+            return value;
+        }
+        var table = new Tabulator("#main-grid", {
+            layout: "fitDataFill",
+            ajaxURL: "@Html.Raw(Url.Action("ListCancel", "Order"))",
+            ajaxConfig: "post",
+            ajaxRequesting: function (url, params) {
+                params.Id = $('#Id').val(),
+                params.Customer_Name = $('#Customer_Name').val();
+            },
+            ajaxResponse: function (url, params, response) {
+                return response;
+            },
+            ajaxFiltering: true,
+            paginationSize: 10,
+            paginationSizeSelector: [10, 25, 50, 100],
+            pagination: "remote",
+            paginationDataSent: {
+                "size": "pageSize",
+                "page": "page",
+            },
+            paginationDataReceived: {
+                "data": "Data",
+                "last_page": "Total"
+            },
+            placeholder: "Chưa có dữ liệu",
+            columns: [
+                { title: "Mã đơn", field: "Id", sorter: "string", width: 180 },
+                {
+                    title: "Ngày đặt hàng", field: "OrderDate", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "Tình trạng", field: "Status", sorter: "string", width: 180
+                },
+                {
+                    title: "Ngày giao dự kiến", field: "DeliveryDate", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "Địa chỉ", field: "Address", sorter: "string", width: 180, formatter(cell, formatterParams)
+                    {
+                        return `<a href="../Project/Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().Address}</a>`
+                    }
+                },
+                { title: "Tổng tiền", field: "Total", sorter: "string", width: 180 },
+                { title: "Khách hàng", field: "Customer_Name", sorter: "string", width: 180 },
+                {
+                    title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
+                },
+                {
+                    title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/OrderDetail/Index/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Xem chi tiết </a>`
+                    }
+                },
+                {
+                    title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Order/ChangeStatus/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Duyệt đơn hàng </a>`
+                    }
+                },
+                {
+                    title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
+                        return `<a href="../Admin/Order/OrderCancel/${cell.getData().Id}" class="btn btn-instagram text-white shadow-md mr-2"> Hủy </a>`
+                    }
+                },
+            ],
+        });
+        let onSearch = (e) => {
+            table.setData();
+        }
+        let onResetSearch = (e) => {
+            $('#Name').val('');
+            table.setData();
+        }
+    </script>
+</div>
+
