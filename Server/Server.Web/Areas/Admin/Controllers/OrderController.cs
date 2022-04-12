@@ -50,6 +50,30 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
+        public ActionResult Cancel()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListCancel(DataSourceRequest command, OrderModel model)
+        {
+            var orders = await _orderService.GetAllCancelOrders(new OrderRequest()
+            {
+                Page = command.Page - 1,
+                PageSize = command.PageSize,
+                Id = model.Id,
+                Address = model.Address,
+            });
+
+            var gridModel = new DataSourceResult
+            {
+                Data = orders.Data,
+                Total = orders.DataCount
+            };
+            return Json(gridModel);
+        }
+
         // Thay đổi trạng thái
         /*public ActionResult ChangeStatus(int id)
         {

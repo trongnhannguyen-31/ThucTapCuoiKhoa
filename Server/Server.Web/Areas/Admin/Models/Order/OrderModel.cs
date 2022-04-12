@@ -12,5 +12,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Models.Order
         public string Address { get; set; }
 
         public int Customer_Id { get; set; }
+
+        public bool CancelRequest { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace Phoenix.Server.Data.Entity
 
         public string Status { get; set; }
 
+        public bool CancelRequest { get; set; }
+
         public DateTime? DeliveryDate { get; set; }
 
         public string Address { get; set; }

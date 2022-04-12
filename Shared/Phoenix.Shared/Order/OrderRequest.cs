@@ -22,5 +22,7 @@ namespace Phoenix.Shared.Order
         public DateTime CreatedAt { get; set; }
 
         public bool Deleted { get; set; }
+
+        public bool CancelRequest { get; set; }
     }
 }
