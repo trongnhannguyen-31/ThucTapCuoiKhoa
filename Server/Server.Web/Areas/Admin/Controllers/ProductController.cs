@@ -29,6 +29,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _productSKUService = productSKUService;
         }
 
+        public void SetViewBag(long? selected_Id = null)
+        {
+            DataContext db = new DataContext();
+
+            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", selected_Id);
+        }
         public ActionResult Index()
         {
             return View();
@@ -56,6 +62,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Create Product
         public ActionResult Create()
         {
+            SetViewBag();
             var model = new ProductModel();
             return View(model);
         }
@@ -63,6 +70,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(ProductModel model)
         {
+            SetViewBag();
             if (!ModelState.IsValid)
                 return View(model);
             var res = await _productService.CreateProducts(new ProductRequest
@@ -86,6 +94,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         #region Update
         public ActionResult Update(int id)
         {
+            //SetViewBag();
+            var model = new ProductModel();
+            DataContext db = new DataContext();
+
+            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", model.Vendor_Id);
+
             var projectDto = _productService.GetProductsById(id);
             if (projectDto == null)
             {
@@ -99,6 +113,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Update(ProductModel model)
         {
+            SetViewBag();
             var project = _productService.GetProductsById(model.Id);
             if (project == null)
                 return RedirectToAction("List");

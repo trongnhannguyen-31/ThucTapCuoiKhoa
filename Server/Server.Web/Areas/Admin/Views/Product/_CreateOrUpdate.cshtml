@@ -40,54 +40,9 @@
                 </script>
             </div>
 
-            @*<div>*@
-            @*<label>Hãng sản xuất</label>*@
-            @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
-            @*<select id="selectVendor" name="Vendor_Id" class="tom-select"></select>*@
-            @* <script>
-            var zsettings = {
-                valueField: 'Id',
-                labelField: 'Name',
-                searchField: 'Name',
-                placeholder: '-- Vui lòng chọn nhóm --',
-                load: function (query, callback) {
-                    var url = '/api/dropdown/TakeAllVendors';
-                    fetch(url, { method: "post" })
-                        .then(response => response.json())
-                        .then(json => {
-                            callback(json);
-                        }).catch(() => {
-                            callback();
-                        });
-
-                },
-                render: {
-                    option: function (item, escape) {
-                        return `<option value="${item.Id}"> ${item.Name} </option>`;
-                    },
-                    item: function (item, escape) {
-                        return `<option value="${item.Id}"> ${item.Name} </option>`;
-                    }
-                }
-            };
-            new TomSelect('#selectVendor', zsettings);
-
-            $('#selectVendor').TomSelect({
-                TomSelect.setValue(@Model.Vendor_Id);
-            });
-        </script>*@
-            @*</div>*@
-
-
-            @*<div>
-                <label>Hang San Xuat</label>
-                <input type="text" id="VendorId" name="VendorId" class="form-control" value="@Model.Vendor_Id" />
-            </div>*@
-
-            <label for="VendorId" class="col-sm-2 col-form-label">Hang San Xuat</label>
-            <div class="col-sm-4">
-                @*@Html.FalconEditorFor(model => model.LocationCode)*@
-                <input type="text" id="VendorId" name="VendorId" class="form-control" value="@Model.Vendor_Id" />
+            <div>
+                <label>Hãng sản xuất</label>
+                @Html.DropDownList("Vendor_Id")
             </div>
 
             <div>
@@ -114,27 +69,34 @@
 </div>
 
 @section Scripts {
-    <script>
-        $("#VendorId").kendoComboBox({
-            dataTextField: "Name",
-            dataValueField: "Id",
-            placeholder: "--Chọn cửa hàng--",
-            dataSource: {
-                type: "json",
-                transport: {
-                    read: {
-                        url: "@Html.Raw(Url.Action("List", "Vendor"))",
-                        type: "POST",
-                        dataType: "json"
-                    }
-                },
-                schema: {
-                    data: "Data",
-                    total: "Total",
-                    errors: "Errors",
-                },
-            }
+    @*<script>
+            $("#vendorid").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Id",
+                placeholder: "--Chọn cửa hàng--",
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: "@Html.Raw(Url.Action("List", "Vendor"))",
+                            type: "POST",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        data: "Data",
+                        total: "Total",
+                        errors: "Errors",
+                    },
+                }
+            });
+            $("#vendorid").closest('.k-combobox').addClass('w-100 form-control');
+        </script>*@
+    
+
+    <script type="text/javascript">
+        $(function () {
+            $('Vendor_Id').select2();
         });
-        $("#VendorId").closest('.k-combobox').addClass('w-100 form-control');
     </script>
 }

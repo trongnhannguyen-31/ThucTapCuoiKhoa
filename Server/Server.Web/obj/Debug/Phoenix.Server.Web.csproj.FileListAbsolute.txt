@@ -299,6 +299,7 @@ E:\ThucTap\ThucTap\ThucTap\Server\Server.Web\obj\Debug\Phoenix.Server.Web.csproj
 E:\ThucTap\ThucTap\ThucTap\Server\Server.Web\obj\Debug\Phoenix.Server.Web.csproj.CopyComplete
 E:\ThucTap\ThucTap\ThucTap\Server\Server.Web\obj\Debug\Phoenix.Server.Web.dll
 E:\ThucTap\ThucTap\ThucTap\Server\Server.Web\obj\Debug\Phoenix.Server.Web.pdb
+E:\ThucTapCuoiKhoa\Server\Server.Web\bin\EntityFramework.xml
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\Phoenix.Server.Web.dll.config
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\Phoenix.Server.Web.dll
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\Phoenix.Server.Web.pdb
@@ -366,7 +367,6 @@ E:\ThucTapCuoiKhoa\Server\Server.Web\bin\Phoenix.Server.Services.pdb
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\Phoenix.Server.Services.dll.config
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\AsyncEnumerable.xml
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\AutoMapper.xml
-E:\ThucTapCuoiKhoa\Server\Server.Web\bin\EntityFramework.xml
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\EntityFramework.SqlServer.xml
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\FluentScheduler.pdb
 E:\ThucTapCuoiKhoa\Server\Server.Web\bin\FluentScheduler.xml

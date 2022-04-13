@@ -42,7 +42,9 @@ namespace Phoenix.Server.Services.Infrastructure
             // CreateMap Order
             CreateMap<Order, OrderDto>()
                 .ForMember(d => d.Customer_Name, o => o.MapFrom(s => s.Customer.FullName))
-                .ForMember(d => d.Cancel_Name, o => o.MapFrom(s => s.CancelRequest == true ? "Yêu cầu hủy" : "Hủy"));
+                .ForMember(d => d.Cancel_Name, o => o.MapFrom(s => s.CancelRequest == true ? "Yêu cầu hủy" : "Không"));
+                //.ForMember(d => d.Cancel_Name, o => o.MapFrom(s => s.Id == 1 ? "Thành công" : s.Id == 2 ? "Không thành công" : "Hủy")) ;
+
 
 
             // CreateMap OrderDetail

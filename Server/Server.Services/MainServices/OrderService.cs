@@ -134,11 +134,13 @@ namespace Phoenix.Server.Services.MainServices
                 var orders = GetOrderById(id);
                 if (orders.CancelRequest == true)
                 {
-                    if (orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, chờ xử lý")
+                    orders.Status = "Hủy đơn hàng thành công";
+                    //orders.CancelRequest = false;
+                    /*if (orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, chờ xử lý")
                     {
                         orders.Status = "Hủy đơn hàng thành công";
                     }
-                    else if (orders.Status == "Đang giao hàng")
+                    else if (orders.Status == "Đã giao hàng")
                     {
                         orders.Status = "Đơn hàng đang được vận chuyển, hủy đơn hàng không thành công";
                     }
@@ -146,7 +148,7 @@ namespace Phoenix.Server.Services.MainServices
                     {
                         orders.Status = "Đã giao hàng thành công";
                         orders.DeliveryDate = DateTime.Now;
-                    }
+                    }*/
                 }
                 else
                 {
