@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Phoenix.Mobile.Core.Models;
 using Phoenix.Mobile.Core.Models.Rating;
 using Phoenix.Shared.Rating;
+using Phoenix.Mobile.Core.Services;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
@@ -26,16 +27,17 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly ICartItemService _cartItemService;
         private readonly IProductService _productService;
         private readonly IRatingService _ratingService;
+        private readonly IWorkContext _workContext;
 
 
-        public PhoneDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService, IRatingService ratingService)
+        public PhoneDetailPageModel(IProductSKUService productSKUService, IDialogService dialogService, IProductService productService, ICartItemService cartItemService, IRatingService ratingService, IWorkContext workContext)
         {
             _productSKUService = productSKUService;
             _dialogService = dialogService;
             _productService = productService;
             _cartItemService = cartItemService;
             _ratingService = ratingService;
-
+            _workContext = workContext;
 
         }
         //public ProductDetailPageModel ProductDetail { get; set; }
@@ -63,6 +65,8 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
+            var token = _workContext.Token;
+            UserId = token.UserId;
             //Load thông tin chi tiết điện thoại
             request.Id = Product.SKUId;
             var data = await _productSKUService.GetProductById(request);
@@ -126,6 +130,8 @@ namespace Phoenix.Mobile.PageModels.Common
         public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();
         public bool LabelVisible { get; set; }
         public bool RatingListVisible { get; set; }
+
+        public int UserId{ get; set; }
         #endregion
 
         #region QuantityButton
@@ -155,7 +161,7 @@ namespace Phoenix.Mobile.PageModels.Common
                 {
                     ProductSKU_Id = ProductSKUs.Id,
                     Quantity = (int)ProductQuantity,
-                    User_Id = 1
+                    User_Id = UserId
                 });
 
                 //await CoreMethods.PushPageModel<PhoneDetailPageModel>();
