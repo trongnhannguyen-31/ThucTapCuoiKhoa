@@ -1,5 +1,6 @@
 ﻿using Phoenix.Mobile.Core.Infrastructure;
 using Phoenix.Mobile.Core.Models.Customer;
+using Phoenix.Mobile.Core.Services;
 using Phoenix.Mobile.Core.Services.Common;
 using Phoenix.Mobile.Helpers;
 using Phoenix.Shared.Customer;
@@ -15,11 +16,13 @@ namespace Phoenix.Mobile.PageModels.Common
     {
         private readonly ICustomerService _customerDetailService;
         private readonly IDialogService _dialogService;
+        private readonly IWorkContext _workContext;
 
-        public AccountDetailPageModel(ICustomerService orderDetailService, IDialogService dialogService)
+        public AccountDetailPageModel(ICustomerService orderDetailService, IDialogService dialogService, IWorkContext workContext)
         {
             _customerDetailService = orderDetailService;
             _dialogService = dialogService;
+            _workContext = workContext;
         }
 
         public override async void Init(object initData)
@@ -31,6 +34,8 @@ namespace Phoenix.Mobile.PageModels.Common
 
         protected override async void ViewIsAppearing(object sender, EventArgs e)
         {
+            var token = _workContext.Token;
+            UserId = token.UserId;
             base.ViewIsAppearing(sender, e);
             await LoadData();
             if (IsBusy) return;
@@ -44,6 +49,8 @@ namespace Phoenix.Mobile.PageModels.Common
             Email = Customer.Email;
             Address = Customer.Address;
             zUser_Id = Customer.zUser_Id;
+
+            
 #endif
             IsBusy = false;
         }
@@ -52,7 +59,7 @@ namespace Phoenix.Mobile.PageModels.Common
         {
 
 
-            request.zUser_Id = 1;
+            request.zUser_Id = UserId;
             var data = await _customerDetailService.GetCustomerApptById(request);
             if (data == null)
             {
@@ -77,7 +84,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public string Email { get; set; }
         public string Address { get; set; }
         public int zUser_Id { get; set; }
-
+        public int UserId { get; set; }
 
 
 

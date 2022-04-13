@@ -12,8 +12,7 @@ namespace Phoenix.Mobile.PageModels.Common
     {
         private readonly AuthService _authService;
         private readonly IWorkContext _workContext;
-        public AccountPageModel(AuthService authService,
-         IWorkContext workContext)
+        public AccountPageModel(AuthService authService, IWorkContext workContext)
         {
             _workContext = workContext;
             _authService = authService;
