@@ -1,10 +1,13 @@
 ﻿using Phoenix.Mobile.Core.Infrastructure;
 using Phoenix.Mobile.Core.Models.Cart;
 using Phoenix.Mobile.Core.Models.CartItem;
+using Phoenix.Mobile.Core.Models.Customer;
 using Phoenix.Mobile.Core.Models.Order;
+using Phoenix.Mobile.Core.Services;
 using Phoenix.Mobile.Core.Services.Common;
 using Phoenix.Mobile.Helpers;
 using Phoenix.Shared.CartItem;
+using Phoenix.Shared.Customer;
 using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
 using System;
@@ -22,13 +25,17 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IDialogService _dialogService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly IOrderService _orderService;
+        private readonly IWorkContext _workContext;
+        private readonly ICustomerService _customerService;
 
-        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService)
+        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, IWorkContext workContext, ICustomerService customerService)
         {
             _cartItemService = cartItemService;
             _dialogService = dialogService;
             _orderDetailService = orderDetailService;
             _orderService = orderService;
+            _workContext = workContext;
+            _customerService = customerService;
         }
 
         public override async void Init(object initData)
@@ -46,7 +53,10 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            request.UserID = 1;
+            var token = _workContext.Token;
+            UserId = token.UserId;
+            request.UserID = UserId;
+
             var data = await _cartItemService.GetAllCartItems(request);
             if (data == null)
             {
@@ -88,14 +98,19 @@ namespace Phoenix.Mobile.PageModels.Common
         public OrderModel InsertedOrder { get; set; } = new OrderModel();
         public CartListRequest request { get; set; } = new CartListRequest();
         public OrderAppRequest orderRequest { get; set; } = new OrderAppRequest();
+        public CustomerRequest customerRequest { get; set; } = new CustomerRequest();
+        public CustomerModel Customer { get; set; } = new CustomerModel();
 
         public int Id { get; set; }
+        public int UserId { get; set; }
         #endregion
 
         #region AddOrder
         public Command AddOrder => new Command(async (p) => await AddOrderExecute(), (p) => !IsBusy);
         private async Task AddOrderExecute()
         {
+            customerRequest.zUser_Id = UserId;
+            var data6 = _customerService.GetCustomerApptById(customerRequest);
             try
             {
                 if (IsBusy) return;
@@ -109,7 +124,7 @@ namespace Phoenix.Mobile.PageModels.Common
                     //Total = CartList.Sum(item => item.Total),
                     Total = TotalPrice,
                     IsRated = false,
-                    Customer_Id = 1,
+                    Customer_Id = data6.Result.Id,
                     CreatedAt = DateTime.Now,
                     Deleted = false
                 });
@@ -154,7 +169,7 @@ namespace Phoenix.Mobile.PageModels.Common
                 if (IsBusy) return;
                 IsBusy = true;
                 //request.UserID = 1;
-                var data4 = await _cartItemService.ClearCart(request.UserID = 1);
+                var data4 = await _cartItemService.ClearCart(request.UserID = UserId);
                 await CoreMethods.PushPageModel<CartPageModel>();
                 IsBusy = false;
 

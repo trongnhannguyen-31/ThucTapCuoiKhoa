@@ -13,6 +13,7 @@ using Phoenix.Mobile.Core.Models.CartItem;
 using System.Linq;
 using Phoenix.Mobile.Core.Models.Order;
 using System.Collections.ObjectModel;
+using Phoenix.Mobile.Core.Services;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
@@ -22,13 +23,17 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IDialogService _dialogService;
         private readonly IOrderDetailService _orderDetailService;
         private readonly IOrderService _orderService;
-        
-        public CartPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService)
+        private readonly ICustomerService _customerService;
+        private readonly IWorkContext _workContext;
+
+        public CartPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, ICustomerService customerService, IWorkContext workContext)
         {
             _cartItemService = cartItemService;
             _dialogService = dialogService;
             _orderDetailService = orderDetailService;
             _orderService = orderService;
+            _customerService = customerService;
+            _workContext = workContext;
         }
         public ObservableCollection<CartListModel> ItemCart { get; set; }
 
@@ -58,7 +63,9 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            request.UserID = 1;
+            var token = _workContext.Token;
+            UserId = token.UserId;
+            request.UserID = UserId;
              var data = await _cartItemService.GetAllCartItems(request);
             if (data == null)
             {
@@ -133,6 +140,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public OrderAppRequest orderRequest { get; set; } = new OrderAppRequest();
 
         public int Id { get; set; }
+        public int UserId { get; set; }
 
         //public int Uaer_Id { get; set; }
         #endregion
@@ -364,23 +372,6 @@ namespace Phoenix.Mobile.PageModels.Common
             get { return _listCartItem; }
             set { _listCartItem = value; }
         }
-
-        //private double _productQuantity;
-        //public double ProductQuantity
-        //{
-        //    get
-        //    {
-        //        return CartList.;
-        //    }
-        //    set
-        //    {
-        //        if (value != _productQuantity)
-        //        {
-        //            _productQuantity = value;
-        //            RaisePropertyChanged();
-        //        }
-        //    }
-        //}
 
         #region Refresh
         public Command Refresh => new Command(async (p) => await RefreshExecute(), (p) => !IsBusy);

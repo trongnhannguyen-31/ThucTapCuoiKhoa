@@ -10,13 +10,19 @@
              x:DataType="common:AlertPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <!--<ListView ItemsSource="{Binding Orders}"
+            <Label Text="Bạn không có đơn hàng nào"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   IsVisible="{Binding LabelVisible}"/>
+            <ListView ItemsSource="{Binding Orders}"
                       HasUnevenRows="True"
                       BackgroundColor="#ecf0f1"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
                       SelectionMode="Single"
-                      SelectedItem="{Binding SelectedOrder}">
+                      SelectedItem="{Binding SelectedOrder}"
+                      IsVisible="{Binding ListOrderVisible}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="order:OrderModel">
                         <ViewCell>
@@ -24,8 +30,8 @@
                                 <Label Text="{Binding OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
                                        FontSize="Medium"
                                        FontAttributes="Bold"/>
-                                --><!--<Label Text="{Binding Address}"
-                                       FontSize="Small"/>--><!--
+                                <Label Text="{Binding Address}"
+                                       FontSize="Small"/>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Address}"
                                        FontSize="Small"/>
@@ -39,26 +45,6 @@
                                        TextColor="#009e45"
                                        FontSize="Small"
                                        FontAttributes="Italic"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-            <ListView ItemsSource="{Binding Images}"
-                      HasUnevenRows="True"
-                      BackgroundColor="#ecf0f1"
-                      HorizontalOptions="FillAndExpand"
-                      VerticalOptions="FillAndExpand"
-                      SelectionMode="Single"
-                      SelectedItem="{Binding SelectedOrder}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="image:ImageRecordModel">
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Id}"/>
-                                <Label Text="{Binding FileName}"/>
-                                <Label Text="{Binding RelativePath}"/>
-                                <Image Source="{Binding RelativePath}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
