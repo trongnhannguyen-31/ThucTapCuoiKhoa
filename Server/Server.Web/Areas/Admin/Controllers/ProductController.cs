@@ -3,6 +3,7 @@ using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.Database;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Product;
+using Phoenix.Server.Data.Entity;
 using Phoenix.Shared.Product;
 using Phoenix.Shared.ProductSKU;
 using System;
@@ -13,8 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
-
+using System.Data.Entity;
+using Phoenix.Shared.Vendor;
 
 namespace Phoenix.Server.Web.Areas.Admin.Controllers
 {
@@ -23,18 +24,26 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // GET: Admin/Product
         private readonly IProductService _productService;
         private readonly IProductSKUService _productSKUService;
-        public ProductController(IProductService productService, IProductSKUService productSKUService)
+        private readonly IVendorService _vendorService;
+        public ProductController(IProductService productService, IProductSKUService productSKUService, IVendorService vendorService)
         {
             _productService = productService;
             _productSKUService = productSKUService;
+            _vendorService = vendorService;
         }
 
-        public void SetViewBag(long? selected_Id = null)
+        public async Task SetViewBag(long? selected_Id = null)    
         {
             DataContext db = new DataContext();
-
-            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", selected_Id);
+            var query = db.Vendors.AsQueryable();
+            var data = await query.Where(d => d.Deleted == false).ToListAsync();
+            // var data1 = data.MapTo<VendorDto>();
+            //ViewBag.Vendor_Id = new SelectList(db.Vendors., "Id", "Name", selected_Id);
+            //ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selected_Id);'
+            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name");
+            ViewBag.Vendor_Id = new SelectList(data, "Id", "Name", selected_Id);
         }
+
         public ActionResult Index()
         {
             return View();
@@ -62,7 +71,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Create Product
         public ActionResult Create()
         {
-            SetViewBag();
+            
             var model = new ProductModel();
             return View(model);
         }
@@ -70,7 +79,15 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(ProductModel model)
         {
-            SetViewBag();
+            DataContext db = new DataContext();
+            var query = db.Vendors.AsQueryable();
+            var data = await query.Where(d => d.Deleted == false).ToListAsync();
+            // var data1 = data.MapTo<VendorDto>();
+            //ViewBag.Vendor_Id = new SelectList(db.Vendors., "Id", "Name", selected_Id);
+            //ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selected_Id);'
+            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name");
+            ViewBag.Vendor_Id = new SelectList(data, "Id", "Name");
+
             if (!ModelState.IsValid)
                 return View(model);
             var res = await _productService.CreateProducts(new ProductRequest
@@ -98,9 +115,10 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var model = new ProductModel();
             DataContext db = new DataContext();
 
-            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", model.Vendor_Id);
-
             var projectDto = _productService.GetProductsById(id);
+            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", projectDto.ProductType_Id);
+            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", projectDto.Vendor_Id);
+
             if (projectDto == null)
             {
                 return RedirectToAction("List");
@@ -113,7 +131,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Update(ProductModel model)
         {
-            SetViewBag();
             var project = _productService.GetProductsById(model.Id);
             if (project == null)
                 return RedirectToAction("List");
