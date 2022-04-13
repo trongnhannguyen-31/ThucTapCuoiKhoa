@@ -50,6 +50,8 @@
             ajaxRequesting: function (url, params) {
                 params.Id = $('#Id').val(),
                 params.Customer_Name = $('#Customer_Name').val();
+                params.Customer_Name = $('#Cancel_Name').val();
+
             },
             ajaxResponse: function (url, params, response) {
                 return response;
@@ -75,8 +77,9 @@
                 {
                     title: "Tình trạng", field: "Status", sorter: "string", width: 180
                 },
+                { title: "Hủy", field: "Cancel_Name", sorter: "string", width: 180 },
                 {
-                    title: "Ngày giao dự kiến", field: "DeliveryDate", sorter: "date", width: 180, formatter: dateFormatter
+                    title: "Ngày giao", field: "DeliveryDate", sorter: "date", width: 180, formatter: dateFormatter
                 },
                 {
                     title: "Địa chỉ", field: "Address", sorter: "string", width: 180, formatter(cell, formatterParams)
@@ -88,9 +91,6 @@
                 { title: "Khách hàng", field: "Customer_Name", sorter: "string", width: 180 },
                 {
                     title: "Ngày tạo", field: "CreatedAt", sorter: "date", width: 180, formatter: dateFormatter
-                },
-                {
-                    title: "Ngày cập nhật", field: "UpdatedAt", sorter: "date", width: 180, formatter: dateFormatter
                 },
                 {
                     title: "", field: "", sorter: "string", width: 180, formatter(cell, formatterParams) {
