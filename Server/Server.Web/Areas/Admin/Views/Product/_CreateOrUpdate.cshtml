@@ -6,43 +6,48 @@
     <div class="intro-y col-span-12 lg:col-span-6">
         <div class="intro-y box p-5">
 
-            <div>
-                <label>Loại sản phẩm</label>
-                @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
-                <select id="selectProductType" name="ProductType_Id" class="tom-select"></select>
-                <script>
-                    var zsettings = {
-                        valueField: 'Id',
-                        labelField: 'Name',
-                        searchField: 'Name',
-                        placeholder: '-- Vui lòng chọn nhóm --',
-                        load: function (query, callback) {
-                            var url = '/api/dropdown/TakeAllProductTypes';
-                            fetch(url, { method: "post" })
-                                .then(response => response.json())
-                                .then(json => {
-                                    callback(json);
-                                }).catch(() => {
-                                    callback();
-                                });
+            <!--<div>
+        <label>Loại sản phẩm</label>-->
+            @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
+            <!--<select id="selectProductType" name="ProductType_Id" class="tom-select"></select>
+        <script>
+            var zsettings = {
+                valueField: 'Id',
+                labelField: 'Name',
+                searchField: 'Name',
+                placeholder: '-- Vui lòng chọn nhóm --',
+                load: function (query, callback) {
+                    var url = '/api/dropdown/TakeAllProductTypes';
+                    fetch(url, { method: "post" })
+                        .then(response => response.json())
+                        .then(json => {
+                            callback(json);
+                        }).catch(() => {
+                            callback();
+                        });
 
-                        },
-                        render: {
-                            option: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
-                            },
-                            item: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
-                            }
-                        }
-                    };
-                    new TomSelect('#selectProductType', zsettings);
-                </script>
-            </div>
+                },
+                render: {
+                    option: function (item, escape) {
+                        return `<option value="${item.Id}"> ${item.Name} </option>`;
+                    },
+                    item: function (item, escape) {
+                        return `<option value="${item.Id}"> ${item.Name} </option>`;
+                    }
+                }
+            };
+            new TomSelect('#selectProductType', zsettings);
+        </script>
+    </div>-->
+
+            @*<div>
+                <label>Hãng sản xuất</label>
+                @Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })
+            </div>*@
 
             <div>
                 <label>Hãng sản xuất</label>
-                @Html.DropDownList("Vendor_Id")
+                @Html.DropDownList("", null, new { @class = "form-control input w-full border mt-2" })
             </div>
 
             <div>
@@ -69,31 +74,6 @@
 </div>
 
 @section Scripts {
-    @*<script>
-            $("#vendorid").kendoComboBox({
-                dataTextField: "Name",
-                dataValueField: "Id",
-                placeholder: "--Chọn cửa hàng--",
-                dataSource: {
-                    type: "json",
-                    transport: {
-                        read: {
-                            url: "@Html.Raw(Url.Action("List", "Vendor"))",
-                            type: "POST",
-                            dataType: "json"
-                        }
-                    },
-                    schema: {
-                        data: "Data",
-                        total: "Total",
-                        errors: "Errors",
-                    },
-                }
-            });
-            $("#vendorid").closest('.k-combobox').addClass('w-100 form-control');
-        </script>*@
-    
-
     <script type="text/javascript">
         $(function () {
             $('Vendor_Id').select2();
