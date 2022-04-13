@@ -1,5 +1,6 @@
 ﻿using Phoenix.Server.Services.MainServices;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,20 @@ namespace Phoenix.Server.Api.Api
         public async Task<BaseResponse<WarehouseDto>> GetAllWarehouses(WarehouseRequest request)
         {
             return await _warehouseService.GetAllWarehouses(request);
+        }
+
+        [HttpPost]
+        [Route("GetWarehouseByProductSKUId")]
+        public async Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request)
+        {
+            return await _warehouseService.GetWarehouseByProductSKUId(request);
+        }
+
+        [HttpPost]
+        [Route("UpdateWarehouses")]
+        public Task<BaseResponse<WarehouseDto>> UpdateWarehouses([FromBody] WarehouseRequest request)
+        {
+            return _warehouseService.UpdateWarehouses(request);
         }
     }
 }

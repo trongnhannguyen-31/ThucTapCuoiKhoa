@@ -27,7 +27,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request);
 
         Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id);
-        Task<BaseResponse<WarehouseOrderDto>> GetWarehouseByProductSKUId(WarehouseOrderRequest request);
+        /// <summary>
+        Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request);
     }
     public class WarehouseService : IWarehouseService
     {
@@ -119,7 +120,7 @@ namespace Phoenix.Server.Services.MainServices
             var result = new BaseResponse<WarehouseDto>();
             try
             {
-                var warehouses = GetWarehousesById(request.Id);
+                    var warehouses = GetWarehousesById(request.Id);
 
                 warehouses.Id = warehouses.Id;
                 warehouses.ProductSKU_Id = request.ProductSKU_Id;
@@ -163,20 +164,16 @@ namespace Phoenix.Server.Services.MainServices
         }
         #endregion
 
-        public async Task<BaseResponse<WarehouseOrderDto>> GetWarehouseByProductSKUId(WarehouseOrderRequest request)
+        public async Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request)
         {
-            var result = new BaseResponse<WarehouseOrderDto>();
+            var result = new BaseResponse<WarehouseDto>();
             try
             {
 
                 //setup query
                 var query = _dataContext.Warehouses.AsQueryable();
-                //filter
-                //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
                 var data = await query.FirstOrDefaultAsync(d => d.ProductSKU_Id == request.ProductSKU_Id);
-
-                //var data = await query.FindAsync(request.Id);
-                result.Record = data.MapTo<WarehouseOrderDto>();
+                result.Record = data.MapTo<WarehouseDto>();
             }
             catch (Exception ex)
             {

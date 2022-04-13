@@ -10,6 +10,7 @@ using Phoenix.Shared.CartItem;
 using Phoenix.Shared.Customer;
 using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
+using Phoenix.Shared.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,9 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IOrderService _orderService;
         private readonly IWorkContext _workContext;
         private readonly ICustomerService _customerService;
+        private readonly IWarehouseService _warehouseService;
 
-        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, IWorkContext workContext, ICustomerService customerService)
+        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, IWorkContext workContext, ICustomerService customerService, IWarehouseService warehouseService)
         {
             _cartItemService = cartItemService;
             _dialogService = dialogService;
@@ -36,6 +38,7 @@ namespace Phoenix.Mobile.PageModels.Common
             _orderService = orderService;
             _workContext = workContext;
             _customerService = customerService;
+            _warehouseService = warehouseService;
         }
 
         public override async void Init(object initData)
@@ -99,6 +102,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public CartListRequest request { get; set; } = new CartListRequest();
         public OrderAppRequest orderRequest { get; set; } = new OrderAppRequest();
         public CustomerRequest customerRequest { get; set; } = new CustomerRequest();
+        public WarehouseRequest warehouseRequest { get; set; } = new WarehouseRequest();
         public CustomerModel Customer { get; set; } = new CustomerModel();
 
         public int Id { get; set; }
@@ -129,8 +133,6 @@ namespace Phoenix.Mobile.PageModels.Common
                     Deleted = false
                 });
                 IsBusy = false;
-                //await _dialogService.AlertAsync("Thêm thành công");
-                //IsBusy = false;
 
                 var data2 = await _orderService.GetLatestOrder(orderRequest);
                 if (data == null)
@@ -157,6 +159,8 @@ namespace Phoenix.Mobile.PageModels.Common
                             Price = item.Price,
                             Quantity = item.Quantity
                         });
+
+                        var data5 = _warehouseService.
                         IsBusy = false;
                     }
                     catch (Exception e)
