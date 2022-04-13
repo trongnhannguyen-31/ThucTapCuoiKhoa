@@ -108,13 +108,13 @@ namespace Phoenix.Mobile.PageModels.Common
         #region AddOrder
         public Command AddOrder => new Command(async (p) => await AddOrderExecute(), (p) => !IsBusy);
         private async Task AddOrderExecute()
-        {
-            customerRequest.zUser_Id = UserId;
-            var data6 = _customerService.GetCustomerApptById(customerRequest);
+        {            
             try
             {
                 if (IsBusy) return;
                 IsBusy = true;
+                customerRequest.zUser_Id = UserId;
+                var data6 = await _customerService.GetCustomerApptById(customerRequest);
                 var data = _orderService.AddOrder(new OrderAppRequest
                 {
                     OrderDate = DateTime.Now,
@@ -124,7 +124,7 @@ namespace Phoenix.Mobile.PageModels.Common
                     //Total = CartList.Sum(item => item.Total),
                     Total = TotalPrice,
                     IsRated = false,
-                    Customer_Id = data6.Result.Id,
+                    Customer_Id = data6.Id,
                     CreatedAt = DateTime.Now,
                     Deleted = false
                 });
