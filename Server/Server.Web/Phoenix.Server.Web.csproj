@@ -741,6 +741,9 @@
     <Content Include="assets\images\profile-9.jpg" />
     <Content Include="assets\images\woman-illustration.svg" />
     <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\Chosen\chosen-sprite.png" />
+    <Content Include="assets\js\Chosen\chosen.jquery.min.js" />
+    <Content Include="assets\js\Chosen\chosen.min.css" />
     <Content Include="assets\js\jquery.filedrop.js" />
     <Content Include="assets\js\kendo\2019.3.1023\angular.min.js" />
     <Content Include="assets\js\kendo\2019.3.1023\cultures\kendo.culture.vi-VN.min.js" />
