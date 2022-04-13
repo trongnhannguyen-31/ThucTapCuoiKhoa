@@ -86,6 +86,7 @@
     <Compile Include="Order\ChangeStatusRequest.cs" />
     <Compile Include="Order\OrderAppDto.cs" />
     <Compile Include="Order\OrderAppRequest.cs" />
+    <Compile Include="ProductSKU\ProductSKUAppDto.cs" />
     <Compile Include="ProductSKU\ProductSKUDto.cs" />
     <Compile Include="ProductSKU\ProductSKURequest.cs" />
     <Compile Include="Product\ProductMenuDto.cs" />

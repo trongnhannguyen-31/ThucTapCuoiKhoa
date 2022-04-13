@@ -24,7 +24,7 @@ namespace Phoenix.Server.Api.Api
         }
 
         [Route("GetProductById")]
-        public async Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request)
+        public async Task<BaseResponse<ProductSKUAppDto>> GetProductById(ProductSKURequest request)
         {
             return await _productSKUService.GetProductById(request);
         }

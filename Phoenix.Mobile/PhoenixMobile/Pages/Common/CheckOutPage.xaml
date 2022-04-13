@@ -33,7 +33,8 @@
                 <Entry Grid.Row="1"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Placeholder="Nhập tên người nhận"/>
+                       Placeholder="Nhập tên người nhận"
+                       Text="{Binding FullName}"/>
                 <Label Grid.Row="2"
                        Grid.Column="0"
                        FontSize="Medium"
@@ -41,7 +42,8 @@
                 <Entry Grid.Row="2"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Placeholder="Nhập địa chỉ"/>
+                       Placeholder="Nhập địa chỉ"
+                       Text="{Binding Address}"/>
                 <Label Grid.Row="3"
                        Grid.Column="0"
                        FontSize="Medium"
@@ -49,7 +51,8 @@
                 <Entry Grid.Row="3"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Placeholder="Nhập số điện thoại"/>
+                       Placeholder="Nhập số điện thoại"
+                       Text="{Binding Phone}"/>
                 <Label Grid.Row="4"
                        Grid.Column="0"
                        FontSize="Medium"
@@ -57,7 +60,8 @@
                 <Entry Grid.Row="4"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
-                       Placeholder="Nhập email"/>
+                       Placeholder="Nhập email"
+                       Text="{Binding Email}"/>
             </Grid>
             <ListView ItemsSource="{Binding CartList}"
                       x:Name="ListCartItem"

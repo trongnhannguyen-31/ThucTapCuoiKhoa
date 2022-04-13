@@ -332,10 +332,10 @@ namespace Phoenix.Server.Services.MainServices
                 //setup query
                 var query = _dataContext.Orders.AsQueryable();
 
-                if (!string.IsNullOrEmpty(request.Address))
-                {
-                    query = query.Where(d => d.Address.Contains(request.Address));
-                }
+                //if (!string.IsNullOrEmpty(request.Address))
+                //{
+                //    query = query.Where(d => d.Address.Contains(request.Address));
+                //}
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.FirstAsync();

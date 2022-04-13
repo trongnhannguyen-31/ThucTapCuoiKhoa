@@ -55,6 +55,18 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             base.ViewIsAppearing(sender, e);
             await LoadData();
+            if (IsBusy) return;
+            IsBusy = true;
+#if DEBUG
+            Id = Customer.Id;
+            FullName = Customer.FullName;
+            Phone = Customer.Phone;
+            Email = Customer.Email;
+            Address = Customer.Address;
+
+
+#endif
+            IsBusy = false;
         }
 
         private async Task LoadData()
@@ -62,14 +74,17 @@ namespace Phoenix.Mobile.PageModels.Common
             var token = _workContext.Token;
             UserId = token.UserId;
             request.UserID = UserId;
+            customerRequest.zUser_Id = UserId;
 
+            var data6 = await _customerService.GetCustomerApptById(customerRequest);
             var data = await _cartItemService.GetAllCartItems(request);
-            if (data == null)
+            if (data == null || data6 == null)
             {
                 await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
             }
             else
             {
+                Customer = data6;
                 CartList = data;
                 updateTotalPrice();
                 RaisePropertyChanged(nameof(CartList));
@@ -110,6 +125,10 @@ namespace Phoenix.Mobile.PageModels.Common
 
         public int Id { get; set; }
         public int UserId { get; set; }
+        public string FullName { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
         #endregion
 
         #region AddOrder
@@ -120,18 +139,18 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 if (IsBusy) return;
                 IsBusy = true;
-                customerRequest.zUser_Id = UserId;
-                var data6 = await _customerService.GetCustomerApptById(customerRequest);
+                //customerRequest.zUser_Id = UserId;
+                //var data6 = await _customerService.GetCustomerApptById(customerRequest);
                 var data = _orderService.AddOrder(new OrderAppRequest
                 {
                     OrderDate = DateTime.Now,
                     Status = "Chờ xử lý",
                     DeliveryDate = null,
-                    Address = "abc",
+                    Address = Address,
                     //Total = CartList.Sum(item => item.Total),
                     Total = TotalPrice,
                     IsRated = false,
-                    Customer_Id = data6.Id,
+                    Customer_Id = Id,
                     CreatedAt = DateTime.Now,
                     Deleted = false
                 });

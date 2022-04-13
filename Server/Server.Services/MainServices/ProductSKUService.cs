@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Core.Helpers;
+﻿using AutoMapper;
+using Falcon.Web.Core.Helpers;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
@@ -24,7 +25,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id);
         ///
-        Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
+        //Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
+        Task<BaseResponse<ProductSKUAppDto>> GetProductById(ProductSKURequest request);
         Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request);
     }
 
@@ -239,20 +241,63 @@ namespace Phoenix.Server.Services.MainServices
         #endregion
 
         #region GetProductById
-        public async Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request)
+        public async Task<BaseResponse<ProductSKUAppDto>> GetProductById(ProductSKURequest request)
         {
-            var result = new BaseResponse<ProductSKUDto>();
+            var result = new BaseResponse<ProductSKUAppDto>();
             try
             {
+                var query = (from p in _dataContext.Products
+                             join s in _dataContext.ProductSKUs on p.Id equals s.Product_Id
+                             join i1 in _dataContext.ImageRecords on p.Image1 equals i1.Id
+                             join i2 in _dataContext.ImageRecords on p.Image2 equals i2.Id
+                             join i3 in _dataContext.ImageRecords on p.Image3 equals i3.Id
+                             join i4 in _dataContext.ImageRecords on p.Image4 equals i4.Id
+                             join i5 in _dataContext.ImageRecords on p.Image5 equals i5.Id
+                             select new
+                             {
+                                 Id = s.Id,
+                                 Product_Id = s.Product_Id,
+                                 Image1Path = i1.AbsolutePath,
+                                 Image2Path = i2.AbsolutePath,
+                                 Image3Path = i3.AbsolutePath,
+                                 Image4Path = i4.AbsolutePath,
+                                 Image5Path = i5.AbsolutePath,
+                                // NameProduct = p.Name,
+                                 Price = s.Price,
+                                 Rating = s.Rating,
+                                 BuyCount = s.BuyCount,
+                                 Screen = s.Screen,
+                                 OperationSystem = s.OperationSystem,
+                                 Processor = s.Processor,
+                                 Ram = s.Rating,
+                                 Storage = s.Storage,
+                                 Battery = s.Battery,
+                                 BackCamera = s.BackCamera,
+                                 FrontCamera = s.FrontCamera,
+                                 SimSlot = s.SimSlot,
+                                 GraphicCard = s.GraphicCard,
+                                 ConnectionPort = s.ConnectionPort,
+                                 Design = s.Design,
+                                 Size = s.Size,
+                                 YearOfManufacture = s.YearOfManufacture,
+                                 CreatedAt = s.CreatedAt,
+                                 UpdatedAt = s.UpdatedAt,
+                                 Deleted = s.Deleted
+                             }).AsQueryable();
+                // query = query.Where(d => d.Name.Contains(request.Name));
+               // var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
 
-                //setup query
-                var query = _dataContext.ProductSKUs.AsQueryable();
-                //filter
-                //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
-                var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+                var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
+                var mapper = config.CreateMapper();
+               // var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
+               var listcart = query.Select(mapper.Map<ProductSKUAppDto>);
+                var data = listcart.First();
+              //var listcart = data.
+                //var data = await query.ToListAsync();
 
-                //var data = await query.FindAsync(request.Id);
-                result.Record = data.MapTo<ProductSKUDto>();
+                //result.Data = data.MapTo<CartListDto>();
+                result.Record = data.MapTo<ProductSKUAppDto>();
+
             }
             catch (Exception ex)
             {
@@ -260,6 +305,25 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
+            //var result = new BaseResponse<ProductSKUDto>();
+            //try
+            //{
+
+            //    //setup query
+            //    var query = _dataContext.ProductSKUs.AsQueryable();
+            //    //filter
+            //    //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+            //    var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
+
+            //    //var data = await query.FindAsync(request.Id);
+            //    result.Record = data.MapTo<ProductSKUDto>();
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+
+            //return result;
         }
         #endregion
 

@@ -1,5 +1,6 @@
 ﻿using Phoenix.Server.Services.MainServices.Auth;
 using Phoenix.Server.Services.MainServices.Users;
+using Phoenix.Shared.Common;
 using Phoenix.Shared.Core;
 using Phoenix.Shared.User;
 using Phoenix.Shared.z_User;
@@ -41,6 +42,13 @@ namespace Phoenix.Server.Api.Api
         public Task<CrudResult> CreateUser([FromBody] UserRequest request)
         {
             return _userService.CreateUser(request);
+        }
+
+        [HttpPost]
+        [Route("GetLatestUser")]
+        public async Task<BaseResponse<UserDto>> GetLatestUser([FromBody]UserRequest request)
+        {
+            return await _userService.GetLatestUser(request);
         }
     }
 }
