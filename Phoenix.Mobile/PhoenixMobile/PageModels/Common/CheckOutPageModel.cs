@@ -159,8 +159,16 @@ namespace Phoenix.Mobile.PageModels.Common
                             Price = item.Price,
                             Quantity = item.Quantity
                         });
-
-                        var data5 = _warehouseService.
+                        warehouseRequest.ProductSKU_Id = item.ProductSKUId;
+                        var data5 = await _warehouseService.GetWarehouseByProductSKUId(warehouseRequest);
+                        var data7 = await _warehouseService.UpdateWarehouseApp(data5.Id, new WarehouseRequest
+                        {
+                            Id = data5.Id,
+                            ProductSKU_Id = data5.ProductSKU_Id,
+                            Quantity = data5.Quantity,
+                            NewQuantity = item.Quantity//,
+                           // UpdatedAt = DateTime.Now
+                        });
                         IsBusy = false;
                     }
                     catch (Exception e)

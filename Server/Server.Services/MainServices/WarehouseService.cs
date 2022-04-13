@@ -27,8 +27,10 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request);
 
         Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id);
-        /// <summary>
+        /// 
         Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request);
+
+        Task<CrudResult> UpdateWarehouseApp(int Id, WarehouseRequest request);
     }
     public class WarehouseService : IWarehouseService
     {
@@ -182,5 +184,17 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+        #region UpdateWarehouse
+        public async Task<CrudResult> UpdateWarehouseApp(int Id, WarehouseRequest request)
+        {
+            var warehouse = _dataContext.Warehouses.Find(Id);
+            warehouse.ProductSKU_Id = request.ProductSKU_Id;
+            warehouse.Quantity += request.NewQuantity;
+            warehouse.UpdatedAt = DateTime.Now;
+
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
+        }
+        #endregion
     }
 }

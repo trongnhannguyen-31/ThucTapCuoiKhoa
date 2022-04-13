@@ -35,10 +35,10 @@ namespace Phoenix.Server.Api.Api
         }
 
         [HttpPost]
-        [Route("UpdateWarehouses")]
-        public Task<BaseResponse<WarehouseDto>> UpdateWarehouses([FromBody] WarehouseRequest request)
+        [Route("UpdateWarehouseApp")]
+        public Task<CrudResult> UpdateWarehouseApp(int Id,[FromBody] WarehouseRequest request)
         {
-            return _warehouseService.UpdateWarehouses(request);
+            return _warehouseService.UpdateWarehouseApp(Id, request);
         }
     }
 }
