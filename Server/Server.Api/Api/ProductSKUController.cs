@@ -1,5 +1,6 @@
 ﻿using Phoenix.Server.Services.MainServices;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.ProductSKU;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -26,6 +27,13 @@ namespace Phoenix.Server.Api.Api
         public async Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request)
         {
             return await _productSKUService.GetProductById(request);
+        }
+
+        [HttpPost]
+        [Route("UpdateProductSKUApp")]
+        public Task<CrudResult> UpdateProductSKUApp(int Id, [FromBody] ProductSKURequest request)
+        {
+            return _productSKUService.UpdateProductSKUApp(Id, request);
         }
     }
 }

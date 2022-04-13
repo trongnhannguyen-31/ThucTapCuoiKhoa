@@ -189,7 +189,7 @@ namespace Phoenix.Server.Services.MainServices
         {
             var warehouse = _dataContext.Warehouses.Find(Id);
             warehouse.ProductSKU_Id = request.ProductSKU_Id;
-            warehouse.Quantity += request.NewQuantity;
+            warehouse.Quantity -= request.NewQuantity;
             warehouse.UpdatedAt = DateTime.Now;
 
             await _dataContext.SaveChangesAsync();

@@ -9,11 +9,13 @@ namespace Phoenix.Shared.ProductSKU
 
         public int Product_Id { get; set; }
 
+        public int NewBuy { get; set; }
+
         public double? Price { get; set; }
 
         public double Rating { get; set; }
 
-        public double BuyCount { get; set; }
+        public int BuyCount { get; set; }
 
         public string Screen { get; set; }
 

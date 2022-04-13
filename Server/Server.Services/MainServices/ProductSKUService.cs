@@ -2,6 +2,7 @@
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Services.Database;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.ProductSKU;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id);
         ///
         Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
+        Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request);
     }
 
     public class ProductSKUService : IProductSKUService
@@ -261,5 +263,15 @@ namespace Phoenix.Server.Services.MainServices
         }
         #endregion
 
+        #region UpdateProductSKUApp
+        public async Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request)
+        {
+            var productSKU = _dataContext.ProductSKUs.Find(Id);
+            productSKU.BuyCount += request.NewBuy;
+
+            await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
+        }
+        #endregion
     }
 }

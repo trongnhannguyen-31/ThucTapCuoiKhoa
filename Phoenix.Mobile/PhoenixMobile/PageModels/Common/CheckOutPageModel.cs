@@ -10,6 +10,7 @@ using Phoenix.Shared.CartItem;
 using Phoenix.Shared.Customer;
 using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
+using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,9 @@ namespace Phoenix.Mobile.PageModels.Common
         private readonly IWorkContext _workContext;
         private readonly ICustomerService _customerService;
         private readonly IWarehouseService _warehouseService;
+        private readonly IProductSKUService _productSKUService;
 
-        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, IWorkContext workContext, ICustomerService customerService, IWarehouseService warehouseService)
+        public CheckOutPageModel(ICartItemService cartItemService, IDialogService dialogService, IOrderDetailService orderDetailService, IOrderService orderService, IWorkContext workContext, ICustomerService customerService, IWarehouseService warehouseService, IProductSKUService productSKUService)
         {
             _cartItemService = cartItemService;
             _dialogService = dialogService;
@@ -39,6 +41,7 @@ namespace Phoenix.Mobile.PageModels.Common
             _workContext = workContext;
             _customerService = customerService;
             _warehouseService = warehouseService;
+            _productSKUService = productSKUService;
         }
 
         public override async void Init(object initData)
@@ -159,6 +162,7 @@ namespace Phoenix.Mobile.PageModels.Common
                             Price = item.Price,
                             Quantity = item.Quantity
                         });
+
                         warehouseRequest.ProductSKU_Id = item.ProductSKUId;
                         var data5 = await _warehouseService.GetWarehouseByProductSKUId(warehouseRequest);
                         var data7 = await _warehouseService.UpdateWarehouseApp(data5.Id, new WarehouseRequest
@@ -167,14 +171,20 @@ namespace Phoenix.Mobile.PageModels.Common
                             ProductSKU_Id = data5.ProductSKU_Id,
                             Quantity = data5.Quantity,
                             NewQuantity = item.Quantity//,
-                           // UpdatedAt = DateTime.Now
+                                                       // UpdatedAt = DateTime.Now
                         });
+
+                        var data8 = await _productSKUService.UpdateProductSKUApp(item.ProductSKUId, new ProductSKURequest
+                        {
+                            Id = item.Id,
+                            NewBuy = item.Quantity
+                        });
+
                         IsBusy = false;
                     }
                     catch (Exception e)
                     {
                         await _dialogService.AlertAsync("Thêm Order Detail thất bại");
-
                     }
                 }
                 IsBusy = false;
@@ -182,7 +192,8 @@ namespace Phoenix.Mobile.PageModels.Common
                 IsBusy = true;
                 //request.UserID = 1;
                 var data4 = await _cartItemService.ClearCart(request.UserID = UserId);
-                await CoreMethods.PushPageModel<CartPageModel>();
+                // await CoreMethods.PushPageModel<CartPageModel>();
+                await CoreMethods.PopPageModel();
                 IsBusy = false;
 
             }
