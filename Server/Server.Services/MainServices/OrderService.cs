@@ -21,7 +21,7 @@ namespace Phoenix.Server.Services.MainServices
     {
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
 
-
+        Task<BaseResponse<OrderDto>> OrdersCancelById(int id, OrderRequest request);
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
         
         Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailById(OrderDetailRequest request);
@@ -73,6 +73,11 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     query = query.Where(d => d.Total == request.Total);
                 }
+
+                /*if (request.CancelRequest == false)
+                {
+                    query = query.Where(d => d.CancelRequest.Equals(request.CancelRequest));
+                }*/
 
                 query = query.OrderByDescending(d => d.Id);
 
@@ -127,23 +132,85 @@ namespace Phoenix.Server.Services.MainServices
             try
             {
                 var orders = GetOrderById(id);
-
-                if (orders.Status == "Chờ xử lý")
+                if (orders.CancelRequest == true)
+                {
+                    if (orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, chờ xử lý")
+                    {
+                        orders.Status = "Hủy đơn hàng thành công";
+                    }
+                    else if (orders.Status == "Đang giao hàng")
+                    {
+                        orders.Status = "Đơn hàng đang được vận chuyển, hủy đơn hàng không thành công";
+                    }
+                    else if (orders.Status == "Đơn hàng đang được vận chuyển, hủy đơn hàng không thành công")
+                    {
+                        orders.Status = "Đã giao hàng thành công";
+                        orders.DeliveryDate = DateTime.Now;
+                    }
+                }
+                else
+                {
+                    if (orders.Status == "Chờ xử lý")
+                    {
+                        orders.Status = "Đã duyệt, đang xử lý";
+                    }
+                    else if (orders.Status == "Đã duyệt, đang xử lý")
+                    {
+                        orders.Status = "Đang giao hàng";
+                    }
+                    else if (orders.Status == "Đang giao hàng")
+                    {
+                        orders.Status = "Đã giao hàng thành công";
+                        orders.DeliveryDate = DateTime.Now;
+                    }
+                    
+                }
+                
+                /*if (orders.Status == "Chờ xử lý")
                 {
                     orders.Status = "Đã duyệt, đang xử lý";
                 }
-                else if (orders.CancelRequest == true && orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, đang xử lý")
-                {
-                    orders.Status = "Hủy đơn hàng thành công";
-                }
-                else if (orders.CancelRequest == true && orders.Status == "Đang giao" || orders.Status == "Đã giao")
-                {
-                    orders.Status = "Không thể hủy đơn hàng";
-                }
                 else if (orders.Status == "Đã duyệt, đang xử lý")
+                {
+                    orders.Status = "Đang giao hàng";
+                }
+                else if (orders.Status == "Đang giao hàng")
                 {
                     orders.Status = "Đã giao hàng";
                     orders.DeliveryDate = DateTime.Now;
+                }
+                */
+
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResponse<OrderDto>> OrdersCancelById(int id, OrderRequest request)
+        {
+            var result = new BaseResponse<OrderDto>();
+            try
+            {
+                var orders = GetOrderById(id);
+
+                if (orders.CancelRequest == true)
+                {
+                    if (orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, chờ xử lý")
+                    {
+                        orders.Status = "Hủy đơn hàng thành công";
+                    }
+                    else
+                    {
+                        orders.Status = "Không thể hủy đơn hàng";
+                    }
                 }
 
                 await _dataContext.SaveChangesAsync();
