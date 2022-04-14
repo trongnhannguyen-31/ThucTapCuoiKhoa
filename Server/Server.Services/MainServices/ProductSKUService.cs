@@ -291,7 +291,7 @@ namespace Phoenix.Server.Services.MainServices
                 var mapper = config.CreateMapper();
                // var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
                var listcart = query.Select(mapper.Map<ProductSKUAppDto>);
-                var data = listcart.First();
+                var data = listcart.First(d=> d.Id == request.Id);
               //var listcart = data.
                 //var data = await query.ToListAsync();
 
