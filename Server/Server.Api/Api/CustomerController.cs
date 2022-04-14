@@ -34,5 +34,13 @@ namespace Phoenix.Server.Api.Api
         {
             return _customerService.UpdateCustomerDetail(Id, request);
         }
+
+        [HttpPost]
+        [Route("AddCustomerDetail")]
+        public Task<CrudResult> AddCustomerDetail([FromBody] CustomerRequest request)
+
+        {
+            return _customerService.AddCustomerDetail(request);
+        }
     }
 }

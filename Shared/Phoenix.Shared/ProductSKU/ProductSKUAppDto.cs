@@ -1,15 +1,19 @@
-﻿using Phoenix.Shared.Common;
-using System;
+﻿using System;
 
 namespace Phoenix.Shared.ProductSKU
 {
-    public class ProductSKURequest : BaseRequest
+    public class ProductSKUAppDto
     {
         public int Id { get; set; }
 
         public int Product_Id { get; set; }
+        public string Image1Path { get; set; }
+        public string Image2Path { get; set; }
+        public string Image3Path { get; set; }
+        public string Image4Path { get; set; }
+        public string Image5Path { get; set; }
 
-        public int NewBuy { get; set; }
+        public string NameProduct { get; set; }
 
         public double? Price { get; set; }
 

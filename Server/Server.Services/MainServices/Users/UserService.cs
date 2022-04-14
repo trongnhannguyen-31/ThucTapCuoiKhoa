@@ -13,6 +13,7 @@ using System.Data.Entity;
 using Falcon.Web.Core.Helpers;
 using System;
 using Phoenix.Shared.Core;
+using Phoenix.Shared.z_User;
 
 namespace Phoenix.Server.Services.MainServices.Users
 {
@@ -24,6 +25,7 @@ namespace Phoenix.Server.Services.MainServices.Users
 
         ////
         Task<CrudResult> CreateUser(UserRequest request);
+        Task<BaseResponse<UserDto>> GetLatestUser(UserRequest request);
 
     }
 
@@ -113,5 +115,32 @@ namespace Phoenix.Server.Services.MainServices.Users
             await _dataContext.SaveChangesAsync();
             return new CrudResult() { IsOk = true };
         }
+
+        #region GetLatestUser
+        public async Task<BaseResponse<UserDto>> GetLatestUser(UserRequest request)
+        {
+            var result = new BaseResponse<UserDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.Users.AsQueryable();
+
+                //if (!string.IsNullOrEmpty(request.UserName))
+                //{
+                //    query = query.Where(d => d.UserName.Contains(request.UserName));
+                //}
+                query = query.OrderByDescending(d => d.Id);
+
+                var data = await query.FirstAsync();
+                result.Record = data.MapTo<UserDto>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

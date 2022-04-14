@@ -49,10 +49,12 @@
                                      BackgroundColor="White"
                                     
                                      >
-                            <Label Text="Hình ở đây" 
+                            <!--<Label Text="Hình ở đây" 
                                    Margin="8"
                                    FontAttributes="Bold"
-                                   FontSize="Medium"/>
+                                   FontSize="Medium"/>-->
+                            <Image Source="{Binding Image1Path}"
+                                   HeightRequest="100"/>
                             <Label Text="{Binding ProductName}"
                                    Margin="8,2,8,4"
                                    FontSize="Subtitle"

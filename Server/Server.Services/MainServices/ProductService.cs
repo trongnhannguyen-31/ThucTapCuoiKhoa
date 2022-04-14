@@ -247,6 +247,7 @@ namespace Phoenix.Server.Services.MainServices
             {
                 var query = (from p in _dataContext.Products
                              join s in _dataContext.ProductSKUs on p.Id equals s.Product_Id
+                             join i1 in _dataContext.ImageRecords on p.Image1 equals i1.Id
                              select new
                              {
                                  ProductId = p.Id,
@@ -254,6 +255,7 @@ namespace Phoenix.Server.Services.MainServices
                                  Vendor_Id = p.Vendor_Id,
                                  Name = p.Name,
                                  Image1 = p.Image1,
+                                 Image1Path = i1.AbsolutePath,
                                  Price = s.Price,
                                  Rating = s.Rating,
                                  Ram = s.Ram,

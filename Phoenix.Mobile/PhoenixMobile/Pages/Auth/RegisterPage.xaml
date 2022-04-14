@@ -10,12 +10,27 @@
              ControlTemplate="{StaticResource FullScreenHasBack}">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Thông tin tài khoản"/>
             <Entry Placeholder="Tên đăng nhập"
                    Text="{Binding UserName}"/>
             <Entry Placeholder="Mật khẩu"
                    Text="{Binding Password}"/>
             <Entry Placeholder="Nhập lại mật khẩu"
                    Text="{Binding RetypePassword}"/>
+            <Label Text="Thông tin cá nhân"/>
+            <Entry Placeholder="Họ tên"
+                   Text="{Binding FullName}"/>
+            <Entry Placeholder="Giới tính"
+                   Text="{Binding Gender}"/>
+            <Entry Placeholder="Ngày sinh"
+                   Text="{Binding Birthday}"/>
+            <Entry Placeholder="Số điện thoại"
+                   Text="{Binding Phone}"/>
+            <Entry Placeholder="Email"
+                   Text="{Binding Email}"/>
+            <Editor Placeholder="Địa chỉ"
+                    HeightRequest="80"
+                    Text="{Binding Address}"/>
             <Button Text="Đăng ký"
                     Command="{Binding CreateUserCommand}"/>
         </StackLayout>

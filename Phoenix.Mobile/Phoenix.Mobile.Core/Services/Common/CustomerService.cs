@@ -12,6 +12,7 @@ namespace Phoenix.Mobile.Core.Services.Common
     {
         Task<CustomerModel> GetCustomerApptById(CustomerRequest request);
         Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
+        Task<CustomerModel> AddCustomerDetail(CustomerRequest request);
     }
 
     public class CustomerService : ICustomerService
@@ -31,6 +32,12 @@ namespace Phoenix.Mobile.Core.Services.Common
         public Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request)
         {
             return _customerProxy.UpdateCustomerDetail(Id, request);
+        }
+
+        public async Task<CustomerModel> AddCustomerDetail(CustomerRequest request)
+        {
+            var data = await _customerProxy.AddCustomerDetail(request);
+            return data.MapTo<CustomerModel>();
         }
     }
 }

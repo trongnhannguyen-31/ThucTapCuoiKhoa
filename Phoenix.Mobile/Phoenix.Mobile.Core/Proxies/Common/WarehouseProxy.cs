@@ -1,5 +1,7 @@
 ﻿using Phoenix.Framework.Core;
 using Phoenix.Mobile.Core.Framework;
+using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.Warehouse;
 using Refit;
 using System;
@@ -11,19 +13,18 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 {
     public interface IWarehouseProxy
     {
-        Task<List<WarehouseDto>> GetAllWarehouses(WarehouseRequest request);
+        Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request);
+        Task<CrudResult> UpdateWarehouseApp(int Id, WarehouseRequest request);
     }
 
     public class WarehouseProxy : BaseProxy, IWarehouseProxy
     {
-        public async Task<List<WarehouseDto>> GetAllWarehouses(WarehouseRequest request)
+        public async Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request)
         {
             try
             {
                 var api = RestService.For<IWarehouseApi>(GetHttpClient());
-                var result = await api.GetAllWarehouses(request);
-                if (result == null) return new List<WarehouseDto>();
-                return result;
+                return await api.GetWarehouseByProductSKUId(request);
             }
             catch (Exception ex)
             {
@@ -31,11 +32,30 @@ namespace Phoenix.Mobile.Core.Proxies.Common
                 return null;
             }
         }
+
+        public async Task<CrudResult> UpdateWarehouseApp(int Id, WarehouseRequest request)
+        {
+            try
+            {
+                var api = RestService.For<IWarehouseApi>(GetHttpClient());
+                var result = await api.UpdateWarehouseApp(Id, request);
+                if (result == null) return new CrudResult();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return new CrudResult();
+            }
+        }
+
         public interface IWarehouseApi
         {
-            [Post("/warehouse/GetAllWarehouses")]
-            Task<List<WarehouseDto>> GetAllWarehouses([Body] WarehouseRequest request);
+            [Post("/warehouse/GetWarehouseByProductSKUId")]
+            Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId([Body] WarehouseRequest request);
 
+            [Post("/warehouse/UpdateWarehouseApp")]
+            Task<CrudResult> UpdateWarehouseApp(int Id, [Body] WarehouseRequest request);
         }
     }
 }

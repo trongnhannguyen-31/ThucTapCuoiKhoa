@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Phoenix.Mobile.Core.Models.ProductSKU
 {
-    public class ProductSKUModel : ProductSKUDto
+    public class ProductSKUModel : ProductSKUAppDto
     {
 
     }

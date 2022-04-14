@@ -26,6 +26,8 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request);
 
         Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
+        Task<CrudResult> AddCustomerDetail(CustomerRequest request);
+
     }
     public class CustomerService : ICustomerService
     {
@@ -158,6 +160,26 @@ namespace Phoenix.Server.Services.MainServices
             Customer.zUser_Id = request.zUser_Id;
 
             await _dataContext.SaveChangesAsync();
+            return new CrudResult() { IsOk = true };
+        }
+        #endregion
+
+        #region AddUserDetail
+        public async Task<CrudResult> AddCustomerDetail(CustomerRequest request)
+        {
+            var Customer = new Customer();
+            Customer.FullName = request.FullName;
+            Customer.Gender = request.Gender;
+            Customer.Birthday = request.Birthday;
+            Customer.Phone = request.Phone;
+            Customer.Email = request.Email;
+            Customer.Address = request.Address;
+            Customer.zUser_Id = request.zUser_Id;
+
+            _dataContext.Customers.Add(Customer);
+
+            await _dataContext.SaveChangesAsync();
+            //int a = Order.Id;
             return new CrudResult() { IsOk = true };
         }
         #endregion

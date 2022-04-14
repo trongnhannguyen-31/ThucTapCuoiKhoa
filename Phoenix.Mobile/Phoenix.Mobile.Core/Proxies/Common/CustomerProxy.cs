@@ -15,6 +15,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
     {
         Task<BaseResponse<CustomerDto>> GetCustomerApptById(CustomerRequest request);
         Task<CrudResult> UpdateCustomerDetail(int Id, CustomerRequest request);
+        Task<CustomerDto> AddCustomerDetail(CustomerRequest request);
     }
 
     public class CustomerProxy : BaseProxy, ICustomerProxy
@@ -49,6 +50,22 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
+        public async Task<CustomerDto> AddCustomerDetail(CustomerRequest request)
+        {
+            try
+            {
+                var api = RestService.For<ICustomerApi>(GetHttpClient());
+                var result = await api.AddCustomerDetail(request);
+                if (result == null) return new CustomerDto();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return new CustomerDto();
+            }
+        }
+
         public interface ICustomerApi
         {
             [Post("/customer/GetCustomerApptById")]
@@ -56,6 +73,9 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 
             [Post("/customer/UpdateCustomerDetail")]
             Task<CrudResult> UpdateCustomerDetail(int Id, [Body] CustomerRequest request);
+
+            [Post("/customer/AddCustomerDetail")]
+            Task<CustomerDto> AddCustomerDetail([Body] CustomerRequest request);
         }
     }
 }

@@ -13,6 +13,8 @@ using Phoenix.Server.Services.MainServices.Common.Models;
 using Phoenix.Shared.z_User;
 using Phoenix.Shared.Customer;
 using Phoenix.Shared.Rating;
+using Phoenix.Shared.User;
+using Falcon.Web.Core.Auth;
 
 namespace Phoenix.Server.Services.Infrastructure
 {
@@ -35,10 +37,10 @@ namespace Phoenix.Server.Services.Infrastructure
             CreateMap<CartItem, CartItemDto>();
             CreateMap<OrderDetail, OrderDetailAppDto>();
             CreateMap<Order, OrderAppDto>();
-            CreateMap<z_User, z_UserDto>();
             CreateMap<Customer, CustomerDto>();
             CreateMap<Rating, RatingAppDto>();
             CreateMap<Warehouse, WarehouseOrderDto>();
+            CreateMap<User, UserDto>();
         }
     }
 }

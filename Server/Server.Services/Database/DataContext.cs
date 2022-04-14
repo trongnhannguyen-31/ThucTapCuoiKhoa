@@ -32,6 +32,7 @@ namespace Phoenix.Server.Services.Database
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<WarehouseMenu> WarehouseMenus { get; set; }
+       // public virtual DbSet<z_User> Z_Users { get; set; }
         #endregion
 
     }

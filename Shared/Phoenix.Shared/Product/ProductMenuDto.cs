@@ -17,6 +17,7 @@ namespace Phoenix.Shared.Product
         public string Name { get; set; }
 
         public int? Image1 { get; set; }
+        public string? Image1Path { get; set; }
 
         public double Price { get; set; }
 

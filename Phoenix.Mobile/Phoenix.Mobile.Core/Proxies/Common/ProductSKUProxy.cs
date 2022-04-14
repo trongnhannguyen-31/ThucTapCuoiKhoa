@@ -1,6 +1,7 @@
 ﻿using Phoenix.Framework.Core;
 using Phoenix.Mobile.Core.Framework;
 using Phoenix.Shared.Common;
+using Phoenix.Shared.Core;
 using Phoenix.Shared.ProductSKU;
 using Refit;
 using System;
@@ -14,6 +15,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
     {
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
+        Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request);
     }
 
     public class ProductSKUProxy : BaseProxy, IProductSKUProxy
@@ -50,6 +52,22 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
+        public async Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request)
+        {
+            try
+            {
+                var api = RestService.For<IProductSKUApi>(GetHttpClient());
+                var result = await api.UpdateProductSKUApp(Id, request);
+                if (result == null) return new CrudResult();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return new CrudResult();
+            }
+        }
+
         public interface IProductSKUApi
         {
             [Post("/productSKU/GetAllProductSKUs")]
@@ -58,6 +76,8 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             [Get("/productSKU/GetProductById")]
             Task<BaseResponse<ProductSKUDto>> GetProductById([Body] ProductSKURequest request);
 
+            [Post("/productSKU/UpdateProductSKUApp")]
+            Task<CrudResult> UpdateProductSKUApp(int Id, [Body] ProductSKURequest request);
         }
     }
 }
