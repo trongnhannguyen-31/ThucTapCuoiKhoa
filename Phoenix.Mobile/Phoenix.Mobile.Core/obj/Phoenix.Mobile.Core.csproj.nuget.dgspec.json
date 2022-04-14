@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {}
+    "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {}
   },
   "projects": {
-    "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {
+    "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj",
+        "projectUniqueName": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj",
         "projectName": "Phoenix.Mobile.Core",
-        "projectPath": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\ThucTap\\ThucTapNhom\\Phoenix.Mobile\\Phoenix.Mobile.Core\\obj\\",
+        "projectPath": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\Phoenix.Mobile.Core.csproj",
+        "packagesPath": "C:\\Users\\YOUR PC\\.nuget\\packages\\",
+        "outputPath": "E:\\ThucTapCuoiKhoa\\Phoenix.Mobile\\Phoenix.Mobile.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\YOUR PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -32,8 +32,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "D:\\ThucTap\\ThucTapNhom\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj": {
-                "projectPath": "D:\\ThucTap\\ThucTapNhom\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj"
+              "E:\\ThucTapCuoiKhoa\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj": {
+                "projectPath": "E:\\ThucTapCuoiKhoa\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj"
               }
             }
           }
@@ -111,15 +111,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\ThucTap\\ThucTapNhom\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj": {
+    "E:\\ThucTapCuoiKhoa\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\ThucTap\\ThucTapNhom\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj",
+        "projectUniqueName": "E:\\ThucTapCuoiKhoa\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj",
         "projectName": "Phoenix.Shared",
-        "projectPath": "D:\\ThucTap\\ThucTapNhom\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj",
+        "projectPath": "E:\\ThucTapCuoiKhoa\\Shared\\Phoenix.Shared\\Phoenix.Shared.csproj",
         "frameworks": {
           "net461": {
             "projectReferences": {}

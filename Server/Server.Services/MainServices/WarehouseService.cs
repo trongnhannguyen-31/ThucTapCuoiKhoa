@@ -122,7 +122,7 @@ namespace Phoenix.Server.Services.MainServices
             var result = new BaseResponse<WarehouseDto>();
             try
             {
-                    var warehouses = GetWarehousesById(request.Id);
+                var warehouses = GetWarehousesById(request.Id);
 
                 warehouses.Id = warehouses.Id;
                 warehouses.ProductSKU_Id = request.ProductSKU_Id;
