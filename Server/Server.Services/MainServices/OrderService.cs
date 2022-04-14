@@ -7,6 +7,7 @@ using Phoenix.Shared.Common;
 using Phoenix.Shared.Core;
 using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
+using Phoenix.Shared.ProductSKU;
 using Phoenix.Shared.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -37,10 +38,13 @@ namespace Phoenix.Server.Services.MainServices
     {
         private readonly DataContext _dataContext;
         private readonly IWarehouseService _warehouseService;
-        public OrderService(DataContext dataContext, IWarehouseService warehouseService)
+        private readonly IProductSKUService _productSKUService;
+
+        public OrderService(DataContext dataContext, IWarehouseService warehouseService, IProductSKUService productSKUService)
         {
             _dataContext = dataContext;
             _warehouseService = warehouseService;
+            _productSKUService = productSKUService;
         }
 
         #region List
@@ -145,6 +149,7 @@ namespace Phoenix.Server.Services.MainServices
 
                     foreach (var item in ListOrderDetail)
                     {
+                        // Warehouse
                         WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
 
                         var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
@@ -162,8 +167,32 @@ namespace Phoenix.Server.Services.MainServices
                             });
                         }
 
+                        ProductSKURequest.Id = item.ProductSKU_Id;
+                        ProductSKURequest.BuyCount = (int)+item.Quantity;
+                        _dataContext.SaveChanges();
+
                         orders.Status = "Đang giao hàng";
                     }
+
+                    /*foreach (var item in ListOrderDetail)
+                    {
+                        ProductSKURequest.Id = item.ProductSKU_Id;
+
+                        var productSKU_Id = await GetAllProductSKUByOrderDetail(ProductSKURequest);
+                        ListProductSKU = productSKU_Id.Data;
+
+                        foreach (var productSKU in ListProductSKU)
+                        {
+                            var productSKU_data = _productSKUService.UpdateProductSKUs(new ProductSKURequest
+                            {
+                                Id = productSKU.Id,
+                                BuyCount = (int)+item.Quantity
+                            });
+                        }
+                    }*/
+
+
+                    #region
                     /*var orders = GetOrderById(id);
 
                     // Gán Id(Order) => Order_Id (OrderDeatil);
@@ -192,34 +221,9 @@ namespace Phoenix.Server.Services.MainServices
                             });
                         }
 
-                        //var warehouses_data = await _warehouseService.UpdateWarehouses(new WarehouseRequest
-                        //{
-                        //    Id = warehouse_Id.,
-                        //    ProductSKU_Id =warehouse_Id.Record.ProductSKU_Id,
-                        //    //NewQuantity =(int) item.Quantity,
-                        //    Quantity = warehouse_Id.Record.Quantity - (int)item.Quantity
-                        //}) ;
-
                     }*/
-
-
-
-                    /* OrderDetail.Order_Id = orders.Id;
-                     var orders_id = await GetAllOrderDetailById(OrderDetail);
-                     ListDetailOrder = orders_id.Data;
-                     foreach (var order in ListDetailOrder)
-                     {
-                         //int OrderDetail_Id = order.Id;
-
-                         var warehouse = _warehouseService.GetWarehousesById(order.ProductSKU_Id);
-                         var data1 = _warehouseService.UpdateWarehouses(new WarehouseRequest
-                         {
-                             Id = warehouse.Id,
-                             ProductSKU_Id = order.Id,
-                             NewQuantity = (int)order.Quantity
-                         }) ;
-
-                     }*/
+                    #endregion
+                    #region Duyet
                     /*if (orders.CancelRequest == true)
                      * 
                     {
@@ -243,6 +247,7 @@ namespace Phoenix.Server.Services.MainServices
                         }
 
                     }*/
+                    #endregion
                 }
                 else if (order.Status == "Chờ xử lý")
                 {
@@ -283,6 +288,20 @@ namespace Phoenix.Server.Services.MainServices
 
                                 });
                             }
+
+                            /*ProductSKURequest.Id = item.ProductSKU_Id;
+                            
+                            var productSKU_Id = await GetAllProductSKUByOrderDetail(ProductSKURequest);
+                            ListProductSKU = productSKU_Id.Data;
+
+                            foreach (var productSKUs in ListProductSKU)
+                            {
+                                var productSKUs_data = _productSKUService.UpdateProductSKUs(new ProductSKURequest
+                                {
+                                    Id = productSKUs.Id,
+                                    BuyCount = (int)-item.Quantity,
+                                });
+                            }*/
 
                             orders.Status = "Hủy đơn hàng thành công!";
                         }
@@ -356,14 +375,39 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
+        // Lấy Id của ProductSKU
+        public async Task<BaseResponse<ProductSKUDto>> GetAllProductSKUByOrderDetail(ProductSKURequest request)
+        {
+            var result = new BaseResponse<ProductSKUDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.ProductSKUs.AsQueryable();
+
+                query = query.Where(x => x.Id == request.Id);
+
+
+                var data = query.ToList();
+                result.Data = data.MapTo<ProductSKUDto>();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
         // Lấy List của OrderDetail
         public List<OrderDetailDto> ListOrderDetail { get; set; } = new List<OrderDetailDto>();
 
         public List<WarehouseDto> ListWarehouse { get; set; } = new List<WarehouseDto>();
 
+        public List<ProductSKUDto> ListProductSKU { get; set; } = new List<ProductSKUDto>();
 
-
-
+        public ProductSKURequest ProductSKURequest { get; set; } = new ProductSKURequest();
         #endregion
 
 

@@ -50,11 +50,19 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return Json(gridModel);
         }
 
+        public void SetViewBag(long? selected_Id = null)
+        {
+            DataContext db = new DataContext();
+
+            ViewBag.Product_Id = new SelectList(db.Products.OrderBy(n => n.Name), "Id", "Name", selected_Id);
+        }
+
         #endregion
 
         // Create ProductSKU
         public ActionResult Create()
         {
+            SetViewBag();
             var model = new ProductSKUModel();
             return View(model);
         }
@@ -97,7 +105,13 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Update ProductSKU
         public ActionResult Update(int id)
         {
+           
             var projectDto = _productSKUService.GetProductSKUById(id);
+            
+            DataContext db = new DataContext();
+
+            ViewBag.Product_Id = new SelectList(db.Products.OrderBy(n => n.Name), "Id", "Name", projectDto.Product_Id);
+
             if (projectDto == null)
             {
                 return RedirectToAction("List");

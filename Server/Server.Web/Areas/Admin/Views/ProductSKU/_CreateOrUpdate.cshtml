@@ -7,10 +7,10 @@
     <div class="intro-y col-span-12 lg:col-span-6">
         <div class="intro-y box p-5">
 
-            <div>
-                <label>Tên sản phẩm</label>
+            <!--<div>
+                <label>Tên sản phẩm</label>-->
                 @*@Html.DropDownList("ProductType_Id", null, new { @class = "form-control input w-full border mt-2" })*@
-                <select id="selectProduct" name="Product_Id" class="tom-select"></select>
+                <!--<select id="selectProduct" name="Product_Id" class="tom-select"></select>
                 <script>
                     var zsettings = {
                         valueField: 'Id',
@@ -39,6 +39,11 @@
                     };
                     new TomSelect('#selectProduct', zsettings);
                 </script>
+            </div>-->
+            
+            <div>
+                <label>Tên sản phẩm</label>
+                @Html.DropDownList("Product_Id", null, new { @class = "form-control input w-full border mt-2" })
             </div>
 
             <div class="mt-3">
