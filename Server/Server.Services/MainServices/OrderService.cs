@@ -134,22 +134,60 @@ namespace Phoenix.Server.Services.MainServices
             {
               
                 var orders = GetOrderById(id);
-                OrderDetail1.Order_Id = orders.Id;
-                var orders_id = await GetAllOrderDetailById(OrderDetail1);
-                ListDetailOrder = orders_id.Data;
-                foreach (var order in ListDetailOrder)
+                // Gán Id(Order) => Order_Id (OrderDeatil);
+                OrderDetail.Order_Id = orders.Id;
+                // Lấy List của OrderDetail
+                var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
+                ListOrderDetail = orderDetail_Id.Data;
+
+                foreach (var item in ListOrderDetail)
                 {
-                    //int OrderDetail_Id = order.Id;
-                    
-                    var warehouse = _warehouseService.GetWarehousesById(order.ProductSKU_Id);
-                    var data1 = _warehouseService.UpdateWarehouses(new WarehouseRequest
+                    WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+
+                    var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
+                    ListWarehouse = warehouse_Id.Data;
+                    //var warehouses = item.ProductSKU_Id;
+
+                    foreach (var warehouses in ListWarehouse)
                     {
-                        Id = warehouse.Id,
-                        ProductSKU_Id = order.Id,
-                        NewQuantity = (int)order.Quantity
-                    }) ;
+                        var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
+                        {
+                            Id = warehouses.Id,
+                            ProductSKU_Id = warehouses.ProductSKU_Id,
+                            Quantity = warehouses.Quantity,
+                            NewQuantity = (int)-item.Quantity
+                            
+                        });
+                    }
+
+                    //var warehouses_data = await _warehouseService.UpdateWarehouses(new WarehouseRequest
+                    //{
+                    //    Id = warehouse_Id.,
+                    //    ProductSKU_Id =warehouse_Id.Record.ProductSKU_Id,
+                    //    //NewQuantity =(int) item.Quantity,
+                    //    Quantity = warehouse_Id.Record.Quantity - (int)item.Quantity
+                    //}) ;
 
                 }
+
+
+
+                /* OrderDetail.Order_Id = orders.Id;
+                 var orders_id = await GetAllOrderDetailById(OrderDetail);
+                 ListDetailOrder = orders_id.Data;
+                 foreach (var order in ListDetailOrder)
+                 {
+                     //int OrderDetail_Id = order.Id;
+
+                     var warehouse = _warehouseService.GetWarehousesById(order.ProductSKU_Id);
+                     var data1 = _warehouseService.UpdateWarehouses(new WarehouseRequest
+                     {
+                         Id = warehouse.Id,
+                         ProductSKU_Id = order.Id,
+                         NewQuantity = (int)order.Quantity
+                     }) ;
+
+                 }*/
                 /*if (orders.CancelRequest == true)
                  * 
                 {
@@ -187,6 +225,68 @@ namespace Phoenix.Server.Services.MainServices
 
             return result;
         }
+
+        #region web
+        // Lấy Id của OrderDetail
+        public async Task<BaseResponse<OrderDetailDto>> GetAllOrderDetailByOrderId(OrderDetailRequest request)
+        {
+            var result = new BaseResponse<OrderDetailDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.OrderDetails.AsQueryable();
+
+                query = query.Where(x => x.Order_Id == request.Order_Id);
+
+
+                var data = query.ToList();
+                result.Data = data.MapTo<OrderDetailDto>();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Lấy Id của Warehouse
+        public async Task<BaseResponse<WarehouseDto>> GetAllWarehouseByOrderDetail(WarehouseRequest request)
+        {
+            var result = new BaseResponse<WarehouseDto>();
+            try
+            {
+                //setup query
+                var query = _dataContext.Warehouses.AsQueryable();
+
+                query = query.Where(x => x.ProductSKU_Id == request.ProductSKU_Id);
+
+
+                var data = query.ToList();
+                result.Data = data.MapTo<WarehouseDto>();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        // Lấy List của OrderDetail
+        public List<OrderDetailDto> ListOrderDetail { get; set; } = new List<OrderDetailDto>();
+
+        public List<WarehouseDto> ListWarehouse { get; set; } = new List<WarehouseDto>();
+
+
+
+
+        #endregion
+
 
         public async Task<BaseResponse<OrderDto>> OrdersCancelById(int id, OrderRequest request)
         {
@@ -226,9 +326,9 @@ namespace Phoenix.Server.Services.MainServices
 
         public OrderDetailRequest OrderDetailRequest { get; set; } = new OrderDetailRequest();
 
-        public OrderDetailRequest OrderDetail1 { get; set; } = new OrderDetailRequest();
+        public OrderDetailRequest OrderDetail { get; set; } = new OrderDetailRequest();
 
-        public WarehouseOrderRequest warehouseRequest { get; set; } = new WarehouseOrderRequest();
+        public WarehouseRequest WarehouseRequest { get; set; } = new WarehouseRequest();
         public WarehouseOrderDto wareHouse { get; set; } = new WarehouseOrderDto();
         public List<OrderDetailDto> ListDetail { get; set; } = new List<OrderDetailDto>();
         public List<OrderDetailDto> ListDetailOrder { get; set; } = new List<OrderDetailDto>();
