@@ -284,20 +284,12 @@ namespace Phoenix.Server.Services.MainServices
                                  UpdatedAt = s.UpdatedAt,
                                  Deleted = s.Deleted
                              }).AsQueryable();
-                // query = query.Where(d => d.Name.Contains(request.Name));
-               // var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
 
                 var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
                 var mapper = config.CreateMapper();
-               // var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
                var listcart = query.Select(mapper.Map<ProductSKUAppDto>);
                 var data = listcart.First(d=> d.Id == request.Id);
-              //var listcart = data.
-                //var data = await query.ToListAsync();
-
-                //result.Data = data.MapTo<CartListDto>();
                 result.Record = data.MapTo<ProductSKUAppDto>();
-
             }
             catch (Exception ex)
             {
@@ -305,25 +297,6 @@ namespace Phoenix.Server.Services.MainServices
             }
 
             return result;
-            //var result = new BaseResponse<ProductSKUDto>();
-            //try
-            //{
-
-            //    //setup query
-            //    var query = _dataContext.ProductSKUs.AsQueryable();
-            //    //filter
-            //    //var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
-            //    var data = await query.FirstOrDefaultAsync(d => d.Id == request.Id);
-
-            //    //var data = await query.FindAsync(request.Id);
-            //    result.Record = data.MapTo<ProductSKUDto>();
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-
-            //return result;
         }
         #endregion
 

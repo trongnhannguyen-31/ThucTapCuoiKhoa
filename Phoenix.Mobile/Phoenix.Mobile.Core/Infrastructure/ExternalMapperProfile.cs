@@ -46,7 +46,7 @@ namespace Phoenix.Mobile.Core.Infrastructure
             CreateMap<VendorModel, VendorDto>();
             CreateMap<ProductTypeDto, ProductTypeModel>();
             CreateMap<ProductDto, ProductModel>();
-            CreateMap<ProductSKUAppDto, ProductSKUModel>();
+           
             CreateMap<OrderAppDto, OrderModel>();
             CreateMap<OrderDetailAppDto, OrderDetailModel>();
             CreateMap<CustomerDto, CustomerModel>();
@@ -54,11 +54,12 @@ namespace Phoenix.Mobile.Core.Infrastructure
             CreateMap<RatingAppDto, RatingModel>();
             CreateMap<ImageRecordDto, ImageRecordModel>();
 
-            CreateMap<ProductMenuDto, ProductMenuModel>();
+           // CreateMap<ProductMenuDto, ProductMenuModel>();
             CreateMap<CartItemDto, CartItemModel>();
             CreateMap<CartListDto, CartListModel>();
             CreateMap<OrderDetailHistoryDto, OrderDetailHistoryModel>();
             CreateMap<UserDto, UserModel>();
+            CreateMap<ProductSKUAppDto, ProductSKUModel>();
 
         }
     }

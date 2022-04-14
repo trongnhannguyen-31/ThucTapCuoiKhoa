@@ -28,7 +28,7 @@ namespace Phoenix.Server.Services.Infrastructure
 
             CreateMap<ProductType, ProductTypeDto>();
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductSKU, ProductSKUDto>();
+            CreateMap<ProductSKUAppDto, ProductSKUDto>();
             CreateMap<Warehouse, WarehouseDto>();
             CreateMap<Order, OrderDto>();            
             CreateMap<WarehouseMenu, WarehouseMenuDto>();

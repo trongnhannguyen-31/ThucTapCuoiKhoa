@@ -13,7 +13,7 @@ namespace Phoenix.Mobile.Core.Services.Common
     {
         Task<List<ProductSKUModel>> GetAllProductSKUs(ProductSKURequest request);
         //Task<List<ProductSKUModel>> GetProductById(ProductSKURequest request);
-        Task<ProductSKUDto> GetProductById(ProductSKURequest request);
+        Task<ProductSKUModel> GetProductById(ProductSKURequest request);
         Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request);
     }
 
@@ -30,7 +30,7 @@ namespace Phoenix.Mobile.Core.Services.Common
             return productSKU.Data.MapTo<ProductSKUModel>();
         }
 
-        public async Task<ProductSKUDto> GetProductById(ProductSKURequest request)
+        public async Task<ProductSKUModel> GetProductById(ProductSKURequest request)
         {
             var productSKU = await _productSKUProxy.GetProductById(request);
             return productSKU.Record.MapTo<ProductSKUModel>();

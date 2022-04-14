@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
-using Phoenix.Mobile.Core.Models.ProductSKU;
 using Phoenix.Mobile.Core.Infrastructure;
 using Phoenix.Mobile.Core.Models.Product;
 using Phoenix.Mobile.Core.Models.Cart;
@@ -17,6 +16,7 @@ using Phoenix.Mobile.Core.Models;
 using Phoenix.Mobile.Core.Models.Rating;
 using Phoenix.Shared.Rating;
 using Phoenix.Mobile.Core.Services;
+using Phoenix.Mobile.Core.Models.ProductSKU;
 
 namespace Phoenix.Mobile.PageModels.Common
 {
@@ -119,12 +119,13 @@ namespace Phoenix.Mobile.PageModels.Common
         #region properties
         //public List<ProductSKUModel> ProductSKUs { get; set; } = new List<ProductSKUModel>();
         public ProductSKUModel ProductSKUs { get; set; } = new ProductSKUModel();
-        public List<ProductModel> SameVendors { get; set; } = new List<ProductModel>();
-        public List<ProductModel> SameTypes { get; set; } = new List<ProductModel>();
-
         public ProductSKURequest request { get; set; } = new ProductSKURequest();
-        public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
-        public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();
+        //public List<ProductModel> SameVendors { get; set; } = new List<ProductModel>();
+        //public List<ProductModel> SameTypes { get; set; } = new List<ProductModel>();
+
+
+        // public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
+        //public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();
 
         public List<RatingModel> Ratings { get; set; } = new List<RatingModel>();
         public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();

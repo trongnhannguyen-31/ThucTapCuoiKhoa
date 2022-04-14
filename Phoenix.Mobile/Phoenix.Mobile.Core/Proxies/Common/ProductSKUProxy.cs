@@ -14,7 +14,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
     public interface IProductSKUProxy
     {
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
-        Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request);
+        Task<BaseResponse<ProductSKUAppDto>> GetProductById(ProductSKURequest request);
         Task<CrudResult> UpdateProductSKUApp(int Id, ProductSKURequest request);
     }
 
@@ -36,13 +36,11 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
-        public async Task<BaseResponse<ProductSKUDto>> GetProductById(ProductSKURequest request)
+        public async Task<BaseResponse<ProductSKUAppDto>> GetProductById(ProductSKURequest request)
         {
             try
             {
                 var api = RestService.For<IProductSKUApi>(GetHttpClient());
-                //List<VendorDto> result = await api.GetAllVendors(request);
-                //if (result == null) return new List<VendorDto>();
                 return await api.GetProductById(request);
             }
             catch (Exception ex)
@@ -74,7 +72,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs([Body] ProductSKURequest request);
 
             [Get("/productSKU/GetProductById")]
-            Task<BaseResponse<ProductSKUDto>> GetProductById([Body] ProductSKURequest request);
+            Task<BaseResponse<ProductSKUAppDto>> GetProductById([Body] ProductSKURequest request);
 
             [Post("/productSKU/UpdateProductSKUApp")]
             Task<CrudResult> UpdateProductSKUApp(int Id, [Body] ProductSKURequest request);

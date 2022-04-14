@@ -112,7 +112,6 @@ namespace Phoenix.Mobile.PageModels.Common
 
 
         #region properties
-        //public List<ProductSKUModel> ProductSKUs { get; set; } = new List<ProductSKUModel>();
         public ProductSKUModel ProductSKUs { get; set; } = new ProductSKUModel();
         public List<ProductModel> SameVendors { get; set; } = new List<ProductModel>();
         public List<ProductModel> SameTypes { get; set; } = new List<ProductModel>();
