@@ -125,30 +125,36 @@ namespace Phoenix.Server.Services.MainServices
         // Lấy ID
         public Order GetOrderById(int id) => _dataContext.Orders.Find(id);
 
+
         // Thay đổi trạng thái
         public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
             var result = new BaseResponse<OrderDto>();
             try
             {
+              
                 var orders = GetOrderById(id);
-                if (orders.CancelRequest == true)
+                OrderDetail1.Order_Id = orders.Id;
+                var orders_id = await GetAllOrderDetailById(OrderDetail1);
+                ListDetailOrder = orders_id.Data;
+                foreach (var order in ListDetailOrder)
+                {
+                    //int OrderDetail_Id = order.Id;
+                    
+                    var warehouse = _warehouseService.GetWarehousesById(order.ProductSKU_Id);
+                    var data1 = _warehouseService.UpdateWarehouses(new WarehouseRequest
+                    {
+                        Id = warehouse.Id,
+                        ProductSKU_Id = order.Id,
+                        NewQuantity = (int)order.Quantity
+                    }) ;
+
+                }
+                /*if (orders.CancelRequest == true)
+                 * 
                 {
                     orders.Status = "Hủy đơn hàng thành công";
-                    //orders.CancelRequest = false;
-                    /*if (orders.Status == "Chờ xử lý" || orders.Status == "Đã duyệt, chờ xử lý")
-                    {
-                        orders.Status = "Hủy đơn hàng thành công";
-                    }
-                    else if (orders.Status == "Đã giao hàng")
-                    {
-                        orders.Status = "Đơn hàng đang được vận chuyển, hủy đơn hàng không thành công";
-                    }
-                    else if (orders.Status == "Đơn hàng đang được vận chuyển, hủy đơn hàng không thành công")
-                    {
-                        orders.Status = "Đã giao hàng thành công";
-                        orders.DeliveryDate = DateTime.Now;
-                    }*/
+                    orders.CancelRequest = false;
                 }
                 else
                 {
@@ -166,22 +172,8 @@ namespace Phoenix.Server.Services.MainServices
                         orders.DeliveryDate = DateTime.Now;
                     }
                     
-                }
-                
-                /*if (orders.Status == "Chờ xử lý")
-                {
-                    orders.Status = "Đã duyệt, đang xử lý";
-                }
-                else if (orders.Status == "Đã duyệt, đang xử lý")
-                {
-                    orders.Status = "Đang giao hàng";
-                }
-                else if (orders.Status == "Đang giao hàng")
-                {
-                    orders.Status = "Đã giao hàng";
-                    orders.DeliveryDate = DateTime.Now;
-                }
-                */
+                }*/
+
 
 
                 await _dataContext.SaveChangesAsync();
@@ -233,9 +225,13 @@ namespace Phoenix.Server.Services.MainServices
         public ChangeStatusRequest ChangeStatusRequest { get; set; } = new ChangeStatusRequest();
 
         public OrderDetailRequest OrderDetailRequest { get; set; } = new OrderDetailRequest();
+
+        public OrderDetailRequest OrderDetail1 { get; set; } = new OrderDetailRequest();
+
         public WarehouseOrderRequest warehouseRequest { get; set; } = new WarehouseOrderRequest();
         public WarehouseOrderDto wareHouse { get; set; } = new WarehouseOrderDto();
         public List<OrderDetailDto> ListDetail { get; set; } = new List<OrderDetailDto>();
+        public List<OrderDetailDto> ListDetailOrder { get; set; } = new List<OrderDetailDto>();
         #endregion
 
         #region GetOrderDetailById
