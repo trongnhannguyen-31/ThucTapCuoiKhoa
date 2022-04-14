@@ -32,16 +32,12 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _vendorService = vendorService;
         }
 
-        public async Task SetViewBag(long? selected_Id = null)    
+        public void SetViewBag(long? selected_Id = null)    
         {
             DataContext db = new DataContext();
-            var query = db.Vendors.AsQueryable();
-            var data = await query.Where(d => d.Deleted == false).ToListAsync();
-            // var data1 = data.MapTo<VendorDto>();
-            //ViewBag.Vendor_Id = new SelectList(db.Vendors., "Id", "Name", selected_Id);
-            //ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selected_Id);'
-            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name");
-            ViewBag.Vendor_Id = new SelectList(data, "Id", "Name", selected_Id);
+
+            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selected_Id);
+            ViewBag.Vendor_Id = new SelectList(db.Vendors.OrderBy(n => n.Name), "Id", "Name", selected_Id);
         }
 
         public ActionResult Index()
@@ -71,23 +67,14 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         // Create Product
         public ActionResult Create()
         {
-            
+            SetViewBag();
             var model = new ProductModel();
             return View(model);
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(ProductModel model)
-        {
-            DataContext db = new DataContext();
-            var query = db.Vendors.AsQueryable();
-            var data = await query.Where(d => d.Deleted == false).ToListAsync();
-            // var data1 = data.MapTo<VendorDto>();
-            //ViewBag.Vendor_Id = new SelectList(db.Vendors., "Id", "Name", selected_Id);
-            //ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name", selected_Id);'
-            ViewBag.ProductType_Id = new SelectList(db.ProductTypes.OrderBy(n => n.Name), "Id", "Name");
-            ViewBag.Vendor_Id = new SelectList(data, "Id", "Name");
-
+        { 
             if (!ModelState.IsValid)
                 return View(model);
             var res = await _productService.CreateProducts(new ProductRequest
