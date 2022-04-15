@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <CarouselView ItemsSource="{Binding listImage}"
+                <CarouselView ItemsSource="{Binding listImages}"
                                HeightRequest="250">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>

@@ -113,18 +113,21 @@ namespace Phoenix.Server.Services.MainServices
         }
 
         #region GetRatingByProductSKUId
-        public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request)
+        public async Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId   (RatingAppRequest request)
         {
             var result = new BaseResponse<RatingAppDto>();
             try
             {
                 var query = (from r in _dataContext.Ratings
                              join c in _dataContext.Customers on r.Customer_Id equals c.Id
-                             
+                             join s in _dataContext.ProductSKUs on r.ProductSKU_Id equals s.Id
+                             join p in _dataContext.Products on s.Product_Id equals p.Id
+                             join i in _dataContext.ImageRecords on p.Image1 equals i.Id
                              select new
                              {
                                  Id = r.Id,
                                  Rate = r.Rate,
+                                 ProductImage = i.AbsolutePath,
                                  Comment = r.Comment,
                                  CreatedDate = r.CreatedDate,
                                  Image1 = r.Image1,

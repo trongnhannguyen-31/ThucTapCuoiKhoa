@@ -18,6 +18,7 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 
         Task<OrderDetailAppDto> AddOrderDetail(OrderDetailAppRequest request);
         Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory(OrderDetailHistoryRequest request);
+        Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistoryById(OrderDetailHistoryRequest request);
     }
 
     public class OrderDetailProxy : BaseProxy, IOrderDetailProxy
@@ -68,6 +69,20 @@ namespace Phoenix.Mobile.Core.Proxies.Common
             }
         }
 
+        public async Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistoryById(OrderDetailHistoryRequest request)
+        {
+            try
+            {
+                var api = RestService.For<IOrderDetailApi>(GetHttpClient());
+                return await api.GetOrderDetailHistoryById(request);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(new NetworkException(ex), true);
+                return null;
+            }
+        }
+
         public interface IOrderDetailApi
         {
             [Post("/orderDetail/GetAllOrderDetails")]
@@ -78,6 +93,9 @@ namespace Phoenix.Mobile.Core.Proxies.Common
 
             [Post("/orderDetail/GetOrderDetailHistory")]
             Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistory([Body] OrderDetailHistoryRequest request);
+
+            [Post("/orderDetail/GetOrderDetailHistoryById")]
+            Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistoryById([Body] OrderDetailHistoryRequest request);
         }
     }
 }

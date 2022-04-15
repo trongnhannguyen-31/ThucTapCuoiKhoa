@@ -98,7 +98,7 @@ namespace Phoenix.Mobile.PageModels.Common
 
         #region properties
         public List<OrderDetailHistoryModel> OrderDetails { get; set; } = new List<OrderDetailHistoryModel>();
-
+        public OrderDetailHistoryModel Details { get; set; } = new OrderDetailHistoryModel();
         public OrderDetailHistoryRequest request { get; set; } = new OrderDetailHistoryRequest();
         public bool RatingButton { get; set; }
         public bool ViewRatingButton { get; set; }
@@ -146,7 +146,10 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             if (OrderDetails.Count == 1)
             {
-                await CoreMethods.PushPageModel<RatingPageModel>(Order);
+                request.Order_Id = Order.Id;
+                var data = await _orderDetailService.GetOrderDetailHistoryById(request);
+                Details = data;
+                await CoreMethods.PushPageModel<RatingPageModel>(Details);
             }
             else
             {
@@ -161,7 +164,7 @@ namespace Phoenix.Mobile.PageModels.Common
         private async Task ViewRatingExecute()
         {
 
-            await CoreMethods.PushPageModel<ViewRatingPageModel>();
+            await CoreMethods.PushPageModel<ViewRatingPageModel>(Order);
 
         }
         #endregion

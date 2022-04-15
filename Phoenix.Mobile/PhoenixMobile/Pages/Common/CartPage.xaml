@@ -10,11 +10,7 @@
              x:Name="CartPageDetail"
              x:DataType="common:CartPageModel">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <common:NameConverter x:Key="NameConverter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout BackgroundColor="#d1d1d1">
             <ListView ItemsSource="{Binding CartList}"
