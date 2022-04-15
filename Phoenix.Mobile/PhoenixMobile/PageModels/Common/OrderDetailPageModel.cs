@@ -4,6 +4,7 @@ using Phoenix.Mobile.Core.Models.OrderDetail;
 using Phoenix.Mobile.Core.Services.Common;
 using Phoenix.Mobile.Helpers;
 using Phoenix.Shared.CartItem;
+using Phoenix.Shared.Order;
 using Phoenix.Shared.OrderDetail;
 using System;
 using System.Collections.Generic;
@@ -66,23 +67,36 @@ namespace Phoenix.Mobile.PageModels.Common
                 OrderDetails = data;
                 ListViewHeight = 60 * OrderDetails.Count;
                 RaisePropertyChanged(nameof(OrderDetails));
-                if(Order.DeliveryDate == null)
+                if (Order.DeliveryDate == null)
                 {
                     RatingButton = false;
                     ViewRatingButton = false;
-                    CancelButton = true;
-                }
-                else if(Order.IsRated == true || Order.DeliveryDate != null)
-                {
-                    RatingButton = false;
-                    ViewRatingButton = true;
-                    CancelButton = false;
+                   // CancelButton = true;
+                    if (Order.CancelRequest)
+                    {
+                        //EnableButton = false;
+                        CancelButton = false;
+                    }
+                    else
+                    {
+                        // EnableButton = true;
+                        CancelButton = true;
+                    }
                 }
                 else
                 {
-                    RatingButton = true;
-                    ViewRatingButton = false;
-                    CancelButton = false;
+                    if (!Order.IsRated)
+                    {
+                        RatingButton = true;
+                        ViewRatingButton = false;
+                        CancelButton = false;
+                    }
+                    else
+                    {
+                        RatingButton = false;
+                        ViewRatingButton = true;
+                        CancelButton = false;
+                    }
                 }
             }
         }
@@ -94,6 +108,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public bool RatingButton { get; set; }
         public bool ViewRatingButton { get; set; }
         public bool CancelButton { get; set; }
+        public bool EnableButton { get; set; }
         public int ListViewHeight { get; set; }
 
         #endregion
@@ -149,5 +164,31 @@ namespace Phoenix.Mobile.PageModels.Common
 
         }
         #endregion
+       
+        #region CancelCommand
+        public Command CancelCommand => new Command(async (p) => await CancelExecute(), (p) => !IsBusy);
+        private async Task CancelExecute()
+        {
+            try
+            {
+                if (IsBusy) return;
+                IsBusy = true;
+                var data1 = await _orderService.EditOrder(Order.Id, new OrderAppRequest
+                {
+                    Id = Order.Id,
+                    CancelRequest = true
+                });
+                IsBusy = false;
+            }
+            catch (Exception e)
+            {
+                await _dialogService.AlertAsync("Thêm Order Detail thất bại");
+
+            }
+
+            IsBusy = false;
+        }
+        #endregion
+
     }
 }

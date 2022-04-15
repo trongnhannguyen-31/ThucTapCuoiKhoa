@@ -574,6 +574,8 @@ namespace Phoenix.Server.Services.MainServices
         {
             var Order = _dataContext.Orders.Find(Id);
             Order.IsRated = request.IsRated;
+            Order.CancelRequest = request.CancelRequest;
+            Order.Status = "Yêu cầu hủy đang được xử lý";
 
             await _dataContext.SaveChangesAsync();
             return new CrudResult() { IsOk = true };
