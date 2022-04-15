@@ -27,36 +27,9 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             _warehouseMenuService = warehouseMenuService;
         }
 
-        /*public ActionResult Index()
-        {
-            return View();
-        }
-
-        // List Warehouse
-        [HttpPost]
-        public async Task<ActionResult> List(DataSourceRequest command, WarehouseModel model)
-        {
-            var warehouseMenus = await _warehouseMenuService.GetAllWarehouseMenus(new WarehouseMenuRequest()
-            {
-                Page = command.Page - 1,
-                PageSize = command.PageSize,
-                *//*Id = model.Id,
-                Quantity = model.Quantity,
-                ProductSKU_Id = model.ProductSKU_Id*//*
-            });
-
-            var gridModel = new DataSourceResult
-            {
-                Data = warehouseMenus.Data,
-                Total = warehouseMenus.DataCount
-            };
-            return Json(gridModel);
-        }*/
-
         // Create Warehouse
         public ActionResult Create(int id)
         {
-
             var model = new WarehouseModel();
             return View(model);
         }
@@ -85,6 +58,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var projectDto = _warehouseService.GetWarehousesById(id);
+
             if (projectDto == null)
             {
                 return RedirectToAction("Index");
@@ -105,7 +79,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             var warehouses = await _warehouseService.UpdateWarehouses(new WarehouseRequest
             {
                 Id = model.Id,
-                ProductSKU_Id = model.ProductSKU_Id,
                 Quantity = model.Quantity,
                 NewQuantity = model.NewQuantity
             });

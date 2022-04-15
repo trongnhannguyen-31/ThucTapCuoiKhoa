@@ -6,44 +6,39 @@
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-6">
         <div class="intro-y box p-5">
-            <div>
-                <label>Tên sản phẩm</label>
-                <select id="selectProduct" name="ProductSKU_Id" class="tom-select"></select>
-                <script>
-                    var zsettings = {
-                        valueField: 'Id',
-                        labelField: 'Name',
-                        searchField: 'Name',
-                        placeholder: '-- Vui lòng chọn nhóm --',
-                        load: function (query, callback) {
-                            var url = '/api/dropdown/TakeAllWarehouseMenus';
-                            fetch(url, { method: "post" })
-                                .then(response => response.json())
-                                .then(json => {
-                                    callback(json);
-                                }).catch(() => {
-                                    callback();
-                                });
+            @*<div>
+            <label>Tên sản phẩm</label>
+            <select id="selectProduct" name="ProductSKU_Id" class="tom-select"></select>
+            <script>
+                var zsettings = {
+                    valueField: 'Id',
+                    labelField: 'Name',
+                    searchField: 'Name',
+                    placeholder: '-- Vui lòng chọn nhóm --',
+                    load: function (query, callback) {
+                        var url = '/api/dropdown/TakeAllWarehouseMenus';
+                        fetch(url, { method: "post" })
+                            .then(response => response.json())
+                            .then(json => {
+                                callback(json);
+                            }).catch(() => {
+                                callback();
+                            });
 
+                    },
+                    render: {
+                        option: function (item, escape) {
+                            return `<option value="${item.Id}"> ${item.Name} </option>`;
                         },
-                        render: {
-                            option: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
-                            },
-                            item: function (item, escape) {
-                                return `<option value="${item.Id}"> ${item.Name} </option>`;
-                            }
+                        item: function (item, escape) {
+                            return `<option value="${item.Id}"> ${item.Name} </option>`;
                         }
-                    };
-                    var zproductSelect = new TomSelect('#selectProduct', zsettings);
-                    @if (Model.Id > 0)
-                    {
-                        <text>
-                    zproductSelect.setValue([@Model.ProductSKU_Id])
-                        </text>
                     }
-                </script>
-            </div>
+                };
+                var zproductSelect = new TomSelect('#selectProduct', zsettings);
+            </script>
+        </div> *@
+
 
             <div class="mt-3">
                 <label>Số lượng cũ</label>
