@@ -90,20 +90,6 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // Hủy đơn hàng
-        public ActionResult OrdersCancel(int id)
-        {
-            var model = new OrderModel();
-            model.Id = id;
-
-            var projectDto = _orderService.OrdersCancelById(model.Id, new OrderRequest()
-            {
-                Id = model.Id
-            });
-
-            SuccessNotification("Đã xác nhận thành công");
-            return RedirectToAction("Cancel");
-        }
         #endregion
     }
 }
