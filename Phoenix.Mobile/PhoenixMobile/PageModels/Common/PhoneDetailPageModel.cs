@@ -43,6 +43,7 @@ namespace Phoenix.Mobile.PageModels.Common
         //public ProductDetailPageModel ProductDetail { get; set; }
 
         public ProductMenuModel Product { get; set; }
+        //public List<string> images = new List<string>();
 
         public override async void Init(object initData)
         {
@@ -78,6 +79,13 @@ namespace Phoenix.Mobile.PageModels.Common
             {
                 ProductSKUs = data;
                 RaisePropertyChanged(nameof(ProductSKUs));
+
+                listImage.Add(ProductSKUs.Image1Path);
+                listImage.Add(ProductSKUs.Image2Path);
+                listImage.Add(ProductSKUs.Image3Path);
+                listImage.Add(ProductSKUs.Image4Path);
+                listImage.Add(ProductSKUs.Image5Path);
+
                 ratingRequest.ProductSKU_Id = ProductSKUs.Id;
                 var data2 = await _ratingService.GetRatingByProductSKUId(ratingRequest);
                 if (data2 == null || data2.Count < 1)
@@ -91,6 +99,7 @@ namespace Phoenix.Mobile.PageModels.Common
                     LabelVisible = false;
                     RatingListVisible = true;
                     RaisePropertyChanged(nameof(Ratings));
+                    
                 }
                 
             }
@@ -126,7 +135,7 @@ namespace Phoenix.Mobile.PageModels.Common
 
         // public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
         //public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();
-
+        public List<string> listImage { get; set; } = new List<string>();
         public List<RatingModel> Ratings { get; set; } = new List<RatingModel>();
         public RatingAppRequest ratingRequest { get; set; } = new RatingAppRequest();
         public bool LabelVisible { get; set; }

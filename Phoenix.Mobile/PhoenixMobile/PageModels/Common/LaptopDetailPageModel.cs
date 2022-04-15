@@ -75,7 +75,15 @@ namespace Phoenix.Mobile.PageModels.Common
             else
             {
                 ProductSKUs = data;
+                listImage.Add(ProductSKUs.Image1Path);
+                listImage.Add(ProductSKUs.Image2Path);
+                listImage.Add(ProductSKUs.Image3Path);
+                listImage.Add(ProductSKUs.Image4Path);
+                listImage.Add(ProductSKUs.Image5Path);
                 RaisePropertyChanged(nameof(ProductSKUs));
+
+                
+
                 ratingRequest.ProductSKU_Id = ProductSKUs.Id;
                 var data2 = await _ratingService.GetRatingByProductSKUId(ratingRequest);
                 if (data2 == null || data2.Count < 1)
@@ -115,7 +123,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public ProductSKUModel ProductSKUs { get; set; } = new ProductSKUModel();
         public List<ProductModel> SameVendors { get; set; } = new List<ProductModel>();
         public List<ProductModel> SameTypes { get; set; } = new List<ProductModel>();
-
+        public List<string> listImage { get; set; } = new List<string>();
         public ProductSKURequest request { get; set; } = new ProductSKURequest();
         public ProductRequest sameVendorRequest { get; set; } = new ProductRequest();
         public ProductRequest sameTypeRequest { get; set; } = new ProductRequest();

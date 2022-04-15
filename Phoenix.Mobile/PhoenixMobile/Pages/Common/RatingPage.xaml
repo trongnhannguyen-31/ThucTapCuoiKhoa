@@ -7,32 +7,11 @@
              x:Class="Phoenix.Mobile.Pages.Common.RatingPage">
     <ContentPage.Content>
         <StackLayout>
-            <!--<ListView ItemsSource="{Binding OrderDetails}"
-                          HasUnevenRows="True"
-                          BackgroundColor="#ecf0f1"
-                          HorizontalOptions="FillAndExpand"
-                          VerticalOptions="FillAndExpand"
-                          HeightRequest="180"
-                          SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="orderDetail:OrderDetailHistoryModel">
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding ProductName}"
-                                           HorizontalOptions="StartAndExpand"/>
-                                    <Label Text="Số sao"
-                                           HorizontalOptions="StartAndExpand"/>
-                                <Entry Text="{Binding Rate1}"/>
-                                <Label Text="Đánh giá:"
-                                           HorizontalOptions="StartAndExpand"/>
-                                <Editor Placeholder="Nhập đánh giá tại đây"
-                                        HeightRequest="80"
-                                        Text="{Binding Comment1}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
+            <Label Text="{Binding OrderDetail.ProductName}"/>
+            <Entry Placeholder="Số sao"
+                   Text="{Binding Rate}"/>
+            <Editor Placeholder="Bình luận"
+                    Text="{Binding Comment}"/>
             <Button Text="Đánh giá"
                     Command="{Binding AddRatingCommand}"/>
         </StackLayout>

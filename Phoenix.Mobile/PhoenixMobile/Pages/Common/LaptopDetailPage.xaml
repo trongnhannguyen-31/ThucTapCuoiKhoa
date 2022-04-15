@@ -13,9 +13,19 @@
             <StackLayout>
 
 
-                <Image Source="@drawable/defaultcart"
-                   HeightRequest="200"
-                   VerticalOptions="Center"/>
+                <CarouselView ItemsSource="{Binding listImage}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame Margin="5"
+                                       Padding="5">
+                                    <Image Source="{Binding }"
+                                           Aspect="AspectFit"/>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
 
                 <Label Text="{Binding Product.ProductName}"
                    FontSize="20"

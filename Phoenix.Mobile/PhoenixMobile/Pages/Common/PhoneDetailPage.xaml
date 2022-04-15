@@ -11,10 +11,19 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-
-                <Image Source="{Binding ProductSKUs.Image1Path}"
-                   HeightRequest="200"
-                   VerticalOptions="Center"/>
+                <CarouselView ItemsSource="{Binding listImage}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame Margin="5"
+                                       Padding="5">
+                                    <Image Source="{Binding }"
+                                           Aspect="Fill"/>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
                 
 
                 <Label Text="{Binding Product.ProductName}"
@@ -438,36 +447,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <!--<Label Text="Sản phẩm cùng loại"
-                   FontAttributes="Bold"
-                   FontSize="Medium"/>
-                --><!--<ListView ItemsSource="{Binding SameVendors}"
-                          Rotation="270"
-                          RowHeight="40">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="product:ProductModel">
-                            <ViewCell>
-                                <Label Text="{Binding Name}"/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
-
-                <!--<CollectionView ItemsSource="{Binding SameTypes}">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Horizontal"
-                                         />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="product:ProductModel">
-                            <Label Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
-
-                <!--<Label Text="Sản phẩm cùng nhà sản xuất"
-                   FontAttributes="Bold"
-                   FontSize="Medium"/>-->
+                
                 
             </StackLayout>
 
