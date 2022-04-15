@@ -4,17 +4,17 @@
              x:Class="Phoenix.Mobile.Pages.Common.CartPage"
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
              xmlns:cartList="clr-namespace:Phoenix.Mobile.Core.Models.CartItem;assembly=Phoenix.Mobile.Core"
-             xmlns:converters="clr-namespace:Phoenix.Framework.Converters;assembly=Phoenix.Framework"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:behaviors="clr-namespace:Phoenix.Framework.Core;assembly=Phoenix.Framework"
-             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects" 
-             xmlns:controls="clr-namespace:Phoenix.Mobile.Controls"
              x:Name="CartPageDetail"
              x:DataType="common:CartPageModel">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <common:NameConverter x:Key="NameConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding CartList}"
@@ -137,6 +137,20 @@
                 <Button Text="Thanh toán"
                         Margin="0,20,0,20"
                         Command="{Binding ConfirmPageCommand}"></Button>
+
+                <Entry Text="{Binding TestNumber1, Mode=TwoWay}"
+                       />
+
+                <Entry Text="{Binding TestNumber2, Mode=TwoWay}"/>
+
+                <Label>
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource NameConverter}">
+                            <Binding Path="TestNumber1"/>
+                            <Binding Path="TestNumber2"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
 
             </StackLayout>
         </StackLayout>

@@ -2,39 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
-             x:DataType="common:RatingPageModel"
+             x:DataType="common:MultipleRatingPageModel"
              xmlns:orderDetail="clr-namespace:Phoenix.Mobile.Core.Models.OrderDetail;assembly=Phoenix.Mobile.Core"
-             x:Class="Phoenix.Mobile.Pages.Common.RatingPage">
+             x:Class="Phoenix.Mobile.Pages.Common.MultipleRatingPage">
     <ContentPage.Content>
         <StackLayout>
-            <!--<ListView ItemsSource="{Binding OrderDetails}"
+            <ListView ItemsSource="{Binding OrderDetails}"
+                      SelectedItem="{Binding SelectedItem}"
+                      SelectionMode="Single"
                           HasUnevenRows="True"
                           BackgroundColor="#ecf0f1"
                           HorizontalOptions="FillAndExpand"
                           VerticalOptions="FillAndExpand"
-                          HeightRequest="180"
-                          SelectionMode="None">
+                          HeightRequest="180">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="orderDetail:OrderDetailHistoryModel">
                         <ViewCell>
                             <StackLayout>
                                 <Label Text="{Binding ProductName}"
                                            HorizontalOptions="StartAndExpand"/>
-                                    <Label Text="Số sao"
+                                <Label Text="{Binding Type}"
                                            HorizontalOptions="StartAndExpand"/>
-                                <Entry Text="{Binding Rate1}"/>
+                                <!--<Entry Text="{Binding Rate1}"/>
                                 <Label Text="Đánh giá:"
                                            HorizontalOptions="StartAndExpand"/>
                                 <Editor Placeholder="Nhập đánh giá tại đây"
                                         HeightRequest="80"
-                                        Text="{Binding Comment1}"/>
+                                        Text="{Binding Comment1}"/>-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>-->
+            </ListView>
             <Button Text="Đánh giá"
-                    Command="{Binding AddRatingCommand}"/>
+                    Command="{Binding RatingPageCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
