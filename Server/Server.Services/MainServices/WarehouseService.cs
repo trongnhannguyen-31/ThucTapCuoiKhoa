@@ -125,7 +125,6 @@ namespace Phoenix.Server.Services.MainServices
                 var warehouses = GetWarehousesById(request.Id);
 
                 warehouses.Id = warehouses.Id;
-                warehouses.ProductSKU_Id = request.ProductSKU_Id;
                 warehouses.Quantity = warehouses.Quantity + request.NewQuantity;
                 warehouses.UpdatedAt = DateTime.Now;
 

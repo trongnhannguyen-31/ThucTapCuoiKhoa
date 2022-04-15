@@ -42,13 +42,5 @@ namespace Phoenix.Server.Api.Api
         {
             return await _orderDetailService.GetOrderDetailHistory(request);
         }
-
-        [HttpPost]
-        [Route("GetOrderDetailHistoryById")]
-        //public async Task<BaseResponse<CartItemDto>> GetAllCartItems(CartItemRequest request)
-        public async Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistoryById(OrderDetailHistoryRequest request)
-        {
-            return await _orderDetailService.GetOrderDetailHistoryById(request);
-        }
     }
 }

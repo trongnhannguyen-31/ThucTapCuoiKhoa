@@ -2,7 +2,6 @@
 using Phoenix.Mobile.Core.Models.Order;
 using Phoenix.Mobile.Core.Models.OrderDetail;
 using Phoenix.Mobile.Core.Services.Common;
-using Phoenix.Mobile.Core.Utils;
 using Phoenix.Mobile.Helpers;
 using Phoenix.Shared.CartItem;
 using Phoenix.Shared.Order;
@@ -106,7 +105,7 @@ namespace Phoenix.Mobile.PageModels.Common
         public bool CancelButton { get; set; }
         public bool EnableButton { get; set; }
         public int ListViewHeight { get; set; }
-        public OrderDetailHistoryModel detail { get; set; } = new OrderDetailHistoryModel();
+
         #endregion
 
         #region ReBuyCommand
@@ -147,8 +146,7 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             if (OrderDetails.Count == 1)
             {
-                var data = await _orderDetailService.GetOrderDetailHistoryById(request);
-                await CoreMethods.PushPageModel<RatingPageModel>(data);
+                await CoreMethods.PushPageModel<RatingPageModel>(Order);
             }
             else
             {
