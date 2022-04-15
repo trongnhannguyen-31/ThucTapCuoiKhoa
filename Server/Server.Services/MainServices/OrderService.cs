@@ -175,63 +175,6 @@ namespace Phoenix.Server.Services.MainServices
 
                         orders.Status = "Đang giao hàng";
                     }
-
-                    #region
-                    /*var orders = GetOrderById(id);
-
-                    // Gán Id(Order) => Order_Id (OrderDeatil);
-                    OrderDetail.Order_Id = orders.Id;
-                    // Lấy List của OrderDetail
-                    var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
-                    ListOrderDetail = orderDetail_Id.Data;
-
-                    foreach (var item in ListOrderDetail)
-                    {
-                        WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
-
-                        var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
-                        ListWarehouse = warehouse_Id.Data;
-                        //var warehouses = item.ProductSKU_Id;
-
-                        foreach (var warehouses in ListWarehouse)
-                        {
-                            var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
-                            {
-                                Id = warehouses.Id,
-                                ProductSKU_Id = warehouses.ProductSKU_Id,
-                                Quantity = warehouses.Quantity,
-                                NewQuantity = (int)-item.Quantity
-
-                            });
-                        }
-
-                    }*/
-                    #endregion
-                    #region Duyet
-                    /*if (orders.CancelRequest == true)
-                     * 
-                    {
-                        orders.Status = "Hủy đơn hàng thành công";
-                        orders.CancelRequest = false;
-                    }
-                    else
-                    {
-                        if (orders.Status == "Chờ xử lý")
-                        {
-                            orders.Status = "Đã duyệt, đang xử lý";
-                        }
-                        else if (orders.Status == "Đã duyệt, đang xử lý")
-                        {
-                            orders.Status = "Đang giao hàng";
-                        }
-                        else if (orders.Status == "Đang giao hàng")
-                        {
-                            orders.Status = "Đã giao hàng thành công";
-                            orders.DeliveryDate = DateTime.Now;
-                        }
-
-                    }*/
-                    #endregion
                 }
                 else if (order.Status == "Chờ xử lý")
                 {
@@ -244,7 +187,11 @@ namespace Phoenix.Server.Services.MainServices
                 }
                 else if (order.CancelRequest == true)
                 {
-                    if (order.Status == "Đã duyệt, đang xử lý")
+                    /*if (order.Status == "Chờ xử lý")
+                    {
+                        order.Status = "Hủy đơn hàng thành công";
+                    }
+                    else
                     {
                         var orders = GetOrderById(id);
 
@@ -256,6 +203,7 @@ namespace Phoenix.Server.Services.MainServices
 
                         foreach (var item in ListOrderDetail)
                         {
+
                             WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
 
                             var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
@@ -273,27 +221,12 @@ namespace Phoenix.Server.Services.MainServices
                                 });
                             }
 
-                            /*ProductSKURequest.Id = item.ProductSKU_Id;
-                            
-                            var productSKU_Id = await GetAllProductSKUByOrderDetail(ProductSKURequest);
-                            ListProductSKU = productSKU_Id.Data;
-
-                            foreach (var productSKUs in ListProductSKU)
-                            {
-                                var productSKUs_data = _productSKUService.UpdateProductSKUs(new ProductSKURequest
-                                {
-                                    Id = productSKUs.Id,
-                                    BuyCount = (int)-item.Quantity,
-                                });
-                            }*/
 
                             orders.Status = "Hủy đơn hàng thành công!";
                         }
-                    }
-                    else
-                    {
-                        order.Status = "Hủy đơn hàng thành công!";
-                    }
+                    }*/
+
+                    order.Status = "Hủy đơn hàng thành công";
                 }
 
                 await _dataContext.SaveChangesAsync();
