@@ -2,31 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
-             
+             xmlns:controls="clr-namespace:Phoenix.Mobile.Controls"
+             xmlns:converters="clr-namespace:Phoenix.Framework.Converters;assembly=Phoenix.Framework"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects" 
              xmlns:productMenu="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
              x:Class="Phoenix.Mobile.Pages.Common.HomePage"
              x:DataType="common:HomePageModel"
              x:Name="ProductDetail"><!--xmlns:productMenu="clr-namespace:Phoenix.Mobile.Core.Models.ProductMenu;assembly=Phoenix.Mobile.Core"-->
     <ContentPage.Content>
         <StackLayout>
-            <!--<SearchBar Placeholder="Nhập tên sản phẩm..."
-                       SearchCommand="{Binding SearchCommand}"
-                       Text="{Binding SearchText}" 
-                       />-->
             <StackLayout Orientation="Horizontal">
                 <Entry Placeholder="Nhập tên sản phẩm..."
-                       WidthRequest="250"
+                       WidthRequest="240"
                        Margin="10,0,0,0"
+                       PlaceholderColor="#0d0b4d"
+                       TextColor="#0d0b4d"
                        Text="{Binding SearchText}"/>
+                
                 <Button WidthRequest="70"
                         Text="Tìm"
-                        Command="{Binding SearchCommand}"/>
+                        TextColor="White"
+                        Command="{Binding SearchCommand}"
+                        Margin="5"
+                        BackgroundColor="#0d0b4d"/>
                 <Button WidthRequest="70"
                         Text="Xóa"
+                        TextColor="White"
+                        Margin="5"
+                        BackgroundColor="#0d0b4d"
                         Command="{Binding ClearSearchCommand}"/>
             </StackLayout>           
             <CollectionView ItemsSource="{Binding ProductMenus}"
-                            BackgroundColor="#ecf0f1"
+                            BackgroundColor="#d9dbdb"
                             
                             SelectionMode="Single"
                             
@@ -54,7 +62,8 @@
                                    FontAttributes="Bold"
                                    FontSize="Medium"/>-->
                             <Image Source="{Binding Image1Path}"
-                                   HeightRequest="100"/>
+                                   HeightRequest="150"
+                                   Aspect="Fill"/>
                             <Label Text="{Binding ProductName}"
                                    Margin="8,2,8,4"
                                    FontSize="Subtitle"

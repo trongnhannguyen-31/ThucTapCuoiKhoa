@@ -7,20 +7,22 @@
              xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"    
              x:DataType="common:LaptopDetailPageModel"
              x:Class="Phoenix.Mobile.Pages.Common.LaptopDetailPage"
-             ControlTemplate="{StaticResource FullScreenHasBack}">
+            >
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
 
 
-                <CarouselView ItemsSource="{Binding listImage}">
+                <CarouselView ItemsSource="{Binding listImage}"
+                              HeightRequest="250">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
                                 <Frame Margin="5"
                                        Padding="5">
                                     <Image Source="{Binding }"
-                                           Aspect="AspectFit"/>
+                                           HeightRequest="250"
+                                           Aspect="Fill"/>
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
@@ -66,7 +68,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Center"/>
 
-                <Grid BackgroundColor="Black"
+                <Grid BackgroundColor="#0d0b4d"
                   Padding="1"
                   Margin="10">
                     <Grid.RowDefinitions>
@@ -390,7 +392,9 @@
 
                 <Button Text="THÊM VÀO GIỎ HÀNG"
                     VerticalOptions="EndAndExpand"
-                    Margin="20,0,20,20"
+                    Margin="10"
+                        BackgroundColor="#0d0b4d"
+                        TextColor="White"
                         Command="{Binding AddItemToCart}"></Button>
                 <Label Text="Đánh giá sản phẩm"
                    FontAttributes="Bold"

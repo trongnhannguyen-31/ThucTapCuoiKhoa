@@ -63,7 +63,7 @@ namespace Phoenix.Mobile.PageModels.Common
             else
             {
                 OrderDetails = data;
-                ListViewHeight = 60 * OrderDetails.Count;
+                ListViewHeight = 120 * OrderDetails.Count;
                 RaisePropertyChanged(nameof(OrderDetails));
                 if (Order.DeliveryDate == null)
                 {

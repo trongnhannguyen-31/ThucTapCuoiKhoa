@@ -16,10 +16,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#d1d1d1">
             <ListView ItemsSource="{Binding CartList}"
                       SelectedItem="{Binding SelectedItem}"
                       x:Name="ListCartItem"
+                      BackgroundColor="White"
+                      SeparatorColor="#d9dbdb"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="True">
@@ -42,7 +44,8 @@
                                 </Grid.ColumnDefinitions>
                                 <BoxView Color="Green"
                                          Grid.RowSpan="3"/>
-                                <Image Source="@drawable/defaultcart"
+                                <Image Source="{Binding Image1Path}"
+                                       Aspect="Fill"
                                        Grid.RowSpan="3"
                                        Grid.Column="0"
                                        VerticalOptions="Center"/>
@@ -70,7 +73,7 @@
                                        Grid.Column="1"
                                        Grid.ColumnSpan="2"
                                        Margin="5,0,0,0"
-                                       Text="{Binding Source={x:Reference stepper}, Path=Value}"
+                                       Text="{Binding Source={x:Reference stepper}, Path=Value, StringFormat='Số lượng: {0}'}"
                                        BindingContext="{x:Reference stepper}"
                                        FontSize="Small"
                                        HorizontalOptions="Start"
@@ -116,41 +119,33 @@
             
             
 
-            <!--<StackLayout x:Name="Container">
-                <Label BindingContext="{x:Reference stepper}" Text="{Binding Value}" />
-                <Stepper Minimum="0" Maximum="99" x:Name="stepper" Increment="1" />
-            </StackLayout>-->
 
-            <StackLayout BackgroundColor="#0394fc" VerticalOptions="EndAndExpand" >
-                <StackLayout Orientation="Horizontal">
+            <StackLayout BackgroundColor="#0d0b4d" VerticalOptions="EndAndExpand" >
+                <!--<StackLayout Orientation="Horizontal" 
+                             BackgroundColor="#1b9642"
+                             HeightRequest="60">
                     <Label  Text="Tổng cộng" 
+                            TextColor="White"
                             FontSize="20"
                             HorizontalOptions="StartAndExpand"/>
                     <Label  Text="{Binding TotalPrice, StringFormat='{0:N0} đ'}" 
                             FontAttributes="Bold"
+                            TextColor="White"
                             FontSize="20"
                             HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
+                </StackLayout>-->
                 <Button Text="Xóa"
-                        Margin="0,20,0,20"
-                        Command="{Binding RemoveItemCommand}"></Button>
-                <Button Text="Thanh toán"
-                        Margin="0,20,0,20"
-                        Command="{Binding ConfirmPageCommand}"></Button>
+                        Margin="10"
+                        Command="{Binding RemoveItemCommand}"
+                        BackgroundColor="#007a7a"
+                        TextColor="White"/>
+                <Button Text="Mua hàng"
+                        Margin="10"
+                        BackgroundColor="#007a7a"
+                        TextColor="White"
+                        Command="{Binding ConfirmPageCommand}"/>
 
-                <!--<Entry Text="{Binding TestNumber1, Mode=TwoWay}"
-                       />
 
-                <Entry Text="{Binding TestNumber2, Mode=TwoWay}"/>
-
-                <Label>
-                    <Label.Text>
-                        <MultiBinding Converter="{StaticResource NameConverter}">
-                            <Binding Path="TestNumber1"/>
-                            <Binding Path="TestNumber2"/>
-                        </MultiBinding>
-                    </Label.Text>
-                </Label>-->
 
             </StackLayout>
         </StackLayout>

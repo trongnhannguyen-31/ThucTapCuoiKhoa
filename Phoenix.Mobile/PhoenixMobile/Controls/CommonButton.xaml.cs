@@ -136,6 +136,8 @@ namespace Phoenix.Mobile.Controls
             defaultBindingMode: BindingMode.OneWay);
         #endregion
 
+        
+
         #region SubText area
         #region SubFontSize
         public double SubFontSize

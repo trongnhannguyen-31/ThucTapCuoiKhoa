@@ -7,13 +7,63 @@
              x:Class="Phoenix.Mobile.Pages.Common.RatingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding OrderDetail.ProductName}"/>
-            <Entry Placeholder="Số sao"
-                   Text="{Binding Rate}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Grid.Row="0"
+                       Grid.RowSpan ="2"
+                       Source="{Binding OrderDetail.ImagePath}"
+                       Aspect="Fill"/>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding OrderDetail.ProductName}"
+                       FontSize="Medium"/>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding OrderDetail.Type}"
+                       FontSize="Medium"/>
+            </Grid>
+            
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Margin="8">
+                    <RadioButton IsChecked="{Binding One}"/>
+                    <Label Text="1 Sao"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="8">
+                    <RadioButton IsChecked="{Binding Two}"/>
+                    <Label Text="2 Sao"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="8">
+                    <RadioButton IsChecked="{Binding Three}"/>
+                    <Label Text="3 Sao"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="8">
+                    <RadioButton IsChecked="{Binding Four}"/>
+                    <Label Text="4 Sao"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="8">
+                    <RadioButton IsChecked="{Binding Five}"/>
+                    <Label Text="5 Sao"/>
+                </StackLayout>
+            </StackLayout>
             <Editor Placeholder="Bình luận"
-                    Text="{Binding Comment}"/>
+                    Text="{Binding Comment}"
+                    HeightRequest="80"/>
             <Button Text="Đánh giá"
-                    Command="{Binding AddRatingCommand}"/>
+                    Command="{Binding AddRatingCommand}"
+                    Margin="20,0,20,20"
+                         BackgroundColor="#0d0b4d"
+                        TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

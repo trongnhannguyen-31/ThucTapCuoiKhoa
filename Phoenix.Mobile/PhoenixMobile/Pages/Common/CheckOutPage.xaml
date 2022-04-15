@@ -7,7 +7,8 @@
              x:DataType="common:CheckOutPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <Grid Margin="10,10,10,10">
+            <Grid Margin="10,10,10,10"
+                  BackgroundColor="#0d0b4d">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
@@ -20,45 +21,80 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <Label Grid.Row="0"
                        Grid.Column="0"
+                       Margin="1,1,1,0"
                        Grid.ColumnSpan="3"
                        Text="Thông tin nhận hàng"
                        FontSize="Medium"
-                       HorizontalOptions="Center"/>
+                       FontAttributes="Bold"
+                       BackgroundColor="White"
+                       WidthRequest="1000"
+                       HeightRequest="500"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"/>
                 <Label Grid.Row="1"
                        Grid.Column="0"
-                       FontSize="Medium"
+                       BackgroundColor="White"
+                       Margin="1,0,0,0"
+                       HeightRequest="1000"
+                       Padding="1,0,0,0"
+                       VerticalTextAlignment="Center"
+                       FontSize="Medium"                       
                        Text="Tên người nhận:"/>
                 <Entry Grid.Row="1"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
+                       Margin="0,0,1,0"
+                       HeightRequest="1000"
                        Placeholder="Nhập tên người nhận"
                        Text="{Binding FullName}"/>
                 <Label Grid.Row="2"
                        Grid.Column="0"
+                       BackgroundColor="White"
+                       Margin="1,0,0,0"
+                       Padding="1,0,0,0"
+                       HeightRequest="1000"
+                       VerticalTextAlignment="Center"
                        FontSize="Medium"
                        Text="Địa chỉ:"/>
                 <Entry Grid.Row="2"
                        Grid.Column="1"
+                       Margin="0,0,1,0"
+                       HeightRequest="1000"
                        Grid.ColumnSpan="2"
                        Placeholder="Nhập địa chỉ"
                        Text="{Binding Address}"/>
                 <Label Grid.Row="3"
                        Grid.Column="0"
                        FontSize="Medium"
+                       BackgroundColor="White"
+                       Margin="1,0,0,0"
+                       Padding="1,0,0,0"
+                       HeightRequest="1000"
+                       VerticalTextAlignment="Center"
                        Text="Số điện thoại:"/>
                 <Entry Grid.Row="3"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
+                       Margin="0,0,1,0"
+                       HeightRequest="1000"
                        Placeholder="Nhập số điện thoại"
                        Text="{Binding Phone}"/>
                 <Label Grid.Row="4"
                        Grid.Column="0"
+                       BackgroundColor="White"
+                       Margin="1,0,0,1"
+                       HeightRequest="1000"
+                       Padding="1,0,0,0"
+                       VerticalTextAlignment="Center"
                        FontSize="Medium"
                        Text="Email:"/>
                 <Entry Grid.Row="4"
                        Grid.Column="1"
+                       Margin="0,0,1,1"
+                       HeightRequest="1000"
                        Grid.ColumnSpan="2"
                        Placeholder="Nhập email"
                        Text="{Binding Email}"/>
@@ -83,9 +119,8 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <BoxView Color="Green"
-                                         Grid.RowSpan="3"/>
-                                <Image Source="@drawable/defaultcart"
+                                <Image Source="{Binding Image1Path}"
+                                       Aspect="Fill"
                                        Grid.RowSpan="3"
                                        Grid.Column="0"
                                        VerticalOptions="Center"/>
@@ -130,18 +165,23 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout BackgroundColor="#0394fc" VerticalOptions="EndAndExpand" >
-                <StackLayout Orientation="Horizontal">
+            <StackLayout BackgroundColor="#0d0b4d" VerticalOptions="EndAndExpand" >
+                <StackLayout Orientation="Horizontal" BackgroundColor="#1b9642">
                     <Label  Text="Tổng cộng" 
                             FontSize="20"
+                            TextColor="White"
                             HorizontalOptions="StartAndExpand"/>
                     <Label  Text="{Binding TotalPrice, StringFormat='{0:N0} đ'}" 
                             FontAttributes="Bold"
                             FontSize="20"
+                            TextColor="White"
+                            
                             HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
-                <Button Text="Thanh toán"
-                        Margin="0,20,0,20"
+                <Button Text="Mua hàng"
+                        Margin="10"
+                        BackgroundColor="#007a7a"
+                        TextColor="White"
                         Command="{Binding AddOrder}"></Button>
 
             </StackLayout>

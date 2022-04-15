@@ -120,6 +120,7 @@ namespace Phoenix.Server.Services.MainServices
             {
                 var query = (from r in _dataContext.Ratings
                              join c in _dataContext.Customers on r.Customer_Id equals c.Id
+                             
                              select new
                              {
                                  Id = r.Id,

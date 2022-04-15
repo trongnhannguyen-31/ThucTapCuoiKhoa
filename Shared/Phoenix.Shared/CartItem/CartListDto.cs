@@ -5,6 +5,8 @@ namespace Phoenix.Shared.CartItem
     public class CartListDto
     {
         public int Id { get; set; }
+        public int Image1 { get; set; }
+        public string Image1Path{ get; set; }
         public int ProductSKUId { get; set; }
         public string ProductName { get; set; }
         public int ProductTypeId { get; set; }

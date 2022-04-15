@@ -6,18 +6,19 @@
              xmlns:product="clr-namespace:Phoenix.Mobile.Core.Models.Product;assembly=Phoenix.Mobile.Core"
              x:DataType="common:PhoneDetailPageModel"
              xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"
-             x:Class="Phoenix.Mobile.Pages.Common.PhoneDetailPage"
-             ControlTemplate="{StaticResource FullScreenHasBack}">
+             x:Class="Phoenix.Mobile.Pages.Common.PhoneDetailPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <CarouselView ItemsSource="{Binding listImage}">
+                <CarouselView ItemsSource="{Binding listImage}"
+                               HeightRequest="250">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
                                 <Frame Margin="5"
                                        Padding="5">
                                     <Image Source="{Binding }"
+                                           HeightRequest="250"
                                            Aspect="Fill"/>
                                 </Frame>
                             </StackLayout>
@@ -65,7 +66,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Center"/>
 
-                <Grid BackgroundColor="Black"
+                <Grid BackgroundColor="#0d0b4d"
                   Padding="1"
                   Margin="10">
                     <Grid.RowDefinitions>
@@ -413,6 +414,8 @@
                 <Button Text="THÊM VÀO GIỎ HÀNG"
                     VerticalOptions="EndAndExpand"
                     Margin="20,0,20,20"
+                         BackgroundColor="#0d0b4d"
+                        TextColor="White"
                         Command="{Binding AddItemToCart}"></Button>
                 <Label Text="Đánh giá sản phẩm"
                    FontAttributes="Bold"

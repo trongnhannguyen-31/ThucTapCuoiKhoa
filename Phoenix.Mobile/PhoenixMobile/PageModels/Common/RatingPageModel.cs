@@ -68,6 +68,18 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             try
             {
+                if(!One && !Two && !Three && !Four && !Five)
+                {
+                    await _dialogService.AlertAsync("Vui lòng chọn số sao.");
+                    IsBusy = false;
+                    return;
+                }
+                if (One){Rate = 1;}
+                if (Two){Rate = 2;}
+                if (Three){Rate = 3;}
+                if (Four){Rate = 4;}
+                if (Five){Rate = 5;}
+                
                 if (IsBusy) return;
                 IsBusy = true;
 
@@ -107,6 +119,11 @@ namespace Phoenix.Mobile.PageModels.Common
         public int UserId { get; set; }
         public int Rate { get; set; }
         public string Comment { get; set; }
+        public bool One { get; set; }
+        public bool Two { get; set; }
+        public bool Three { get; set; }
+        public bool Four { get; set; }
+        public bool Five { get; set; }
         #endregion
     }
 }
