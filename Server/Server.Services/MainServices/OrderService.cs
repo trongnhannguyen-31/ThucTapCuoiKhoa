@@ -137,61 +137,13 @@ namespace Phoenix.Server.Services.MainServices
             var result = new BaseResponse<OrderDto>();
             try
             {
-                if (order.CancelRequest == false && order.Status == "Đã duyệt, đang xử lý")
+                if (order.CancelRequest == false)
                 {
-                    var orders = GetOrderById(id);
-
-                    // Gán Id(Order) => Order_Id (OrderDeatil);
-                    OrderDetail.Order_Id = orders.Id;
-                    // Lấy List của OrderDetail
-                    var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
-                    ListOrderDetail = orderDetail_Id.Data;
-
-
-                    foreach (var item in ListOrderDetail)
+                    if (order.Status == "Chờ xử lý")
                     {
-                        // Warehouse
-                        var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
-
-                        WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
-
-                        var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
-                        ListWarehouse = warehouse_Id.Data;
-
-                        foreach (var warehouses in ListWarehouse)
-                        {
-                            var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
-                            {
-                                Id = warehouses.Id,
-                                ProductSKU_Id = warehouses.ProductSKU_Id,
-                                Quantity = warehouses.Quantity,
-                                NewQuantity = (int)-item.Quantity
-                                
-                            });
-                        }
-
-                        sku.Id = sku.Id;
-                        sku.BuyCount = sku.BuyCount + (int)item.Quantity;
-
-                        orders.Status = "Đang giao hàng";
+                        order.Status = "Đã duyệt, đang xử lý";
                     }
-                }
-                else if (order.Status == "Chờ xử lý")
-                {
-                    order.Status = "Đã duyệt, đang xử lý";
-                }
-                else if (order.Status == "Đang giao hàng")
-                {
-                    order.Status = "Đã giao hàng thành công";
-                    order.DeliveryDate = DateTime.Now;
-                }
-                else if (order.CancelRequest == true)
-                {
-                    /*if (order.Status == "Chờ xử lý")
-                    {
-                        order.Status = "Hủy đơn hàng thành công";
-                    }
-                    else
+                    else if (order.Status == "Đã duyệt, đang xử lý")
                     {
                         var orders = GetOrderById(id);
 
@@ -203,7 +155,10 @@ namespace Phoenix.Server.Services.MainServices
 
                         foreach (var item in ListOrderDetail)
                         {
+                            // ProductSKU
+                            var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
 
+                            // Warehouse
                             WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
 
                             var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
@@ -216,16 +171,26 @@ namespace Phoenix.Server.Services.MainServices
                                     Id = warehouses.Id,
                                     ProductSKU_Id = warehouses.ProductSKU_Id,
                                     Quantity = warehouses.Quantity,
-                                    NewQuantity = (int)+item.Quantity
+                                    NewQuantity = (int)-item.Quantity
 
                                 });
                             }
 
+                            sku.Id = sku.Id;
+                            sku.BuyCount = sku.BuyCount + (int)item.Quantity;
 
-                            orders.Status = "Hủy đơn hàng thành công!";
+                            order.Status = "Đang giao hàng";
                         }
-                    }*/
 
+                    }
+                    else if (order.Status == "Đang giao hàng")
+                    {
+                        order.Status = "Đã giao hàng thành công";
+                        order.DeliveryDate = DateTime.Now;
+                    }
+                }
+                else if (order.CancelRequest == true)
+                {
                     order.Status = "Hủy đơn hàng thành công";
                 }
 

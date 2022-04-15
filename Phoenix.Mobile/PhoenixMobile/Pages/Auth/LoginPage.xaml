@@ -25,7 +25,6 @@
             <controls:CommonInput Style="{StaticResource CommonInputPrimary}"
                                   IconColor="#00adef"
                                   TextColor="#00adef"
-                                  HeightRequest="40"
                                   Text="{Binding Username}" Margin="0,15,0,0"
                                   Placeholder="Tên đăng nhập"
                                   ControlPadding="15,0,0,0"
@@ -37,7 +36,6 @@
                                   ControlPadding="15,0,0,0"
                                   Placeholder="Mật khẩu"
                                   IsPassword="True"
-                                  HeightRequest="40"
                                   IconStart="{StaticResource IconKey}"></controls:CommonInput>
             <StackLayout Orientation="Horizontal">
                 <CheckBox
