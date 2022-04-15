@@ -22,6 +22,9 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> CreateProductSKUs(ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
+
+        Task<BaseResponse<ProductSKUDto>> UpdateBuyCountSKUs(ProductSKURequest request);
+
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUById(int id, ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> DeleteProductSKUs(int Id);
         ///
@@ -159,6 +162,50 @@ namespace Phoenix.Server.Services.MainServices
                 productSKU.YearOfManufacture = request.YearOfManufacture;
                 productSKU.Deleted = false;
                 productSKU.UpdatedAt = DateTime.Now;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        //public async Task<BaseResponse<ProductSKUDto>> UpdateBuyCountSKUs(ProductSKURequest request)
+        //{
+        //    var result = new BaseResponse<ProductSKUDto>();
+        //    try
+        //    {
+        //        var productSKU = GetProductSKUById(request.Id);
+
+        //        productSKU.Id = request.Id;
+        //        productSKU.BuyCount = request.BuyCount + request.NewBuy;
+        //        productSKU.UpdatedAt = DateTime.Now;
+
+        //        await _dataContext.SaveChangesAsync();
+        //        result.Success = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Success = false;
+        //        result.Message = ex.Message;
+        //    }
+
+        //    return result;
+        //}
+        public async Task<BaseResponse<ProductSKUDto>> UpdateBuyCountSKUs(ProductSKURequest request)
+        {
+            var result = new BaseResponse<ProductSKUDto>();
+            try
+            {
+                var warehouses = GetProductSKUById(request.Id);
+
+                warehouses.Id = warehouses.Id;
+                warehouses.BuyCount = warehouses.BuyCount + request.NewBuy;
 
                 await _dataContext.SaveChangesAsync();
                 result.Success = true;

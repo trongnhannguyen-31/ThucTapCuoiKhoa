@@ -135,7 +135,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 Product_Id = model.Product_Id,
                 Price = model.Price,
                 // Rating = model.Rating,
-                // BuyCount = model.BuyCount,
+                BuyCount = model.BuyCount,
                 Screen = model.Screen,
                 OperationSystem = model.OperationSystem,
                 Processor = model.Processor,

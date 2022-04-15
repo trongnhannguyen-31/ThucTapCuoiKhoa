@@ -147,9 +147,12 @@ namespace Phoenix.Server.Services.MainServices
                     var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
                     ListOrderDetail = orderDetail_Id.Data;
 
+
                     foreach (var item in ListOrderDetail)
                     {
                         // Warehouse
+                        var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+
                         WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
 
                         var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
@@ -163,34 +166,15 @@ namespace Phoenix.Server.Services.MainServices
                                 ProductSKU_Id = warehouses.ProductSKU_Id,
                                 Quantity = warehouses.Quantity,
                                 NewQuantity = (int)-item.Quantity
-
+                                
                             });
                         }
 
-                        ProductSKURequest.Id = item.ProductSKU_Id;
-                        ProductSKURequest.BuyCount = (int)+item.Quantity;
-                        _dataContext.SaveChanges();
+                        sku.Id = sku.Id;
+                        sku.BuyCount = sku.BuyCount + (int)item.Quantity;
 
                         orders.Status = "Đang giao hàng";
                     }
-
-                    /*foreach (var item in ListOrderDetail)
-                    {
-                        ProductSKURequest.Id = item.ProductSKU_Id;
-
-                        var productSKU_Id = await GetAllProductSKUByOrderDetail(ProductSKURequest);
-                        ListProductSKU = productSKU_Id.Data;
-
-                        foreach (var productSKU in ListProductSKU)
-                        {
-                            var productSKU_data = _productSKUService.UpdateProductSKUs(new ProductSKURequest
-                            {
-                                Id = productSKU.Id,
-                                BuyCount = (int)+item.Quantity
-                            });
-                        }
-                    }*/
-
 
                     #region
                     /*var orders = GetOrderById(id);
