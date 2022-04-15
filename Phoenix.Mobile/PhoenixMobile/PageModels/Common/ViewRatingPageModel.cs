@@ -1,4 +1,5 @@
 ﻿using Phoenix.Mobile.Core.Infrastructure;
+using Phoenix.Mobile.Core.Services;
 using Phoenix.Mobile.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace Phoenix.Mobile.PageModels.Common
     public class ViewRatingPageModel : BasePageModel
     {
         private readonly IDialogService _dialogService;
+        private readonly IWorkContext _workContext;
 
-        public ViewRatingPageModel(IDialogService dialogService)
+        public ViewRatingPageModel(IDialogService dialogService, IWorkContext workContext)
         {
             _dialogService = dialogService;
+            _workContext = workContext;
         }
 
         public override async void Init(object initData)
@@ -33,17 +36,6 @@ namespace Phoenix.Mobile.PageModels.Common
         private async Task LoadData()
         {
 
-            //var data = await _productService.GetProductMenus(menurequest);
-
-            //if (data == null)
-            //{
-            //    await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
-            //}
-            //else
-            //{
-            //    ProductMenus = data;
-            //    RaisePropertyChanged(nameof(ProductMenus));
-            //}
         }
     }
 }

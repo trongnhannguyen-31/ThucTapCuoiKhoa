@@ -165,26 +165,11 @@ namespace Phoenix.Server.Services.MainServices
                                  ProductSKU_Id = d.ProductSKU_Id,
                                  Order_Id = o.Id
                              }).AsQueryable();
-                //if (request.Order_Id != 0)
-                //{
-                //    //var data = await query.FirstOrDefaultAsync(d => d.Order_Id.Equals(request.Order_Id));
-                //    //query = query.Where(d => d.Order_Id.Equals(request.Order_Id));
-                //    //query = query.(d => d.Order_Id.Equals(request.Order_Id));
-                //}
-
-
 
                 var congfig = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
                 var mapper = congfig.CreateMapper();
-                //var detail = query.FirstOrDefault(mapper.Map<OrderDetailHistoryDto>);
                 var detail = query.Select(mapper.Map<OrderDetailHistoryDto>).Where(d => d.Order_Id == request.Order_Id);
-                // detail = detail.FirstOrDefault(d => d.Order_Id.Equals(request.Order_Id));
-
-                //var data = await query.ToListAsync();
-
-                //result.Data = data.MapTo<CartListDto>();
                 result.Data = detail.MapTo<OrderDetailHistoryDto>();
-
             }
             catch (Exception ex)
             {

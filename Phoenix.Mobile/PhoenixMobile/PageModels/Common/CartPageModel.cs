@@ -141,73 +141,40 @@ namespace Phoenix.Mobile.PageModels.Common
 
         public int Id { get; set; }
         public int UserId { get; set; }
+        public int _testNumber1=0;
+        public int _testNumber2=0;
+
+        public int TestNumber1
+        {
+            get
+            {
+                return _testNumber1;
+            }
+            set
+            {
+                if (_testNumber1 != value)
+                {
+                    _testNumber1 = value;
+                }
+            }
+        }
+        public int TestNumber2
+        {
+            get
+            {
+                return _testNumber2;
+            }
+            set
+            {
+                if(_testNumber2 != value)
+                {
+                    _testNumber2 = value;
+                }
+                
+            }
+        }
 
         //public int Uaer_Id { get; set; }
-        #endregion
-
-        #region AddOrderDetail
-        public Command AddOrderDetail => new Command(async (p) => await AddOrderDetailExecute(), (p) => !IsBusy);
-        private async Task AddOrderDetailExecute()
-        {
-            foreach (var item in CartList)
-            {
-                try
-                {
-                    if (IsBusy) return;
-                    IsBusy = true;
-
-                    var data = _orderDetailService.AddOrderDetail(new OrderDetailAppRequest
-                    {
-                        Order_Id = 4,
-                        ProductSKU_Id = item.ProductSKUId,
-                        Price = item.Price,
-                        Quantity = item.Quantity
-                    });
-                    IsBusy = false;
-                    
-                }
-                catch (Exception e)
-                {
-                    await _dialogService.AlertAsync("Thêm thất bại");
-
-                }
-            }
-            
-            //await _dialogService.AlertAsync("Thêm thành công");
-
-        }
-        #endregion
-
-        #region AddOrder
-        public Command AddOrder=> new Command(async (p) => await AddOrderExecute(), (p) => !IsBusy);
-        private async Task AddOrderExecute()
-        {
-            try
-            {
-                if (IsBusy) return;
-                IsBusy = true;
-                var data = _orderService.AddOrder(new OrderAppRequest
-                {
-                    OrderDate = DateTime.Now,
-                    Status = "Chờ xử lý",
-                    DeliveryDate = null,
-                    Address = "abc",
-                    Total = CartList.Sum(item => item.Total),
-                    Customer_Id = 1,
-                    CreatedAt = DateTime.Now,
-                    Deleted = false
-                });
-                await _dialogService.AlertAsync("Thêm thành công");
-                IsBusy = false;
-            }
-            catch (Exception e)
-            {
-                await _dialogService.AlertAsync("Thêm thất bại");
-            }
-
-            //await _dialogService.AlertAsync("Thêm thành công");
-
-        }
         #endregion
 
         #region AddTest
@@ -279,19 +246,12 @@ namespace Phoenix.Mobile.PageModels.Common
         private CartListModel _selectedItem;
         public CartListModel SelectedItem
         {
-
-
             get
             {
                 return _selectedItem;
             }
             set
             {
-                //if (_selectedProduct != value)
-                //{
-                //    _selectedProduct = value;
-
-                //}
                 _selectedItem = value;
             }
         }

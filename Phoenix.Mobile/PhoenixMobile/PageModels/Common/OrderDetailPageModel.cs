@@ -53,11 +53,8 @@ namespace Phoenix.Mobile.PageModels.Common
 
         private async Task LoadData()
         {
-            //if Status = ĐÃ hủy -> isvisible false tất cả nút
-            //Load thông tin chi tiết điện thoại
             request.Order_Id = Order.Id;
             var data = await _orderDetailService.GetOrderDetailHistory(request);
-            //var sameVendor = await _productService.GetAllProducts(sameVendorRequest);
             if (data == null)
             {
                 await _dialogService.AlertAsync("Lỗi kết nối mạng!", "Lỗi", "OK");
@@ -71,10 +68,8 @@ namespace Phoenix.Mobile.PageModels.Common
                 {
                     RatingButton = false;
                     ViewRatingButton = false;
-                   // CancelButton = true;
                     if (Order.CancelRequest)
                     {
-                        //EnableButton = false;
                         CancelButton = false;
                     }
                     else
@@ -149,8 +144,14 @@ namespace Phoenix.Mobile.PageModels.Common
         public Command RatingCommand => new Command(async (p) => await RatingExecute(), (p) => !IsBusy);
         private async Task RatingExecute()
         {
-
-            await CoreMethods.PushPageModel<RatingPageModel>(OrderDetails);
+            if (OrderDetails.Count == 1)
+            {
+                await CoreMethods.PushPageModel<RatingPageModel>(Order);
+            }
+            else
+            {
+                await CoreMethods.PushPageModel<MultipleRatingPageModel>(OrderDetails);
+            }
 
         }
         #endregion

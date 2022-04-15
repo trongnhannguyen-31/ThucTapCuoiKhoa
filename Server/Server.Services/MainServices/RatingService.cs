@@ -130,13 +130,20 @@ namespace Phoenix.Server.Services.MainServices
                                  Image2 = r.Image2,
                                  Image3 = r.Image3,
                                  Customer_Name = c.FullName,
-                                 ProductSKU_Id = r.ProductSKU_Id
+                                 ProductSKU_Id = r.ProductSKU_Id,
+                                 Order_Id = r.Order_Id
                              }).AsQueryable();
+                if (request.ProductSKU_Id != 0)
+                {
                     query = query.Where(d => d.ProductSKU_Id == request.ProductSKU_Id);
-
+                }
+                if (request.Order_Id != 0)
+                {
+                    query = query.Where(d => d.Order_Id == request.Order_Id);
+                }   
+                    
                 var config = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
                 var mapper = config.CreateMapper();
-                //var listcart = query.Select(mapper.Map<ProductMenuDto>).ToList();
                 var listcart = query.Select(mapper.Map<RatingAppDto>).ToList();
                 result.Data = listcart.MapTo<RatingAppDto>();
 
