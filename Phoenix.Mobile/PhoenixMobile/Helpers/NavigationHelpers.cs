@@ -29,7 +29,7 @@ namespace Phoenix.Mobile.Helpers
                 mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_idea");
                 //mainPage.AddTab<AccountPageModel>(string.Empty, "ic_act_more");
                 mainPage.BarTextColor = Color.White;
-                mainPage.BarBackgroundColor = Color.FromHex("#0d0b4d");
+                mainPage.BarBackgroundColor = Color.FromHex("#168dc3");
                 Application.Current.MainPage = mainPage;
             }
             else if (Device.RuntimePlatform == Device.iOS)

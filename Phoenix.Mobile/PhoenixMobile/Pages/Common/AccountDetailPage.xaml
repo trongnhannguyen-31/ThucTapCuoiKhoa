@@ -8,10 +8,6 @@
              x:DataType="common:AccountDetailPageModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Thông tin khách hàng"
-                   FontSize="Large"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -24,79 +20,57 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"
                        Grid.Column="0"
-                       Text="Họ tên:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Họ tên:"/>
                 <Entry Grid.Row="0"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập họ tên"
                        Text="{Binding FullName}"/>
 
                 <Label Grid.Row="1"
                        Grid.Column="0"
-                       Text="Giới tính:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Giới tính:"/>
                 <Entry Grid.Row="1"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập giới tính"
                        Text="{Binding Gender}"/>
 
                 <Label Grid.Row="2"
                        Grid.Column="0"
-                       Text="Ngày sinh:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Ngày sinh:"/>
                 <Entry Grid.Row="2"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập ngày sinh"
                        Text="{Binding Birthday}"/>
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
-                       Text="Số điện thoại:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Số điện thoại:"/>
                 <Entry Grid.Row="3"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập số điện thoại"
                        Text="{Binding Phone}"/>
 
                 <Label Grid.Row="4"
                        Grid.Column="0"
-                       Text="Email:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Email:"/>
                 <Entry Grid.Row="4"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập email"
                        Text="{Binding Email}"/>
 
                 <Label Grid.Row="5"
                        Grid.Column="0"
-                       Text="Địa chỉ:"
-                       FontAttributes="Bold"
-                       FontSize="Medium"/>
+                       Text="Địa chỉ:"/>
                 <Entry Grid.Row="5"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
                        Placeholder="Nhập địa chỉ"
                        Text="{Binding Address}"/>
             </Grid>
-            <Button Text="Lưu"
-                    Command="{Binding UpdateCustomerDetailCommand}"
-                    Margin="20,0,20,20"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"/>
+            <Button Text="Luu"
+                    Command="{Binding UpdateCustomerDetailCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

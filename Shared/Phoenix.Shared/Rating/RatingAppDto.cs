@@ -6,7 +6,6 @@ namespace Phoenix.Shared.Rating
     {
         public int Id { get; set; }
         public int Order_Id { get; set; }
-        public string ProductImage { get; set; }
 
         public int Rate { get; set; }
 

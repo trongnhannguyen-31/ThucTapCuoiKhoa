@@ -44,7 +44,6 @@ namespace Phoenix.Server.Services.MainServices
                 var query = (from c in _dataContext.CartItems
                              join s in _dataContext.ProductSKUs on c.ProductSKU_Id equals s.Id
                              join p in _dataContext.Products on s.Product_Id equals p.Id
-                             join i in _dataContext.ImageRecords on p.Image1 equals i.Id
                              select new
                              {
                                  Id = c.Id,
@@ -56,9 +55,8 @@ namespace Phoenix.Server.Services.MainServices
                                  Storage = s.Storage,
                                  Price = s.Price,
                                  Quantity = c.Quantity,
-                                 UserID = c.User_Id,
-                                 Image1 = p.Image1,
-                                 Image1Path = i.AbsolutePath
+                                 UserID = c.User_Id
+
                              }).AsQueryable();
                 if (request.UserID != 0)
                 {
