@@ -32,17 +32,17 @@ namespace Phoenix.Mobile.PageModels.Common
 
 
 
-        public OrderDetailHistoryModel OrderDetail { get; set; }
+        public OrderModel Order { get; set; }
 
         public override async void Init(object initData)
         {
             if (initData != null)
             {
-                OrderDetail = (OrderDetailHistoryModel)initData;
+                Order = (OrderModel)initData;
             }
             else
             {
-                OrderDetail = new OrderDetailHistoryModel();
+                Order = new OrderModel();
             }
             NavigationPage.SetHasNavigationBar(CurrentPage, false);
             CurrentPage.Title = "Nhà cung cấp";
@@ -68,62 +68,53 @@ namespace Phoenix.Mobile.PageModels.Common
         {
             try
             {
-                if(!One && !Two && !Three && !Four && !Five)
-                {
-                    await _dialogService.AlertAsync("Vui lòng chọn số sao.");
-                    IsBusy = false;
-                    return;
+                    await _dialogService.AlertAsync(Rate1 + "va" + Comment1);
+                    //if (IsBusy) return;
+                    //IsBusy = true;
+
+                    //var data = _ratingService.AddRating(new RatingAppRequest
+                    //{
+                    //    Rate = Rate1,
+                    //    Comment = Comment1,
+                    //    CreatedDate = DateTime.Now,
+                    //    Image1 = 1,
+                    //    Image2 = 1,
+                    //    Image3 = 1,
+                    //    Customer_Id = 1,
+                    //    ProductSKU_Id = item.ProductSKU_Id,
+                    //    Order_Id = item.Order_Id,
+                    //    Deleted = false
+                    //});
+                    //var data1 = await _orderService.EditOrder(item.Order_Id, new OrderAppRequest
+                    //{
+                    //    Id = item.Order_Id,
+                    //    IsRated = true
+                    //});
+                    //IsBusy = false;
                 }
-                if (One){Rate = 1;}
-                if (Two){Rate = 2;}
-                if (Three){Rate = 3;}
-                if (Four){Rate = 4;}
-                if (Five){Rate = 5;}
-                
-                if (IsBusy) return;
-                IsBusy = true;
+                catch (Exception e)
+                {
+                    await _dialogService.AlertAsync("Thêm Order Detail thất bại");
 
-                var data = _ratingService.AddRating(new RatingAppRequest
-                {
-                    Rate = Rate,
-                    Comment = Comment,
-                    CreatedDate = DateTime.Now,
-                    Image1 = 13,
-                    Image2 = 13,
-                    Image3 = 13,
-                    Customer_Id = UserId,
-                    ProductSKU_Id = OrderDetail.ProductSKU_Id,
-                    Order_Id = OrderDetail.Order_Id,
-                    Deleted = false
-                });
-                var data1 = await _orderService.EditOrder(OrderDetail.Order_Id, new OrderAppRequest
-                {
-                    Id = OrderDetail.Order_Id,
-                    IsRated = true
-                });
+                }
                 IsBusy = false;
-            }
-            catch (Exception e)
-            {
-                await _dialogService.AlertAsync("Thêm Order Detail thất bại");
-
-            }
-            IsBusy = false;
-            await _dialogService.AlertAsync("Đánh giá thành công");
-            await CoreMethods.PopPageModel();
-
+                await _dialogService.AlertAsync("Đánh giá thành công");
+                await CoreMethods.PushPageModel<AlertPageModel>();
+                
         }
         #endregion
 
         #region properties
+        public RatingModel Rating { get; set; } = new RatingModel();
         public int UserId { get; set; }
-        public int Rate { get; set; }
-        public string Comment { get; set; }
-        public bool One { get; set; }
-        public bool Two { get; set; }
-        public bool Three { get; set; }
-        public bool Four { get; set; }
-        public bool Five { get; set; }
+        public int Rate1 { get; set; }
+        public string Comment1 { get; set; }
+        //public OrderDetailHistoryRequest request { get; set; } = new OrderDetailHistoryRequest();
+
+
+
+
+
         #endregion
     }
 }

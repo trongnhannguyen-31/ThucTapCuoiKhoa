@@ -152,11 +152,9 @@ namespace Phoenix.Server.Services.MainServices
                              join d in _dataContext.OrderDetails on o.Id equals d.Order_Id
                              join s in _dataContext.ProductSKUs on d.ProductSKU_Id equals s.Id
                              join p in _dataContext.Products on s.Product_Id equals p.Id
-                             join i in _dataContext.ImageRecords on p.Image1 equals i.Id
                              select new
                              {
                                  Image = p.Image1,
-                                 ImagePath = i.AbsolutePath, 
                                  Name = p.Name,
                                  ProductTypeId = p.ProductType_Id,
                                  ModelCode = p.ModelCode,
@@ -172,44 +170,6 @@ namespace Phoenix.Server.Services.MainServices
                 var mapper = congfig.CreateMapper();
                 var detail = query.Select(mapper.Map<OrderDetailHistoryDto>).Where(d => d.Order_Id == request.Order_Id);
                 result.Data = detail.MapTo<OrderDetailHistoryDto>();
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetOrderDetailHistoryById
-        public async Task<BaseResponse<OrderDetailHistoryDto>> GetOrderDetailHistoryById(OrderDetailHistoryRequest request)
-        {
-            var result = new BaseResponse<OrderDetailHistoryDto>();
-            try
-            {
-                var query = (from o in _dataContext.Orders
-                             join d in _dataContext.OrderDetails on o.Id equals d.Order_Id
-                             join s in _dataContext.ProductSKUs on d.ProductSKU_Id equals s.Id
-                             join p in _dataContext.Products on s.Product_Id equals p.Id
-                             select new
-                             {
-                                 Image = p.Image1,
-                                 Name = p.Name,
-                                 ProductTypeId = p.ProductType_Id,
-                                 ModelCode = p.ModelCode,
-                                 Ram = s.Ram,
-                                 Storage = s.Storage,
-                                 Quantity = d.Quantity,
-                                 Price = d.Price,
-                                 ProductSKU_Id = d.ProductSKU_Id,
-                                 Order_Id = o.Id
-                             }).AsQueryable();
-
-                var congfig = new MapperConfiguration(cfg => cfg.CreateMissingTypeMaps = true);
-                var mapper = congfig.CreateMapper();
-                var detail = query.Select(mapper.Map<OrderDetailHistoryDto>).Where(d => d.Order_Id == request.Order_Id).FirstOrDefault();
-                result.Record = detail.MapTo<OrderDetailHistoryDto>();
             }
             catch (Exception ex)
             {

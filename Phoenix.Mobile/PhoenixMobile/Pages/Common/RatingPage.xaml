@@ -7,63 +7,34 @@
              x:Class="Phoenix.Mobile.Pages.Common.RatingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                       Grid.Row="0"
-                       Grid.RowSpan ="2"
-                       Source="{Binding OrderDetail.ImagePath}"
-                       Aspect="Fill"/>
-                <Label Grid.Row="0"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding OrderDetail.ProductName}"
-                       FontSize="Medium"/>
-                <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding OrderDetail.Type}"
-                       FontSize="Medium"/>
-            </Grid>
-            
-            <StackLayout Orientation="Horizontal">
-                <StackLayout Orientation="Horizontal" Margin="8">
-                    <RadioButton IsChecked="{Binding One}"/>
-                    <Label Text="1 Sao"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="8">
-                    <RadioButton IsChecked="{Binding Two}"/>
-                    <Label Text="2 Sao"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="8">
-                    <RadioButton IsChecked="{Binding Three}"/>
-                    <Label Text="3 Sao"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="8">
-                    <RadioButton IsChecked="{Binding Four}"/>
-                    <Label Text="4 Sao"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="8">
-                    <RadioButton IsChecked="{Binding Five}"/>
-                    <Label Text="5 Sao"/>
-                </StackLayout>
-            </StackLayout>
-            <Editor Placeholder="Bình luận"
-                    Text="{Binding Comment}"
-                    HeightRequest="80"/>
+            <ListView ItemsSource="{Binding OrderDetails}"
+                          HasUnevenRows="True"
+                          BackgroundColor="#ecf0f1"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          HeightRequest="180"
+                          SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="orderDetail:OrderDetailHistoryModel">
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ProductName}"
+                                           HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="Số sao"
+                                           HorizontalOptions="StartAndExpand"/>
+                                <Entry Text="{Binding Rate1}"/>
+                                <Label Text="Đánh giá:"
+                                           HorizontalOptions="StartAndExpand"/>
+                                <Editor Placeholder="Nhập đánh giá tại đây"
+                                        HeightRequest="80"
+                                        Text="{Binding Comment1}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button Text="Đánh giá"
-                    Command="{Binding AddRatingCommand}"
-                    Margin="20,0,20,20"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"/>
+                    Command="{Binding AddRatingCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,33 +7,13 @@
              xmlns:orderDetail="clr-namespace:Phoenix.Mobile.Core.Models.OrderDetail;assembly=Phoenix.Mobile.Core"
              ControlTemplate="{StaticResource FullScreenHasBack}">
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Thông tin vận chuyển: "
-                   HorizontalOptions="Start"
-                   FontAttributes="Bold"
-                       FontSize="Medium"/>
-                <Label Text="{Binding Order.Status}"
-                   HorizontalOptions="Start"
-                       TextColor="Green"
-                       FontSize="Medium"/>
-            </StackLayout>
-
-            <Label Text="Địa chỉ nhận hàng: "
-                    HorizontalOptions="Start"
-                    FontAttributes="Bold"
-                    FontSize="Medium"/>
-
-            <Label Text="{Binding Order.Address}"
-                       HorizontalOptions="Start"
-                       FontSize="Medium"
-                   HeightRequest="100"/>
-
-
+        <StackLayout>
+            <Label Text="{Binding Order.Status, StringFormat='Thông tin vận chuyển: {0}'}"               
+                HorizontalOptions="StartAndExpand" />
+            <Label Text="{Binding Order.Address, StringFormat='Địa chỉ nhận hàng: {0}'}"               
+                HorizontalOptions="StartAndExpand" />
 
             <Label Text="Sản phẩm:"
-                    FontSize="Medium"
-                   FontAttributes="Bold"
                 HorizontalOptions="StartAndExpand" />
 
             <StackLayout>
@@ -47,17 +27,16 @@
                             <ViewCell>
                                 <Grid x:Name="Item">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition Height="40"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding ImagePath}"
-                                           Aspect="Fill"
+                                    <Image Source="@drawable/defaultcart"
                                        Grid.RowSpan="3"
                                        Grid.Column="0"
                                        VerticalOptions="Center"/>
@@ -66,7 +45,6 @@
                                        Grid.Row="0"
                                        Grid.ColumnSpan="2"
                                        Margin="5,0,0,0"
-                                           FontSize="Medium"
                                        Text="{Binding ProductName}"
                                        FontAttributes="Bold"
                                        HorizontalOptions="Start" />
@@ -74,7 +52,6 @@
                                     <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Margin="5,0,0,0"
-                                           FontSize="15"
                                        Text="{Binding Type}"
                                        HorizontalOptions="Start" />
 
@@ -89,8 +66,6 @@
                                        Grid.Column="2"
                                        Margin="5,0,0,0"
                                        Text="{Binding Price,StringFormat='{0:N0} đ'}"
-                                           FontSize="15"
-                                           FontAttributes="Bold"
                                        HorizontalOptions="End" />
                                 </Grid>
                             </ViewCell>
@@ -99,61 +74,37 @@
                 </ListView>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Tổng tiền:"
-                       HorizontalOptions="StartAndExpand" 
-                           FontAttributes="Bold"
-                           FontSize="Medium"/>
+                       HorizontalOptions="StartAndExpand" />
                     <Label Text="{Binding Order.Total, StringFormat='{0:N0} đ'}"
-                           FontSize="Medium"
-                           TextColor="Red"
                        HorizontalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>
             
             <StackLayout Orientation="Horizontal">
                 <Label Text="Đặt hàng lúc:"
-                       FontAttributes="Bold"
-                           FontSize="Medium"
                        HorizontalOptions="StartAndExpand" />
                 <Label Text="{Binding Order.OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
-                       HorizontalOptions="EndAndExpand"
-                       FontSize="Medium"/>
+                       HorizontalOptions="EndAndExpand" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Nhận hàng lúc:"
-                       FontAttributes="Bold"
-                           FontSize="Medium"
                        HorizontalOptions="StartAndExpand" />
                 <Label Text="{Binding Order.DeliveryDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
-                       HorizontalOptions="EndAndExpand" 
-                       FontSize="Medium"
-                       TextColor="Green"/>
+                       HorizontalOptions="EndAndExpand" />
             </StackLayout>
             <Button Text="Xem đánh giá của tôi"
                     IsVisible="{Binding ViewRatingButton}"                    
-                    Command="{Binding ViewRatingCommand}"
-                    Margin="20,10,20,10"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"
-                    />
+                    Command="{Binding ViewRatingCommand}"/>
             <Button Text="Đánh giá"
                     IsVisible="{Binding RatingButton}"                    
-                    Command="{Binding RatingCommand}"
-                    Margin="20,10,20,10"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"/>
+                    Command="{Binding RatingCommand}"/>
             <Button Text="Hủy đơn"
                     IsVisible="{Binding CancelButton}"
                     IsEnabled="False"
-                    Command="{Binding CancelCommand}"
-                    Margin="20,10,20,10"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"/>
+                    Command="{Binding CancelCommand}"/>
             <Button Text="Mua lại"
-                    Command="{Binding ReBuyCommand}"
-                    Margin="20,10,20,10"
-                         BackgroundColor="#0d0b4d"
-                        TextColor="White"/>
+                    Command="{Binding ReBuyCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

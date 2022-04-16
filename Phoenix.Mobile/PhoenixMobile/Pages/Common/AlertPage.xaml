@@ -26,7 +26,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="order:OrderModel">
                         <ViewCell>
-                            <StackLayout HeightRequest="80">
+                            <StackLayout>
                                 <Label Text="{Binding OrderDate, StringFormat='{0:dd T\\hMM yyyy HH:mm}'}"
                                        FontSize="Medium"
                                        FontAttributes="Bold"/>

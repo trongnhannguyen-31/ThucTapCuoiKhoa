@@ -5,7 +5,6 @@ namespace Phoenix.Shared.OrderDetail
 	public class OrderDetailHistoryDto
 	{
 		public int Image { get; set; }
-		public string ImagePath { get; set; }
 
 		public string Name { get; set; }
 

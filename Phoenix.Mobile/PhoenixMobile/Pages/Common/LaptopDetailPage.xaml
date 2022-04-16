@@ -7,27 +7,15 @@
              xmlns:rating="clr-namespace:Phoenix.Mobile.Core.Models.Rating;assembly=Phoenix.Mobile.Core"    
              x:DataType="common:LaptopDetailPageModel"
              x:Class="Phoenix.Mobile.Pages.Common.LaptopDetailPage"
-            >
+             ControlTemplate="{StaticResource FullScreenHasBack}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
 
 
-                <CarouselView ItemsSource="{Binding listImages}"
-                              HeightRequest="250">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Frame Margin="5"
-                                       Padding="5">
-                                    <Image Source="{Binding }"
-                                           HeightRequest="250"
-                                           Aspect="Fill"/>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+                <Image Source="@drawable/defaultcart"
+                   HeightRequest="200"
+                   VerticalOptions="Center"/>
 
                 <Label Text="{Binding Product.ProductName}"
                    FontSize="20"
@@ -68,7 +56,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Center"/>
 
-                <Grid BackgroundColor="#0d0b4d"
+                <Grid BackgroundColor="Black"
                   Padding="1"
                   Margin="10">
                     <Grid.RowDefinitions>
@@ -392,9 +380,7 @@
 
                 <Button Text="THÊM VÀO GIỎ HÀNG"
                     VerticalOptions="EndAndExpand"
-                    Margin="10"
-                        BackgroundColor="#0d0b4d"
-                        TextColor="White"
+                    Margin="20,0,20,20"
                         Command="{Binding AddItemToCart}"></Button>
                 <Label Text="Đánh giá sản phẩm"
                    FontAttributes="Bold"

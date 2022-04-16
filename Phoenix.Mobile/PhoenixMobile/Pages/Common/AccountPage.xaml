@@ -5,10 +5,10 @@
              x:Class="Phoenix.Mobile.Pages.Common.AccountPage"
              x:DataType="common:AccountPageModel">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#d1d1d1">
+        <StackLayout>
             <!--<Image Source="http://172.31.99.6:63199/Uploads/NSX/acer.png"
                    HeightRequest="100"/>-->
-            <Grid BackgroundColor="#0d0b4d">
+            <Grid BackgroundColor="#267cfc">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -41,29 +41,17 @@
             </Grid>
 
             <Button Text="Đơn hàng của tôi"
-                    Command="{Binding ViewOrderCommand}"
-                    Background="#0d0b4d"
-                    TextColor="White"
-                    Margin="10,10,10,5"/>
+                    Command="{Binding ViewOrderCommand}"/>
             <Button Text="Chỉnh sửa thông tin cá nhân"
-                    Command="{Binding AccountDetailCommand}"
-                    Background="#0d0b4d"
-                    TextColor="White"
-                    Margin="10,5,10,5"/>
+                    Command="{Binding AccountDetailCommand}"/>
             <StackLayout Orientation="Horizontal">
                 <Button Text="Đổi mật khẩu"
                         HorizontalOptions="StartAndExpand"
-                        Background="#0d0b4d"
-                    TextColor="White"
-                        WidthRequest="190"
-                    Margin="10,5,10,5"/>
+                        WidthRequest="210"/>
                 <Button Text="Đăng xuất"
                         HorizontalOptions="EndAndExpand"
                         Command="{Binding LogoutCommand}"
-                        Background="#0d0b4d"
-                    TextColor="White"
-                        WidthRequest="190"
-                    Margin="5,5,10,5"/>
+                        WidthRequest="210"/>
             </StackLayout>
             
         </StackLayout>

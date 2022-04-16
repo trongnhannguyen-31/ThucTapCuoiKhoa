@@ -26,8 +26,6 @@
         <Color x:Key="InverseTextColor">#ffffff</Color>
         <Color x:Key="WarningTextColor">#d02f2a</Color>
 
-        <Color x:Key="SearchButtonColor">#0d0b4d</Color>
-
         <Color x:Key="InputTextColor">#073707</Color>
         <Color x:Key="InputBackgroundColor">#ffffff</Color>
         <Color x:Key="PlaceholderColor">#95a8b6</Color>
@@ -654,15 +652,9 @@
         <Style x:Key="CommonButtonPrimary" TargetType="controls1:CommonButton">
             <Setter Property="Background" Value="{StaticResource MainThemeColor}"></Setter>
         </Style>
-
-        <Style x:Key="CommonButtonSearch" TargetType="controls1:CommonButton">
-            <Setter Property="Background" Value="{StaticResource SearchButtonColor}"></Setter>
-            <Setter Property="HeightButton" Value="40"></Setter>
-        </Style>
-
         <Style x:Key="CommonButtonSecondary" TargetType="controls1:CommonButton">
             <Setter Property="Background" Value="{StaticResource SecondaryColor}"></Setter>
-            <!--<Setter Property="HeightButton" Value="40"></Setter>-->
+            <Setter Property="HeightButton" Value="40"></Setter>
         </Style>
         <Style x:Key="CommonButtonNoIconSecondary" TargetType="controls1:CommonButton">
             <Setter Property="Background" Value="{StaticResource SecondaryColor}"></Setter>

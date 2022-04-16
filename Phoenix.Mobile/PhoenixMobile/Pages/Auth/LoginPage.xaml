@@ -25,11 +25,9 @@
             <controls:CommonInput Style="{StaticResource CommonInputPrimary}"
                                   IconColor="#00adef"
                                   TextColor="#00adef"
-                                  
                                   Text="{Binding Username}" Margin="0,15,0,0"
                                   Placeholder="Tên đăng nhập"
                                   ControlPadding="15,0,0,0"
-                                  HeightRequest="40"
                                   IconStart="{StaticResource IconPhone}"></controls:CommonInput>
             <controls:CommonInput Style="{StaticResource CommonInputPrimary}"
                                   TextColor="#00adef"
@@ -38,27 +36,23 @@
                                   ControlPadding="15,0,0,0"
                                   Placeholder="Mật khẩu"
                                   IsPassword="True"
-                                  HeightRequest="40"
                                   IconStart="{StaticResource IconKey}"></controls:CommonInput>
             <StackLayout Orientation="Horizontal">
-               
-                <!--<Label Margin="20"
-                       Text="Đăng ký tài khoản mới"
+                <CheckBox
+                          Color="#00adef"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Start"/>
+                <Label 
+                       Text="Ghi nhớ mật khẩu"
                        TextColor="#fff"
-                       VerticalTextAlignment="Center"></Label>-->
-                <controls:CommonButton Style="{StaticResource CommonButtonSecondary}" Margin="0,20,0,0"
-                                   IconStartWidth="0" ButtonPadding="50,0"
-                                   Text="Đăng ký" 
-                                   xe:TouchEffect.Color="AliceBlue"
-                                   xe:Commands.Tap="{Binding RegisterCommand}"
-                                   IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}"/>
+                       VerticalTextAlignment="Center"></Label>
                 <controls:CommonButton Style="{StaticResource CommonButtonPrimary}" Margin="0,20,0,0"
                                    IconStartWidth="0" ButtonPadding="50,0"
                                    Text="Đăng nhập" 
                                    xe:TouchEffect.Color="AliceBlue"
                                    xe:Commands.Tap="{Binding LoginCommand}"
                                    IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}"/>
-                <!--<Button Command="{Binding RegisterCommand}"/>-->
+                <Button Command="{Binding RegisterCommand}"/>
             </StackLayout>
             <StackLayout Margin="0,20,0,0"
                          IsVisible="{Binding IsBusy, Converter={x:Static converters:InverseBoolConverter.Instance}}">

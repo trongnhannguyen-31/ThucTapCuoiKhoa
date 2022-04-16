@@ -4,20 +4,22 @@
              x:Class="Phoenix.Mobile.Pages.Common.CartPage"
              xmlns:common="clr-namespace:Phoenix.Mobile.PageModels.Common" 
              xmlns:cartList="clr-namespace:Phoenix.Mobile.Core.Models.CartItem;assembly=Phoenix.Mobile.Core"
+             xmlns:converters="clr-namespace:Phoenix.Framework.Converters;assembly=Phoenix.Framework"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:behaviors="clr-namespace:Phoenix.Framework.Core;assembly=Phoenix.Framework"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects" 
+             xmlns:controls="clr-namespace:Phoenix.Mobile.Controls"
              x:Name="CartPageDetail"
              x:DataType="common:CartPageModel">
 
-    
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#d1d1d1">
+        <StackLayout>
             <ListView ItemsSource="{Binding CartList}"
                       SelectedItem="{Binding SelectedItem}"
                       x:Name="ListCartItem"
-                      BackgroundColor="White"
-                      SeparatorColor="#d9dbdb"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="True">
@@ -40,8 +42,7 @@
                                 </Grid.ColumnDefinitions>
                                 <BoxView Color="Green"
                                          Grid.RowSpan="3"/>
-                                <Image Source="{Binding Image1Path}"
-                                       Aspect="Fill"
+                                <Image Source="@drawable/defaultcart"
                                        Grid.RowSpan="3"
                                        Grid.Column="0"
                                        VerticalOptions="Center"/>
@@ -69,7 +70,7 @@
                                        Grid.Column="1"
                                        Grid.ColumnSpan="2"
                                        Margin="5,0,0,0"
-                                       Text="{Binding Source={x:Reference stepper}, Path=Value, StringFormat='Số lượng: {0}'}"
+                                       Text="{Binding Source={x:Reference stepper}, Path=Value}"
                                        BindingContext="{x:Reference stepper}"
                                        FontSize="Small"
                                        HorizontalOptions="Start"
@@ -115,33 +116,27 @@
             
             
 
+            <!--<StackLayout x:Name="Container">
+                <Label BindingContext="{x:Reference stepper}" Text="{Binding Value}" />
+                <Stepper Minimum="0" Maximum="99" x:Name="stepper" Increment="1" />
+            </StackLayout>-->
 
-            <StackLayout BackgroundColor="#0d0b4d" VerticalOptions="EndAndExpand" >
-                <!--<StackLayout Orientation="Horizontal" 
-                             BackgroundColor="#1b9642"
-                             HeightRequest="60">
+            <StackLayout BackgroundColor="#0394fc" VerticalOptions="EndAndExpand" >
+                <StackLayout Orientation="Horizontal">
                     <Label  Text="Tổng cộng" 
-                            TextColor="White"
                             FontSize="20"
                             HorizontalOptions="StartAndExpand"/>
                     <Label  Text="{Binding TotalPrice, StringFormat='{0:N0} đ'}" 
                             FontAttributes="Bold"
-                            TextColor="White"
                             FontSize="20"
                             HorizontalOptions="EndAndExpand"/>
-                </StackLayout>-->
+                </StackLayout>
                 <Button Text="Xóa"
-                        Margin="10"
-                        Command="{Binding RemoveItemCommand}"
-                        BackgroundColor="#007a7a"
-                        TextColor="White"/>
-                <Button Text="Mua hàng"
-                        Margin="10"
-                        BackgroundColor="#007a7a"
-                        TextColor="White"
-                        Command="{Binding ConfirmPageCommand}"/>
-
-
+                        Margin="0,20,0,20"
+                        Command="{Binding RemoveItemCommand}"></Button>
+                <Button Text="Thanh toán"
+                        Margin="0,20,0,20"
+                        Command="{Binding ConfirmPageCommand}"></Button>
 
             </StackLayout>
         </StackLayout>
