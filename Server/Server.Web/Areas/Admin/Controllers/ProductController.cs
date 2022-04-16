@@ -25,7 +25,8 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         private readonly IProductService _productService;
         private readonly IProductSKUService _productSKUService;
         private readonly IVendorService _vendorService;
-        public ProductController(IProductService productService, IProductSKUService productSKUService, IVendorService vendorService)
+
+        public ProductController(IProductService productService, IProductSKUService productSKUService, IVendorService vendorService, DataContext dataContext)
         {
             _productService = productService;
             _productSKUService = productSKUService;
@@ -207,18 +208,5 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
             context.Response.Write(str_image);
         }
         #endregion
-
-        public ActionResult AddImages(int id)
-        {
-            var model = new ProductModel();
-            model.Id = id;
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult UploadProductImages(int id, HttpPostedFileBase file)
-        {
-            return AddImages(id);
-        }
     }
 }

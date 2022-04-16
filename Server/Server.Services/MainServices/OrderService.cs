@@ -133,22 +133,25 @@ namespace Phoenix.Server.Services.MainServices
         // Thay đổi trạng thái
         public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
-            var order = _dataContext.Orders.Find(id);
+            var order = _dataContext.Orders.FirstOrDefault(d => d.Id == request.Id);
             var result = new BaseResponse<OrderDto>();
             try
             {
                 if (order.CancelRequest == false)
                 {
-                    if (order.Status == "Chờ xử lý")
+                    if (order.StatusId == 1)
                     {
                         order.Status = "Đã duyệt, đang xử lý";
+                        order.StatusId = 2;
                     }
-                    else if (order.Status == "Đã duyệt, đang xử lý")
+                    else if (order.StatusId == 2)
                     {
-                        var orders = GetOrderById(id);
+                        order.Status = "Đang giao hàng";
+                        order.StatusId = 3;
+                        //var orders = GetOrderById(id);
 
                         // Gán Id(Order) => Order_Id (OrderDeatil);
-                        OrderDetail.Order_Id = orders.Id;
+                        OrderDetail.Order_Id = order.Id;
                         // Lấy List của OrderDetail
                         var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
                         ListOrderDetail = orderDetail_Id.Data;
@@ -179,19 +182,66 @@ namespace Phoenix.Server.Services.MainServices
                             sku.Id = sku.Id;
                             sku.BuyCount = sku.BuyCount + (int)item.Quantity;
 
-                            order.Status = "Đang giao hàng";
                         }
-
-                    }
-                    else if (order.Status == "Đang giao hàng")
+                        
+                        
+                        await _dataContext.SaveChangesAsync();
+                    }                  
+                    else if (order.StatusId == 3)
                     {
                         order.Status = "Đã giao hàng thành công";
+                        order.StatusId = 4;
                         order.DeliveryDate = DateTime.Now;
                     }
                 }
                 else if (order.CancelRequest == true)
                 {
-                    order.Status = "Hủy đơn hàng thành công";
+                    if (order.Status == "Chờ giao hàng")
+                    {
+                        order.CancelRequest = false;
+
+                        order.Status = "Hủy đơn hàng thành công";
+                    }
+                    else
+                    {
+                        //var orders = GetOrderById(id);
+
+                        // Gán Id(Order) => Order_Id (OrderDeatil);
+                        OrderDetail.Order_Id = order.Id;
+                        // Lấy List của OrderDetail
+                        var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
+                        ListOrderDetail = orderDetail_Id.Data;
+
+                        foreach (var item in ListOrderDetail)
+                        {
+                            // ProductSKU
+                            var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+
+                            // Warehouse
+                            WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+
+                            var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
+                            ListWarehouse = warehouse_Id.Data;
+
+                            foreach (var warehouses in ListWarehouse)
+                            {
+                                var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
+                                {
+                                    Id = warehouses.Id,
+                                    ProductSKU_Id = warehouses.ProductSKU_Id,
+                                    Quantity = warehouses.Quantity,
+                                    NewQuantity = (int)+item.Quantity
+
+                                });
+                            }
+
+                            sku.Id = sku.Id;
+                            sku.BuyCount = sku.BuyCount - (int)item.Quantity;
+
+                            order.CancelRequest = false;
+                            order.Status = "Hủy đơn hàng thành công";
+                        }
+                    }
                 }
 
                 await _dataContext.SaveChangesAsync();

@@ -11,6 +11,8 @@ namespace Phoenix.Shared.Order
 
         public string Status { get; set; }
 
+        public int StatusId { get; set; }
+
         public string Cancel_Name { get; set; }
 
         public DateTime? DeliveryDate { get; set; }

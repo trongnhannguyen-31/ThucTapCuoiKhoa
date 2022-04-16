@@ -56,7 +56,8 @@ namespace Phoenix.Server.Services.MainServices
 
                 if (request.Customer_Id > 0)
                 {
-                    query = query.Where(d => d.Customer_Id == request.Customer_Id);
+                    //query = query.Where(d => d.Customer_Id == request.Customer_Id);
+                    query = query.Where(d => d.Customer.FullName == request.Customer_Name);
 
                 }
 
