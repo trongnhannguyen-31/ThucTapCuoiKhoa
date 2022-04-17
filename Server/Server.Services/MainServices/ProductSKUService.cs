@@ -257,6 +257,11 @@ namespace Phoenix.Server.Services.MainServices
                     query = query.Where(d => d.Product_Id == request.Product_Id);
                 }
 
+                if (!string.IsNullOrEmpty(request.Ram))
+                {
+                    query = query.Where(d => d.Ram.Contains(request.Ram));
+                }
+
                 if (!string.IsNullOrEmpty(request.Screen))
                 {
                     query = query.Where(d => d.Screen.Contains(request.Screen));

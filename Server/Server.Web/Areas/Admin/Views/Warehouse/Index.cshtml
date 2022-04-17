@@ -20,13 +20,13 @@
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
                 <label>Tên Sản Phẩm</label>
-                <input type="text" id="WarehouseId" class="form-control">
+                <input type="text" id="Name" class="form-control">
             </div>
         </div>
         <div class="grid mt-3">
             <div class="w-full sm:w-auto flex mt-5 sm:mt-0 ml-auto">
                 <button type="button" onclick="onResetSearch();" class="btn btn-danger text-white shadow-md mr-2">Xóa tìm kiếm</button>
-                <button type="button" onclick="onSearch();" class="btn btn-warning text-white shadow-md mr-2">Tìm kiếm</button>
+                <button type="button" onclick="onSearch();" class="btn btn-success text-white shadow-md mr-2">Tìm kiếm</button>
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
             table.setData();
         }
         let onResetSearch = (e) => {
-            $('#NameProduct').val('');
+            $('#Name').val('');
             table.setData();
         }
     </script>

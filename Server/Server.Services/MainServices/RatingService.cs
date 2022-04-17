@@ -23,7 +23,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<RatingDto>> DeleteRatingsById(int Id);
         
         Task<BaseResponse<RatingAppDto>> GetRatingByProductSKUId(RatingAppRequest request);
-        /////
+
         Task<CrudResult> AddRating(RatingAppRequest request);
     }
     public class RatingService : IRatingService
@@ -58,7 +58,6 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     //query = query.Where(d => d.Customer_Id == request.Customer_Id);
                     query = query.Where(d => d.Customer.FullName == request.Customer_Name);
-
                 }
 
                 if (request.ProductSKU_Id > 0)

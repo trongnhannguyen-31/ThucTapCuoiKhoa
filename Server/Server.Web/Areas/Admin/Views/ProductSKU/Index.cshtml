@@ -22,7 +22,7 @@
     <div class="intro-y box p-5">
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-12 lg:col-span-6">
-                <label>Tên Sản Phẩm</label>
+                <label>Sản phẩm</label>
                 <input type="text" id="NameProduct" class="form-control">
             </div>
         </div>
@@ -52,6 +52,8 @@
             ajaxConfig: "post",
             ajaxRequesting: function (url, params) {
                 params.NameProduct = $('#NameProduct').val();
+                params.Ram = $('#Ram').val();
+
             },
             ajaxResponse: function (url, params, response) {
                 return response;
@@ -76,7 +78,7 @@
                         return `<a href="../Update/${cell.getData().Id}" class="text-theme-1 dark:text-theme-10"> ${cell.getData().NameProduct}</a>`
                     }
                 },
-                { title: "Giá bán", field: "Price", sorter: "string", width: 180 },
+                { title: "Giá bán", field: "Price", sorter: "number", width: 180 },
                 { title: "Chip xử lý", field: "Processor", sorter: "string", width: 180 },
                 { title: "Ram", field: "Ram", sorter: "string", width: 180 },
                 { title: "Bộ nhớ", field: "Storage", sorter: "string", width: 180 },
@@ -102,7 +104,7 @@
             table.setData();
         }
         let onResetSearch = (e) => {
-            $('#NameProduct').val('');
+            $('#Ram').val('');
             table.setData();
         }
     </script>
