@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Phoenix.Server.Data.Entity;
 using Phoenix.Server.Web.Areas.Admin.Models.Customer;
+using Phoenix.Server.Web.Areas.Admin.Models.Order;
 using Phoenix.Server.Web.Areas.Admin.Models.OrderDetail;
 using Phoenix.Server.Web.Areas.Admin.Models.Product;
 using Phoenix.Server.Web.Areas.Admin.Models.ProductSKU;
@@ -35,6 +36,8 @@ namespace Phoenix.Server.Web.Infrastructure
             CreateMap<OrderDetail, OrderDetailModel>();
 
             CreateMap<Vendor, VendorModel>();
+
+            CreateMap<Order, OrderModel>();
 
         }
     }

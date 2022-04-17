@@ -21,6 +21,7 @@ namespace Phoenix.Server.Services.MainServices
     public interface IOrderService
     {
         Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
+        Order GetOrderById(int id);
 
         Task<BaseResponse<OrderDto>> OrdersCancelById(int id, OrderRequest request);
         Task<BaseResponse<OrderDto>> GetAllOrders(OrderRequest request);
@@ -134,6 +135,7 @@ namespace Phoenix.Server.Services.MainServices
         public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
         {
             var order = _dataContext.Orders.FirstOrDefault(d => d.Id == request.Id);
+
             var result = new BaseResponse<OrderDto>();
             try
             {
@@ -141,15 +143,7 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     if (order.StatusId == 1)
                     {
-                        order.Status = "Đã duyệt, đang xử lý";
-                        order.StatusId = 2;
-                    }
-                    else if (order.StatusId == 2)
-                    {
-                        order.Status = "Đang giao hàng";
-                        order.StatusId = 3;
-                        //var orders = GetOrderById(id);
-
+                        order.Id = request.Id;
                         // Gán Id(Order) => Order_Id (OrderDeatil);
                         OrderDetail.Order_Id = order.Id;
                         // Lấy List của OrderDetail
@@ -181,14 +175,20 @@ namespace Phoenix.Server.Services.MainServices
 
                             sku.Id = sku.Id;
                             sku.BuyCount = sku.BuyCount + (int)item.Quantity;
-
                         }
-                        
-                        
-                        await _dataContext.SaveChangesAsync();
-                    }                  
+
+                        order.Status = "Đã duyệt, đang xử lý";
+                        order.StatusId = 2;
+                    }
+                    else if (order.StatusId == 2)
+                    {
+                        order.Id = request.Id;
+                        order.Status = "Đang giao hàng";
+                        order.StatusId = 3;
+                    }
                     else if (order.StatusId == 3)
                     {
+                        order.Id = request.Id;
                         order.Status = "Đã giao hàng thành công";
                         order.StatusId = 4;
                         order.DeliveryDate = DateTime.Now;
@@ -196,15 +196,18 @@ namespace Phoenix.Server.Services.MainServices
                 }
                 else if (order.CancelRequest == true)
                 {
-                    if (order.Status == "Chờ giao hàng")
+                    if (order.StatusId == 1)
                     {
+                        order.Id = request.Id;
                         order.CancelRequest = false;
 
                         order.Status = "Hủy đơn hàng thành công";
+                        order.StatusId = 5;
+                        order.DeliveryDate = DateTime.Now;
                     }
                     else
                     {
-                        //var orders = GetOrderById(id);
+                        order.Id = request.Id;
 
                         // Gán Id(Order) => Order_Id (OrderDeatil);
                         OrderDetail.Order_Id = order.Id;
@@ -240,6 +243,8 @@ namespace Phoenix.Server.Services.MainServices
 
                             order.CancelRequest = false;
                             order.Status = "Hủy đơn hàng thành công";
+                            order.StatusId = 5;
+                            order.DeliveryDate = DateTime.Now;
                         }
                     }
                 }

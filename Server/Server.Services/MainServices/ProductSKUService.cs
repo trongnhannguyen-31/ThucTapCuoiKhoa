@@ -19,6 +19,7 @@ namespace Phoenix.Server.Services.MainServices
         // Nhap
         Product GetProductById(int id);
         ProductSKU GetProductSKUById(int id);
+
         Task<BaseResponse<ProductSKUDto>> GetAllProductSKUs(ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> CreateProductSKUs(ProductSKURequest request);
         Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request);
@@ -136,6 +137,7 @@ namespace Phoenix.Server.Services.MainServices
         // Get ProducutSKU ById
         public ProductSKU GetProductSKUById(int id) => _dataContext.ProductSKUs.Find(id);
 
+
         // Update ProductSKU
         public async Task<BaseResponse<ProductSKUDto>> UpdateProductSKUs(ProductSKURequest request)
         {
@@ -175,37 +177,16 @@ namespace Phoenix.Server.Services.MainServices
             return result;
         }
 
-        //public async Task<BaseResponse<ProductSKUDto>> UpdateBuyCountSKUs(ProductSKURequest request)
-        //{
-        //    var result = new BaseResponse<ProductSKUDto>();
-        //    try
-        //    {
-        //        var productSKU = GetProductSKUById(request.Id);
-
-        //        productSKU.Id = request.Id;
-        //        productSKU.BuyCount = request.BuyCount + request.NewBuy;
-        //        productSKU.UpdatedAt = DateTime.Now;
-
-        //        await _dataContext.SaveChangesAsync();
-        //        result.Success = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Success = false;
-        //        result.Message = ex.Message;
-        //    }
-
-        //    return result;
-        //}
         public async Task<BaseResponse<ProductSKUDto>> UpdateBuyCountSKUs(ProductSKURequest request)
         {
             var result = new BaseResponse<ProductSKUDto>();
             try
             {
-                var warehouses = GetProductSKUById(request.Id);
+                var productSKU = GetProductSKUById(request.Id);
 
-                warehouses.Id = warehouses.Id;
-                warehouses.BuyCount = warehouses.BuyCount + request.NewBuy;
+                productSKU.Id = request.Id;
+                productSKU.BuyCount = request.BuyCount;
+                productSKU.UpdatedAt = DateTime.Now;
 
                 await _dataContext.SaveChangesAsync();
                 result.Success = true;
@@ -271,6 +252,7 @@ namespace Phoenix.Server.Services.MainServices
                 {
                     query = query.Where(d => d.Deleted.Equals(request.Deleted));
                 }
+
 
                 query = query.OrderByDescending(d => d.Id);
 

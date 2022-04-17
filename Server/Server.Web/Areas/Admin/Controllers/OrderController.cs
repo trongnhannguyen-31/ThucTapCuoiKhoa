@@ -1,4 +1,5 @@
-﻿using Falcon.Web.Framework.Kendoui;
+﻿using Falcon.Web.Core.Helpers;
+using Falcon.Web.Framework.Kendoui;
 using Phoenix.Server.Services.MainServices;
 using Phoenix.Server.Web.Areas.Admin.Models.Order;
 using Phoenix.Server.Web.Areas.Admin.Models.OrderDetail;
@@ -83,13 +84,14 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
             var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
             {
-                Id = model.Id
+                Id = model.Id,
+                Status = model.Status,
+                StatusId = model.StatusId,
             });
 
             SuccessNotification("Đổi trạng thái thành công");
             return RedirectToAction("Index");
         }
-
         #endregion
     }
 }

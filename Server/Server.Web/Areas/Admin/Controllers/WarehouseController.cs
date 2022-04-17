@@ -97,7 +97,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
             await _warehouseService.DeleteWarehousesById(project.Id);
             SuccessNotification("Đã xóa thành công");
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Product");
         }
 
         #region

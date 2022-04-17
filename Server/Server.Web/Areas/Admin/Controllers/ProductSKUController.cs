@@ -126,6 +126,11 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
         public async Task<ActionResult> Update(ProductSKUModel model)
         {
             var projetc = _productSKUService.GetProductSKUById(model.Id);
+
+            DataContext db = new DataContext();
+
+            ViewBag.Product_Id = new SelectList(db.Products.OrderBy(n => n.Name), "Id", "Name", projetc.Product_Id);
+
             if (projetc == null)
                 return RedirectToAction("List");
             if (!ModelState.IsValid)
@@ -167,12 +172,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
             await _productSKUService.DeleteProductSKUs(project.Id);
             SuccessNotification("Xóa đại lý thành công");
-            return RedirectToAction("List");
+            return RedirectToAction("Index", "Product");
         }
-
-        #region
-
-
-        #endregion
     }
 }

@@ -74,7 +74,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 return View(model);
             }
             SuccessNotification("Thêm mới thành công");
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
 
         // Update ProductType

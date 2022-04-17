@@ -27,7 +27,7 @@ namespace Phoenix.Server.Services.MainServices
         Task<BaseResponse<WarehouseDto>> UpdateWarehouses(WarehouseRequest request);
 
         Task<BaseResponse<WarehouseDto>> DeleteWarehousesById(int Id);
-        /// 
+
         Task<BaseResponse<WarehouseDto>> GetWarehouseByProductSKUId(WarehouseRequest request);
 
         Task<CrudResult> UpdateWarehouseApp(int Id, WarehouseRequest request);
