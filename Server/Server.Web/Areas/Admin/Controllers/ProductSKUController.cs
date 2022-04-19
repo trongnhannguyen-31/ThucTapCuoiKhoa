@@ -41,6 +41,7 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
                 PageSize = command.PageSize,
                 Product_Id = model.Product_Id,
                 Ram = model.Ram,
+                Deleted = false,
             });
 
             var gridModel = new DataSourceResult

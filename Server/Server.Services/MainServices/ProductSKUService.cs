@@ -233,7 +233,7 @@ namespace Phoenix.Server.Services.MainServices
                 var query = _dataContext.ProductSKUs.AsQueryable();
 
                 //filter
-                if (request.Product_Id > 0)
+                /*if (request.Product_Id > 0)
                 {
                     query = query.Where(d => d.Product_Id == request.Product_Id);
                 }
@@ -251,14 +251,17 @@ namespace Phoenix.Server.Services.MainServices
                 if (request.Deleted == false)
                 {
                     query = query.Where(d => d.Deleted.Equals(request.Deleted));
-                }
+                }*/
 
+                query = query.Where (x => x.Product_Id == id);
+                query = query.Where(x => x.Deleted == false);
 
                 query = query.OrderByDescending(d => d.Id);
 
                 var list = _dataContext.ProductSKUs.Where(p => p.Product_Id.Equals(id));
+                var i = query.Count();
 
-                var data = await list.ToListAsync();
+                var data = await query.ToListAsync();
                 result.Data = data.MapTo<ProductSKUDto>();
                 result.Success = true;
             
