@@ -20,7 +20,7 @@ namespace Phoenix.Server.Services.MainServices
 {
     public interface IOrderService
     {
-        Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request);
+        void ChangeStatusById(int id, OrderRequest request);
         Order GetOrderById(int id);
 
         Task<BaseResponse<OrderDto>> OrdersCancelById(int id, OrderRequest request);
@@ -130,136 +130,279 @@ namespace Phoenix.Server.Services.MainServices
         // Lấy ID
         public Order GetOrderById(int id) => _dataContext.Orders.Find(id);
 
-
-        // Thay đổi trạng thái
-        public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
+        public   void ChangeStatusById(int Id, OrderRequest request)
         {
-            var order = _dataContext.Orders.FirstOrDefault(d => d.Id == request.Id);
-
-            var result = new BaseResponse<OrderDto>();
-            try
-            {
-                if (order.CancelRequest == false)
+                //await _dataContext.SaveChangesAsync();
+                using( var trans = _dataContext.Database.BeginTransaction())
                 {
-                    if (order.StatusId == 1)
+                    try
                     {
-                        order.Id = request.Id;
-                        // Gán Id(Order) => Order_Id (OrderDeatil);
-                        OrderDetail.Order_Id = order.Id;
-                        // Lấy List của OrderDetail
-                        var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
-                        ListOrderDetail = orderDetail_Id.Data;
+                    var orderDetails = _dataContext.OrderDetails.AsQueryable().Where(x => x.Order_Id == Id).ToList();
+                    var warehouses = _dataContext.Warehouses.AsQueryable().ToList();
+                    var productSKUs= _dataContext.ProductSKUs.AsQueryable().ToList();
+                    var Order =  _dataContext.Orders.FirstOrDefault(s => s.Id == Id);
+                    if (Order.CancelRequest == false)
+                    {
 
-                        foreach (var item in ListOrderDetail)
+                        if (request.StatusId == 1)
                         {
-                            // ProductSKU
-                            var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+                            Order.Id = request.Id;
+                            // Gán Id(Order) => Order_Id (OrderDeatil);
+                            OrderDetail.Order_Id = Order.Id;
+                            // Lấy List của OrderDetail
 
-                            // Warehouse
-                            WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
 
-                            var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
-                            ListWarehouse = warehouse_Id.Data;
-
-                            foreach (var warehouses in ListWarehouse)
+                            foreach (var item in orderDetails)
                             {
-                                var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
-                                {
-                                    Id = warehouses.Id,
-                                    ProductSKU_Id = warehouses.ProductSKU_Id,
-                                    Quantity = warehouses.Quantity,
-                                    NewQuantity = (int)-item.Quantity
+                                
+                                var sku = productSKUs.FirstOrDefault(s => s.Id == item.ProductSKU_Id);
+                                var item_Warehouses = warehouses.FirstOrDefault(s => s.ProductSKU_Id == item.ProductSKU_Id);
 
-                                });
+                                item_Warehouses.ProductSKU_Id = item.ProductSKU_Id;
+                                item_Warehouses.Quantity = item_Warehouses.Quantity - (int)item.Quantity;
+
+                                sku.Id = sku.Id;
+                                sku.BuyCount = sku.BuyCount + (int)item.Quantity;
                             }
 
-                            sku.Id = sku.Id;
-                            sku.BuyCount = sku.BuyCount + (int)item.Quantity;
+                            Order.Status = "Đã duyệt, đang xử lý";
+                            Order.StatusId = 2;
+
                         }
-
-                        order.Status = "Đã duyệt, đang xử lý";
-                        order.StatusId = 2;
+                        else {
+                            Order.Status = request.Status;
+                            Order.StatusId = request.StatusId;
+                        }
                     }
-                    else if (order.StatusId == 2)
+                    else if (Order.CancelRequest == true)
                     {
-                        order.Id = request.Id;
-                        order.Status = "Đang giao hàng";
-                        order.StatusId = 3;
-                    }
-                    else if (order.StatusId == 3)
-                    {
-                        order.Id = request.Id;
-                        order.Status = "Đã giao hàng thành công";
-                        order.StatusId = 4;
-                        order.DeliveryDate = DateTime.Now;
-                    }
-                }
-                else if (order.CancelRequest == true)
-                {
-                    if (order.StatusId == 1)
-                    {
-                        order.Id = request.Id;
-                        order.CancelRequest = false;
-
-                        order.Status = "Hủy đơn hàng thành công";
-                        order.StatusId = 5;
-                        order.DeliveryDate = DateTime.Now;
-                    }
-                    else
-                    {
-                        order.Id = request.Id;
-
-                        // Gán Id(Order) => Order_Id (OrderDeatil);
-                        OrderDetail.Order_Id = order.Id;
-                        // Lấy List của OrderDetail
-                        var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
-                        ListOrderDetail = orderDetail_Id.Data;
-
-                        foreach (var item in ListOrderDetail)
+                        if (request.StatusId == 1)
                         {
-                            // ProductSKU
-                            var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+                            Order.Status = "Đã hủy đơn hàng thành công";
+                            Order.StatusId = 5;
+                        }
+                        else
+                        {
+                            Order.Id = request.Id;
+                            // Gán Id(Order) => Order_Id (OrderDeatil);
+                            OrderDetail.Order_Id = Order.Id;
+                            // Lấy List của OrderDetail
 
-                            // Warehouse
-                            WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
-
-                            var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
-                            ListWarehouse = warehouse_Id.Data;
-
-                            foreach (var warehouses in ListWarehouse)
+                            foreach (var item in orderDetails)
                             {
-                                var warehouses_data = _warehouseService.UpdateWarehouses(new WarehouseRequest
-                                {
-                                    Id = warehouses.Id,
-                                    ProductSKU_Id = warehouses.ProductSKU_Id,
-                                    Quantity = warehouses.Quantity,
-                                    NewQuantity = (int)+item.Quantity
 
-                                });
+                                var sku = productSKUs.FirstOrDefault(s => s.Id == item.ProductSKU_Id);
+
+                                var item_Warehouses = warehouses.FirstOrDefault(s => s.ProductSKU_Id == item.ProductSKU_Id);
+                                
+                                item_Warehouses.ProductSKU_Id = item.ProductSKU_Id;
+                                item_Warehouses.Quantity = item_Warehouses.Quantity + (int)item.Quantity;
+                                sku.Id = sku.Id;
+                                sku.BuyCount = sku.BuyCount - (int)item.Quantity;
                             }
 
-                            sku.Id = sku.Id;
-                            sku.BuyCount = sku.BuyCount - (int)item.Quantity;
+                            Order.Status = "Đã hủy đơn hàng thành công";
+                            Order.StatusId = 5;
+                        }    
 
-                            order.CancelRequest = false;
-                            order.Status = "Hủy đơn hàng thành công";
-                            order.StatusId = 5;
-                            order.DeliveryDate = DateTime.Now;
-                        }
+                    }
+
+                    //else if (Order.CancelRequest == true)
+                    //{
+                    //    if (Order.StatusId == 1)
+                    //    {
+                    //        Order.Id = request.Id;
+                    //        Order.CancelRequest = false;
+
+                    //        Order.Status = "Hủy đơn hàng thành công";
+                    //        Order.StatusId = 5;
+                    //        Order.DeliveryDate = DateTime.Now;
+                    //    }
+                    //    else
+                    //    {
+                    //        Order.Id = request.Id;
+
+                    //        // Gán Id(Order) => Order_Id (OrderDeatil);
+                    //        OrderDetail.Order_Id = Order.Id;
+                    //        // Lấy List của OrderDetail
+                    //        var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
+                    //        ListOrderDetail = orderDetail_Id.Data;
+
+                    //        foreach (var item in ListOrderDetail)
+                    //        {
+                    //            // ProductSKU
+                    //            var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+
+                    //            // Warehouse
+                    //            WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+
+                    //            var warehouse_Id =  GetAllWarehouseByOrderDetail(WarehouseRequest);
+                    //            ListWarehouse = warehouse_Id.Data;
+
+                    //            foreach (var warehouses in ListWarehouse)
+                    //            {
+                    //                var warehouses_data =  _warehouseService.UpdateWarehouses(new WarehouseRequest
+                    //                {
+                    //                    Id = warehouses.Id,
+                    //                    ProductSKU_Id = warehouses.ProductSKU_Id,
+                    //                    Quantity = warehouses.Quantity,
+                    //                    NewQuantity = (int)+item.Quantity
+
+                    //                });
+                    //            }
+
+                    //            sku.Id = sku.Id;
+                    //            sku.BuyCount = sku.BuyCount - (int)item.Quantity;
+
+                    //            Order.CancelRequest = false;
+                    //            Order.Status = "Hủy đơn hàng thành công";
+                    //            Order.StatusId = 5;
+                    //            Order.DeliveryDate = DateTime.Now;
+                    //        }
+                    //    }
+                    //}
+
+
+                    trans.Commit();
+                     _dataContext.SaveChanges();
+                }
+                    catch (Exception e)
+                    {
+                    trans.Rollback();
                     }
                 }
-
-                await _dataContext.SaveChangesAsync();
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }
-
-            return result;
         }
+        // Thay đổi trạng thái
+        //public async Task<BaseResponse<OrderDto>> ChangeStatusById(int id, OrderRequest request)
+        //{
+        //    var order = _dataContext.Orders.FirstOrDefault(d => d.Id == id);
+
+        //    var result = new BaseResponse<OrderDto>();
+        //    try
+        //    {
+        //        if (order.CancelRequest == false)
+        //        {
+
+        //            if (request.StatusId == 1)
+        //            {
+        //                order.Id = request.Id;
+        //                // Gán Id(Order) => Order_Id (OrderDeatil);
+        //                OrderDetail.Order_Id = order.Id;
+        //                // Lấy List của OrderDetail
+        //                var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
+        //                ListOrderDetail = orderDetail_Id.Data;
+
+        //                //foreach (var item in ListOrderDetail)
+        //                //{
+        //                //    // ProductSKU
+        //                //    var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+
+        //                //    // Warehouse
+        //                //    WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+
+        //                //    var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
+        //                //    ListWarehouse = warehouse_Id.Data;
+
+        //                //    foreach (var warehouses in ListWarehouse)
+        //                //    {
+        //                //        var warehouses_data = await _warehouseService.UpdateWarehouses(new WarehouseRequest
+        //                //        {
+        //                //            Id = warehouses.Id,
+        //                //            ProductSKU_Id = warehouses.ProductSKU_Id,
+        //                //            Quantity = warehouses.Quantity,
+        //                //            NewQuantity = (int)-item.Quantity
+
+        //                //        });
+        //                //    }
+
+        //                //    sku.Id = sku.Id;
+        //                //    sku.BuyCount = sku.BuyCount + (int)item.Quantity;
+        //                //}
+
+        //                //order.Status = "Đã duyệt, đang xử lý";
+        //                //order.StatusId = 2;
+
+        //            }
+        //            //else if (order.StatusId == 2)
+        //            //{
+        //            //    order.Status = "Đang giao hàng";
+        //            //    order.StatusId = 3;
+        //            //}
+        //            //else if (order.StatusId == 3)
+        //            //{
+        //            //    order.Status = "Đã giao hàng thành công";
+        //            //    order.StatusId = 4;
+        //            //    order.DeliveryDate = DateTime.Now;
+        //            //}
+
+        //        }
+        //        else if (order.CancelRequest == true)
+        //        {
+        //            if (order.StatusId == 1)
+        //            {
+        //                order.Id = request.Id;
+        //                order.CancelRequest = false;
+
+        //                order.Status = "Hủy đơn hàng thành công";
+        //                order.StatusId = 5;
+        //                order.DeliveryDate = DateTime.Now;
+        //            }
+        //            else
+        //            {
+        //                order.Id = request.Id;
+
+        //                // Gán Id(Order) => Order_Id (OrderDeatil);
+        //                OrderDetail.Order_Id = order.Id;
+        //                // Lấy List của OrderDetail
+        //                var orderDetail_Id = await GetAllOrderDetailByOrderId(OrderDetail);
+        //                ListOrderDetail = orderDetail_Id.Data;
+
+        //                foreach (var item in ListOrderDetail)
+        //                {
+        //                    // ProductSKU
+        //                    var sku = _productSKUService.GetProductSKUById(item.ProductSKU_Id);
+
+        //                    // Warehouse
+        //                    WarehouseRequest.ProductSKU_Id = item.ProductSKU_Id;
+
+        //                    var warehouse_Id = await GetAllWarehouseByOrderDetail(WarehouseRequest);
+        //                    ListWarehouse = warehouse_Id.Data;
+
+        //                    foreach (var warehouses in ListWarehouse)
+        //                    {
+        //                        var warehouses_data = await _warehouseService.UpdateWarehouses(new WarehouseRequest
+        //                        {
+        //                            Id = warehouses.Id,
+        //                            ProductSKU_Id = warehouses.ProductSKU_Id,
+        //                            Quantity = warehouses.Quantity,
+        //                            NewQuantity = (int)+item.Quantity
+
+        //                        });
+        //                    }
+
+        //                    sku.Id = sku.Id;
+        //                    sku.BuyCount = sku.BuyCount - (int)item.Quantity;
+
+        //                    order.CancelRequest = false;
+        //                    order.Status = "Hủy đơn hàng thành công";
+        //                    order.StatusId = 5;
+        //                    order.DeliveryDate = DateTime.Now;
+        //                }
+        //            }
+        //        }
+        //        order.Status = request.Status;
+        //        order.StatusId = request.StatusId;
+        //        await _dataContext.SaveChangesAsync();
+        //        result.Success = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Success = false;
+        //        result.Message = ex.Message;
+        //    }
+
+        //    return result;
+        //}
 
         #region web
         // Lấy Id của OrderDetail

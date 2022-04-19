@@ -77,16 +77,26 @@ namespace Phoenix.Server.Web.Areas.Admin.Controllers
 
         #region ChangStatus
         // Thay đổi trạng thái
-        public ActionResult ChangeStatus(int id)
+        public  ActionResult ChangeStatus(int id)
         {
-            var model = new OrderModel();
-            model.Id = id;
-
-            var projectDto = _orderService.ChangeStatusById(model.Id, new OrderRequest()
+            var order = _orderService.GetOrderById(id);
+            if (order.StatusId == 2)
             {
-                Id = model.Id,
-                Status = model.Status,
-                StatusId = model.StatusId,
+                order.Status = "Đang giao hàng";
+                order.StatusId = 3;
+            }
+            else if (order.StatusId == 3)
+            {
+                order.Status = "Đã giao hàng thành công";
+                order.StatusId = 4;
+                order.DeliveryDate = DateTime.Now;
+            }
+            _orderService.ChangeStatusById(id, new OrderRequest()
+            {
+                Id = id,
+                Status = order.Status,
+                StatusId = order.StatusId,
+                CancelRequest=order.CancelRequest,
             });
 
             SuccessNotification("Đổi trạng thái thành công");
