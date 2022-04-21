@@ -780,6 +780,9 @@
     <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Vendor\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Cancel.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_CreateOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Update.cshtml" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all-vsdoc.js" />
     <None Include="assets\js\kendo\2019.3.1023\kendo.all.min.intellisense.js" />
     <Content Include="assets\js\kendo\2019.3.1023\kendo.all.min.js" />

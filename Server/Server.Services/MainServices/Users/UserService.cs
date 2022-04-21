@@ -23,6 +23,10 @@ namespace Phoenix.Server.Services.MainServices.Users
 
         Task<BaseResponse<UserDto>> GetAllUsers(UserRequest request);
 
+        Task<BaseResponse<UserDto>> CreateUsersAdmin(UserRequest request);
+
+        Task<BaseResponse<UserDto>> DeleteUserById(int Id);
+
         ////
         Task<CrudResult> CreateUser(UserRequest request);
         Task<BaseResponse<UserDto>> GetLatestUser(UserRequest request);
@@ -83,6 +87,11 @@ namespace Phoenix.Server.Services.MainServices.Users
                     query = query.Where(d => d.UserName.Contains(request.UserName));
                 }
 
+                if (request.Deleted == false)
+                {
+                    query = query.Where(d => d.Deleted.Equals(request.Deleted));
+                }
+
                 query = query.OrderByDescending(d => d.Id);
 
                 var data = await query.Skip(request.Page * request.PageSize).Take(request.PageSize).ToListAsync();
@@ -141,6 +150,62 @@ namespace Phoenix.Server.Services.MainServices.Users
 
             return result;
         }
+        #endregion
+
+        #region CreateUserAdmin
+        public async Task<BaseResponse<UserDto>> CreateUsersAdmin(UserRequest request)
+        {
+            var result = new BaseResponse<UserDto>();
+            var salt = _encryptionService.CreateSaltKey(SaltLenght);
+
+            try
+            {
+                User userAdmin = new User
+                {
+                    UserName = request.UserName,
+                    DisplayName = request.DisplayName,
+                    Salt = salt,
+                    Password = _encryptionService.CreatePasswordHash(request.Password, salt),
+                    Active = true,
+                    Roles = "Admin",
+                    Deleted = false,
+                };
+                _dataContext.Users.Add(userAdmin);
+                await _dataContext.SaveChangesAsync();
+
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResponse<UserDto>> DeleteUserById(int Id)
+        {
+            var result = new BaseResponse<UserDto>();
+            try
+            {
+
+                var users = GetUserById(Id);
+
+                users.Deleted = true;
+
+                await _dataContext.SaveChangesAsync();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }

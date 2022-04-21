@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Falcon.Web.Core.Auth;
 using Phoenix.Server.Data.Entity;
+using Phoenix.Server.Web.Areas.Admin.Models.Account;
 using Phoenix.Server.Web.Areas.Admin.Models.Customer;
 using Phoenix.Server.Web.Areas.Admin.Models.Order;
 using Phoenix.Server.Web.Areas.Admin.Models.OrderDetail;
@@ -39,6 +41,7 @@ namespace Phoenix.Server.Web.Infrastructure
 
             CreateMap<Order, OrderModel>();
 
+            CreateMap<User, UserModel>();
         }
     }
 }

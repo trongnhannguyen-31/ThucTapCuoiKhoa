@@ -1,0 +1,30 @@
+﻿@using Falcon.Web.Mvc.HtmlExtensions
+@model Phoenix.Server.Web.Areas.Admin.Models.Account.UserModel
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 lg:col-span-6">
+        <div class="intro-y box p-5">
+
+            <div class="mt-3">
+                <label>Tên tài khoản</label>
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+
+            <div class="mt-3">
+                <label>Tên hiển thị</label>
+                @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
+                @Html.ValidationMessageFor(model => model.DisplayName)
+            </div>
+
+            <div class="mt-3">
+                <label>Mật khẩu</label>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input w-full border mt-2" } })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,37 @@
+﻿@model Phoenix.Server.Web.Areas.Admin.Models.Account.UserModel
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">
+            @Model.UserName
+        </h2>
+        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+            <a href="@Html.Raw(Url.Action("Index"))" class="btn btn-warning w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
+                <i data-feather="corner-down-left" class="w-4 h-4 mr-2"></i> Quay lại
+            </a>
+            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-danger w-32 mr-2 mb-2 flex items-center justify-center bg-theme-7 text-white">
+                <i data-feather="trash" class="w-4 h-4 mr-2"></i> Xóa
+            </a>
+        </div>
+    </div>
+    @Html.Partial("_CreateOrUpdate", Model)
+}
+<div class="modal" id="delete-modal">
+    <div class="modal__content">
+        <div class="p-5 text-center">
+            <i data-feather="x-circle" class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
+            <div class="text-3xl mt-5">Bạn có chắc chắn muốn xóa?</div>
+            <div class="text-gray-600 mt-2">Do you really want to delete these records? This process cannot be undone.</div>
+        </div>
+        @using (Html.BeginForm("Delete", "User", new { id = Model.Id }))
+        {
+            <div class="px-5 pb-8 text-center">
+                <button type="button" data-dismiss="modal" class="btn btn-warning w-24 text-white mr-1">Không! Cám ơn.</button>
+                <button type="submit" class="btn btn-success w-24 bg-theme-9 text-white">Đồng ý</button>
+            </div>
+        }
+    </div>
+</div>
